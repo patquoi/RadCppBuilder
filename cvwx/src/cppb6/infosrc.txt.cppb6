@@ -1,0 +1,216 @@
+************************************************
+* INFORMATIONS SUR LES SOURCES DE CENTRE-VILLE *
+************************************************
+
+================================================================================
+0. SOMMAIRE
+================================================================================
+
+1. LANGAGE ET OUTIL DE DEVELOPPEMENT
+2. ORGANISATION DES SOURCES
+3. INSTALLATION ET COMPILATION DES SOURCES
+4. NOTES SUR LA PROGRAMMATION
+5. AVERTISSEMENTS SUR LES MODIFICATIONS DES SOURCES
+6. ETAPES POUR AJOUTER UN NOUVEL ELEMENT DANS LA SIMULATION
+
+================================================================================
+1. LANGAGE ET OUTIL DE DEVELOPPEMENT
+================================================================================
+
+La version Windows de Centre-Ville est développée avec C++Builder.
+La dernière version est compilée avec C++Builder 6 Personnel.
+
+Les sources sont communs malgré la différence de plateformes.
+Ceci est possible grâce aux points communs entre les deux outils
+(même langage, même EDI et quasiment mêmes bibliothèques).
+
+Les sources de la version 3.1 de Centre-Ville pour Linux ont été
+incluses en guise d'exemple de portage de C++Builder vers Kylix toutes
+versions (Langage Delphi). Ils se trouvent dans le dossier /SRC31 dans
+les archives.
+
+De la même manière, les sources de la version 4.3.1 de Centre-Ville pour
+Windows et Linux ont été incluses en guise d'exemple de développement commun
+entre C++Builder et Kylix 3 (C++). Ils se trouvent dans le dossier /SRC43 dans
+les archives.
+
+================================================================================
+2. ORGANISATION DES SOURCES
+================================================================================
+
+/SRC		Dossier où se trouvent les sources
+/SRC31		Sources Kylix Delphi (Centre-Ville v3.1)
+/SRC43		Sources Kylix C++Builder (Centre-Ville v4.3.1)
+/BIN		Fichiers exemples (*.cvw), fichiers texte d'information (*.txt)
+		et exécutable cvw.exe (généré depuis C++Builder)
+/HLP		Sources (rtf) du fichier d'aide Windows
+/OBJ		Fichiers objets (*.obj) générés par C++Builder lors de	la compilation
+/DCU		Fichiers objets (*.dcu) générés par Kylix (Delphi) lors de
+		la compilation du projet src31/cvx31.dpr et src43/cvx.dpr
+
+*.dfm		Sources des fiches C++Builder
+*.xfm		Sources des fiches Kylix
+*.cpp, *.h(pp)	Unités, en-tête C++
+*.pas		Unités Kylix Delphi (dossier /SRC31 seulement)
+cvw.bpr		Fichier projet C++Builder (Exécutable Windows = cvw.exe)
+*.res		Fichiers de ressource
+*.d(e)sk	Fichiers de configuration du bureau de C++Builder (resp. Kylix).
+*.hpj		Fichier projet d'aide Windows (.HLP)
+*.rtf		Fichier source RTF de l'aide en ligne Windows
+svg_win.bat	Script de nettoyage et de création de l'archive zip des sources
+license.txt	License GPL officielle (Anglais)
+licence.txt	Traduction de la licence GPL en français (non-officielle)
+lisezmoi.txt	Fichier lisezmoi
+À faire.txt	Notes sur des modifications et détails à voir à l'avenir
+infosrc.txt	Ce fichier
+
+================================================================================
+3. INSTALLATION ET COMPILATION DES SOURCES
+================================================================================
+
+Pour compiler les sources sous Windows, il faut installer C++Builder 6. La 
+version Personnel n'est malheureusement pas gratuite.
+
+Dans le dossier "CBuilder6/Projects", dézipper les 
+sources dans un sous-dossier "/cvw" (pour donner en définitive 
+"/CBuilder6/projects/cvw"). Il faut dans le dossier "/cvw" les dossiers "/bin"
+(destination de l'exécutable) et "/obj" (destination des modules compilés 
+*.obj).
+
+Il suffit alors d'ouvrir le fichier projet cvw.bpr et de compiler. 
+L'exécutable généré sera "/cvw/bin/cvw.exe". Les fichiers exemples sont 
+dans "/cvw/bin".
+
+Pour compiler l'aide en ligne de Windows, il faut ouvrir le fichier 
+"/hlp/CVW.HPJ" avec le compilateur d'aide Windows de Microsoft HCW.EXE fourni 
+avec C++Builder (dans "/CBuilder6/Help/Tools").
+
+================================================================================
+4. NOTES SUR LA PROGRAMMATION
+================================================================================
+
+Je voulais surtout dire que les sources fournies ne sont pas dans un but de 
+donner une référence de programmation C++ (je ne l'ai pas écrit dans ce but-là)
+donc je vais justifier mes choix ici, choix qui ne seraient - pour des maniaques
+de la programmation objet - pas du tout bien pour une écriture propre. J'aurais, 
+de toutes façons, choisi un autre langage si j'avais voulu l'écrire en pur objet
+(le langage Eiffel pour ne pas le citer - peut-être un jour).
+
+Mais aujoud'hui, il est écrit dans le langage et avec les outils que je manipule
+le mieux. Cependant, il faut que j'explique mes choix qui peuvent paraître
+choquants pour certains et inaperçus pour d'autres.
+
+Il s'agît en particulier du principe d'utiliser une instance dans les méthode de 
+classe. Il s'agît en particulier de l'instance de la classe centre_ville *cv.
+Je l'utilise dans les méthodes de classe des éléments de la simulation.
+
+Il n'est pas du tout conseillé d'utiliser des instances dans les méthodes de
+classes. Cependant , j'ai pris cette liberté pour les raisons suivantes :
+
+1. Les classes d'éléments de la simulation sont des types de propriétés de la
+   classe centre_ville (ou leurs objets seront instanciés par ces propriétés)
+   et l'instance centre_ville *cv n'est utilisée que dans le cadre de l'activité
+   ou la définition de la simulation.
+2. l'instance de classe centre-ville est unique et créée en un seul exemplaire 
+   référencé par *cv.
+3. Si je n'avais pas pris cette liberté, j'aurais été obligé de transmettre
+   l'instance soit dans le constructeur ce qui est non négligeable en place 
+   mémoire, soit par paramètre dans les méthodes ce qui est franchement bête
+   quand il s'agît toujours du même. J'aurais pu aussi définir les méthodes
+   utilisant l'instance cv au sein de sa classe (centre_ville) mais il y en
+   aurait beaucoup trop définie au niveau de la classe centre_ville (et il y
+   en a déjà assez comme ça) et souvent j'utilise une fois l'instance.
+4. Il y a beaucoup d'interactions dans les différents éléments et j'ai déjà du 
+   mal à évaluer dans la classe de quel élément je vais définir telle ou telle
+   méthode.
+
+En fait je considère que les propriétés de la classe centre_ville sont amies
+MAIS au sein (et au travers) de l'instance centre_ville *cv.
+
+Voici les différentes classes de la simulation (par ordre de définition) :
+
+--------------------------------------------------------------------------------
+identifiant	Désignation				Apparition
+--------------------------------------------------------------------------------
+pieton		(piétons)				v2.0
+feu		(feux tricolores)			
+etape		(étapes)
+vehicule	(véhicules - voitures normales)
+depot_bus	(dépôt de bus)
+bus		(bus)					v3.0
+arret_bus	(arrêts de bus)				v3.0
+ligne_bus	(lignes de bus)				v3.0
+tram		(trams)					v3.5
+arret_tram	(arrêts de tram)			v3.5
+ligne_tram	(lignes de tram)			v3.5
+place_taxi	(places de taxi)			v3.6
+file_taxi	(files de taxis)			v3.6
+taxi		(taxis)					v3.6
+voie		(routes - par case)
+stats		(statistiques sur les véhicules)
+centre_ville 	(simulation)
+--------------------------------------------------------------------------------
+
+================================================================================
+5. AVERTISSEMENTS SUR LES MODIFICATIONS DES SOURCES
+================================================================================
+
+Je présente ici les difficultés et les remarques importantes concernant la
+modification des sources. En effet, le fait qu'il y ait des sources communs pour
+deux environnements différents, il faut faire attention aux conséquences d'une
+modification des sources dans un environnement par rapport à l'autre. De plus,
+la façon d'ajouter, de supprimer ou de modifier quelque chose n'est pas 
+forcément la même une fois sous l'autre environnement. Ceci est dû au fait que
+les fichiers sources C++ (*.c*/*.h*) sont communs mais pas les fichiers sources 
+des fiches (*.xfm et *.dfm).
+
+-----------------------------------------
+COMPILATION AVEC INFORMATIONS DE DEBOGAGE
+-----------------------------------------
+
+Il est fortement conseillé de compiler avec informations de débogage. En effet,
+il peut arriver que le comportement soit différent après avoir retiré l'option
+incluant les informations de débogage (Options | Compilateur | bouton "Version 
+finale") or tous les tests se font avec options de débogage.
+
+===========================================================
+6. ETAPES POUR AJOUTER UN NOUVEL ELEMENT DANS LA SIMULATION
+===========================================================
+
+Le grand intérêt d'une simulation est de pouvoir y intégrer un nouveau type
+d'élément. Centre-Ville le permet assez aisément (il suffit de voir la 
+chronologie d'entrée des différents types d'éléments). Les étapes pour en 
+faire entrer un nouveau sont toujours les mêmes.
+
+Je commence déjà par imaginer comment l'élément va être représenté dans la
+simulation. Ensuite, je dessine les différentes bitmaps permettant de le
+représenter sous toutes ses formes. Du fait de la représentation sous formes
+de cases carrées, il y a des limites dans l'affichage (il faut utiliser si
+possible un nombre entier de cases). La façon de le représenter me donne 
+ainsi les données dont j'aurai besoin pour le dessiner et me permet d'en 
+déduire la structure des données de cet élément (les propriétés de sa 
+classe).
+
+Il faut ensuite penser à l'interaction avec les autres types d'éléments déjà
+présents et leur donner aussi un rôle et un intérêt.
+
+Il ne faut pas hésiter à réutiliser des comportements déjà existants comme
+l'attente des piétons pour prendre un taxi, un bus ou un tram. La façon 
+identique de représenter un bus et un tram, de paramétrer un réseau de bus et
+un réseau de trams, etc.
+
+En parlant de réutiliser, les développeurs C++ qui aiment utiliser l'héritage
+et la généricité (template) remarqueront qu'il n'y en a pas dans les sources.
+En effet, je préfère tout d'abord dupliquer les choses qui se ressemblent puis
+mettre en commun ce qui peut l'être mais sans utiliser ni l'héritage, ni la 
+généricité dans un premier temps. C++Builder utilise déjà l'héritage pour les
+objets de la VCL/CLX. La généricité pourrait être utilisée par exemple pour 
+les comportements des différents éléments comme la recherche et l'attente des
+bus, taxi et trams. Cependant, je pense que ce n'est pas une nécessité : ça 
+rendrait plus difficile la lisibilité, la compréhension des erreurs à la 
+compilation (surtout les "template") et peut dans certains cas consommer de 
+a mémoire à la création des éléments ce qui n'est pas négligeable dans une 
+simulation.
+
+
+Dernière mise à jour le 23 mars 2005.

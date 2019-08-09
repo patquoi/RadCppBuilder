@@ -1,0 +1,127 @@
+INFORMATIONS IMPORTANTES (13/09/2000)
+-------------------------------------
+
+
+
+COMMENT LIRE CE FICHIER COMME IL FAUT SOUS WINDOWS 95, NT ET SUPERIEUR
+
+Choisissez "DEMARRER" puis "EXECUTER" et entrez la commande "Edit" et ouvrez
+le fichier "lisezmoi.txt".
+
+
+
+PROBLEMES A L'AFFICHAGE
+
+Du fait de la rsolution des caractres (16x9), des lignes verticales noires
+apparaissent dans le jeu en mode 80 colonnes x 50 lignes (FPAC8050.EXE).
+
+J'ai dfini une version du jeu sans ce problme mais dans un mode texte SVGA
+qui n'est pas rpandu : 134x50 avec des matrices de caractre de 8x8. Le mode
+utilis est le n35 (FPC13450.EXE). Si votre carte le supporte (les matrices
+de caractres 8x8 et une rsolution d'au moins 134x50 fera l'affaire).
+
+
+
+COMMANDES AU CLAVIER
+
+Diriger votre Pac-man..................................Les 4 touches flches
+Abrger le dfilement du texte..........................................Echap
+Quitter en cours de jeu.................................Echap (2 fois) puis Q
+Revenir au jeu si vous avez fait Echap......................................R
+
+
+
+COMMENT DEFINIR UN RACCOURCI COMME IL FAUT SOUS WINDOWS 95 ET NT 4
+
+Procdez comme suit :
+
+1. Cliquez-droit (avec le bouton droit de la souris)  l'endroit ou vous
+   souhaitez placer votre raccourci (fentre de fichiers ou bureau) ;
+2. Choisissez "Nouveau" puis "Raccourci" ;
+3. Appuyez sur le bouton "Parcourir..." ;
+4. Recherchez le fichier FPAC8050.EXE dans vos rpertoires puis double
+   cliquer dessus ;
+5. Le chemin complet du fichier FPAC8050.EXE s'affiche : appuyez sur le
+   bouton "Suivant >" ;
+6. Entrez un nom pour l'icne de votre raccourci ("Pac-man 80x50" par exemple)
+   et appuyez sur la touche "Entre" ou sur le bouton "Terminer".
+
+Ceci permet dj de dfinir le raccourci mais il faut  prsent effectuer
+quelques rglages...
+
+1. Cliquez-droit sur l'icne du nouveau raccourci ;
+2. Choisissez "Proprits" puis l'onglet "Programme" ;
+3. Dans le champ "Ligne de commande", ajoutez  la fin une espace puis un
+   point d'interrogation (a doit finir par "FPAC8050.EXE ?") ;
+4. Appuyez sur le bouton "Changer d'icne" et double-cliquez sur une icne ;
+5. Retirez la coche de la case "Fermer en quittant" si elle est coche ;
+6. Cliquez sur l'onglet "Ecran" ;
+7. Cochez le bouton-radio "Plein cran" en haut  gauche ;
+8. Appuyez sur le bouton "Ok".
+
+Si vous double-cliquez  prsent sur l'icne du raccourci modifi, vous
+obtiendrez une fentre avec un champ "Paramtres". Cela permet de dfinir
+les paramtres du jeu. Pour avoir la liste de tous les paramtres, entrez un
+point d'interrogation dans le champ "Paramtres" puis appuyez sur le bouton
+"Ok" ou appuyez sur "Entre" et vous obtiendrez cet affichage :
+
+FPAC v1.03 - Fouquet's Pac-Man. IHSV(c), II-MCMXCVII
+
+Syntaxe : FPAC8050 [Options]
+Options [Valeurs par dfaut]:
+?          Affiche cette aide.
+S          Jeu sans son, [son activ].
+R          Cre ou rinitialise le top-10.
+!=nom      nom=Nom du joueur (32 caractres maximum).
+P=priode  priode=Priode d'affichage en millisecondes (1<priode<999) [100].
+G=mode     Mode de recherche des fantmes : 0=hazardeux, 99=dtermin [50].
+L=n        n=Nombre de pilules pour une Pac-Gum (0<=n<=999) [100].
+E=d        d=Dure lorsque les fantmes sont mangeables (1<=d<=1000) [100].
+N=n        n=Nombre de fantmes au dbut du jeu (0<n<8) [4].
+M=mode     Mode Texte 80x50 Min. avec les caractres 8x8 [3]
+D=n        n=Nombre de portes (0<=n<=199) [50]
+
+Spcifiez dans le champ "Paramtres" prcdent, pour chaque option un
+des caractres proposs (S, R, !, P, G, L, R, N, M ou D) puis une valeur dans
+le cas des 8 dernires options avec le signe gal entre le caractre et la
+valeur.
+
+Chaque option doit tre spare d'au moins une espace mais il ne doit pas y
+en avoir entre le caractre de l'option, le symbole "=" et la valeur.
+
+Exemple de paramtres : "S R !=PatQuoi P=120 G=0 L=200 N=6 D=75"
+
+Les paramtres peuvent tre utiliss lorsque l'on excute le fichier en ligne
+de commande (Menu "Dmarrer" | "Excuter" ou en session Dos). Dans l'exemple,
+il faut alors entrer "FPAC8050 S R !=PatQuoi P=120 G=0 L=200 N=6 D=75".
+
+
+
+BONUS
+
+Il y a un bonus sous forme d'avantage sur les fantmes lorsque vous arrivez 
+ramasser les quatre as... A vous de deviner quoi !
+
+
+
+QUATRE-QUARTS
+
+Si vous arrivez  nettoyer un quart de labyrinthe il se passe ceci :
+  - tous les fantmes repartent de leur manoir ;
+  - il y a un fantme de plus ;
+  - vous avez une vie en plus.
+
+Le but du jeu est de les nettoyer les quatre.
+
+
+
+STRATEGIES
+
+- Il faut viter d'entamer un quart quand on a pas termin un autre.
+- Utilisez les couloirs centraux pour passer du bas vers le haut ou de
+  haut vers le bas et vice versa.
+- Economisez vos pac-gums.
+
+
+
+BONNE CHASSE.

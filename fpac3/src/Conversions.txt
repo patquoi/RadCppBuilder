@@ -1,0 +1,31 @@
+Source (FPAC1)         Destination (FPAC3)
+==================================
+random(int)            RANDOM(int)
+MUR                    mur
+GRAINE                 pilule
+PILULE                 pacgum
+NbGraines[int]         NbPilules[int]
+Dist(int,int)          DIST(int,int) 
+255 // portes          TOUSBLOCAGES
+xp,yp,dp               Jeu.PacMan.x,-y,-d
+nbords                 NbBords
+MetPortes()            PosePortes()
+tbonus                 Jeu.Bonus.Temps
+tpsbonus               TEMPSBONUS
+tmang[int]             Fantome[int].tv
+tpsmang                Jeu.Vulnerabilite
+MANGE,ENFUITE,         mange,en_fuite,
+TRANSITION,ENCHASSE    transition,en_chasse
+Vies                   Jeu.NbVies
+Pts                    Jeu.Score
+xs,ys                  Bonus.x,Bonus.y
+es                     Bonus.APrendre
+char BonusPris[0..4]   bonus_pris Jeu.Bonus.Pris (0..15) 
+PORTE(int,int)         (PORTE(int,int))
+Msg[10],DelaiMsg[10]   Primes.Valeur[10],Primes.Delai[10]
+XMsg[10],YMsg[10]      Primes.x[10],Primes.y[10]
+MsgCrt,MsgNv           Primes.Courante, Primes.Nouvelle;
+nfm                    Jeu.NbFantomesManges
+nf                     Jeu.NbFantomes;
+ep                     PacMan.BoucheOuverte
+PerPorte               Jeu.DeroulementPortes

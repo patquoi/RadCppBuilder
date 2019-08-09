@@ -1,0 +1,152 @@
+FOUQUET'S PAC III - LISEZMOI
+============================
+
+Merci de lire le fichier lisezmoi.txt avant de continuer l'installation.
+Il contient des informations essentielles au bon fonctionnement du jeu.
+
+------------------------------------------
+INSTALLATION SOUS WINDOWS SELON LA VERSION
+------------------------------------------
+
+L'installateur va détecter si vous avez une version 32 ou 64 bits de Windows
+et installera automatiquement la bonne version.
+
+-------------------
+LICENCE ET GARANTIE
+-------------------
+
+FPac III est sous Licence Publique Générale version 2.0.
+Vous pouvez donc librement le diffuser, le modifier selon les modalités
+de la licence. 
+Le fichier de licence en anglais ainsi qu'une traduction non officielle
+sont fournis dans cette archive.
+LE PROGRAMME ET TOUT SON CONTENU SONT FOURNIS SANS AUCUNE GARANTIE QUE CE SOIT.
+Les sources sont incluses dans cette archive.
+
+--------
+HISTOIRE
+--------
+
+FPAC 3 est en fait une adaptation d'un pacman que j'ai développé début...1997.
+Il s'agit de FPAC 1. 1 comme 1 seul niveau et 1 seul joueur.
+Cette version était en mode texte (DOS) avec redefinition de caractères.
+Cette version fonctionne toujours sous les dernières versions de Windows avec
+un réglage simple : se mettre en plein écran et choisir une police 8x8 dans 
+les paramètres de lancement.
+
+FPAC2 existe également, il s'agit d'un pac-man à 2 en mode graphique VGA 
+320x200 256 couleurs.
+Pour obtenir ces versions, allez sur mon site à cette adresse :
+
+http://patquoi.fr/#fpac
+
+-------
+SOURCES
+-------
+
+Les sources sont livrées avec l'archive d'installation.
+Elles sont situées dans le dossier /src du dossier d'installation de FPac 3.
+Les sources se compilent avec Borland C++Builder 6 (la version Personnelle
+suffit). Le dossier /obj permet la compilation et l'exécutable généré est
+créé dans le dossier /bin. Le dossier /src/Fpac1 contient les sources en C
+de la version DOS d'origine (FPac I). Cette version peut être compilée avec
+Turbo C/C++ et Borland C++.
+
+----------
+HISTORIQUE
+----------
+
+[Version 1.3] Versions 32 et 64 bits
+Le jeu a été porté en 64 bits avec prise en charge de la haute résolution.
+La version 32 bits est maintenue et s'installera dans les cas nécessaires.
+Pour savoir si le programme fpac3.exe est 32 ou 64 bits, appuyer sur Maj+Ctrl+P.
+
+[Version 1.2.1] Optimisation
+Le jeu n'est plus ralenti quand :
+ - on augmente les dimensions de la fenêtre 
+ - on reste appuyé sur une touche
+ - on ballade la souris sur la zone de jeu en maintenant appuyé un bouton
+   de la souris.
+
+[Version 1.2]
+Corrections lors des moments entre la mort et la vie de Pacman et des fantômes
+ - Lorsque Pacman est mangé, la croix disparaît dès qu'il est possible de
+   repartir depuis le centre.
+ - Après avoir été mangés, les fantômes (enfin... les yeux) restaient bloqués
+   devant les portes fermées. Les demis-tours ont été rendus possibles que lors
+   qu'ils sont dans un cul-de-sac.
+
+[Version 1.1]
+Corrections :
+ - Le score des bonus (50 pts) n'était pas comptabilisé...  :^S
+ - Un message d'erreur apparaissait après avoir tout nettoyé...
+ - L'affichage du top 10 pendant une partie a été désactivé car ça plantait
+   le jeu !
+ - L'ajout de scores dans le top n'était pas top...
+ - L'appui prolongé sur les touches fléchées lorsque la croix est affichée
+   faisait perdre des vies.
+ - La commande Jouer est désactivée pendant l'affichage du top 10.
+Ajout:
+ - Ajout de la possibilité de réinitialiser le Top 10.
+
+[Version 1.0] Première version
+   
+------------
+REGLE DU JEU
+------------
+
+Comme tout pacman qui se respecte, il faut manger toutes les pilules (jaunes).
+Dans l'unique niveau qui se présente à vous, vous pouvez néanmoins nettoyer 
+chaque quart. La bonne nouvelle, c'est que ça permet d'une part d'avoir une 
+vie supplémentaire et d'autre part de renvoyer les fantômes dans leur quartier
+(le manoir trop noir pour se voir). Il y a une mauvaise nouvelle, il y a un 
+fantôme de plus.
+
+L'autre tactique consiste à tout nettoyer en une fois afin de n'avoir pas de 
+fantôme supplémentaire.
+
+Vous remarquerez que les fantômes deviennent de plus en plus agressifs. 
+Le pourcentage affiché en bas de la fenêtre est justement la probabilité qu'un
+fantôme suive pacman. Le pourcentage augmente lorsque vous ne mangez pas de 
+pastilles jaunes.
+
+Les pacgums rouges permettent de courir après les fantômes afin de les manger.
+Les fantômes gris sont mangeables mêmes s'ils n'ont pas l'air appétissants.
+
+Contrairement au pacman standard, il n'est pas possible d'aller plus vite que
+les fantômes même après avoir mangé une pacgum. Du reste, eux non plus ne 
+peuvent pas aller plus vite que pacman. Pour arriver à les manger, il faut 
+ruser et utiliser les culs de sac et les portes qui s'ouvrent et se ferment de
+manière régulière.
+
+Les doubles flèches aux extrémités vous indiquent que pacman peut passer d'un
+bord à son bord opposé. C'est pratique sachant que les fantômes ne peuvent pas
+le faire...
+
+Des bonus sous forme de coeur, carreau, trèfle et pique apparaissent ça et là.
+Leur utilité est la même que dans FPac1... :^)
+
+----------------
+COMMANDES DE JEU
+----------------
+
+Pour déplacer pacman, utilisez les touches de directions (touches fléchées).
+La touche P permet de faire une pause. Dans ce cas vous pouvez...
+ - soit Reprendre la partie (touche R),
+ - soit Abandonner la partie sans quitter le jeu (touche A),
+ - soit Quitter le jeu (touche Q).
+Comme toute application Windows, vous pouvez quitter le jeu directement et 
+sans confirmation avec Alt+F4.
+
+Pour le paramétrage, les touches concernées sont les touches de fonction.
+Il y a beaucoup de combinaisons de touches pour les fonctions.
+Cependant les paramètres sont accessibles au menu avec les raccourcis.
+ - Vous pouvez restaurer les paramètres par défaut (Ctrl+R).
+ - Vous pouvez enregistrer les paramètres de jeu (Ctrl+S).
+
+Il y a plusieurs façons d'obtenir des informations depuis le jeu et même en
+cours de partie : utilisez le menu ?.
+
+----------------------------------------  
+Dernière mise à jour le 31 juillet 2019.
+----------------------------------------

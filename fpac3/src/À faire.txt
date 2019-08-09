@@ -1,0 +1,6 @@
+- BUG : Impossible tourner sur double flèche
+- Classement :
+  1. Victoire/Défaite
+  2. Score
+  3. Niveau
+  Ajouter une colonne Vainqueur @ ou #
