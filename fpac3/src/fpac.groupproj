@@ -3,10 +3,10 @@
         <ProjectGuid>{8B601F4C-FBCA-42A1-BD50-A7723ECAF3BE}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="fpac3.cbproj">
+        <Projects Include="..\impcfgfpac3\src\impcfgfpac3.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\impcfgfpac3\src\impcfgfpac3.cbproj">
+        <Projects Include="fpac3.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -17,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="fpac3">
-        <MSBuild Projects="fpac3.cbproj"/>
-    </Target>
-    <Target Name="fpac3:Clean">
-        <MSBuild Projects="fpac3.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="fpac3:Make">
-        <MSBuild Projects="fpac3.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="impcfgfpac3">
         <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj"/>
     </Target>
@@ -35,14 +26,23 @@
     <Target Name="impcfgfpac3:Make">
         <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="fpac3">
+        <MSBuild Projects="fpac3.cbproj"/>
+    </Target>
+    <Target Name="fpac3:Clean">
+        <MSBuild Projects="fpac3.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="fpac3:Make">
+        <MSBuild Projects="fpac3.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="fpac3;impcfgfpac3"/>
+        <CallTarget Targets="impcfgfpac3;fpac3"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="fpac3:Clean;impcfgfpac3:Clean"/>
+        <CallTarget Targets="impcfgfpac3:Clean;fpac3:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="fpac3:Make;impcfgfpac3:Make"/>
+        <CallTarget Targets="impcfgfpac3:Make;fpac3:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
