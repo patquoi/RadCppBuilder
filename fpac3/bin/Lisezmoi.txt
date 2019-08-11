@@ -44,13 +44,12 @@ http://patquoi.fr/#fpac
 SOURCES
 -------
 
-Les sources sont livrées avec l'archive d'installation.
-Elles sont situées dans le dossier /src du dossier d'installation de FPac 3.
-Les sources se compilent avec Borland C++Builder 6 (la version Personnelle
-suffit). Le dossier /obj permet la compilation et l'exécutable généré est
-créé dans le dossier /bin. Le dossier /src/Fpac1 contient les sources en C
-de la version DOS d'origine (FPac I). Cette version peut être compilée avec
-Turbo C/C++ et Borland C++.
+Les sources sont livrées avec l'archive d'installation. Il s'agit de l'archive
+fpac3-src-win64.zip où se trouve l'application FPac3. Les sources se compilent
+avec RAD Studio C++Builder 10.3.1 Community. Le dossier /obj permet la compi-
+lation et l'exécutable généré est créé dans le dossier /bin. 
+Le dossier /src/Fpac1 contient les sources en C de la version DOS d'origine 
+(FPac I). Cette version peut être compilée avec Turbo C/C++ et Borland C++.
 
 ----------
 HISTORIQUE
@@ -147,6 +146,6 @@ Cependant les paramètres sont accessibles au menu avec les raccourcis.
 Il y a plusieurs façons d'obtenir des informations depuis le jeu et même en
 cours de partie : utilisez le menu ?.
 
-----------------------------------------  
-Dernière mise à jour le 31 juillet 2019.
-----------------------------------------
+-------------------------------------  
+Dernière mise à jour le 11 août 2019.
+-------------------------------------

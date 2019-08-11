@@ -16,7 +16,7 @@ attrib -S -H Thumbs.db /S
 del /S Thumbs.db
 
 del ..\fpac3-src-win64.zip
-del install\Output\ins*.exe
+del ins\Output\ins*.exe
 
 cls
 "C:\Program Files\7-Zip\7z.exe" a ..\fpac3-src-win64.zip bin\licen?e.txt bin\lisez-moi.txt 
