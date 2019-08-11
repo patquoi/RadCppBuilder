@@ -192,7 +192,7 @@ object FormMain: TFormMain
   end
   object Button0: TButton
     Tag = 1
-    Left = 290
+    Left = 472
     Top = 245
     Width = 66
     Height = 23
@@ -226,7 +226,7 @@ object FormMain: TFormMain
   end
   object Button1: TButton
     Tag = 1
-    Left = 362
+    Left = 544
     Top = 245
     Width = 41
     Height = 23
@@ -20091,7 +20091,7 @@ object FormMain: TFormMain
     Filter = 'FPac3.ini|FPac3.ini'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Title = 'S'#233'lectionnez un fichier FPac3.ini'
-    Left = 454
+    Left = 310
     Top = 227
   end
 end
