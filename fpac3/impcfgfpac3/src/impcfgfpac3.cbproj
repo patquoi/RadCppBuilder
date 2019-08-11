@@ -125,6 +125,7 @@
         <UWP_CppLogo150>..\png\impcfgfpac3-150.png</UWP_CppLogo150>
         <UsePackages>false</UsePackages>
         <LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>
+        <DynamicRTL>false</DynamicRTL>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
