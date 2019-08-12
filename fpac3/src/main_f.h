@@ -139,8 +139,6 @@ class TFormMain : public TForm
 __published:	// Composants gérés par l'EDI
   TTimer *TimerJeu;
   TTimer *TimerMsg;
-  TImageList *ImageListJeu;
-  TImageList *ImageListMsg;
   TDrawGrid *DrawGridJeu;
   TDrawGrid *DrawGridMsg;
   TMainMenu *MainMenu;

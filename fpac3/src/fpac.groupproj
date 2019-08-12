@@ -17,15 +17,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="impcfgfpac3">
-        <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj"/>
-    </Target>
-    <Target Name="impcfgfpac3:Clean">
-        <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="impcfgfpac3:Make">
-        <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="fpac3">
         <MSBuild Projects="fpac3.cbproj"/>
     </Target>
@@ -34,6 +25,15 @@
     </Target>
     <Target Name="fpac3:Make">
         <MSBuild Projects="fpac3.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="impcfgfpac3">
+        <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj"/>
+    </Target>
+    <Target Name="impcfgfpac3:Clean">
+        <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="impcfgfpac3:Make">
+        <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="impcfgfpac3;fpac3"/>
