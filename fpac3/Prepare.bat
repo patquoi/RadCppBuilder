@@ -8,6 +8,7 @@ del /S *.tds
 del /S *.pdi
 del /S *.cbproj.local
 del /S *.groupproj.local
+del bin\fpac3.32.i??
 rd /S /Q src\__astcache
 rd /S /Q src\__history
 rd /S /Q impcfgfpac3\src\__astcache

@@ -3,10 +3,10 @@
         <ProjectGuid>{8B601F4C-FBCA-42A1-BD50-A7723ECAF3BE}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="..\impcfgfpac3\src\impcfgfpac3.cbproj">
+        <Projects Include="fpac3.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="fpac3.cbproj">
+        <Projects Include="..\impcfgfpac3\src\impcfgfpac3.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -36,13 +36,13 @@
         <MSBuild Projects="..\impcfgfpac3\src\impcfgfpac3.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="impcfgfpac3;fpac3"/>
+        <CallTarget Targets="fpac3;impcfgfpac3"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="impcfgfpac3:Clean;fpac3:Clean"/>
+        <CallTarget Targets="fpac3:Clean;impcfgfpac3:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="impcfgfpac3:Make;fpac3:Make"/>
+        <CallTarget Targets="fpac3:Make;impcfgfpac3:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
