@@ -16,6 +16,21 @@
 #include "simul.h"
 #include <System.Actions.hpp>
 #include <System.ImageList.hpp>
+#include <Vcl.BaseImageCollection.hpp>
+#include <Vcl.ImageCollection.hpp>
+#include <Vcl.VirtualImageList.hpp>
+//---------------------------------------------------------------------------
+// v5.4 : les glyphes de TSpeedButtons sont chargées manuellement (HDPI)
+//---------------------------------------------------------------------------
+#define GLYPHE_DEF    0
+#define GLYPHE_DEFF   1
+#define GLYPHE_DEFFP  2
+#define GLYPHE_SELF   3
+#define GLYPHE_DEFB   4
+#define GLYPHE_DEFTR  5
+#define GLYPHE_DEFTX  6
+#define GLYPHE_DEFVL  7
+#define GLYPHE_DIR    8
 //---------------------------------------------------------------------------
 // pour RafraichitBoutonsEdition(...) v3.5
 enum affichage {aff_aucun, aff_dir, aff_sign, aff_veh=4, aff_ptn=8, aff_voie=16, aff_quadr=32, aff_env=64}; // v3.8.1 (aff_env)
@@ -34,12 +49,9 @@ __published:	// Composants gérés par l'EDI
   TTimer *TimerClignotementLocalisation;
   TTimer *TimerClignotementErreur;
   TStatusBar *StatusBar;
-  TImageList *ImageList8x8x1;
-  TImageList *ImageList16x16;
   TSaveDialog *SaveDialog;
   TOpenDialog *OpenDialog;
   TDrawGrid *DrawGridSimul;
-  TImageList *ImageList8x8x2;
   TMainMenu *MainMenu;
   TPopupMenu *PopupMenuEditionCase;
   TPopupMenu *PopupMenuSimulation;
@@ -373,7 +385,7 @@ __published:	// Composants gérés par l'EDI
   TAction *ActionDistancesArretsTram;
   TAction *ActionDistancesFilesTaxi;
   TAction *ActionDistancesFilesPark;
-        TAction *ActionDistancesPlacesVehlib;
+  TAction *ActionDistancesPlacesVehlib;
   TAction *ActionDecorsArbre;
   TAction *ActionDecorsPelouse;
   TAction *ActionNatureTrottoir;
@@ -385,8 +397,13 @@ __published:	// Composants gérés par l'EDI
   TAction *ActionRafraichir;
   TAction *ActionPrioritesPietons;
   TAction *ActionPlaceVehlib;
+  TImageCollection *ImageCollection; // v5.4
+  TVirtualImageList *VirtualImageList16x16; // v5.4
+  TVirtualImageList *VirtualImageList8x8x1; // v5.4
+  TVirtualImageList *VirtualImageList8x8x2;
+	TVirtualImageList *VirtualImageListGlyphes; // v5.4
   void __fastcall DrawGridSimulDrawCell(TObject *Sender, int Col,
-        int Row, TRect &Rect, TGridDrawState State);
+		int Row, TRect &Rect, TGridDrawState State);
   void __fastcall FormCreate(TObject *Sender);
   void __fastcall FormDestroy(TObject *Sender);
   void __fastcall DrawGridSimulDblClick(TObject *Sender);
@@ -502,7 +519,7 @@ __published:	// Composants gérés par l'EDI
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
 private:
-  TImageList *ImageList8x8;
+  TVirtualImageList *VirtualImageList8x8; // v5.4
   affichage Affichage;
   bool SimulEnCours,
        SimulModifiee,
@@ -590,7 +607,7 @@ private:
     ActionStatsAff20Tours->Enabled=(!Pause)&&(!EnCours);
     ActionStatsAff50Tours->Enabled=(!Pause)&&(!EnCours);
     ActionStatsAff100Tours->Enabled=(!Pause)&&(!EnCours);
-    ActionStatsAff200Tours->Enabled=(!Pause)&&(!EnCours);
+	ActionStatsAff200Tours->Enabled=(!Pause)&&(!EnCours);
     ActionStatsAff500Tours->Enabled=(!Pause)&&(!EnCours);
     // Décors (v4.2.2)
     ActionNatureTrottoir->Enabled=(!Pause)&&(!EnCours);
@@ -653,7 +670,11 @@ public:
     __fastcall TfrmSimulation(TComponent* Owner);
     void RedessineCase(int x, int y, bool EffaceFond);
     void AfficheBilan();
-    bool SupprimeToutDansSelection(type_voie TypeVoie);
+	bool SupprimeToutDansSelection(type_voie TypeVoie);
+	void AffecteGlyphe(const int NumGlyphe, TBitmap *Glyphe)
+	 { // v5.4 pour affecter les BitBtn->Glyph à partir d'une virtualImageList et supporter le HDPI
+      VirtualImageListGlyphes->GetBitmap(NumGlyphe, Glyphe);
+	 };
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrmSimulation *frmSimulation;

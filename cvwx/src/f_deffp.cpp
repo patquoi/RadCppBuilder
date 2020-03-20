@@ -8,7 +8,10 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+//---------------------------------------------------------------------------
+#ifdef WIN32
 #pragma link "cspin"
+#endif
 //---------------------------------------------------------------------------
 TfrmDefFeuxPietons *frmDefFeuxPietons=NULL;
 //---------------------------------------------------------------------------
@@ -16,6 +19,8 @@ __fastcall TfrmDefFeuxPietons::TfrmDefFeuxPietons(TComponent* Owner) : TForm(Own
  {
   NbFeux=0;
   NumFeux=NULL;
+  // v5.4 on charge les glyphes manuellement pour prendre en compte le HDPI
+  frmSimulation->AffecteGlyphe(GLYPHE_SELF, SpeedButtonSelFeux->Glyph);
  }
 //---------------------------------------------------------------------------
 bool TfrmDefFeuxPietons::RafraichitInfos()

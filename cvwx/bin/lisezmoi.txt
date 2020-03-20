@@ -9,14 +9,7 @@ Le texte de licence se trouve dans le fichier LICENSE.TXT, une traduction
 non-officielle en français se trouve dans le fichier LICENCE.TXT.
 
 --------------------------------------------------------------------------------
-2. INSTALLATION SOUS WINDOWS 7
---------------------------------------------------------------------------------
-
-Veuillez vous connecter à l'adresse suivante et suivez les instructions :
-http://patquoi.fr/windows7.html
-
---------------------------------------------------------------------------------
-3. DÉSINSTALLATION D'UNE VERSION PRÉCÉDENTE
+2. DÉSINSTALLATION D'UNE VERSION PRÉCÉDENTE
 --------------------------------------------------------------------------------
 
 SI VOUS AVEZ INSTALLÉ UNE VERSION PRÉCÉDENTE DE CENTRE-VILLE, IL EST FORTEMENT
@@ -27,20 +20,8 @@ installés (même modifiés) sont supprimés. Donc, si vous avez modifié les
 exemples fournis Géant.cvw, Carfours.cvw ou Démo.cvw, il faut les sauvegarder
 avant ou les renommer (au menu principal, rubrique Fichier | Enregistrer sous).
 
-Pour désinstaller une version précédente de Centre-Ville :
-
- - Si vous l'avez installée avec une archive d'installation INSCVW95.EXE :
-    · Allez dans le panneau de configuration,
-    · Choisissez "Ajout/Suppression de programmes" 
-    · Double cliquez sur la ligne qui commence par "Centre-Ville". 
-      Le numéro de version est indiquée juste à côté.
- - Si vous l'avez installée avec une archive autoextractible CVW95.EXE :
-    · Supprimez le dossier "C:\Program Files\Ihsv\Centre-Ville" et tout ce
-      qu'il contient après avoir sauvegardé tous les fichiers cvw que vous 
-      souhaitez conserver.
-
 ------------------------------------------------------------------------------
-4. SI VOUS AVEZ DES FICHIERS CRÉÉS AVEC UNE VERSION ANTÉRIEURE DE CENTRE-VILLE
+3. SI VOUS AVEZ DES FICHIERS CRÉÉS AVEC UNE VERSION ANTÉRIEURE DE CENTRE-VILLE
 ------------------------------------------------------------------------------
 
  - À PARTIR DE LA VERSION 3.0, IL N'EST PLUS POSSIBLE D'OUVRIR DES FICHIERS 
@@ -49,7 +30,12 @@ Pour désinstaller une version précédente de Centre-Ville :
    AU CHARGEMENT AVEC TOUTE NOUVELLE VERSION.
 
 ------------------------------------------------------------------------------
-5. MODIFICATIONS APPORTÉES DANS LES VERSIONS SUCCESSIVES
+4. MODIFICATIONS APPORTÉES DANS LES VERSIONS SUCCESSIVES
+------------------------------------------------------------------------------
+[Version 5.4] Versions 32 et 64 bits
+ - À partir de Windows 7, les fichiers de simulation (*.cvw) sont stockés dans
+   %LocalAppData%\Patquoi.fr\Centre-Ville.
+ - La gestion du HDPI est supportée (résolution > 96 dpi)
 ------------------------------------------------------------------------------
 [Version 5.3]
  - Ajout des vehlibs (véhicule en libre service) avec ses places réservées.

@@ -9,16 +9,21 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+//---------------------------------------------------------------------------
+#ifdef WIN32
 #pragma link "cspin"
-
+#endif
+//---------------------------------------------------------------------------
 TfrmParamTram *frmParamTram;
-
+//---------------------------------------------------------------------------
 const AnsiString asOrdre[2]={"ème","er"};
-
 //---------------------------------------------------------------------------
 __fastcall TfrmParamTram::TfrmParamTram(TComponent* Owner)
     : TForm(Owner)
 {
+ // v5.4 on charge les glyphes manuellement pour prendre en compte le HDPI
+ for(int i=0; i<10; i++)
+  frmSimulation->AffecteGlyphe(GLYPHE_DIR+i, ((TBitBtn*)(FindComponent((UnicodeString)("BitBtn"+IntToStr(1+i%3)+IntToStr(1+i/3)))))->Glyph);
 }
 //---------------------------------------------------------------------------
 void TfrmParamTram::RafraichitNbTrams()

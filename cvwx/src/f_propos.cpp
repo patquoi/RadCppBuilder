@@ -24,13 +24,13 @@ void __fastcall TfrmAPropos::TimerTimer(TObject *Sender)
  {
   switch((TempsEcoule++)%10)
    {
-    case 0: ImageList->GetBitmap(0, Bitmap);
+    case 0: VirtualImageList->GetBitmap(0, Bitmap);
             LabelTexte->Font->Color=clLime;
             break;
-    case 4: ImageList->GetBitmap(1, Bitmap);
+    case 4: VirtualImageList->GetBitmap(1, Bitmap);
             LabelTexte->Font->Color=clYellow;
             break;
-    case 6: ImageList->GetBitmap(2, Bitmap);
+    case 6: VirtualImageList->GetBitmap(2, Bitmap);
             LabelTexte->Font->Color=clRed;
             break;
    }
@@ -46,7 +46,7 @@ void __fastcall TfrmAPropos::FormShow(TObject *Sender)
 {
  TempsEcoule=0;
  Bitmap=new TBITMAP;
- ImageList->GetBitmap(0, Bitmap);
+ VirtualImageList->GetBitmap(0, Bitmap);
  SpeedButtonOk->Glyph=Bitmap;
  Timer->Enabled=true;
 }

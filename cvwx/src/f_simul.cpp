@@ -81,7 +81,7 @@
 // n'existent pas en bitmap 8x8.
 // Il faut les renuméroter
 // de telle sorte qu'ils soient
-// maintenus à la fin de ImageList8x8x2
+// maintenus à la fin de VirtualImageList8x8x2
 #define IDB_COINTROT  447 // v5.3 (+8) v5.2.4 (+16) v5.0 (+1) v5.2 (+12)
 #define IDB_DIRCARF   451 // v5.3 (+8) v5.2.4 (+16) v5.0 (+1) v5.2 (+12)
 //---------------------------------------------------------------------------
@@ -304,6 +304,8 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
   TCheckBox *CheckBox; // v3.0
   AnsiString asListeLignes, asMsg="";
 
+  // v5.4 : ATTENTION : VirtualImageList remplace ImageList
+
   // 1a. Stats Attente / Trafic
   if (StatsAttenteTrafic&&
       frmStatsAttenteTrafic&&
@@ -334,12 +336,12 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
 		 {
 		  if (v->Nature==pelouse) // v3.9
 		   {
-			ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_PELOUSE);
+			VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_PELOUSE);
 		   }
 		  else
 		   {
 			// D'abord le trottoir
-			ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_TROTTOIR+BordTrottoir);
+			VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_TROTTOIR+BordTrottoir);
 			for(int d=nord; d<=ouest; d++)
 			 if ((!v->v((direction)d)->DirPoss)&&
 				 (!v->v((direction)d)->SensVoieTram)&&
@@ -347,12 +349,12 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
 				 (!v->v(ADroiteDe[(direction)d])->SensVoieTram)&&
 				 (v->v((direction)d)->v(ADroiteDe[(direction)d])->DirPoss||
 				  v->v((direction)d)->v(ADroiteDe[(direction)d])->SensVoieTram))
-			  ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_COINTROT+d-1);
+			  VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_COINTROT+d-1);
 		   }
 		  // Ensuite les décors (sauf pelouse)
 		  switch(v->Nature) // v3.9
 		   {
-			case arbre:  ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_ARBRE+(Col+Row)%4); break;
+			case arbre:  VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_ARBRE+(Col+Row)%4); break;
 			default :    break;
 		   }
 		 }
@@ -366,41 +368,41 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
 			 if (CoinToiture==(int)(quatre_coins-CoinDir[d]))
 			  {
                UnSeulCoinVide=true;
-               ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_COINTOIT+d-1);
+			   VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_COINTOIT+d-1);
               }
             if (!UnSeulCoinVide)
-             ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_TOITURE);
-           }
-          else
-           ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_TOITURE+BordToiture);
-         }
-        // Si NI de voies de circulation NI immeubles NI trottoirs, ALORS c'est le néant total : tout noir (couleur du fond)
-       }
-      // 1c. On met le bitume. À savoir, où passe la route... Si on peut aller ou venir du nord, on pose le bitume jusqu'en haut, et ainsi de suite...
-      if (Affichage&(((!PassPoss)*aff_quadr)|
-                     ((!!PassPoss)*aff_voie)))
-       ImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_VOIE+PassPoss);
-     }
+			 VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_TOITURE);
+		   }
+		  else
+		   VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_TOITURE+BordToiture);
+		 }
+		// Si NI de voies de circulation NI immeubles NI trottoirs, ALORS c'est le néant total : tout noir (couleur du fond)
+	   }
+	  // 1c. On met le bitume. À savoir, où passe la route... Si on peut aller ou venir du nord, on pose le bitume jusqu'en haut, et ainsi de suite...
+	  if (Affichage&(((!PassPoss)*aff_quadr)|
+					 ((!!PassPoss)*aff_voie)))
+	   VirtualImageList8x8->Draw(DrawGridSimul->Canvas, Rect.Left, Rect.Top, IDB_VOIE+PassPoss);
+	 }
    }
   // 2. On peint la route : ligne de stop ou cédez-le-passage
   if (Affichage&aff_sign)
    {
-    // 2a. On peint le passage de bus (v3.5 : déplacé en tête)
-    if (v->PassageBus) // v3.1
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+	// 2a. On peint le passage de bus (v3.5 : déplacé en tête)
+	if (v->PassageBus) // v3.1
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_PSGBUS);
     if (v->NumPlaceTaxi) // v3.6
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_PLCTAXI);
     if ((v->NumPlacePark)||  // v5.0
         (v->NumPlaceVehlib)) // v5.3
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_PLCPRKG);
     if (v->NumPlaceVehlib) // v5.3
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         ((cv->PlaceVehlib[v->NumPlaceVehlib-1].NumVehlibReserve)?IDB_PLCVLBR:IDB_PLCVLB)+
                         v->OrientationPlaceVehlib()); // orientation du dessin selon le sens de la file !
@@ -409,11 +411,11 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
     for(int i=0; i<NBDIR; i++)
      switch(v->Priorite[i])
       {
-       case cedez_le_passage: ImageList8x8->Draw(DrawGridSimul->Canvas,
+       case cedez_le_passage: VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                                  Rect.Left, Rect.Top,
                                                  IDB_CLP+i);
                               break;
-       case stop:             ImageList8x8->Draw(DrawGridSimul->Canvas,
+       case stop:             VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                                  Rect.Left, Rect.Top,
                                                  IDB_STOP+i);
                               break;
@@ -422,7 +424,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
     // 2c. On peint le passage piéton
     if (v->PassagePietons&&Sens) // v2.0
      {
-      ImageList8x8->Draw(DrawGridSimul->Canvas,
+      VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                          Rect.Left, Rect.Top,
                          IDB_PSGPT+Sens-1);
      }
@@ -434,7 +436,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
           (!frmParamBus->Visible)||
           (frmParamBus->NumArretBusAMontrer!=v->NumArretBus)||
           frmParamBus->TimerClignotement->Tag)
-       ImageList8x8->Draw(DrawGridSimul->Canvas,
+       VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                           Rect.Left, Rect.Top,
                           IDB_ARRETBUS+
                           3*(DirArretBus-1)+
@@ -446,7 +448,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
       if (v->Priorite[d-1]&&(v->DirPoss&PossDir[d]))
        {
         vv=v->v((direction)d);
-        ImageList8x8->Draw(DrawGridSimul->Canvas,
+        VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                            Rect.Left, Rect.Top,
                            IDB_DIRCARF-1+ // Bitmaps de flèche de direction au carrefour
                            7*(d-1)+ // Direction
@@ -465,7 +467,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
          (!frmParamTram->NumArretTramAMontrer)|| // v5.3 (oubli)
          (frmParamTram->NumArretTramAMontrer!=v->NumArretTram)||
          frmParamTram->TimerClignotement->Tag))
-     ImageList8x8->Draw( DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw( DrawGridSimul->Canvas,
                          Rect.Left, Rect.Top,
                          (v->NumArretTram&&(Affichage&aff_sign))?
                          IDB_ARRETTRAM+i:IDB_VOIETRAM+i);
@@ -479,7 +481,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
       { // On décale les piétons pour qu'ils puissent entrer dans une case. On prend alors la direction du premier
        p=&(cv->Pieton[NumPieton=v->NumPieton[i]-1]);
        if (p->Ecrase) // v4.3
-        ImageList8x8->Draw(DrawGridSimul->Canvas,
+        VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                            Rect.Left, Rect.Top,
                            IDB_SANG);
       }
@@ -489,7 +491,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
       { // On décale les piétons pour qu'ils puissent entrer dans une case. On prend alors la direction du premier
        p=&(cv->Pieton[NumPieton=v->NumPieton[i]-1]);
        if (!p->Ecrase) // v4.3
-        ImageList8x8->Draw(DrawGridSimul->Canvas,
+        VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                            1+Rect.Left+(2*p->DemiCase-1)*dxr[p->Dir]*((1+Rect.Right-Rect.Left)/4),
                            1+Rect.Top+ (2*p->DemiCase-1)*dyr[p->Dir]*((1+Rect.Bottom-Rect.Top)/4),
                            IDB_PIETON+                // Début image piéton
@@ -515,31 +517,31 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
       if (dorig==ddest) dorig=InvDir[ddest];
       switch(Veh->NivPriorite) // v2.2
        {
-        case normal:  ImageList8x8->Draw(DrawGridSimul->Canvas,
+        case normal:  VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                          Rect.Left, Rect.Top,
                                          IDB_VEH+ // Numero de bitmap initiale des véhicules
                                        //(v->NumVehicule-1)%NBCOULDIFFV+ // v5.3 : on ne peint plus en gris (1ère couleur)...
                                          1+(v->NumVehicule-1)%(NBCOULDIFFV-1)+   // Le gris est réservé pour les VEHLIBS !
                                          (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFV);
                       break;
-        case urgence: ImageList8x8->Draw(DrawGridSimul->Canvas,
+        case urgence: VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                          Rect.Left, Rect.Top,
                                          IDB_VEHPU+ // Numero de bitmap initiale des véhicules de police/urgence
                                          COULEURURGENCE+ // Numéro de couleur (rouge)
                                          (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFVPU);
-                       ImageList8x8->Draw(DrawGridSimul->Canvas,
+                       VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                          Rect.Left+dxg[Zoom][dorig][ddest],
                                          Rect.Top+dyg[Zoom][dorig][ddest],
                                          IDB_URGENCE+ // Numero de bitmap initiale des gyrophares
                                          2*((dorig+ddest)%2)+ // Horizontal/vertical ou en diagonale
                                          cv->TourCrt%2); // Clignotement
                       break;
-        case police:  ImageList8x8->Draw(DrawGridSimul->Canvas,
+        case police:  VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                          Rect.Left, Rect.Top,
                                          IDB_VEHPU+ // Numero de bitmap initiale des véhicules de police/urgence
                                          // Couleur Police = 1ère couleur (blanche)
                                          (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFVPU);
-                       ImageList8x8->Draw(DrawGridSimul->Canvas,
+                       VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                                          Rect.Left+dxg[Zoom][dorig][ddest],
                                          Rect.Top+dyg[Zoom][dorig][ddest],
                                          IDB_POLICE+ // Numero de bitmap initiale des gyrophares
@@ -558,7 +560,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
               InvDir[Vlb->DirDrnDepl]:
               InvDir[Vlb->Dir]));
       ddest=(v->NumPlaceVehlib?dpv:Vlb->Dir);
-      ImageList8x8->Draw(DrawGridSimul->Canvas,
+      VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                          Rect.Left, Rect.Top,
                          IDB_VEH+ // Numero de bitmap initiale des véhicules (gris, réservé aux vehlib
                          (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFV);
@@ -566,7 +568,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
     if (v->NumBus)  // 5b. On met les bus le cas échéant. v3.0
      {
       Bus=&(cv->Bus[v->NumBus-1]);
-      ImageList8x8->Draw(DrawGridSimul->Canvas,
+      VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                          Rect.Left, Rect.Top,
                          IDB_BUSTRAM+ // Numero de bitmap initiale des bus
                          12*(Bus->NumLigne-1)+ // Couleur de la ligne
@@ -577,7 +579,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
     if (v->NumTram)  // 5c. On met les trams le cas échéant. v3.5
      {
       Tram=&(cv->Tram[v->NumTram-1]);
-      ImageList8x8->Draw(DrawGridSimul->Canvas,
+      VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                          Rect.Left, Rect.Top,
                          IDB_BUSTRAM+ // Numero de bitmap initiale des trams
                          12*(Tram->NumLigne-1)+ // Couleur de la ligne
@@ -592,7 +594,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
              InvDir[Taxi->DirDrnDepl]:
              InvDir[Taxi->Dir]);
       ddest=Taxi->Dir;
-      ImageList8x8->Draw(DrawGridSimul->Canvas,
+      VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                          Rect.Left, Rect.Top,
                          IDB_VEHTAXI+ // Numero de bitmap initiale des taxis
                          3*(dorig-1)+ddest-1-(ddest>dorig));
@@ -605,7 +607,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
         (cv->Feu[v->NumFeu[i]-1].x==Col)&&
         (cv->Feu[v->NumFeu[i]-1].y==Row)&&
         (cv->Feu[v->NumFeu[i]-1].Dir==i+1))
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         ((v->SensVoieTram&&v->EstDirPossSensVoieTram(indefinie, (direction)(i+1)))?IDB_FEUT:IDB_FEU)+4*i+cv->Feu[v->NumFeu[i]-1].Etat); // v5.2.4, affichage des feux de tram
 
@@ -616,30 +618,30 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
         (cv->FeuP[v->NumFeuP[i]-1].x[IFEUDIR(v->NumFeuP[i],i)]==Col)&&
         (cv->FeuP[v->NumFeuP[i]-1].y[IFEUDIR(v->NumFeuP[i],i)]==Row)&&
         (cv->FeuP[v->NumFeuP[i]-1].Dir[IFEUDIR(v->NumFeuP[i],i)]==i+1))
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_FEUP+3*(InvDir[i+1]-1)+cv->FeuP[v->NumFeuP[i]-1].Etat-(cv->FeuP[v->NumFeuP[i]-1].Etat==rouge)); // On retire 1 si etat rouge car orange n'existe pas pour les feux de piétons
 
   // 7a. On met le parking le cas échéant et qqsoit l'affichage
   if (v->NumParking)
    {
-    ImageList8x8->Draw(DrawGridSimul->Canvas,
+    VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                        Rect.Left, Rect.Top,
                        IDB_PARKING);
-    ImageList8x8->Draw(DrawGridSimul->Canvas, // v2.2
+    VirtualImageList8x8->Draw(DrawGridSimul->Canvas, // v2.2
                        Rect.Left, Rect.Top,
                        IDB_NUMPRKNG+v->NumParking-1);
    }
   // 7b. On met le dépôt le cas échéant et qqsoit l'affichage. v3.0
   if (v->EstDepotBus())
-   ImageList8x8->Draw(DrawGridSimul->Canvas,
+   VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                       Rect.Left, Rect.Top,
                       IDB_DEPOTBUS);
   // 8. Affichage des directions possibles
   if (Affichage&aff_dir)
    for(int i=0; i<NBDIR; i++)
     if (v->DirPoss&PossDir[i+1])
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_DIR+(IDB_DIRTD*v->ToutDroit)+i);
   // 9a. Trajet des lignes de bus. v3.0
@@ -795,7 +797,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
     if ((!SelectionFeuxDmd)&&(!SelectionFeuxAtt)&&(!SelectionFeuxPtn)&&  // Pas de curseur en sélection de feux. v5.2 : Ajout SelectionFeuxPtn
         ((!TimerClignotementLocalisation->Enabled)||
          TimerClignotementLocalisation->Tag)) // v4.4.1 : Clignotement en suivi & recherche (localisation)
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_CURSEUR);
 
@@ -945,7 +947,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
   if ((!SelectionFeuxDmd)&&(!SelectionFeuxAtt)&&(!SelectionFeuxPtn)&& // v5.2 : Ajout SelectioneuxPtn
       (xErr==Col)&&(yErr==Row)&&
       TimerClignotementErreur->Enabled&&TimerClignotementErreur->Tag) // v3.5
-   ImageList8x8->Draw(DrawGridSimul->Canvas,
+   VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                       Rect.Left, Rect.Top,
                       IDB_CURSERR);
 
@@ -954,14 +956,14 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
    for(int i=0; i<frmDefFeux->NbFeuxDmd; i++)
     if ((cv->Feu[frmDefFeux->NumFeuxDmd[i]-1].x==Col)&&
         (cv->Feu[frmDefFeux->NumFeuxDmd[i]-1].y==Row))
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_SELFEU+cv->Feu[frmDefFeux->NumFeuxDmd[i]-1].Dir-1);
   if (SelectionFeuxAtt)
    for(int i=0; i<frmDefFeux->NbFeuxAtt; i++)
     if ((cv->Feu[frmDefFeux->NumFeuxAtt[i]-1].x==Col)&&
         (cv->Feu[frmDefFeux->NumFeuxAtt[i]-1].y==Row))
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_SELFEU+cv->Feu[frmDefFeux->NumFeuxAtt[i]-1].Dir-1);
   // 9bis. feux sélectionnés depuis la fenêtre de définition d'un feu de piéton (v5.2)
@@ -969,7 +971,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
    for(int i=0; i<frmDefFeuxPietons->NbFeux; i++)
     if ((cv->Feu[frmDefFeuxPietons->NumFeux[i]-1].x==Col)&&
         (cv->Feu[frmDefFeuxPietons->NumFeux[i]-1].y==Row))
-     ImageList8x8->Draw(DrawGridSimul->Canvas,
+     VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                         Rect.Left, Rect.Top,
                         IDB_SELFEU+cv->Feu[frmDefFeuxPietons->NumFeux[i]-1].Dir-1);
   if ((Colonnes>1)||(Lignes>1))
@@ -1020,7 +1022,7 @@ void TfrmSimulation::RedimensionneZone()
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::FormCreate(TObject *Sender)
 { // Initialise les indicateurs. v5.4 : la màj de la base de registres est faite par l'installateur
- ImageList8x8=ImageList8x8x1;
+ VirtualImageList8x8=VirtualImageList8x8x1; // v5.4 (VirtualImageList)
  Affichage=(affichage)(aff_sign|aff_voie|aff_env); // v3.8.1 (aff_env)
  xErr=-1; yErr=-1;
  Pause=false; // v3.5
@@ -2229,10 +2231,10 @@ void __fastcall TfrmSimulation::ActionZoomExecute(TObject *Sender)
      TailleCase=8*(1+!ActionZoom->Checked);
  ActionZoom->Checked^=true;
  // v5.3 : On ajuste la taille de la fenêtre en mode zoom aussi
- if (ActionZoom->Checked)
-   ImageList8x8=ImageList8x8x2;
+ if (ActionZoom->Checked) // v5.4 (VirtualImageList)
+   VirtualImageList8x8=VirtualImageList8x8x2;
  else
-   ImageList8x8=ImageList8x8x1;
+   VirtualImageList8x8=VirtualImageList8x8x1;
  DrawGridSimul->Col=0;
  DrawGridSimul->Row=0;
  DrawGridSimul->DefaultColWidth=TailleCase;

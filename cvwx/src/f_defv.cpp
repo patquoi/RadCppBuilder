@@ -21,7 +21,14 @@ Voulez-vous néanmoins le supprimer ?", // v5.2 : ajout d'un paramètre permettant
                  asMAJIgnoree="Modifications de priorité ignorées";
 
 //---------------------------------------------------------------------------
-__fastcall TfrmDefVoie::TfrmDefVoie(TComponent* Owner) : TForm(Owner) {}
+__fastcall TfrmDefVoie::TfrmDefVoie(TComponent* Owner) : TForm(Owner)
+ {
+  // v5.4 on charge les glyphes manuellement pour prendre en compte le HDPI
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFF, BitBtnDefFeuN->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFF, BitBtnDefFeuE->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFF, BitBtnDefFeuS->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFF, BitBtnDefFeuO->Glyph);
+ }
 
 void TfrmDefVoie::DefinitFeu(direction Dir)
  {

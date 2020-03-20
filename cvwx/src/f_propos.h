@@ -11,33 +11,37 @@
 #include <StdCtrls.hpp>
 //---------------------------------------------------------------------------
 #include "base.h"
-#include <System.ImageList.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.BaseImageCollection.hpp>
+#include <Vcl.ImageCollection.hpp>
+#include <Vcl.VirtualImageList.hpp>
+#include <System.ImageList.hpp>
 //---------------------------------------------------------------------------
 class TfrmAPropos : public TForm
 {
 __published:
-    TImageList *ImageList;
-    TTimer *Timer;
-    TLabel *LabelCV1;
-    TLabel *LabelAuteur1;
-    TLabel *LabelEMail;
-    TLabel *LabelURL;
-    TLabel *LabelTexte;
-    TSpeedButton *SpeedButtonOk;
-    TLabel *LabelCV2;
-    TLabel *LabelAuteur2;
-    TLabel *LabelSousVersion;
+  TTimer *Timer;
+  TLabel *LabelCV1;
+  TLabel *LabelAuteur1;
+  TLabel *LabelEMail;
+  TLabel *LabelURL;
+  TLabel *LabelTexte;
+  TSpeedButton *SpeedButtonOk;
+  TLabel *LabelCV2;
+  TLabel *LabelAuteur2;
+  TLabel *LabelSousVersion;
   TLabel *LabelGPL1;
   TLabel *LabelGPL2;
   TImage *ImageVersion;
-    void __fastcall TimerTimer(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
-    void __fastcall FormHide(TObject *Sender);
-    void __fastcall LabelURLClick(TObject *Sender);
-    void __fastcall LabelEMailClick(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall FormKeyPress(TObject *Sender, char &Key);
+  TImageCollection *ImageCollection;
+  TVirtualImageList *VirtualImageList;
+  void __fastcall TimerTimer(TObject *Sender);
+  void __fastcall FormShow(TObject *Sender);
+  void __fastcall FormHide(TObject *Sender);
+  void __fastcall LabelURLClick(TObject *Sender);
+  void __fastcall LabelEMailClick(TObject *Sender);
+  void __fastcall FormCreate(TObject *Sender);
+  void __fastcall FormKeyPress(TObject *Sender, char &Key);
   void __fastcall LabelClick(TObject *Sender);
 private:
     int TempsEcoule;

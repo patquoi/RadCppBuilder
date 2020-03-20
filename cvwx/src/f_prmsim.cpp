@@ -13,7 +13,10 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+//---------------------------------------------------------------------------
+#ifdef WIN32
 #pragma link "cspin"
+#endif
 //---------------------------------------------------------------------------
 TfrmParamSimul *frmParamSimul=NULL;
 //---------------------------------------------------------------------------
@@ -21,9 +24,9 @@ void Parametres()
  {
   if ((frmParamSimul=new TfrmParamSimul(frmSimulation)))
    {
-    frmParamSimul->ShowModal();
-    delete frmParamSimul;
-    frmParamSimul=NULL;
+	frmParamSimul->ShowModal();
+	delete frmParamSimul;
+	frmParamSimul=NULL;
    }
  }
 //---------------------------------------------------------------------------
@@ -37,6 +40,13 @@ __fastcall TfrmParamSimul::TfrmParamSimul(TComponent* Owner) : TForm(Owner)
   NbArretsTramChange=false; // v3.5
   NbPlacesTaxiChange=false; // v3.6
   NbPlacesParkChange=false; // v5.0
+  // v5.4 on charge les glyphes manuellement pour prendre en compte le HDPI
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFB, BitBtnDefLignesBus->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFTR, BitBtnDefLignesTram->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFTX, BitBtnDefTaxis->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFVL, BitBtnDefVehlibs->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFF, BitBtnAppliqueDureeFeuVert->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFF, BitBtnAppliqueDureeFeuRouge->Glyph);
  }
 //---------------------------------------------------------------------------
 bool TfrmParamSimul::AppliqueChoix()
@@ -87,7 +97,7 @@ void TfrmParamSimul::CalculeChoixPossiblesNbVehicules() // v5.0 : Calcul des pos
  {
   int NbMinVehicules= cv->NbParkings*(cv->NbParkings-1)
                      +2*cv->NbPlacesPark, // v5.0 : 1 véh départ + 1 véh arrivée par place de parking
-      NbMaxVehicules= NbMinVehicules*(NBMAXVEHICULES/NbMinVehicules), // v5.0.3
+	  NbMaxVehicules= NbMinVehicules*(NBMAXVEHICULES/NbMinVehicules), // v5.0.3
       NbVehicules=NbMinVehicules*(CSpinEditNbVehicules->Value/NbMinVehicules); // v5.0.3
     CSpinEditNbVehicules->Increment=NbMinVehicules;
     CSpinEditNbVehicules->MINVALUE=NbMinVehicules;

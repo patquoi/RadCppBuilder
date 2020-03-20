@@ -13,7 +13,14 @@
 //---------------------------------------------------------------------------
 TfrmDefVoiePietons *frmDefVoiePietons=NULL;
 //---------------------------------------------------------------------------
-__fastcall TfrmDefVoiePietons::TfrmDefVoiePietons(TComponent* Owner) : TForm(Owner) {}
+__fastcall TfrmDefVoiePietons::TfrmDefVoiePietons(TComponent* Owner) : TForm(Owner)
+ {
+  // v5.4 on charge les glyphes manuellement pour prendre en compte le HDPI
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFFP, SpeedButtonN->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFFP, SpeedButtonE->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFFP, SpeedButtonS->Glyph);
+  frmSimulation->AffecteGlyphe(GLYPHE_DEFFP, SpeedButtonO->Glyph);
+ }
 //---------------------------------------------------------------------------
 void TfrmDefVoiePietons::DefinitFeu(direction Dir)
  {

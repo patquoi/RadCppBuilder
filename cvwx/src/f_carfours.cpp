@@ -67,6 +67,25 @@ int Carrefours(int Colonnes, int Lignes)
 __fastcall TfrmCarrefours::TfrmCarrefours(TComponent* Owner)
     : TForm(Owner)
 {
+ //v5.4 : Charger les bitmaps manuellement pour supporter le HDPI.
+ AffecteGlyphe(VirtualImageList64, 0, SpeedButton34a1->Glyph);
+ AffecteGlyphe(VirtualImageList64, 1, SpeedButton34b1->Glyph);
+ AffecteGlyphe(VirtualImageList64, 2, SpeedButton34a2->Glyph);
+ AffecteGlyphe(VirtualImageList64, 3, SpeedButton34b2->Glyph);
+ AffecteGlyphe(VirtualImageList64, 4, SpeedButton34a3->Glyph);
+ AffecteGlyphe(VirtualImageList64, 5, SpeedButton34b3->Glyph);
+ AffecteGlyphe(VirtualImageList64, 6, SpeedButton43b1->Glyph);
+ AffecteGlyphe(VirtualImageList64, 7, SpeedButton43a1->Glyph);
+ AffecteGlyphe(VirtualImageList64, 8, SpeedButton43b2->Glyph);
+ AffecteGlyphe(VirtualImageList64, 9, SpeedButton43a2->Glyph);
+ AffecteGlyphe(VirtualImageList64,10, SpeedButton43b3->Glyph);
+ AffecteGlyphe(VirtualImageList64,11, SpeedButton43a3->Glyph);
+ AffecteGlyphe(VirtualImageList64,12, SpeedButton44a->Glyph);
+ AffecteGlyphe(VirtualImageList64,13, SpeedButton44b->Glyph);
+ AffecteGlyphe(VirtualImageList64,14, SpeedButton44c->Glyph);
+ AffecteGlyphe(VirtualImageList96, 0, SpeedButton66a->Glyph);
+ AffecteGlyphe(VirtualImageList96, 1, SpeedButton66b->Glyph);
+ AffecteGlyphe(VirtualImageList128,0, SpeedButton88->Glyph);
 }
 //---------------------------------------------------------------------------
 void TfrmCarrefours::Active(int Colonnes, int Lignes)
