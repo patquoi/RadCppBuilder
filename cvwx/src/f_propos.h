@@ -35,6 +35,7 @@ __published:
   TImage *ImageVersion;
   TImageCollection *ImageCollection;
   TVirtualImageList *VirtualImageList;
+	TLabel *LabelAlignement;
   void __fastcall TimerTimer(TObject *Sender);
   void __fastcall FormShow(TObject *Sender);
   void __fastcall FormHide(TObject *Sender);

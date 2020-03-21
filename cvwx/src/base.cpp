@@ -1,6 +1,10 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
+//---------------------------------------------------------------------------
+#include <System.StrUtils.hpp>
+#include <System.win.Registry.hpp>
+//---------------------------------------------------------------------------
 #include "base.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -67,9 +71,9 @@ const struct { int Numero; const char *szHREF; } // v5.3 : aide type HLP convert
                        {641, "ADDJAADB"},
                        {642, "ADDJAADT"},
                        {643, "ADDJAFDT"},
-                       {644, "ADDJAFDP"},
+					   {644, "ADDJAFDP"},
                        {645, "ADDJAPDV"},
-                       {65, "RDUEDLS"},
+					   {65, "RDUEDLS"},
                        {66, "ISUV"},
                        {671, "ISUB"},
                        {672, "ISUT"},
@@ -79,29 +83,54 @@ const struct { int Numero; const char *szHREF; } // v5.3 : aide type HLP convert
                        {69, "RC"},
                        {70, "MDE"}};
 //---------------------------------------------------------------------------
+// v5.4 : Pour les fichiers créés par Centre-Ville
+//        on utilise le chemin donné par %LocalAppData% pour Windows 7 ou plus
+//        sinon le dossier de l'exécutable
+//---------------------------------------------------------------------------
+String stRepLocalAppData()
+ {
+   String stResult;
+   String stExePath = ExtractFilePath(ParamStr(0));
+   const String stVarLocalAppData  = "LOCALAPPDATA";
+   const String stRepLocAppDataCvw = "\\Patquoi.fr\\Centre-Ville\\";
+   stResult = GetEnvironmentVariable(stVarLocalAppData);
+   if (stResult == "")
+	 stResult = stExePath;
+   else
+	{
+	 stResult = stResult + stRepLocAppDataCvw;
+	 if (!DirectoryExists(stResult))
+	   if (!ForceDirectories(stResult))
+		 stResult = stExePath;
+	}
+   return stResult;
+ }
+//---------------------------------------------------------------------------
 // v5.3. S'active automatiquement au lancement de cvw.exe avec le paramètre ! et génère un fichier cvw.log où se trouve cvw.exe à la fermeture de l'application
 // Usage : DebugEcrit("message");
 bool Debug = false;
 TStringList *slDebug = NULL;
-AnsiString asDebugNomFichierLog;
-void DebugOuvre(const AnsiString asNomFichierLog)
+//---------------------------------------------------------------------------
+void DebugOuvre()
  {
   Debug = true;
-  asDebugNomFichierLog = asNomFichierLog;
   slDebug = new TStringList;
  }
+//---------------------------------------------------------------------------
 void DebugEcrit(const AnsiString asMessage)
  {
   if (Debug&&slDebug)
    slDebug->Add(asMessage);
  }
+//---------------------------------------------------------------------------
 void DebugFerme()
  {
+  String stCheminEtFichierLog = stRepLocalAppData()+"cvw.log";
   // On vide d'un coup dans un fichier
   if (slDebug)
    {
-    slDebug->SaveToFile(asDebugNomFichierLog);
-    delete slDebug;
+	slDebug->SaveToFile(stCheminEtFichierLog);
+	delete slDebug;
    }
   Debug = false;
  }
@@ -114,38 +143,58 @@ type_reponse AfficheMessage(const AnsiString asMessage, const AnsiString asTitre
     case IDCANCEL : return trAnnuler;
     case IDYES :    return trOui;
     case IDNO:      return trNon;
-    default :       return trOk;
+	default :       return trOk;
    }
  }
 //---------------------------------------------------------------------------
 void AfficheAideContextuelle(TForm *Form)
- {// v5.3 : conversion HLP > HTML
-  // WinHelp( Application->Handle, AnsiString(ExtractFilePath(ParamStr(0))+Form->HelpFile).c_str(), HELP_CONTEXT, Form->HelpContext);
+ {// v5.3 : conversion HLP > HTML.
+  // v5.4 : Merci Microsoft d'avoir bloqué les appels aux sections dans les urls (html#rubrique), bande de cons ! Ah oui c'est très dangereux !
   for(int i=0; i<NBCONTEXTESAIDE; i++)
-    if (caCorresp[i].Numero==Form->HelpContext) // On recherche la rubrique HelpContext dans le tableau caCorresp
+	if (caCorresp[i].Numero==Form->HelpContext) // On recherche la rubrique HelpContext dans le tableau caCorresp
 	 { // v5.4 : conversion BCB6>BCBX (L"open" + String)
-	  ShellExecute(NULL,
-				   L"open",
-				   String(String("file:///")+
-						  ExtractFilePath(ParamStr(0))+
-						  String("html\\index.html#")+
-						  String(caCorresp[i].szHREF)).c_str(),
-				   NULL, NULL,
-				   SW_SHOWMAXIMIZED);
-      break;
-     }
+	  String stURL = String("file:///")+
+					 ExtractFilePath(ParamStr(0))+
+					 String("html\\index.html#")+
+					 String(caCorresp[i].szHREF);
+	  String stCommandeNavUrl;
+	  TRegistry *Reg = new TRegistry(KEY_READ);
+	  STARTUPINFO si; PROCESS_INFORMATION pi;
+	  ZeroMemory(&si,sizeof(STARTUPINFO));
+	  ZeroMemory(&pi,sizeof(PROCESS_INFORMATION));
+      si.cb = sizeof(STARTUPINFO);
+	  try
+	   {
+		Reg->RootKey = HKEY_CLASSES_ROOT;
+		if (Reg->OpenKey("http\\Shell\\Open\\Command\\", false))
+		  stCommandeNavUrl = Reg->ReadString("");
+		  stCommandeNavUrl = ReplaceText(stCommandeNavUrl, "%1", stURL);
+		  if (CreateProcess(NULL, stCommandeNavUrl.c_str(), NULL, NULL, false, 0, NULL, NULL, &si, &pi))
+		  {
+		   CloseHandle(pi.hProcess);
+		   CloseHandle(pi.hThread);
+		  }
+	   }
+	  __finally
+	   {
+		delete Reg;
+	   }
+
+	  break;
+	 }
  }
 //---------------------------------------------------------------------------
 void AfficheIndexAide(TForm *Form)
  {// v5.3 : conversion HLP > HTML
   // WinHelp( Form->Handle, AnsiString(ExtractFilePath(ParamStr(0))+Form->HelpFile).c_str(), HELP_CONTEXT, 0);
   // v5.4 : Conversion BCB6>BCBX (String + L"open")
+  String stURL = String("\"file:///")+
+				 ExtractFilePath(ParamStr(0))+
+				 String("html\\index.html\"");
   ShellExecute(NULL,
 			   L"open",
-			   String(String("file:///")+
-					  ExtractFilePath(ParamStr(0))+
-					  String("html\\index.html")).c_str(),
-               NULL, NULL,
+			   stURL.c_str(),
+			   NULL, NULL,
                SW_SHOWMAXIMIZED);
  }
 //---------------------------------------------------------------------------

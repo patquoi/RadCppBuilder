@@ -47,7 +47,6 @@ __published:	// Composants gérés par l'EDI
     TBitBtn *BitBtn33;
     TBitBtn *BitBtn12;
     TBitBtn *BitBtn32;
-    TBitBtn *BitBtn22;
     TCheckBox *CheckBoxCoins;
     TPopupMenu *PopupMenu;
     TMenuItem *RubriqueHautGauche;
@@ -66,7 +65,6 @@ __published:	// Composants gérés par l'EDI
 
     void __fastcall ParametresParkingsClick(TObject *Sender);
     void __fastcall RadioGroupTypeClick(TObject *Sender);
-    void __fastcall BitBtn22Click(TObject *Sender);
     void __fastcall BitBtnDirClick(TObject *Sender);
 
     void __fastcall RubriqueClick(TObject *Sender);

@@ -2,6 +2,8 @@
 #ifndef simulH
 #define simulH
 //---------------------------------------------------------------------------
+// Directives de compilation
+//---------------------------------------------------------------------------
 #pragma warn -pia // Inhibe "Possibly Incorrect Assignment" (v5.2)
 //---------------------------------------------------------------------------
 #include <dstring.h>
@@ -52,7 +54,7 @@
 //---------------------------------------------------------------------------
 #define VERSION    0x530 // v3.0. La version change SSI le format de fichiers change (v5.3)
 #define VERSIONMIN 0x300 // v3.0. Version minimale stockée : NE PAS MODIFIER
-#define VERSIONANC 0x200 // v3.0  Version non stockée compatible : NE PAS MODIFIER
+#define VERSIONANC 0x200 // v3.0. Version non stockée compatible : NE PAS MODIFIER
 //--------------------------------------------------------------------------- Voie
 #define  V(x,y,d) v[((x)+dx[d])%cv->NbX][((y)+dy[d])%cv->NbY] // en dehors de la classe centre_ville (v4.0)
 #define _V(x,y,d) v[((x)+dx[d])%NbX][((y)+dy[d])%NbY] // depuis la classe centre_ville (v4.0)
@@ -117,31 +119,32 @@
 //                 -> Ajout méthode copie et incrémentation automatique transparente.
 
 // version 5.3 : Ajout éléments vehlib, place_vehlib
-//---------------------------------------------------------------------------
-// types énumérés
-//---------------------------------------------------------------------------
-enum priorite {a_droite, cedez_le_passage, stop, feux};
-enum direction {indefinie, nord, est, sud, ouest};
-enum sens {indefini, horizontal, vertical}; // v2.0. Pour les passages piétons
-enum dirposs {aucune, N, E, NE, S, NS, SE, NES, O, NO, EO, NEO, SO, NSO, ESO, NESO};
-enum diraprendre {gauche, devant, droite};
-enum etat_feu {inactif, vert, orange, rouge};
-enum dmd_vert {arrivee_vehicule, immediate};
-enum psg_rouge {prm_dmd, immediat};
-enum type_stats {par_nombre, par_pourcentage};
-enum compatibilite {version_inf_16, version_inf_20, version_courante}; // v2.0
-enum niveau_priorite {normal, urgence, police}; // v2.2
-enum position_arret_bus_tram {tete, milieu, queue}; // v3.5 (ajout de "_tram" au nom du type car communs aux deux types d'arrêt)
-enum sens_voie_tram {aucune_voie=0, nord_est=1, nord_sud=2, nord_ouest=4, sud_est=8, est_ouest=16, sud_ouest=32}; // v3.5
-enum sens_voie_tram_base {aucune_voie_base, ne, ns, no, se, eo, so};
-enum type_distance {type_indefini, parkings, arrets_bus, arrets_tram, files_taxi, files_park, files_vehlib}; // v3.5. v3.6 : Ajout de files_taxi. v5.0 : Ajout de files_park. v5.3 : Ajout de files_vehlib
-enum type_voie {tvAucun, tvRoute, tvVoieTram, tvTout}; // pour la suppression des routes et voies de tram. v3.5
-enum situation_taxi {stAttente, stDepart, stDepot, stRetour}; // v3.6
-enum situation_vehlib {svAttente, svDepart}; // v5.3
+// version 5.4 : Version 32 et 64 bits
+//----------------------------------------------------------------------------------------------------------------------
+// Types énumérés. /!\ v5.4 : le type char a été forcé pour que l'énuméré ne prenne pas la taille d'un entier (4 octets)
+//----------------------------------------------------------------------------------------------------------------------
+enum priorite : char {a_droite, cedez_le_passage, stop, feux};
+enum direction : char {indefinie, nord, est, sud, ouest};
+enum sens : char {indefini, horizontal, vertical}; // v2.0. Pour les passages piétons
+enum dirposs : char {aucune, N, E, NE, S, NS, SE, NES, O, NO, EO, NEO, SO, NSO, ESO, NESO};
+enum diraprendre : char {gauche, devant, droite};
+enum etat_feu : char {inactif, vert, orange, rouge};
+enum dmd_vert : char {arrivee_vehicule, immediate};
+enum psg_rouge : char {prm_dmd, immediat};
+enum type_stats : char {par_nombre, par_pourcentage};
+enum compatibilite : char {version_inf_16, version_inf_20, version_courante}; // v2.0
+enum niveau_priorite : char {normal, urgence, police}; // v2.2
+enum position_arret_bus_tram : char {tete, milieu, queue}; // v3.5 (ajout de "_tram" au nom du type car communs aux deux types d'arrêt)
+enum sens_voie_tram : char {aucune_voie=0, nord_est=1, nord_sud=2, nord_ouest=4, sud_est=8, est_ouest=16, sud_ouest=32}; // v3.5
+enum sens_voie_tram_base : char {aucune_voie_base, ne, ns, no, se, eo, so};
+enum type_distance : char {type_indefini, parkings, arrets_bus, arrets_tram, files_taxi, files_park, files_vehlib}; // v3.5. v3.6 : Ajout de files_taxi. v5.0 : Ajout de files_park. v5.3 : Ajout de files_vehlib
+enum type_voie : char {tvAucun, tvRoute, tvVoieTram, tvTout}; // pour la suppression des routes et voies de tram. v3.5
+enum situation_taxi : char {stAttente, stDepart, stDepot, stRetour}; // v3.6
+enum situation_vehlib : char {svAttente, svDepart}; // v5.3
 enum nature { voies,
               trottoirs=0x10000, arbre=0x10010, pelouse=0x10020,  // Décors zone piétonne (v3.9)
               immeubles=0x20000};
-enum coin {aucun_coin, haut_droite, bas_droite, bas_gauche=4, haut_gauche=8, quatre_coins=15}; // v3.8
+enum coin : char {aucun_coin, haut_droite, bas_droite, bas_gauche=4, haut_gauche=8, quatre_coins=15}; // v3.8
 //---------------------------------------------------------------------------
 class pieton // v2.0
  {

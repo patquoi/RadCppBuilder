@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
-
-#include "f_prmtram.h"
+//---------------------------------------------------------------------------
 #include "simul.h"
+#include "f_prmtram.h"
 #include "f_prmsim.h"
 #include "f_simul.h"
 //---------------------------------------------------------------------------
@@ -22,8 +22,9 @@ __fastcall TfrmParamTram::TfrmParamTram(TComponent* Owner)
     : TForm(Owner)
 {
  // v5.4 on charge les glyphes manuellement pour prendre en compte le HDPI
- for(int i=0; i<10; i++)
-  frmSimulation->AffecteGlyphe(GLYPHE_DIR+i, ((TBitBtn*)(FindComponent((UnicodeString)("BitBtn"+IntToStr(1+i%3)+IntToStr(1+i/3)))))->Glyph);
+ for(int i=0; i<9; i++)
+  if (i!=4) // v5.4 : plus de zoom !
+   frmSimulation->AffecteGlyphe(GLYPHE_DIR+i, ((TBitBtn*)(FindComponent((UnicodeString)("BitBtn"+IntToStr(1+i%3)+IntToStr(1+i/3)))))->Glyph);
 }
 //---------------------------------------------------------------------------
 void TfrmParamTram::RafraichitNbTrams()
@@ -172,11 +173,6 @@ void __fastcall TfrmParamTram::BitBtnDirClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmParamTram::BitBtn22Click(TObject *Sender)
-{
- frmSimulation->ActionZoom->Execute();
-}
-//---------------------------------------------------------------------------
 void __fastcall TfrmParamTram::TimerClignotementTimer(TObject *Sender)
 {
  TimerClignotement->Tag^=1;

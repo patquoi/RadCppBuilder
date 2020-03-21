@@ -2,8 +2,8 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
-#include "f_genres.h"
 #include "f_simul.h"
+#include "f_genres.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"

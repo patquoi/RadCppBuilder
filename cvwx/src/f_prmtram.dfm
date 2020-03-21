@@ -450,7 +450,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 12
+    TabOrder = 11
     OnChange = CSpinEditChange
   end
   object CSpinEdit2: TCSpinEdit
@@ -460,7 +460,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 23
+    TabOrder = 22
     OnChange = CSpinEditChange
   end
   object CSpinEdit3: TCSpinEdit
@@ -470,7 +470,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 34
+    TabOrder = 33
     OnChange = CSpinEditChange
   end
   object CSpinEdit4: TCSpinEdit
@@ -480,7 +480,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 45
+    TabOrder = 44
     OnChange = CSpinEditChange
   end
   object CSpinEdit5: TCSpinEdit
@@ -490,7 +490,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 56
+    TabOrder = 55
     OnChange = CSpinEditChange
   end
   object CSpinEdit6: TCSpinEdit
@@ -500,7 +500,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 67
+    TabOrder = 66
     OnChange = CSpinEditChange
   end
   object CSpinEdit7: TCSpinEdit
@@ -510,7 +510,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 78
+    TabOrder = 77
     OnChange = CSpinEditChange
   end
   object CSpinEdit8: TCSpinEdit
@@ -520,7 +520,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 89
+    TabOrder = 88
     OnChange = CSpinEditChange
   end
   object CSpinEdit11: TCSpinEdit
@@ -529,7 +529,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 13
+    TabOrder = 12
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -539,7 +539,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 14
+    TabOrder = 13
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -549,7 +549,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 15
+    TabOrder = 14
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -559,7 +559,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 16
+    TabOrder = 15
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -569,7 +569,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 17
+    TabOrder = 16
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -579,7 +579,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 18
+    TabOrder = 17
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -589,7 +589,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 19
+    TabOrder = 18
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -599,7 +599,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 20
+    TabOrder = 19
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -609,7 +609,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 21
+    TabOrder = 20
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -619,7 +619,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 24
+    TabOrder = 23
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -629,7 +629,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 25
+    TabOrder = 24
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -639,7 +639,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 26
+    TabOrder = 25
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -649,7 +649,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 27
+    TabOrder = 26
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -659,7 +659,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 28
+    TabOrder = 27
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -669,7 +669,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 29
+    TabOrder = 28
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -679,7 +679,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 30
+    TabOrder = 29
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -689,7 +689,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 31
+    TabOrder = 30
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -699,7 +699,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 32
+    TabOrder = 31
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -709,7 +709,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 35
+    TabOrder = 34
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -719,7 +719,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 36
+    TabOrder = 35
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -729,7 +729,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 37
+    TabOrder = 36
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -739,7 +739,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 38
+    TabOrder = 37
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -749,7 +749,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 39
+    TabOrder = 38
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -759,7 +759,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 40
+    TabOrder = 39
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -769,7 +769,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 41
+    TabOrder = 40
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -779,7 +779,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 42
+    TabOrder = 41
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -789,7 +789,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 43
+    TabOrder = 42
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -799,7 +799,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 46
+    TabOrder = 45
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -809,7 +809,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 47
+    TabOrder = 46
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -819,7 +819,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 48
+    TabOrder = 47
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -829,7 +829,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 49
+    TabOrder = 48
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -839,7 +839,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 50
+    TabOrder = 49
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -849,7 +849,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 51
+    TabOrder = 50
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -859,7 +859,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 52
+    TabOrder = 51
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -869,7 +869,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 53
+    TabOrder = 52
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -879,7 +879,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 54
+    TabOrder = 53
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -889,7 +889,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 57
+    TabOrder = 56
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -899,7 +899,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 58
+    TabOrder = 57
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -909,7 +909,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 59
+    TabOrder = 58
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -919,7 +919,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 60
+    TabOrder = 59
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -929,7 +929,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 61
+    TabOrder = 60
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -939,7 +939,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 62
+    TabOrder = 61
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -949,7 +949,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 63
+    TabOrder = 62
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -959,7 +959,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 64
+    TabOrder = 63
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -969,7 +969,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 65
+    TabOrder = 64
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -979,7 +979,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 68
+    TabOrder = 67
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -989,7 +989,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 69
+    TabOrder = 68
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -999,7 +999,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 70
+    TabOrder = 69
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1009,7 +1009,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 71
+    TabOrder = 70
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1019,7 +1019,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 72
+    TabOrder = 71
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1029,7 +1029,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 73
+    TabOrder = 72
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1039,7 +1039,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 74
+    TabOrder = 73
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1049,7 +1049,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 75
+    TabOrder = 74
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1059,7 +1059,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 76
+    TabOrder = 75
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1069,7 +1069,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 79
+    TabOrder = 78
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1079,7 +1079,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 80
+    TabOrder = 79
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1089,7 +1089,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 81
+    TabOrder = 80
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1099,7 +1099,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 82
+    TabOrder = 81
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1109,7 +1109,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 83
+    TabOrder = 82
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1119,7 +1119,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 84
+    TabOrder = 83
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1129,7 +1129,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 85
+    TabOrder = 84
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1139,7 +1139,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 86
+    TabOrder = 85
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1149,7 +1149,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 87
+    TabOrder = 86
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1159,7 +1159,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 90
+    TabOrder = 89
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1169,7 +1169,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 91
+    TabOrder = 90
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1179,7 +1179,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 92
+    TabOrder = 91
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1189,7 +1189,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 93
+    TabOrder = 92
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1199,7 +1199,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 94
+    TabOrder = 93
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1209,7 +1209,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 95
+    TabOrder = 94
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1219,7 +1219,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 96
+    TabOrder = 95
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1229,7 +1229,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 97
+    TabOrder = 96
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1239,7 +1239,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 98
+    TabOrder = 97
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1250,7 +1250,7 @@ object frmParamTram: TfrmParamTram
     Height = 22
     EditorEnabled = False
     MaxValue = 9
-    TabOrder = 100
+    TabOrder = 99
     OnChange = CSpinEditChange
   end
   object CSpinEdit91: TCSpinEdit
@@ -1259,7 +1259,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 101
+    TabOrder = 100
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1269,7 +1269,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 102
+    TabOrder = 101
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1279,7 +1279,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 103
+    TabOrder = 102
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1289,7 +1289,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 104
+    TabOrder = 103
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1299,7 +1299,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 105
+    TabOrder = 104
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1309,7 +1309,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 106
+    TabOrder = 105
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1319,7 +1319,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 107
+    TabOrder = 106
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1329,7 +1329,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 108
+    TabOrder = 107
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1339,7 +1339,7 @@ object frmParamTram: TfrmParamTram
     Width = 37
     Height = 22
     MaxValue = 81
-    TabOrder = 109
+    TabOrder = 108
     Visible = False
     OnChange = CSpinEditChange
   end
@@ -1349,7 +1349,7 @@ object frmParamTram: TfrmParamTram
     Width = 49
     Height = 26
     Caption = 'Aide'
-    TabOrder = 115
+    TabOrder = 114
     OnClick = ButtonAideClick
   end
   object BitBtn21: TBitBtn
@@ -1457,7 +1457,7 @@ object frmParamTram: TfrmParamTram
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 8
+    TabOrder = 7
     OnClick = BitBtnDirClick
   end
   object BitBtn23: TBitBtn
@@ -1484,7 +1484,7 @@ object frmParamTram: TfrmParamTram
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 9
+    TabOrder = 8
     OnClick = BitBtnDirClick
   end
   object BitBtn33: TBitBtn
@@ -1511,7 +1511,7 @@ object frmParamTram: TfrmParamTram
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 10
+    TabOrder = 9
     OnClick = BitBtnDirClick
   end
   object BitBtn12: TBitBtn
@@ -1563,33 +1563,8 @@ object frmParamTram: TfrmParamTram
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 7
-    OnClick = BitBtnDirClick
-  end
-  object BitBtn22: TBitBtn
-    Left = 423
-    Top = 20
-    Width = 20
-    Height = 20
-    Hint = 'Zoom -/+ (touche Z)'
-    Glyph.Data = {
-      76010000424D7601000000000000760000002800000020000000100000000100
-      04000000000000010000130B0000130B00001000000000000000000000000000
-      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
-      33033333333333333F7F3333333333333000333333333333F777333333333333
-      000333333333333F777333333333333000333333333333F77733333333333300
-      033333333FFF3F777333333700073B703333333F7773F77733333307777700B3
-      33333377333777733333307F8F8F7033333337F333F337F3333377F8F9F8F773
-      3333373337F3373F3333078F898F870333337F33F7FFF37F333307F99999F703
-      33337F377777337F3333078F898F8703333373F337F33373333377F8F9F8F773
-      333337F3373337F33333307F8F8F70333333373FF333F7333333330777770333
-      333333773FF77333333333370007333333333333777333333333}
-    NumGlyphs = 2
-    ParentShowHint = False
-    ShowHint = True
     TabOrder = 6
-    OnClick = BitBtn22Click
+    OnClick = BitBtnDirClick
   end
   object CheckBoxCoins: TCheckBox
     Left = 297
@@ -1615,7 +1590,7 @@ object frmParamTram: TfrmParamTram
     Height = 26
     Caption = '&Vu'
     Default = True
-    TabOrder = 112
+    TabOrder = 111
     OnClick = ButtonOkClick
   end
   object ButtonAnnuler: TButton
@@ -1626,7 +1601,7 @@ object frmParamTram: TfrmParamTram
     Cancel = True
     Caption = 'Annuler'
     ModalResult = 2
-    TabOrder = 113
+    TabOrder = 112
   end
   object ButtonAppliquer: TButton
     Left = 120
@@ -1635,7 +1610,7 @@ object frmParamTram: TfrmParamTram
     Height = 26
     Caption = 'A&ppliquer'
     Enabled = False
-    TabOrder = 114
+    TabOrder = 113
     OnClick = ButtonAppliquerClick
   end
   object GroupBox2: TGroupBox
@@ -1644,7 +1619,7 @@ object frmParamTram: TfrmParamTram
     Width = 225
     Height = 73
     Caption = ' Param'#232'tres des trams '
-    TabOrder = 110
+    TabOrder = 109
     object Label19: TLabel
       Left = 10
       Top = 44
@@ -1703,7 +1678,7 @@ object frmParamTram: TfrmParamTram
     Width = 219
     Height = 119
     Caption = ' Param'#232'tres des pi'#233'tons '
-    TabOrder = 111
+    TabOrder = 110
     object LabelNbCasesMaxPsgPtn: TLabel
       Left = 10
       Top = 22
@@ -1824,7 +1799,7 @@ object frmParamTram: TfrmParamTram
     Top = 87
     Width = 16
     Height = 17
-    TabOrder = 11
+    TabOrder = 10
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1833,7 +1808,7 @@ object frmParamTram: TfrmParamTram
     Top = 111
     Width = 16
     Height = 17
-    TabOrder = 22
+    TabOrder = 21
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1842,7 +1817,7 @@ object frmParamTram: TfrmParamTram
     Top = 135
     Width = 16
     Height = 17
-    TabOrder = 33
+    TabOrder = 32
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1851,7 +1826,7 @@ object frmParamTram: TfrmParamTram
     Top = 159
     Width = 16
     Height = 17
-    TabOrder = 44
+    TabOrder = 43
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1860,7 +1835,7 @@ object frmParamTram: TfrmParamTram
     Top = 183
     Width = 16
     Height = 17
-    TabOrder = 55
+    TabOrder = 54
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1869,7 +1844,7 @@ object frmParamTram: TfrmParamTram
     Top = 207
     Width = 16
     Height = 17
-    TabOrder = 66
+    TabOrder = 65
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1878,7 +1853,7 @@ object frmParamTram: TfrmParamTram
     Top = 231
     Width = 16
     Height = 17
-    TabOrder = 77
+    TabOrder = 76
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1887,7 +1862,7 @@ object frmParamTram: TfrmParamTram
     Top = 256
     Width = 16
     Height = 17
-    TabOrder = 88
+    TabOrder = 87
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1896,7 +1871,7 @@ object frmParamTram: TfrmParamTram
     Top = 280
     Width = 16
     Height = 17
-    TabOrder = 99
+    TabOrder = 98
     Visible = False
     OnClick = CheckBoxClick
   end
@@ -1914,7 +1889,7 @@ object frmParamTram: TfrmParamTram
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 116
+    TabOrder = 115
     OnClick = CheckBoxToutClick
   end
   object PopupMenu: TPopupMenu

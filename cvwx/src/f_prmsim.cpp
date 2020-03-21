@@ -2,8 +2,8 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
-#include "f_prmsim.h"
 #include "simul.h"
+#include "f_prmsim.h"
 #include "f_simul.h"
 #include "f_prmbus.h"
 #include "f_prmtram.h"

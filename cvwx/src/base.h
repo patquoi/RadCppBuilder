@@ -12,18 +12,21 @@
 // Types
 #define TBITMAP Graphics::TBitmap
 #define CONTROLCOUNT ControlCount
+//----------------------------------------------------------------------------------------------------------------------
+// Types énumérés. /!\ v5.4 : le type char a été forcé pour que l'énuméré ne prenne pas la taille d'un entier (4 octets)
+//----------------------------------------------------------------------------------------------------------------------
+enum type_message : char {tmInformation, tmAvertissement, tmErreur, tmQuestionNecessaire, tmQuestionFacultative};
+enum type_reponse : char {trOk, trAnnuler, trOui, trNon};
 //---------------------------------------------------------------------------
-enum type_message {tmInformation, tmAvertissement, tmErreur, tmQuestionNecessaire, tmQuestionFacultative};
-enum type_reponse {trOk, trAnnuler, trOui, trNon};
-//---------------------------------------------------------------------------
-extern const AnsiString asDebutNomSpinEdit; // v5.3
-//---------------------------------------------------------------------------
-// v5.3: DEBOGAGE dans cvw.log 
+// v5.3: DEBOGAGE dans cvw.log
 extern bool Debug;
-extern void DebugOuvre(const AnsiString asNomFichierLog);
+extern void DebugOuvre();
 extern void DebugEcrit(const AnsiString asMessage);
 extern void DebugFerme();
 //---------------------------------------------------------------------------
+extern const AnsiString asDebutNomSpinEdit; // v5.4
+//---------------------------------------------------------------------------
+extern String stRepLocalAppData(); // v5.4
 extern type_reponse AfficheMessage(const AnsiString asMessage, const AnsiString asTitre, type_message Type, int OrdreBoutonDefaut, int OrdreBoutonEchap);
 extern void AfficheAideContextuelle(TForm *Form);
 extern void AfficheIndexAide(TForm *Form);

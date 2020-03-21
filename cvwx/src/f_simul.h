@@ -13,12 +13,13 @@
 #include <Menus.hpp>
 #include <ToolWin.hpp>
 #include <Registry.hpp>
-#include "simul.h"
 #include <System.Actions.hpp>
 #include <System.ImageList.hpp>
 #include <Vcl.BaseImageCollection.hpp>
 #include <Vcl.ImageCollection.hpp>
 #include <Vcl.VirtualImageList.hpp>
+//---------------------------------------------------------------------------
+#include "simul.h"
 //---------------------------------------------------------------------------
 // v5.4 : les glyphes de TSpeedButtons sont chargées manuellement (HDPI)
 //---------------------------------------------------------------------------
@@ -31,12 +32,14 @@
 #define GLYPHE_DEFTX  6
 #define GLYPHE_DEFVL  7
 #define GLYPHE_DIR    8
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+// Types énumérés. /!\ v5.4 : le type char a été forcé pour que l'énuméré ne prenne pas la taille d'un entier (4 octets)
+//----------------------------------------------------------------------------------------------------------------------
 // pour RafraichitBoutonsEdition(...) v3.5
-enum affichage {aff_aucun, aff_dir, aff_sign, aff_veh=4, aff_ptn=8, aff_voie=16, aff_quadr=32, aff_env=64}; // v3.8.1 (aff_env)
-enum type_demande {tdRien, tdPause, tdArret};
-enum operation_avant {oaNouveau, oaOuvrir, oaQuitter};
-enum mode_edition {meAucun, meCase, meSelection}; // pour RafraichitBoutonEdition. v3.5
+enum affichage : char {aff_aucun, aff_dir, aff_sign, aff_veh=4, aff_ptn=8, aff_voie=16, aff_quadr=32, aff_env=64}; // v3.8.1 (aff_env)
+enum type_demande : char {tdRien, tdPause, tdArret};
+enum operation_avant : char {oaNouveau, oaOuvrir, oaQuitter};
+enum mode_edition : char {meAucun, meCase, meSelection}; // pour RafraichitBoutonEdition. v3.5
 //---------------------------------------------------------------------------
 // Utilisée dans la classe TfrmSimulation
 extern const AnsiString asTitreCV;
@@ -238,7 +241,6 @@ __published:	// Composants gérés par l'EDI
   TToolButton *ToolButtonNouveau;
   TToolButton *ToolButtonOuvrir;
   TToolButton *ToolButtonEnregistrer;
-  TToolButton *ToolButtonZoom;
   TToolButton *ToolButtonAffDir;
   TToolButton *ToolButtonAffSign;
   TToolButton *ToolButtonAffRoutes;
@@ -304,7 +306,6 @@ __published:	// Composants gérés par l'EDI
   TAction *ActionEnregistrerSous;
   TAction *ActionVerifierApresOuverture;
   TAction *ActionQuitter;
-  TAction *ActionZoom;
   TAction *ActionAfficherDirections;
   TAction *ActionAfficherSignalisation;
   TAction *ActionAfficherVoies;
@@ -398,9 +399,8 @@ __published:	// Composants gérés par l'EDI
   TAction *ActionPrioritesPietons;
   TAction *ActionPlaceVehlib;
   TImageCollection *ImageCollection; // v5.4
-  TVirtualImageList *VirtualImageList16x16; // v5.4
-  TVirtualImageList *VirtualImageList8x8x1; // v5.4
-  TVirtualImageList *VirtualImageList8x8x2;
+  TVirtualImageList *VirtualImageList16x16;
+	TVirtualImageList *VirtualImageList8x8;
 	TVirtualImageList *VirtualImageListGlyphes; // v5.4
   void __fastcall DrawGridSimulDrawCell(TObject *Sender, int Col,
 		int Row, TRect &Rect, TGridDrawState State);
@@ -421,7 +421,6 @@ __published:	// Composants gérés par l'EDI
   void __fastcall ActionOuvrirExecute(TObject *Sender);
   void __fastcall ActionEnregistrerExecute(TObject *Sender);
   void __fastcall ActionEnregistrerSousExecute(TObject *Sender);
-  void __fastcall ActionZoomExecute(TObject *Sender);
   void __fastcall ActionAfficherDirectionsExecute(TObject *Sender);
   void __fastcall ActionAfficherSignalisationExecute(TObject *Sender);
   void __fastcall ActionAfficherVoiesExecute(TObject *Sender);
@@ -519,7 +518,6 @@ __published:	// Composants gérés par l'EDI
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
 private:
-  TVirtualImageList *VirtualImageList8x8; // v5.4
   affichage Affichage;
   bool SimulEnCours,
        SimulModifiee,

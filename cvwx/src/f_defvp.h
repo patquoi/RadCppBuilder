@@ -7,9 +7,9 @@
 #include <Controls.hpp>
 #include <ExtCtrls.hpp>
 #include <StdCtrls.hpp>
+#include <Graphics.hpp>
 //---------------------------------------------------------------------------
 #include "simul.h"
-#include <Graphics.hpp>
 //---------------------------------------------------------------------------
 class TfrmDefVoiePietons : public TForm
 {

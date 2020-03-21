@@ -24,7 +24,7 @@ object frmAPropos: TfrmAPropos
   TextHeight = 14
   object LabelAuteur2: TLabel
     Left = 70
-    Top = 28
+    Top = 42
     Width = 104
     Height = 26
     Alignment = taCenter
@@ -73,7 +73,7 @@ object frmAPropos: TfrmAPropos
   end
   object LabelAuteur1: TLabel
     Left = 69
-    Top = 27
+    Top = 41
     Width = 104
     Height = 26
     Alignment = taCenter
@@ -126,7 +126,7 @@ object frmAPropos: TfrmAPropos
   end
   object LabelTexte: TLabel
     Left = 24
-    Top = 68
+    Top = 76
     Width = 212
     Height = 61
     Hint = 
@@ -234,6 +234,21 @@ object frmAPropos: TfrmAPropos
       4BD0010FABC1650000000049454E44AE426082}
     Stretch = True
     OnClick = LabelClick
+  end
+  object LabelAlignement: TLabel
+    Left = 70
+    Top = 26
+    Width = 107
+    Height = 12
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'version %d bits'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
   end
   object Timer: TTimer
     Enabled = False

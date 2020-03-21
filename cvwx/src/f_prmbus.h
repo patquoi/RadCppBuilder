@@ -146,7 +146,6 @@ __published:	// Composants gérés par l'EDI
     TBitBtn *BitBtn33;
     TBitBtn *BitBtn12;
     TBitBtn *BitBtn32;
-    TBitBtn *BitBtn22;
     TPopupMenu *PopupMenu;
     TMenuItem *MenuItemHautGauche;
     TMenuItem *MenuItemHaut;
@@ -200,7 +199,6 @@ __published:	// Composants gérés par l'EDI
     void __fastcall ButtonAideClick(TObject *Sender);
     void __fastcall MenuItemClick(TObject *Sender);
     void __fastcall BitBtnDirClick(TObject *Sender);
-    void __fastcall BitBtn22Click(TObject *Sender);
     void __fastcall TimerClignotementTimer(TObject *Sender);
     
     void __fastcall ButtonOkClick(TObject *Sender);

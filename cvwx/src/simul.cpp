@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 //---------------------------------------------------------------------------
+#include "base.h"
 #include "simul.h"
 #include "f_simul.h"
 #include "f_stats.h"
@@ -16,7 +17,6 @@
 #include "f_inftaxi.h"
 #include "f_infvehlib.h"
 #include "f_rech.h"
-#include "base.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------
@@ -30,10 +30,6 @@
 #define AUCUN_FEU ((x==-1)&&(y==-1)&&(Dir==indefinie))
 #define REMET_A_ZERO Definit(-1, -1, 0)
 #define NUMVEHLIBPLACE(x) ((int)(0.5+(x)*(TauxRemplissageVehlib/100.0)))
-//---------------------------------------------------------------------------
-// pour dxg/dyg
-#define ZOOMX1 0
-#define ZOOMX2 1
 //---------------------------------------------------------------------------
 
 // v3.5 : remplacement des [5] par [NBDIR+1] et des [4] par [NBDIR]
@@ -233,37 +229,37 @@ void VerifieDirection(AnsiString asMsgErr, AnsiString asSource, direction d, boo
   if (((d<indefinie)&&(PeutEtreIndefinie))||
       ((d<=indefinie)&&(!PeutEtreIndefinie))||
       (d>ouest))
-   asMsgErr+=asSource+Format(": direction incorrecte (%d)\n", ARRAYOFCONST((d)));
+   asMsgErr+=asSource+Format(": direction incorrecte (%d)\n", ARRAYOFCONST(((int)d))); // v5.4 enum as char type (cast int)
  }
 //-----------------------------------------------------------------------------
 void VerifiePriorite(AnsiString asMsgErr, AnsiString asSource, priorite p)
  {
   if ((p<a_droite)||(p>feux))
-   asMsgErr+=asSource+Format(": priorité incorrecte (%d)\n", ARRAYOFCONST((p)));
+   asMsgErr+=asSource+Format(": priorité incorrecte (%d)\n", ARRAYOFCONST(((int)p))); // v5.4 enum as char type (cast int)
  }
 //-----------------------------------------------------------------------------
 void VerifieDirPoss(AnsiString asMsgErr, AnsiString asSource, dirposs dp)
  {
   if ((dp<aucune)||(dp>NESO))
-   asMsgErr+=asSource+Format(": directions possibles incorrectes (%d)\n", ARRAYOFCONST((dp)));
+   asMsgErr+=asSource+Format(": directions possibles incorrectes (%d)\n", ARRAYOFCONST(((int)dp))); // v5.4 enum as char type (cast int)
  }
 //-----------------------------------------------------------------------------
 void VerifieEtat(AnsiString asMsgErr, AnsiString asSource, etat_feu e)
  {
   if ((e<inactif)||(e>rouge))
-   asMsgErr+=asSource+Format(": état incorrect (%d)\n", ARRAYOFCONST((e)));
+   asMsgErr+=asSource+Format(": état incorrect (%d)\n", ARRAYOFCONST(((int)e))); // v5.4 enum as char type (cast int)
  }
 //-----------------------------------------------------------------------------
 void VerifieDmdVert(AnsiString asMsgErr, AnsiString asSource, dmd_vert dv)
  {
   if ((dv<arrivee_vehicule)||(dv>immediate))
-   asMsgErr+=asSource+Format(": type de demande du vert incorrect (%d)\n", ARRAYOFCONST((dv)));
+   asMsgErr+=asSource+Format(": type de demande du vert incorrect (%d)\n", ARRAYOFCONST(((int)dv))); // v5.4 enum as char type (cast int)
  }
 //-----------------------------------------------------------------------------
 void VerifiePsgRouge(AnsiString asMsgErr, AnsiString asSource, psg_rouge pr)
  {
   if ((pr<prm_dmd)||(pr>immediat))
-   asMsgErr+=asSource+Format(": type de passage au rouge incorrect (%d)\n", ARRAYOFCONST((pr)));
+   asMsgErr+=asSource+Format(": type de passage au rouge incorrect (%d)\n", ARRAYOFCONST(((int)pr))); // v5.4 enum as char type (cast int)
  }
 //-----------------------------------------------------------------------------
 // Méthodes des classes
@@ -284,27 +280,27 @@ void pieton::ChercheFileTaxi() // v3.6
   voie *v;
   int NumPlaceTaxi=0;
   direction DirPlace=indefinie,
-            ProchDir=indefinie;
+			ProchDir=indefinie;
   if (!NumFileTaxi) // Cas improbable mais on ne sait jamais
    { // On abandonne la recherche de file de taxi
-    FileTaxiTrv=false;
-    return; // Numéro de file de taxi obligatoire pour que l'on puisse trouver la tête !
+	FileTaxiTrv=false;
+	return; // Numéro de file de taxi obligatoire pour que l'on puisse trouver la tête !
    }
   for(int d=nord; (!NumPlaceTaxi)&&(d<=ouest); d++)
    {
-    v=&(cv->V(x,y,d));
-    if (v->NumPlaceTaxi&&
-       (cv->PlaceTaxi[v->NumPlaceTaxi-1].NumFile==NumFileTaxi-1))
-     {
-      NumPlaceTaxi=v->NumPlaceTaxi;
-      DirPlace=(direction)d;
-     }
+	v=&(cv->V(x,y,d));
+	if (v->NumPlaceTaxi&&
+	   (cv->PlaceTaxi[v->NumPlaceTaxi-1].NumFile==NumFileTaxi-1))
+	 {
+	  NumPlaceTaxi=v->NumPlaceTaxi;
+	  DirPlace=(direction)d;
+	 }
    }
   if (!NumPlaceTaxi) // Pas trouvé de place de taxi aux allentours...
    { // On abandonne la recherche de file de taxi
-    FileTaxiTrv=false;
-    NumFileTaxi=0;
-    return;
+	FileTaxiTrv=false;
+	NumFileTaxi=0;
+	return;
    }
   else
    if ((!cv->v[x][y].PassagePietons)&&(cv->PlaceTaxi[NumPlaceTaxi-1].EstTeteFile()))
@@ -572,23 +568,23 @@ bool feu::Charge(int hfile)
      FileRead(hfile, &Etat, sizeof(Etat))&&
      FileRead(hfile, &NbFeuxDmd, sizeof(NbFeuxDmd))&&
      FileRead(hfile, &NbFeuxAtt, sizeof(NbFeuxAtt))&&
-     // v5.2 : /!| On ne charge pas les feux de piétons
-     FileRead(hfile, &TypeDmdVert, sizeof(TypeDmdVert))&&
-     FileRead(hfile, &TypePsgRouge, sizeof(TypePsgRouge))&&
-     FileRead(hfile, &DureeRouge, sizeof(DureeRouge))&&
-     FileRead(hfile, &DureeVert, sizeof(DureeVert))&&
-     FileRead(hfile, &DemandeVert, sizeof(DemandeVert))&&
-     FileRead(hfile, &RougeDemande, sizeof(RougeDemande));
+	 // v5.2 : /!\ On ne charge pas les feux de piétons
+	 FileRead(hfile, &TypeDmdVert, sizeof(TypeDmdVert))&&
+	 FileRead(hfile, &TypePsgRouge, sizeof(TypePsgRouge))&&
+	 FileRead(hfile, &DureeRouge, sizeof(DureeRouge))&&
+	 FileRead(hfile, &DureeVert, sizeof(DureeVert))&&
+	 FileRead(hfile, &DemandeVert, sizeof(DemandeVert))&&
+	 FileRead(hfile, &RougeDemande, sizeof(RougeDemande));
 
   if (Ok)
    {
-    if (NbFeuxDmd) Ok=!!(NumFeuxDmd=new int[NbFeuxDmd]);
-    if (NbFeuxAtt) Ok=!!(NumFeuxAtt=new int[NbFeuxAtt]);
-    // v5.2 : /!| On ne charge pas les feux de piétons
+	if (NbFeuxDmd) Ok=!!(NumFeuxDmd=new int[NbFeuxDmd]);
+	if (NbFeuxAtt) Ok=!!(NumFeuxAtt=new int[NbFeuxAtt]);
+	// v5.2 : /!\ On ne charge pas les feux de piétons
    }
   for(i=0; Ok&&(i<NbFeuxDmd); i++) Ok=FileRead(hfile, &(NumFeuxDmd[i]), sizeof(NumFeuxDmd[i]));
   for(i=0; Ok&&(i<NbFeuxAtt); i++) Ok=FileRead(hfile, &(NumFeuxAtt[i]), sizeof(NumFeuxAtt[i]));
-    // v5.2 : /!| On ne charge pas les feux de piétons
+	// v5.2 : /!\ On ne charge pas les feux de piétons
   return Ok;
  }
 //-----------------------------------------------------------------------------
@@ -603,17 +599,17 @@ bool feu::Sauve(int hfile)
      FileWrite(hfile, &Etat, sizeof(Etat))&&
      FileWrite(hfile, &NbFeuxDmd, sizeof(NbFeuxDmd))&&
      FileWrite(hfile, &NbFeuxAtt, sizeof(NbFeuxAtt))&&
-    // v5.2 : /!| On ne sauve pas les feux de piétons
-     FileWrite(hfile, &TypeDmdVert, sizeof(TypeDmdVert))&&
-     FileWrite(hfile, &TypePsgRouge, sizeof(TypePsgRouge))&&
-     FileWrite(hfile, &DureeRouge, sizeof(DureeRouge))&&
-     FileWrite(hfile, &DureeVert, sizeof(DureeVert))&&
-     FileWrite(hfile, &DemandeVert, sizeof(DemandeVert))&&
-     FileWrite(hfile, &RougeDemande, sizeof(RougeDemande));
+	// v5.2 : /!\ On ne sauve pas les feux de piétons
+	 FileWrite(hfile, &TypeDmdVert, sizeof(TypeDmdVert))&&
+	 FileWrite(hfile, &TypePsgRouge, sizeof(TypePsgRouge))&&
+	 FileWrite(hfile, &DureeRouge, sizeof(DureeRouge))&&
+	 FileWrite(hfile, &DureeVert, sizeof(DureeVert))&&
+	 FileWrite(hfile, &DemandeVert, sizeof(DemandeVert))&&
+	 FileWrite(hfile, &RougeDemande, sizeof(RougeDemande));
 
   for(i=0; Ok&&(i<NbFeuxDmd); i++) Ok=FileWrite(hfile, &(NumFeuxDmd[i]), sizeof(NumFeuxDmd[i]));
   for(i=0; Ok&&(i<NbFeuxAtt); i++) Ok=FileWrite(hfile, &(NumFeuxAtt[i]), sizeof(NumFeuxAtt[i]));
-    // v5.2 : /!| On ne sauve pas les feux de piétons
+    // v5.2 : /!\ On ne sauve pas les feux de piétons
   return Ok;
  }
 //-----------------------------------------------------------------------------
@@ -1172,7 +1168,7 @@ void vehlib::Place(int p) // ATTENTION: 0 <= p < NbPlacesVehlib
   Situation=svAttente;
   for(int d=nord; (!Dir)&&(d<=ouest); d++)
    if (v->DirPoss&PossDir[(direction)d]) Dir=(direction)d;
-  //DebugEcrit(Format("Vehlib(%d)::Place(%d): (x,y)=(%d,%d); cv->v[x][y].NumVehlib=%d; Situation=svAttente; Dir=%d", ARRAYOFCONST((Numero,p,x,y,Numero,Dir))));
+  //DebugEcrit(Format("Vehlib(%d)::Place(%d): (x,y)=(%d,%d); cv->v[x][y].NumVehlib=%d; Situation=svAttente; Dir=%d", ARRAYOFCONST((Numero,p,x,y,Numero,(int)Dir))));
  }
 //-----------------------------------------------------------------------------
 bool vehlib::EstDestination(const voie *v)
@@ -1197,7 +1193,7 @@ void vehlib::CalculeProchaineDirection()
      ReservePlaceVehlibCible();
     Situation=svDepart;
     TourDepart=cv->TourCrt;
-    //DebugEcrit(Format("Vehlib(%d)::CalculeProchaineDirection(): Situation=svDepart; TourDepart=%d", ARRAYOFCONST((Numero,cv->TourCrt))));
+	//DebugEcrit(Format("Vehlib(%d)::CalculeProchaineDirection(): Situation=svDepart; TourDepart=%d", ARRAYOFCONST((Numero,cv->TourCrt))));
    }
   Dir=indefinie;
   // On classe les dir.poss. dans l'ordre < des distances aux files.
@@ -1213,7 +1209,7 @@ void vehlib::CalculeProchaineDirection()
                      ((v->DistPlaceVehlib[NumPlaceArrivee-1][i]==v->DistPlaceVehlib[NumPlaceArrivee-1][j])&&
                       ((Dirdp[i][v->DirPoss]!=AncDir)|| // En cas d'égalité, préfère garder la direction courante
                        ((i+Numero+cv->TourCrt)%ndp>(j+Numero+cv->TourCrt)%ndp)))); // sinon tirage au hasard (Ici TourCrt+1)
-       //DebugEcrit(Format("Vehlib(%d)::CalculeProchaineDirection(): NumPlaceArrivee>0 (%d) -> for(i,j)=(%d,%d) OrdreDir[i]=%d [V(i,j).NumPlaceVehlib=(%d,%d),V(i,j).DistPlaceVehlib=(%d,%d)]", ARRAYOFCONST((Numero,NumPlaceArrivee,i,j,OrdreDir[i],cv->V(x,y,Dirdp[i][v->DirPoss]).NumPlaceVehlib,cv->V(x,y,Dirdp[j][v->DirPoss]).NumPlaceVehlib,v->DistPlaceVehlib[NumPlaceArrivee-1][i],v->DistPlaceVehlib[NumPlaceArrivee-1][j]))));
+	   //DebugEcrit(Format("Vehlib(%d)::CalculeProchaineDirection(): NumPlaceArrivee>0 (%d) -> for(i,j)=(%d,%d) OrdreDir[i]=%d [V(i,j).NumPlaceVehlib=(%d,%d),V(i,j).DistPlaceVehlib=(%d,%d)]", ARRAYOFCONST((Numero,NumPlaceArrivee,i,j,OrdreDir[i],cv->V(x,y,Dirdp[i][v->DirPoss]).NumPlaceVehlib,cv->V(x,y,Dirdp[j][v->DirPoss]).NumPlaceVehlib,v->DistPlaceVehlib[NumPlaceArrivee-1][i],v->DistPlaceVehlib[NumPlaceArrivee-1][j]))));
       }
   for(i=0; (!Dir)&&(i<5); i++)
    for(j=0; (!Dir)&&(j<ndp); j++)
@@ -3853,7 +3849,7 @@ void voie::Verifie(AnsiString &asMsgErr)
    {
     VerifiePriorite(asMsgErr, asSource+" ("+asDir[i+1]+")", Priorite[i]);
     if (NumFeu[i]&&(Priorite[i]!=feux))
-     asMsgErr+=asSource+Format(": numéro de feu %s mais priorité différente de Feu (%d)\n", ARRAYOFCONST((asDir[i+1], Priorite[i])));
+     asMsgErr+=asSource+Format(": numéro de feu %s mais priorité différente de Feu (%d)\n", ARRAYOFCONST((asDir[i+1], (int)Priorite[i]))); // v5.4 enum as char type (cast int)
     if ((NumFeu[i]<0)||(NumFeu[i]>cv->NbFeux))
      asMsgErr+=asSource+Format(": numéro de feu %s incorrect (%d)\n", ARRAYOFCONST((asDir[i+1], NumFeu[i])));
     else
@@ -5905,22 +5901,22 @@ bool centre_ville::Charge(int hfile)
   int i, j,
       NvNbParkings=0, // v5.1
       NvNbPlacesPark=0, // v5.1
-      NvNbPlacesVehlib=0; // v5.3
+	  NvNbPlacesVehlib=0; // v5.3
   bool Ok;
   NbPietons=-1;
   Ok=FileRead(hfile, &NbFeux, sizeof(NbFeux));
   if (NbFeux>=VERSIONMIN) // v3.0
    { // Version stockée
-    VersionFichier=NbFeux;
-    Ok=FileRead(hfile, &NbFeux, sizeof(NbFeux)); // On relit le nombre de feux
+	VersionFichier=NbFeux;
+	Ok=FileRead(hfile, &NbFeux, sizeof(NbFeux)); // On relit le nombre de feux
    }
   else // Version non stockée compatible (2.0 <= version < 3.0)
    VersionFichier=VERSIONANC;
   if (VersionFichier>VERSION) return false; // v3.5 : n'ouvre pas les fichier de simulation générés par une version ultérieure de la version actuelle (format de fichier)
   if (VersionFichier<0x400) // On charge les dimensions de la zone
    {
-    NbX=NBXDEF;
-    NbY=NBYDEF;
+	NbX=NBXDEF;
+	NbY=NBYDEF;
    }
   else
    Ok=FileRead(hfile, &NbX, sizeof(NbX))&&
@@ -6266,7 +6262,7 @@ void centre_ville::Verifie(AnsiString &asMsgErr)
   if (NbToursStats<0)
    asMsgErr+=Format("Le nombre de tours soumis aux statistiques est incorrect (%d)\n", ARRAYOFCONST((NbToursStats)));
   if ((TypeStats<par_nombre)||(TypeStats>par_pourcentage))
-   asMsgErr+=Format("Le type de statistique est incorrect (%d)\n", ARRAYOFCONST((TypeStats)));
+   asMsgErr+=Format("Le type de statistique est incorrect (%d)\n", ARRAYOFCONST(((int)TypeStats)));
   if ((NbVitesses<1)||(NbVitesses>3))
    asMsgErr+=Format("Le nombre de vitesses est incorrect (%d)\n", ARRAYOFCONST((NbVitesses)));
   if ((NbMaxCasesDetectPsgPt<0)||(NbMaxCasesDetectPsgPt>5))

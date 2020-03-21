@@ -1,9 +1,8 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
+#pragma hdrstop
 //---------------------------------------------------------------------------
 #include <shellapi.hpp>
-//---------------------------------------------------------------------------
-#pragma hdrstop
 //---------------------------------------------------------------------------
 #include "f_propos.h"
 #include "f_simul.h"
@@ -18,7 +17,14 @@
 //---------------------------------------------------------------------------
 TfrmAPropos *frmAPropos;
 //---------------------------------------------------------------------------
-__fastcall TfrmAPropos::TfrmAPropos(TComponent* Owner) : TForm(Owner) {}
+__fastcall TfrmAPropos::TfrmAPropos(TComponent* Owner) : TForm(Owner)
+ {
+  #ifdef _WIN64
+  LabelAlignement->Caption=Format(LabelAlignement->Caption, ARRAYOFCONST((64)));
+  #else
+  LabelAlignement->Caption=Format(LabelAlignement->Caption, ARRAYOFCONST((32)));
+  #endif
+ }
 //---------------------------------------------------------------------------
 void __fastcall TfrmAPropos::TimerTimer(TObject *Sender)
  {

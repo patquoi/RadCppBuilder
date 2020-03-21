@@ -1,11 +1,11 @@
 object frmStatistiques: TfrmStatistiques
   Left = 594
   Top = 0
-  Width = 208
-  Height = 227
   HelpContext = 611
   BorderStyle = bsSizeToolWin
   Caption = #201'volution'
+  ClientHeight = 188
+  ClientWidth = 192
   Color = clBlack
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,12 +24,14 @@ object frmStatistiques: TfrmStatistiques
   object PaintBoxStats: TPaintBox
     Left = 0
     Top = 0
-    Width = 200
-    Height = 193
+    Width = 192
+    Height = 188
     Hint = 'Sortis en jaune ; D'#233'plac'#233's en vert et Arriv'#233's en rouge'
     Align = alClient
     ParentShowHint = False
     ShowHint = True
     OnPaint = PaintBoxStatsPaint
+    ExplicitWidth = 200
+    ExplicitHeight = 193
   end
 end

@@ -2,9 +2,9 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
-#include "f_statsc.h"
-#include "simul.h"
 #include "base.h"
+#include "simul.h"
+#include "f_statsc.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -14,7 +14,7 @@
 //---------------------------------------------------------------------------
 TfrmStatsComposition *frmStatsComposition;
 //---------------------------------------------------------------------------
-const AnsiString asFrmPC="%6.2f";
+const AnsiString asFrmPC="###.##"; // v5.4, le format de FormatFloat a changé : "###.##" au lieu de "%6.2f"
 //---------------------------------------------------------------------------
 void Composition()
  {

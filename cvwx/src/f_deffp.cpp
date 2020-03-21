@@ -2,9 +2,9 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
+#include "f_simul.h"
 #include "f_deffp.h"
 #include "f_defvp.h"
-#include "f_simul.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"

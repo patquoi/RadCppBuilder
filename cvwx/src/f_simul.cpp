@@ -1,13 +1,15 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
-#include <time.h>
-#include <stdlib.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
+#include <time.h>
+#include <stdlib.h>
+//---------------------------------------------------------------------------
+#include "base.h"
+#include "simul.h"
 #include "f_simul.h"
 #include "f_defv.h"
 #include "f_defvp.h"
-#include "simul.h"
 #include "f_prmsim.h"
 #include "f_prmbus.h"
 #include "f_prmtram.h"
@@ -35,7 +37,6 @@
 #include "f_dimzone.h"
 #include "f_genres.h"
 #include "f_propos.h"
-#include "base.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -118,28 +119,18 @@
 //---------------------------------------------------------------------------
 TfrmSimulation *frmSimulation=NULL;
 //---------------------------------------------------------------------------
-// v2.2 : Décalage gyrophares d{x|y}g[dorig][ddest]
-//                ddest =      n   e   s   o
-const int dxg[2][5][5]={{{ 0,  0,  0,  0,  0}, // ZOOMx1
-                         { 0,  0,  1,  0,  0}, // dorig = nord
-                         { 0,  1,  0,  1,  0}, // dorig = est
-                         { 0,  0,  1,  0,  0}, // dorig = sud
-                         { 0,  0,  0,  0,  0}},// dorig = ouest
-                        {{ 0,  0,  0,  0,  0}, // ZOOMx2
-                         { 0,  0,  1,  0, -1}, // dorig = nord
-                         { 0,  1,  0,  1,  0}, // dorig = est
-                         { 0,  0,  1,  0, -1}, // dorig = sud
-                         { 0, -1,  0, -1,  0}}},//dorig = ouest
-          dyg[2][5][5]={{{ 0,  0,  0,  0,  0},
-                         { 0,  0,  0,  0,  0}, // dorig = nord
-                         { 0,  0,  0,  1,  0}, // dorig = est
-                         { 0,  0,  1,  0,  1}, // dorig = sud
-                         { 0,  0,  0,  1,  0}},// dorig = ouest
-                        {{ 0,  0,  0,  0,  0},
-                         { 0,  0, -1,  0, -1}, // dorig = nord
-                         { 0, -1,  0,  1,  0}, // dorig = est
-                         { 0,  0,  1,  0,  1}, // dorig = sud
-                         { 0, -1,  0,  1,  0}}},//dorig = ouest
+// v2.2 : Décalage gyrophares d{x|y}g[dorig][ddest]. v5.4 plus de zoom
+//            ddest =      n   e   s   o
+const int dxg[5][5]={{ 0,  0,  0,  0,  0},
+					 { 0,  0,  1,  0, -1}, // dorig = nord
+					 { 0,  1,  0,  1,  0}, // dorig = est
+					 { 0,  0,  1,  0, -1}, // dorig = sud
+					 { 0, -1,  0, -1,  0}},// dorig = ouest
+		  dyg[5][5]={{ 0,  0,  0,  0,  0},
+					 { 0,  0, -1,  0, -1}, // dorig = nord
+					 { 0, -1,  0,  1,  0}, // dorig = est
+					 { 0,  0,  1,  0,  1}, // dorig = sud
+					 { 0, -1,  0,  1,  0}},// dorig = ouest
             // [Dir1][Dir2][AVT|ARR] Dir2=N   ,   E   ,   S   ,   O
           NumImgBusTram[NBDIR][NBDIR][2]={{{ 1, 7},{ 2, 9},{12,12},{ 0, 5}},  // Dir1 = N // v3.5 : ajout de Tram dans le nom (nitmaps communes aux bus)
                                           {{ 3, 8},{ 4,10},{ 5, 0},{12,12}},  // Dir1 = E
@@ -267,7 +258,6 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
       BordTrottoir=0, BordToiture=0, CoinToiture=0, // v3.8
       NumPieton, // v2.0
       NivPriorite, // v2.2
-      Zoom=!!ActionZoom->Checked, // v2.2
       SensVT, // v3.5
       Vlr; // v5.3
   TColor CoulTxt; // v3.0.5
@@ -443,7 +433,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
                           cv->PositionArretBus(Col, Row, DirArretBus));
      }
     // 2e. Affichage des directions au carrefour (si pas d'affichage des directions possibles). v3.6.1
-    if (Zoom&&(!(Affichage&aff_dir)))
+    if (!(Affichage&aff_dir))
      for(int d=nord; d<=ouest; d++)
       if (v->Priorite[d-1]&&(v->DirPoss&PossDir[d]))
        {
@@ -530,20 +520,20 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
                                          COULEURURGENCE+ // Numéro de couleur (rouge)
                                          (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFVPU);
                        VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
-                                         Rect.Left+dxg[Zoom][dorig][ddest],
-                                         Rect.Top+dyg[Zoom][dorig][ddest],
-                                         IDB_URGENCE+ // Numero de bitmap initiale des gyrophares
-                                         2*((dorig+ddest)%2)+ // Horizontal/vertical ou en diagonale
-                                         cv->TourCrt%2); // Clignotement
-                      break;
-        case police:  VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
-                                         Rect.Left, Rect.Top,
-                                         IDB_VEHPU+ // Numero de bitmap initiale des véhicules de police/urgence
-                                         // Couleur Police = 1ère couleur (blanche)
-                                         (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFVPU);
-                       VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
-                                         Rect.Left+dxg[Zoom][dorig][ddest],
-                                         Rect.Top+dyg[Zoom][dorig][ddest],
+										 Rect.Left+dxg[dorig][ddest], // v5.4 : plus de zoom (dxg)
+										 Rect.Top+dyg[dorig][ddest], // v5.4 : plus de zoom (dyg)
+										 IDB_URGENCE+ // Numero de bitmap initiale des gyrophares
+										 2*((dorig+ddest)%2)+ // Horizontal/vertical ou en diagonale
+										 cv->TourCrt%2); // Clignotement
+					  break;
+		case police:  VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
+										 Rect.Left, Rect.Top,
+										 IDB_VEHPU+ // Numero de bitmap initiale des véhicules de police/urgence
+										 // Couleur Police = 1ère couleur (blanche)
+										 (3*(dorig-1)+ddest-1-(ddest>dorig))*NBCOULDIFFVPU);
+					   VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
+										 Rect.Left+dxg[dorig][ddest], // v5.4 : plus de zoom (dxg)
+										 Rect.Top+dyg[dorig][ddest], // v5.4 : plus de zoom (dyg)
                                          IDB_POLICE+ // Numero de bitmap initiale des gyrophares
                                          2*((dorig+ddest)%NBDIR)+ // Direction
                                          cv->TourCrt%2); // Clignotement
@@ -1012,17 +1002,16 @@ void TfrmSimulation::RafraichitFonctionDeplacementFeu() // v3.5
 void TfrmSimulation::RedimensionneZone()
  {
   if (WindowState==wsMaximized) WindowState=wsNormal; // v4.4
-  if (ActionZoom->Checked) ActionZoom->Execute(); // v4.4
   DrawGridSimul->ColCount=cv->NbX;
   DrawGridSimul->RowCount=cv->NbY;
-  Width=8*cv->NbX+(Width-DrawGridSimul->Width); // v4.0.1
-  Height=8*cv->NbY+(Height-DrawGridSimul->Height); // v4.0.1
+  Width=DrawGridSimul->DefaultColWidth*cv->NbX+(Width-DrawGridSimul->Width); // v5.4 (DrawGridSimul->DefaultColWidth)
+  Height=DrawGridSimul->DefaultRowHeight*cv->NbY+(Height-DrawGridSimul->Height); // v5.4 (DrawGridSimul->DefaultRowHeight)
   DrawGridSimul->Repaint(); // v4.0.1
  }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::FormCreate(TObject *Sender)
 { // Initialise les indicateurs. v5.4 : la màj de la base de registres est faite par l'installateur
- VirtualImageList8x8=VirtualImageList8x8x1; // v5.4 (VirtualImageList)
+ // v5.4 : on applique la résolution courante sur la taille des cases par rapport à la définition prédéfinie
  Affichage=(affichage)(aff_sign|aff_voie|aff_env); // v3.8.1 (aff_env)
  xErr=-1; yErr=-1;
  Pause=false; // v3.5
@@ -1591,11 +1580,9 @@ void __fastcall TfrmSimulation::FormShow(TObject *Sender)
  if (ParamCount()>0)
   {
    if (ParamStr(1).UpperCase()=="!") // v5.3
-    {
-     DebugOuvre(ExtractFilePath(Application->ExeName)+"cvw.log");
-    }
+	 DebugOuvre(); // v5.4 : plus de paramètres, directement à la fermeture du fichier (DebugFerme)
    else
-    {
+	{
 	 asNomFichAuto=ParamStr(1);
      SimulEnCours=true;
      ActionOuvrir->Execute();
@@ -2222,28 +2209,6 @@ void __fastcall TfrmSimulation::ActionEnregistrerSousExecute(
       TObject *Sender)
 {
  if (SaveDialog->Execute()) ActionEnregistrer->Execute();
-}
-//---------------------------------------------------------------------------
-void __fastcall TfrmSimulation::ActionZoomExecute(TObject *Sender)
-{
- int Col=DrawGridSimul->Col,
-     Row=DrawGridSimul->Row,
-     TailleCase=8*(1+!ActionZoom->Checked);
- ActionZoom->Checked^=true;
- // v5.3 : On ajuste la taille de la fenêtre en mode zoom aussi
- if (ActionZoom->Checked) // v5.4 (VirtualImageList)
-   VirtualImageList8x8=VirtualImageList8x8x2;
- else
-   VirtualImageList8x8=VirtualImageList8x8x1;
- DrawGridSimul->Col=0;
- DrawGridSimul->Row=0;
- DrawGridSimul->DefaultColWidth=TailleCase;
- DrawGridSimul->DefaultRowHeight=TailleCase;
- DrawGridSimul->Col=Col;
- DrawGridSimul->Row=Row;
- Width=TailleCase*cv->NbX+(Width-DrawGridSimul->Width);
- Height=TailleCase*cv->NbY+(Height-DrawGridSimul->Height);
- DrawGridSimul->Repaint();
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::ActionAfficherDirectionsExecute(

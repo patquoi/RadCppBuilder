@@ -2,9 +2,9 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
-#include "f_dimzone.h"
 #include "simul.h"
 #include "f_simul.h"
+#include "f_dimzone.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
