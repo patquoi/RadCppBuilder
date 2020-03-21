@@ -142,7 +142,6 @@ __published:	// Composants gérés par l'EDI
   TMenuItem *MenuItemProlongerBas;
   TMenuItem *MenuItemProlongerGauche;
   TMenuItem *MenuItemEffacerVoieTram;
-  TMenuItem *MenuItemMenu;
   TMenuItem *MenuItemAffichage;
   TMenuItem *MenuItemStatistiques;
   TMenuItem *MenuItemEditionCase;
@@ -230,7 +229,6 @@ __published:	// Composants gérés par l'EDI
   TMenuItem *MenuItemPrioritesPietons;
   TMenuItem *MenuItemInfosDistancesFilesVehlib;
         TMenuItem *MenuItemDistancesPlacesVehlib;
-  TControlBar *ControlBarHaut;
   TToolBar *ToolBarFichier;
   TToolBar *ToolBarAffichage;
   TToolBar *ToolBarInformations;
@@ -401,7 +399,8 @@ __published:	// Composants gérés par l'EDI
   TImageCollection *ImageCollection; // v5.4
   TVirtualImageList *VirtualImageList16x16;
 	TVirtualImageList *VirtualImageList8x8;
-	TVirtualImageList *VirtualImageListGlyphes; // v5.4
+	TVirtualImageList *VirtualImageListGlyphes;
+	TPanel *PanelHaut; // v5.4
   void __fastcall DrawGridSimulDrawCell(TObject *Sender, int Col,
 		int Row, TRect &Rect, TGridDrawState State);
   void __fastcall FormCreate(TObject *Sender);

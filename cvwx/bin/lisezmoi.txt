@@ -36,8 +36,11 @@ avant ou les renommer (au menu principal, rubrique Fichier | Enregistrer sous).
  - À partir de Windows 7, les fichiers de simulation (*.cvw) sont stockés dans
    %LocalAppData%\Patquoi.fr\Centre-Ville.
  - La gestion du HDPI est supportée (résolution > 96 dpi).
- - Le fonction zoom est désormais activée par défaut (fonction supprimée). 
-
+ - La fonction zoom est désormais activée par défaut (fonction supprimée). 
+ - Le menu principal n'est plus dans la barre de boutons mais au-dessus de 
+   manière classique.
+ - Les barres d'outils ne sont ni détachables, ni déplaçable suite à des 
+   problèmes de comportement en haute résolution (HDPI).
 ------------------------------------------------------------------------------
 [Version 5.3]
  - Ajout des vehlibs (véhicule en libre service) avec ses places réservées.

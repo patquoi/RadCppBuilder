@@ -106,7 +106,7 @@
 #define NB_ELEMENTS_PAR_DEFAUT   true
 #define AUCUN_ELEMENT_PAR_DEFAUT false
 //---------------------------------------------------------------------------
-#define NBELEMENTSBARREOUTILS 8 // v3.5
+#define NBELEMENTSBARREOUTILS 7 // v3.5 : ajout. v5.4 : suppression de "Menu" (-1)
 #define TOOLBAR  0
 #define MENUITEM 1
 //---------------------------------------------------------------------------
@@ -151,7 +151,7 @@ const AnsiString asVide,
                  asQstEnregistrerFichier = "Voulez-vous enregistrer le fichier ",
                  asTypeVehicule[NBNIVEAUXPRIORITE]={"", "d'urgence","de police"},
                  asDebutNom[2]={"ToolBar", "MenuItem"}, // v3.5
-                 asNomElementBarreOutils[NBELEMENTSBARREOUTILS]={"Menu", "Fichier", "Affichage", "EditionCase", "EditionSelection", "Simulation", "Informations", "Statistiques"}, // v3.5
+				 asNomElementBarreOutils[NBELEMENTSBARREOUTILS]={"Fichier", "Affichage", "EditionCase", "EditionSelection", "Simulation", "Informations", "Statistiques"}, // v3.5 : ajout. v5.4 : suppression de "Menu"
                  asTypeDistance[NBTYPESDISTANCE]={"", "à un parking", "à un arrêt de bus", "à un arrêt de tram", "à une file de parkings"},
                  asChargementNonEffectue="Chargement non effectué",
                  asSauvegardeNonEffectuee="Sauvegarde non effectuée",
@@ -216,7 +216,6 @@ Voulez-vous voir les statistiques de fluidité et de trafic en couleurs ?",
 __fastcall TfrmSimulation::TfrmSimulation(TComponent* Owner) : TForm(Owner)
 { // Constructeur de la fiche
  yCrt=xCrt=yPrc=xPrc=-1; DirOrigVoieTram=indefinie;// v3.5
- // Mettre ce paramétrage en option : DrawGridSimul->DoubleBuffered=true; 
 }
 //---------------------------------------------------------------------------
 void TfrmSimulation::RedessineCase(int x, int y, bool EffaceFond)

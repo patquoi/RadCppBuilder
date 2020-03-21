@@ -5,8 +5,8 @@ object frmSimulation: TfrmSimulation
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   Caption = 'Centre-Ville'
-  ClientHeight = 576
-  ClientWidth = 827
+  ClientHeight = 713
+  ClientWidth = 819
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,6 +14,7 @@ object frmSimulation: TfrmSimulation
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
+  Menu = MainMenu
   OldCreateOrder = True
   Position = poScreenCenter
   Visible = True
@@ -27,12 +28,13 @@ object frmSimulation: TfrmSimulation
   TextHeight = 13
   object StatusBar: TStatusBar
     Left = 0
-    Top = 556
-    Width = 827
+    Top = 693
+    Width = 819
     Height = 20
     Hint = 
       'Message ou stats / Composition de la case / Directions possibles' +
       ' / Coordonn'#233'es ou jauge'
+    AutoHint = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clBtnText
     Font.Height = -9
@@ -66,9 +68,9 @@ object frmSimulation: TfrmSimulation
   end
   object DrawGridSimul: TDrawGrid
     Left = 0
-    Top = 52
-    Width = 827
-    Height = 504
+    Top = 50
+    Width = 819
+    Height = 643
     Align = alClient
     BorderStyle = bsNone
     Color = clBlack
@@ -90,68 +92,42 @@ object frmSimulation: TfrmSimulation
     ParentCtl3D = False
     ParentFont = False
     PopupMenu = PopupMenuEditionCase
-    TabOrder = 1
+    TabOrder = 0
     OnClick = DrawGridSimulClick
     OnDblClick = DrawGridSimulDblClick
     OnDrawCell = DrawGridSimulDrawCell
   end
-  object ControlBarHaut: TControlBar
+  object PanelHaut: TPanel
     Left = 0
     Top = 0
-    Width = 827
-    Height = 52
+    Width = 819
+    Height = 50
     Align = alTop
-    AutoSize = True
-    BevelInner = bvNone
     BevelOuter = bvNone
-    BevelKind = bkNone
-    ParentShowHint = False
+    Locked = True
     PopupMenu = PopupMenuBarreOutils
-    ShowHint = True
-    TabOrder = 0
-    object ToolBarMenu: TToolBar
-      Left = 11
-      Top = 2
-      Width = 227
-      Height = 22
-      Align = alNone
-      AutoSize = True
-      ButtonHeight = 21
-      ButtonWidth = 54
-      Caption = 'Menu'
-      Constraints.MaxHeight = 22
-      Constraints.MaxWidth = 227
-      Constraints.MinHeight = 22
-      Constraints.MinWidth = 227
-      DragKind = dkDock
-      DragMode = dmAutomatic
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'MS Serif'
-      Font.Style = []
-      Menu = MainMenu
-      ParentFont = False
-      ShowCaptions = True
-      TabOrder = 0
-      TabStop = True
-      Transparent = True
-      Wrapable = False
-    end
+    TabOrder = 2
     object ToolBarFichier: TToolBar
-      Left = 356
+      Left = 4
       Top = 2
-      Width = 69
+      Width = 73
       Height = 22
       Align = alNone
       AutoSize = True
       Caption = 'Fichier'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
       Images = VirtualImageList16x16
+      List = True
       ParentShowHint = False
       ShowHint = False
-      TabOrder = 2
+      TabOrder = 0
       Transparent = True
       Wrapable = False
       object ToolButtonNouveau: TToolButton
@@ -176,20 +152,94 @@ object frmSimulation: TfrmSimulation
         ShowHint = True
       end
     end
-    object ToolBarAffichage: TToolBar
-      Left = 589
+    object ToolBarSimulation: TToolBar
+      Left = 349
       Top = 2
-      Width = 184
+      Width = 142
+      Height = 22
+      Align = alNone
+      AutoSize = True
+      Caption = 'Simulation'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
+      DragKind = dkDock
+      DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
+      Images = VirtualImageList16x16
+      ParentShowHint = False
+      ShowHint = False
+      TabOrder = 1
+      Transparent = True
+      Wrapable = False
+      object ToolButtonParametres: TToolButton
+        Left = 0
+        Top = 0
+        Action = ActionParametres
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ToolButtonVerifierReseau: TToolButton
+        Left = 23
+        Top = 0
+        Action = ActionVerifierReseau
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ToolButtonMarche: TToolButton
+        Left = 46
+        Top = 0
+        Action = ActionMarche
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ToolButtonPause: TToolButton
+        Tag = 1
+        Left = 69
+        Top = 0
+        Action = ActionInterruption
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ToolButtonArret: TToolButton
+        Tag = 2
+        Left = 92
+        Top = 0
+        Action = ActionArret
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ToolButtonSanglante: TToolButton
+        Left = 115
+        Top = 0
+        Action = ActionSanglante
+        ParentShowHint = False
+        ShowHint = True
+        Style = tbsCheck
+      end
+    end
+    object ToolBarAffichage: TToolBar
+      Left = 119
+      Top = 2
+      Width = 188
       Height = 22
       Align = alNone
       AutoSize = True
       Caption = 'Affichage'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
       ShowHint = False
-      TabOrder = 4
+      TabOrder = 2
       Transparent = True
       Wrapable = False
       object ToolButtonRafraichir: TToolButton
@@ -257,19 +307,25 @@ object frmSimulation: TfrmSimulation
       end
     end
     object ToolBarInformations: TToolBar
-      Left = 727
-      Top = 28
-      Width = 92
+      Left = 514
+      Top = 2
+      Width = 96
       Height = 22
       Align = alNone
       AutoSize = True
       Caption = 'Informations'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
       ShowHint = False
-      TabOrder = 7
+      TabOrder = 3
       Transparent = True
       Wrapable = False
       object ToolButtonRechercher: TToolButton
@@ -314,82 +370,26 @@ object frmSimulation: TfrmSimulation
         ShowHint = True
       end
     end
-    object ToolBarSimulation: TToolBar
-      Left = 438
-      Top = 2
-      Width = 138
-      Height = 22
-      Align = alNone
-      AutoSize = True
-      Caption = 'Simulation'
-      DragKind = dkDock
-      DragMode = dmAutomatic
-      Images = VirtualImageList16x16
-      ParentShowHint = False
-      ShowHint = False
-      TabOrder = 3
-      Transparent = True
-      Wrapable = False
-      object ToolButtonParametres: TToolButton
-        Left = 0
-        Top = 0
-        Action = ActionParametres
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButtonVerifierReseau: TToolButton
-        Left = 23
-        Top = 0
-        Action = ActionVerifierReseau
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButtonMarche: TToolButton
-        Left = 46
-        Top = 0
-        Action = ActionMarche
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButtonPause: TToolButton
-        Tag = 1
-        Left = 69
-        Top = 0
-        Action = ActionInterruption
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButtonArret: TToolButton
-        Tag = 2
-        Left = 92
-        Top = 0
-        Action = ActionArret
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButtonSanglante: TToolButton
-        Left = 115
-        Top = 0
-        Action = ActionSanglante
-        ParentShowHint = False
-        ShowHint = True
-        Style = tbsCheck
-      end
-    end
     object ToolBarEditionCase: TToolBar
-      Left = 11
-      Top = 28
-      Width = 506
+      Left = 4
+      Top = 26
+      Width = 510
       Height = 22
       Align = alNone
       AutoSize = True
       Caption = 'Edition (Case)'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 5
+      TabOrder = 4
       Transparent = True
       Wrapable = False
       object ToolButtonNord: TToolButton
@@ -563,16 +563,75 @@ object frmSimulation: TfrmSimulation
         ShowHint = True
       end
     end
+    object ToolBarStatistiques: TToolBar
+      Left = 606
+      Top = 2
+      Width = 96
+      Height = 22
+      Align = alNone
+      AutoSize = True
+      Caption = 'Statistiques'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
+      DragKind = dkDock
+      DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
+      Images = VirtualImageList16x16
+      ParentShowHint = False
+      ShowHint = False
+      TabOrder = 5
+      Transparent = True
+      Wrapable = False
+      object ToolButtonComposition: TToolButton
+        Left = 0
+        Top = 0
+        Action = ActionComposition
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ToolButtonAffStatsEtapes: TToolButton
+        Left = 23
+        Top = 0
+        Action = ActionStatsParkings
+        ParentShowHint = False
+        ShowHint = True
+        Style = tbsCheck
+      end
+      object ToolButtonEvolution: TToolButton
+        Left = 46
+        Top = 0
+        Action = ActionEvolution
+        ParentShowHint = False
+        ShowHint = True
+        Style = tbsCheck
+      end
+      object ToolButtonFluiditeTrafic: TToolButton
+        Left = 69
+        Top = 0
+        Action = ActionFluiditeTrafic
+        ParentShowHint = False
+        ShowHint = True
+      end
+    end
     object ToolBarEditionSelection: TToolBar
-      Left = 530
-      Top = 28
-      Width = 184
+      Left = 514
+      Top = 26
+      Width = 188
       Height = 22
       Align = alNone
       AutoSize = True
       Caption = 'Edition (S'#233'lection)'
+      Constraints.MaxHeight = 22
+      Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
+      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
+      EdgeInner = esLowered
+      EdgeOuter = esRaised
+      Flat = False
       Images = VirtualImageList16x16
       TabOrder = 6
       Transparent = True
@@ -645,58 +704,11 @@ object frmSimulation: TfrmSimulation
         Style = tbsCheck
       end
     end
-    object ToolBarStatistiques: TToolBar
-      Left = 251
-      Top = 2
-      Width = 92
-      Height = 22
-      Align = alNone
-      AutoSize = True
-      Caption = 'Statistiques'
-      DragKind = dkDock
-      DragMode = dmAutomatic
-      Images = VirtualImageList16x16
-      ParentShowHint = False
-      ShowHint = False
-      TabOrder = 1
-      Transparent = True
-      Wrapable = False
-      object ToolButtonComposition: TToolButton
-        Left = 0
-        Top = 0
-        Action = ActionComposition
-        ParentShowHint = False
-        ShowHint = True
-      end
-      object ToolButtonAffStatsEtapes: TToolButton
-        Left = 23
-        Top = 0
-        Action = ActionStatsParkings
-        ParentShowHint = False
-        ShowHint = True
-        Style = tbsCheck
-      end
-      object ToolButtonEvolution: TToolButton
-        Left = 46
-        Top = 0
-        Action = ActionEvolution
-        ParentShowHint = False
-        ShowHint = True
-        Style = tbsCheck
-      end
-      object ToolButtonFluiditeTrafic: TToolButton
-        Left = 69
-        Top = 0
-        Action = ActionFluiditeTrafic
-        ParentShowHint = False
-        ShowHint = True
-      end
-    end
   end
   object ActionList: TActionList
     Images = VirtualImageList16x16
-    Left = 728
-    Top = 460
+    Left = 640
+    Top = 316
     object ActionNouveau: TAction
       Category = 'Fichier'
       Caption = '&Nouveau'
@@ -1497,8 +1509,8 @@ object frmSimulation: TfrmSimulation
   end
   object MainMenu: TMainMenu
     Images = VirtualImageList16x16
-    Left = 760
-    Top = 460
+    Left = 704
+    Top = 316
     object MenuFichier: TMenuItem
       Caption = '&Fichier'
       HelpContext = 3101
@@ -1712,8 +1724,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuSimulation: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 728
-    Top = 524
+    Left = 640
+    Top = 412
     object MenuItemRechercher: TMenuItem
       Action = ActionRechercher
     end
@@ -1798,34 +1810,34 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuBarreOutils: TPopupMenu
     OnPopup = PopupMenuBarreOutilsPopup
-    Left = 728
-    Top = 492
-    object MenuItemMenu: TMenuItem
-      Caption = '&Menu'
-      Checked = True
-      OnClick = MenuItemBarreOutilsClick
-    end
+    Left = 640
+    Top = 364
     object MenuItemFichier: TMenuItem
-      Tag = 1
       Caption = '&Fichier'
       Checked = True
       OnClick = MenuItemBarreOutilsClick
     end
     object MenuItemAffichage: TMenuItem
-      Tag = 2
+      Tag = 1
       Caption = '&Affichage'
       Checked = True
       OnClick = MenuItemBarreOutilsClick
     end
-    object MenuItemInformations: TMenuItem
-      Tag = 6
-      Caption = '&Informations'
+    object MenuItemSimulation: TMenuItem
+      Tag = 4
+      Caption = '&Simulation'
       Checked = True
       OnClick = MenuItemBarreOutilsClick
     end
-    object MenuItemSimulation: TMenuItem
+    object MenuItemStatistiques: TMenuItem
+      Tag = 6
+      Caption = 'S&tatistiques'
+      Checked = True
+      OnClick = MenuItemBarreOutilsClick
+    end
+    object MenuItemInformations: TMenuItem
       Tag = 5
-      Caption = '&Simulation'
+      Caption = '&Informations'
       Checked = True
       OnClick = MenuItemBarreOutilsClick
     end
@@ -1833,28 +1845,22 @@ object frmSimulation: TfrmSimulation
       Caption = '-'
     end
     object MenuItemEditionCase: TMenuItem
-      Tag = 3
+      Tag = 2
       Caption = 'Edition (Case)'
       Checked = True
       OnClick = MenuItemBarreOutilsClick
     end
     object MenuItemEditionSelection: TMenuItem
-      Tag = 4
+      Tag = 3
       Caption = 'Edition (S'#233'lection)'
-      Checked = True
-      OnClick = MenuItemBarreOutilsClick
-    end
-    object MenuItemStatistiques: TMenuItem
-      Tag = 7
-      Caption = 'S&tatistiques'
       Checked = True
       OnClick = MenuItemBarreOutilsClick
     end
   end
   object PopupMenuEditionCase: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 760
-    Top = 492
+    Left = 704
+    Top = 364
     object MenuItemDirectionHaut: TMenuItem
       Action = ActionDirectionHaut
     end
@@ -1960,8 +1966,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuEditionSelection: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 760
-    Top = 524
+    Left = 704
+    Top = 412
     object MenuItemSegmentRoute: TMenuItem
       Action = ActionSegmentRoute
     end
@@ -2030,8 +2036,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuDistances: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 528
-    Top = 504
+    Left = 368
+    Top = 224
     object MenuItemDistancesEtapes: TMenuItem
       Action = ActionDistancesParkings
     end
@@ -2053,8 +2059,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuDetail: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 560
-    Top = 504
+    Left = 368
+    Top = 272
     object MenuItemDetailVehicule: TMenuItem
       Action = ActionDetailVehicule
     end
@@ -2076,8 +2082,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuSuivi: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 592
-    Top = 504
+    Left = 368
+    Top = 320
     object MenuItemSuiviVehicule: TMenuItem
       Action = ActionSuivreVehicule
     end
@@ -2105,8 +2111,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuCoins: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 624
-    Top = 504
+    Left = 368
+    Top = 368
     object MenuItemAngleSuperieurDroit: TMenuItem
       Action = ActionCoinSuperieurDroit
     end
@@ -2122,8 +2128,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuPeripherique: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 656
-    Top = 504
+    Left = 368
+    Top = 416
     object MenuItemExterieur: TMenuItem
       Action = ActionPeripheriqueExterieur
     end
@@ -2133,8 +2139,8 @@ object frmSimulation: TfrmSimulation
   end
   object PopupMenuDecors: TPopupMenu
     Images = VirtualImageList16x16
-    Left = 688
-    Top = 504
+    Left = 368
+    Top = 464
     object MenuItemDecorsTrottoir: TMenuItem
       Action = ActionNatureTrottoir
       ImageIndex = 71
@@ -14687,7 +14693,7 @@ object frmSimulation: TfrmSimulation
       end>
     ImageCollection = ImageCollection
     Left = 648
-    Top = 312
+    Top = 256
   end
   object VirtualImageListGlyphes: TVirtualImageList
     DisabledGrayscale = False

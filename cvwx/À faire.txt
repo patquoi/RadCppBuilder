@@ -1,8 +1,8 @@
 Passage à 64 bits
 =================
-1. Voir le problème les toolbars qui ne supportent pas le HDPI (l'autosize bogue).
-2. Faire le tour du centre-ville !
+> Faire le tour du centre-ville !
 
 Version Pandémie
 ================
-1. Ajouter les piétons Z dans la collection !
+1. Ajouter les piétons Z dans la collection...
+2. Propager la pandémie !
