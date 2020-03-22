@@ -30,5 +30,6 @@ extern String stRepLocalAppData(); // v5.4
 extern type_reponse AfficheMessage(const AnsiString asMessage, const AnsiString asTitre, type_message Type, int OrdreBoutonDefaut, int OrdreBoutonEchap);
 extern void AfficheAideContextuelle(TForm *Form);
 extern void AfficheIndexAide(TForm *Form);
+extern void AfficheTutoriel(); // v5.4 (appelée par TfrmSimulation::ActionTutorielExecute
 #endif
 

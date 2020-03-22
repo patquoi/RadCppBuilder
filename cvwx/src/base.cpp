@@ -147,9 +147,36 @@ type_reponse AfficheMessage(const AnsiString asMessage, const AnsiString asTitre
    }
  }
 //---------------------------------------------------------------------------
+// v5.4 : procédure privée (base.cpp) pour afficher une page HTML
+//---------------------------------------------------------------------------
+void AffichePageHtml(const String stURL)
+ {
+  String stCommandeNavUrl;
+  TRegistry *Reg = new TRegistry(KEY_READ);
+  STARTUPINFO si; PROCESS_INFORMATION pi;
+  ZeroMemory(&si,sizeof(STARTUPINFO));
+  ZeroMemory(&pi,sizeof(PROCESS_INFORMATION));
+  si.cb = sizeof(STARTUPINFO);
+  try
+   {
+	Reg->RootKey = HKEY_CLASSES_ROOT;
+	if (Reg->OpenKey("htmlfile\\Shell\\Open\\Command\\", false))
+	  stCommandeNavUrl = Reg->ReadString("");
+	  stCommandeNavUrl = ReplaceText(stCommandeNavUrl, "%1", stURL);
+	  if (CreateProcess(NULL, stCommandeNavUrl.c_str(), NULL, NULL, false, 0, NULL, NULL, &si, &pi))
+	  {
+	   CloseHandle(pi.hProcess);
+	   CloseHandle(pi.hThread);
+	  }
+   }
+  __finally
+   {
+	delete Reg;
+   }
+ }
+//---------------------------------------------------------------------------
 void AfficheAideContextuelle(TForm *Form)
  {// v5.3 : conversion HLP > HTML.
-  // v5.4 : Merci Microsoft d'avoir bloqué les appels aux sections dans les urls (html#rubrique), bande de cons ! Ah oui c'est très dangereux !
   for(int i=0; i<NBCONTEXTESAIDE; i++)
 	if (caCorresp[i].Numero==Form->HelpContext) // On recherche la rubrique HelpContext dans le tableau caCorresp
 	 { // v5.4 : conversion BCB6>BCBX (L"open" + String)
@@ -157,44 +184,24 @@ void AfficheAideContextuelle(TForm *Form)
 					 ExtractFilePath(ParamStr(0))+
 					 String("html\\index.html#")+
 					 String(caCorresp[i].szHREF);
-	  String stCommandeNavUrl;
-	  TRegistry *Reg = new TRegistry(KEY_READ);
-	  STARTUPINFO si; PROCESS_INFORMATION pi;
-	  ZeroMemory(&si,sizeof(STARTUPINFO));
-	  ZeroMemory(&pi,sizeof(PROCESS_INFORMATION));
-      si.cb = sizeof(STARTUPINFO);
-	  try
-	   {
-		Reg->RootKey = HKEY_CLASSES_ROOT;
-		if (Reg->OpenKey("http\\Shell\\Open\\Command\\", false))
-		  stCommandeNavUrl = Reg->ReadString("");
-		  stCommandeNavUrl = ReplaceText(stCommandeNavUrl, "%1", stURL);
-		  if (CreateProcess(NULL, stCommandeNavUrl.c_str(), NULL, NULL, false, 0, NULL, NULL, &si, &pi))
-		  {
-		   CloseHandle(pi.hProcess);
-		   CloseHandle(pi.hThread);
-		  }
-	   }
-	  __finally
-	   {
-		delete Reg;
-	   }
-
+	  AffichePageHtml(stURL); // v5.4 : appel à CreateProcess au lieu de ShellExecute
 	  break;
 	 }
  }
 //---------------------------------------------------------------------------
 void AfficheIndexAide(TForm *Form)
  {// v5.3 : conversion HLP > HTML
-  // WinHelp( Form->Handle, AnsiString(ExtractFilePath(ParamStr(0))+Form->HelpFile).c_str(), HELP_CONTEXT, 0);
   // v5.4 : Conversion BCB6>BCBX (String + L"open")
-  String stURL = String("\"file:///")+
+  String stURL = String("file:///")+
 				 ExtractFilePath(ParamStr(0))+
-				 String("html\\index.html\"");
-  ShellExecute(NULL,
-			   L"open",
-			   stURL.c_str(),
-			   NULL, NULL,
-               SW_SHOWMAXIMIZED);
+				 String("html\\index.html");
+  AffichePageHtml(stURL); // v5.4 : appel à CreateProcess au lieu de ShellExecute
  }
 //---------------------------------------------------------------------------
+void AfficheTutoriel() // v5.4 (appelée par TfrmSimulation::ActionTutorielExecute
+ {
+  String stURL = String("file:///")+
+				 ExtractFilePath(ParamStr(0))+
+				 String("tutocv\\index.html");
+  AffichePageHtml(stURL);
+ }

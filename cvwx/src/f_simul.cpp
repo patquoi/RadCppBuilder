@@ -3436,13 +3436,7 @@ void __fastcall TfrmSimulation::ActionDistancesFilesParkExecute(
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::ActionTutorielExecute(TObject *Sender)
 { // v5.1
- // v5.4 : conversion BCB6>BCBX (L"open" + String)
- ShellExecute(NULL,
-			  L"open",
-			  L"index.html", NULL,
-			  String(ExtractFilePath(ParamStr(0))+
-					 String("tutocv\\")).c_str(), // v5.0.2 : "tutocv\\"
-			  SW_SHOWMAXIMIZED);
+ AfficheTutoriel(); // v5.4 : fonction qui appelle ExecuteProcess au lieu de ShellExecute à cause de Windows 10
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::ActionRafraichirExecute(TObject *Sender)
