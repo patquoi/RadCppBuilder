@@ -60,7 +60,6 @@ Source: "..\bin\licence.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\Lisezmoi.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\impcfgfpac3\bin\impcfgfpac3.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\ins\cfg0\fpac3.ini"; DestDir: "{userappdata}\Patquoi.fr\FPac3"; Flags: uninsneveruninstall onlyifdoesntexist
 Source: "..\ins\Uninstall.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\fpac3-src-win64.zip"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
