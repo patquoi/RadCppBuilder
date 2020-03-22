@@ -216,6 +216,9 @@ Voulez-vous voir les statistiques de fluidité et de trafic en couleurs ?",
 __fastcall TfrmSimulation::TfrmSimulation(TComponent* Owner) : TForm(Owner)
 { // Constructeur de la fiche
  yCrt=xCrt=yPrc=xPrc=-1; DirOrigVoieTram=indefinie;// v3.5
+ // v5.4 : Boîte Ouvrir/Enregistrer sur le dossier où sont les fichiers .cvw
+ OpenDialog->InitialDir = stRepLocalAppData();
+ SaveDialog->InitialDir = stRepLocalAppData();
 }
 //---------------------------------------------------------------------------
 void TfrmSimulation::RedessineCase(int x, int y, bool EffaceFond)
