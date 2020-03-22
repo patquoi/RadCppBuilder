@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Centre-Ville"
-#define MyAppVersion "5.4.0.11"
+#define MyAppVersion "5.4.0.14"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr#cvw"
 #define MyAppExeName "cvw.exe"
@@ -29,7 +29,7 @@ InfoAfterFile=..\bin\lisezmoi.txt
 WizardImageFile=Gauche.bmp
 WizardSmallImageFile=Coin.bmp
 OutputDir="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\cvwx\ins\output"
-OutputBaseFilename=inscvw95.exe
+OutputBaseFilename=inscvw95
 SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\cvwx\ins\cvw5.ico"
 AppComments=La simulation de circulation urbaine
 AppContact=cvw@patquoi.fr
@@ -41,8 +41,14 @@ VersionInfoVersion={#MyAppVersion}
 [Languages]
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
+[Registry]
+Root: HKCR; SubKey: ".cvw"; ValueType: string; ValueData: "Cvw";
+Root: HKCR; SubKey: "Cvw"; ValueType: string; ValueData: "Simulation Centre-Ville";
+Root: HKCR; SubKey: "Cvw\DefaultIcon"; ValueType: string; ValueData: "{app}\bin\{#MyAppExeName},1";
+Root: HKCR; SubKey: "Cvw\shell\open\command"; ValueType: string; ValueData: "{app}\bin\{#MyAppExeName} ""%1""";
+
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\{#MyAppExeName}"; IconIndex: 0; Flags: createonlyiffileexists useapppaths
+Name: "{group}\{#MyAppName}"; Filename: "{app}\bin\{#MyAppExeName}"; IconFilename: "{app}\bin\{#MyAppExeName}"; IconIndex: 0; Flags: createonlyiffileexists useapppaths
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Uninstall.ico"; Comment: "Désinstalle Centre-Ville"; IconIndex: 0
 Name: "{group}\Lisez-Moi (Centre-Ville)"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
 Name: "{group}\Sources de Centre-Ville"; Filename: "{app}\cvw-src-win64.zip"; Comment: "Code source de Centre-Ville"
@@ -55,9 +61,8 @@ Filename: "{app}\bin\{#MyAppExeName}"; Description: "Ouvrir Centre-Ville !"; Fla
 Source: "..\bin\licence.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\Lisezmoi.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\bin\infosrc.txt"; DestDir: "{app}"; Flags: Ignoreversion
 Source: "Uninstall.ico"; DestDir: "{app}"; Flags: Ignoreversion
-Source: "..\bin\8x8.cvw"; DestDir: "{userappdata}\Patquoi.fr\Centre-Ville"; Flags: ignoreversion   
+Source: "..\bin\8x8.cvw"; DestDir: "{localappdata}\Patquoi.fr\Centre-Ville"; Flags: ignoreversion   
 Source: "..\bin\Carfours.cvw"; DestDir: "{localappdata}\Patquoi.fr\Centre-Ville"; Flags: ignoreversion
 Source: "..\bin\Colimasson.cvw"; DestDir: "{localappdata}\Patquoi.fr\Centre-Ville"; Flags: ignoreversion
 Source: "..\bin\Démo.cvw"; DestDir: "{localappdata}\Patquoi.fr\Centre-Ville"; Flags: ignoreversion
@@ -347,4 +352,3 @@ Source: "..\bin\tutocv\bouton_parametres.jpg"; DestDir: "{app}\bin\tutocv"; Flag
 Source: "..\bin\tutocv\bouton_bus.jpg"; DestDir: "{app}\bin\tutocv"; Flags: Ignoreversion
 Source: "..\bin\tutocv\segment_voie.jpg"; DestDir: "{app}\bin\tutocv"; Flags: Ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-

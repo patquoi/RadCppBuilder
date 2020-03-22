@@ -92,12 +92,24 @@ String stRepLocalAppData()
    String stResult;
    String stExePath = ExtractFilePath(ParamStr(0));
    const String stVarLocalAppData  = "LOCALAPPDATA";
+   const String stVarUserProfile  = "USERPROFILE";
    const String stRepLocAppDataCvw = "\\Patquoi.fr\\Centre-Ville\\";
    stResult = GetEnvironmentVariable(stVarLocalAppData);
    if (stResult == "")
-	 stResult = stExePath;
+	{ // Windows 7~10
+	 stResult = GetEnvironmentVariable(stVarUserProfile);
+	 if (stResult == "")
+	   stResult = stExePath;
+	 else
+	  { // Windows XP
+	   stResult = stResult + "\\Local Settings\\Application Data" + stRepLocAppDataCvw;
+	   if (!DirectoryExists(stResult))
+		 if (!ForceDirectories(stResult))
+		   stResult = stExePath;
+	  }
+    }
    else
-	{
+	{ // Autres
 	 stResult = stResult + stRepLocAppDataCvw;
 	 if (!DirectoryExists(stResult))
 	   if (!ForceDirectories(stResult))
@@ -160,7 +172,7 @@ void AffichePageHtml(const String stURL)
   try
    {
 	Reg->RootKey = HKEY_CLASSES_ROOT;
-	if (Reg->OpenKey("htmlfile\\Shell\\Open\\Command\\", false))
+	if (Reg->OpenKey("http\\Shell\\Open\\Command\\", false))
 	  stCommandeNavUrl = Reg->ReadString("");
 	  stCommandeNavUrl = ReplaceText(stCommandeNavUrl, "%1", stURL);
 	  if (CreateProcess(NULL, stCommandeNavUrl.c_str(), NULL, NULL, false, 0, NULL, NULL, &si, &pi))

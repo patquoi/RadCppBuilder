@@ -92,7 +92,6 @@ __published:	// Composants gérés par l'EDI
   TMenuItem *MenuItemAffichageRoutes;
   TMenuItem *MenuItemAffichageVehicules;
   TMenuItem *MenuItemAffichageQuadrillage;
-  TMenuItem *MenuItemZoom;
   TMenuItem *Sep3;
   TMenuItem *MenuItemMarche;
   TMenuItem *MenuItemPause;

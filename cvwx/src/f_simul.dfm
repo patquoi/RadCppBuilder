@@ -1537,12 +1537,6 @@ object frmSimulation: TfrmSimulation
     object MenuAffichage: TMenuItem
       Caption = '&Affichage '
       HelpContext = 3102
-      object MenuItemZoom: TMenuItem
-        Caption = '&Zoom'
-        Hint = 'Zoom'
-        ImageIndex = 18
-        ShortCut = 49242
-      end
       object MenuItemRafraichir: TMenuItem
         Action = ActionRafraichir
       end
