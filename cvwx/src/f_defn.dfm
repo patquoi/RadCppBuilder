@@ -17,10 +17,9 @@ object frmDefNature: TfrmDefNature
   Font.Name = 'MS Sans Serif'
   Font.Pitch = fpVariable
   Font.Style = []
-  FormStyle = fsStayOnTop
   KeyPreview = True
   OldCreateOrder = True
-  Position = poDefault
+  Position = poMainFormCenter
   OnHide = FormHide
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -28,9 +27,11 @@ object frmDefNature: TfrmDefNature
   TextHeight = 13
   object LabelRq: TLabel
     Left = 0
-    Top = 108
-    Width = 233
+    Top = 112
+    Width = 241
     Height = 13
+    Align = alBottom
+    Alignment = taCenter
     AutoSize = False
     Caption = '(*) des cases non utilis'#233'es par les voies de circulation'
     Font.Charset = DEFAULT_CHARSET
@@ -41,6 +42,7 @@ object frmDefNature: TfrmDefNature
     Font.Style = []
     ParentFont = False
     WordWrap = True
+    ExplicitTop = 108
   end
   object RadioGroupNature: TRadioGroup
     Left = 6

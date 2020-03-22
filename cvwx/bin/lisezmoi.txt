@@ -41,6 +41,7 @@ avant ou les renommer (au menu principal, rubrique Fichier | Enregistrer sous).
    manière classique.
  - Les barres d'outils ne sont ni détachables, ni déplaçable suite à des 
    problèmes de comportement en haute résolution (HDPI).
+ - Aide et tutoriel html mis à jour. 
 ------------------------------------------------------------------------------
 [Version 5.3]
  - Ajout des vehlibs (véhicule en libre service) avec ses places réservées.

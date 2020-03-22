@@ -92,15 +92,15 @@ void TfrmCarrefours::Active(int Colonnes, int Lignes)
   int i;
   TComponent *Component;
   AnsiString asType;
-  for(i=0; i<ComponentCount; i++)
-   if ((Components[i]->Name!="ButtonAide")&&
-       (Components[i]->Name!="Label"))
-    {
-     Component=(TComponent*)Components[i];
-     asType=AnsiString(Component->ClassName());
-     ((TControl*)Component)->Enabled=((asType=="TGroupBox")&&
-                                      (Component->Name.SubString(9, 2)==IntToStr(10*Colonnes+Lignes)))||
-                                     ((asType=="TSpeedButton")&&
+  for(i=0; i<ComponentCount; i++) // v5.4 : plus facile de tester les inclusions que les exclusions ;^)
+   if ((Components[i]->Name.SubString(1, 8)=="GroupBox")||
+	   (Components[i]->Name.SubString(1, 11)=="SpeedButton"))
+	{
+	 Component=(TComponent*)Components[i];
+	 asType=AnsiString(Component->ClassName());
+	 ((TControl*)Component)->Enabled=((asType=="TGroupBox")&&
+									  (Component->Name.SubString(9, 2)==IntToStr(10*Colonnes+Lignes)))||
+									 ((asType=="TSpeedButton")&&
                                       (Component->Name.SubString(12, 2)==IntToStr(10*Colonnes+Lignes)));
     }
  }

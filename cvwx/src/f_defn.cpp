@@ -15,6 +15,9 @@ TfrmDefNature *frmDefNature=NULL;
 __fastcall TfrmDefNature::TfrmDefNature(TComponent* Owner)
   : TForm(Owner)
 {
+ // v5.4 cette boîte ne s'affiche pas comme il faut en HDPI :^(
+ Width=Width*Screen->PixelsPerInch/96;
+ Height=Height*Screen->PixelsPerInch/96;
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmDefNature::RadioGroupNatureClick(TObject *Sender)

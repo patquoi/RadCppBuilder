@@ -118,7 +118,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
@@ -162,7 +161,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
@@ -229,7 +227,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
@@ -314,7 +311,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
@@ -377,7 +373,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
@@ -569,7 +564,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
@@ -621,7 +615,6 @@ object frmSimulation: TfrmSimulation
       Constraints.MaxHeight = 22
       Constraints.MinHeight = 22
       DragKind = dkDock
-      DragMode = dmAutomatic
       EdgeInner = esNone
       EdgeOuter = esNone
       Flat = False
