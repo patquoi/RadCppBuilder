@@ -110,7 +110,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarFichier: TToolBar
       Left = 4
       Top = 2
-      Width = 73
+      Width = 69
       Height = 22
       Align = alNone
       AutoSize = True
@@ -119,9 +119,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       List = True
@@ -155,7 +154,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarSimulation: TToolBar
       Left = 349
       Top = 2
-      Width = 142
+      Width = 138
       Height = 22
       Align = alNone
       AutoSize = True
@@ -164,9 +163,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
@@ -223,7 +221,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarAffichage: TToolBar
       Left = 119
       Top = 2
-      Width = 188
+      Width = 184
       Height = 22
       Align = alNone
       AutoSize = True
@@ -232,9 +230,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
@@ -309,7 +306,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarInformations: TToolBar
       Left = 514
       Top = 2
-      Width = 96
+      Width = 92
       Height = 22
       Align = alNone
       AutoSize = True
@@ -318,9 +315,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
@@ -373,7 +369,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarEditionCase: TToolBar
       Left = 4
       Top = 26
-      Width = 510
+      Width = 506
       Height = 22
       Align = alNone
       AutoSize = True
@@ -382,9 +378,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
@@ -566,7 +561,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarStatistiques: TToolBar
       Left = 606
       Top = 2
-      Width = 96
+      Width = 92
       Height = 22
       Align = alNone
       AutoSize = True
@@ -575,9 +570,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       ParentShowHint = False
@@ -619,7 +613,7 @@ object frmSimulation: TfrmSimulation
     object ToolBarEditionSelection: TToolBar
       Left = 514
       Top = 26
-      Width = 188
+      Width = 184
       Height = 22
       Align = alNone
       AutoSize = True
@@ -628,9 +622,8 @@ object frmSimulation: TfrmSimulation
       Constraints.MinHeight = 22
       DragKind = dkDock
       DragMode = dmAutomatic
-      EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
-      EdgeInner = esLowered
-      EdgeOuter = esRaised
+      EdgeInner = esNone
+      EdgeOuter = esNone
       Flat = False
       Images = VirtualImageList16x16
       TabOrder = 6

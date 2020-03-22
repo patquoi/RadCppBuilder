@@ -6,6 +6,7 @@ del /S *.pch
 del /S *.map
 del /S *.tds
 del /S *.pdi
+del /S *.tmp
 del /S *.cbproj.local
 del /S *.groupproj.local
 del bin\cvw.32.i??
