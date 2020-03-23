@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "FPac 3"
-#define MyAppVersion "1.3.0"
+#define MyAppVersion "1.3.0.24"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr"
 #define MyAppExeName "fpac3.exe"
@@ -37,7 +37,6 @@ Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
 VersionInfoVersion={#MyAppVersion}
-PrivilegesRequired=poweruser
 
 [Languages]
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
