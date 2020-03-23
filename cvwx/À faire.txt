@@ -1,8 +1,7 @@
 Passage à 64 bits
 =================
 > Faire le tour du centre-ville !
-! Sommaire de l'aide ne marche pas sur XP :^(
-: LEs bus ne doivent pas pouvoir aller sur les places de Vehlib : ça les bloque 
+! Les bus ne doivent pas pouvoir aller sur les places de Vehlib : ça les bloque 
 
 Version Pandémie
 ================
