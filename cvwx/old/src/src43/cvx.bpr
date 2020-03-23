@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.10"/>
+    <PROJECT value="$(HOME)/cvx/bin/cvx"/>
+    <OBJFILES value="../obj/cvx.o ../obj/f_afdistab.o ../obj/f_afdistat.o ../obj/f_afdiste.o 
+      ../obj/f_afdistft.o ../obj/f_carfours.o ../obj/f_deff.o ../obj/f_defn.o 
+      ../obj/f_defv.o ../obj/f_infbus.o ../obj/f_infptn.o ../obj/f_inftaxi.o 
+      ../obj/f_inftram.o ../obj/f_infveh.o ../obj/f_prmbus.o ../obj/f_prmsim.o 
+      ../obj/f_prmtaxi.o ../obj/f_prmtram.o ../obj/f_rech.o ../obj/f_simul.o 
+      ../obj/f_statsat.o ../obj/f_statsc.o ../obj/f_stats.o ../obj/f_statsv.o 
+      ../obj/simul.o ../obj/winlinux.o ../obj/f_dimzone.o ../obj/f_genres.o"/>
+    <RESFILES value="cvx.res"/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) f_afdistab.xfm f_afdistat.xfm f_afdiste.xfm f_afdistft.xfm 
+      f_carfours.xfm f_deff.xfm f_defn.xfm f_defv.xfm f_infbus.xfm f_infptn.xfm 
+      f_inftaxi.xfm f_inftram.xfm f_infveh.xfm f_prmbus.xfm f_prmsim.xfm 
+      f_prmtaxi.xfm f_prmtram.xfm f_rech.xfm f_simul.xfm f_statsat.xfm 
+      f_statsc.xfm f_stats.xfm f_statsv.xfm f_dimzone.xfm f_genres.xfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="visualclx.a rtl.a"/>
+    <SPARELIBS value="rtl.a visualclx.a"/>
+    <PACKAGES value="rtl.bpi visualclx.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)/lib/debug"/>
+    <RELEASELIBPATH value="$(BCB)/lib/release"/>
+    <LINKER value="ilink"/>
+    <USERDEFINES value="_DEBUG:CV_LINUX"/>
+    <SYSDEFINES value=""/>
+    <MAINSOURCE value="cvx.cpp"/>
+    <INCLUDEPATH value="$(BCB)/include/stlport:$(BCB)/include:$(BCB)/include/vcl:/usr/include"/>
+    <LIBPATH value="$(BCB)/lib/obj:$(BCB)/lib:/usr/lib:/lib:/usr/X11R6/lib:$(BCB)/bin"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-t -Od -H=$(HOME)/.borland/cvx.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v 
+      -vi- -c"/>
+    <PFLAGS value="-N2$(HOME)/cvx/obj -N0$(HOME)/cvx/obj -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-l$(HOME)/cvx/bin -I$(HOME)/cvx/obj -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="borinit.o crt1.o $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="rtle.a $(LIBFILES) $(LIBRARIES) libborcrtl.a libborstl.a libborunwind.a 
+      libpthread.so libX11.so libc.so libm.so libdl.so "/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="cvx.res" FORMNAME="" UNITNAME="cvx.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="cvx.cpp" FORMNAME="" UNITNAME="cvx" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdistab.cpp" FORMNAME="frmAffDistArretsBus" UNITNAME="f_afdistab" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdistat.cpp" FORMNAME="frmAffDistArretsTram" UNITNAME="f_afdistat" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdiste.cpp" FORMNAME="frmAffDistEtapes" UNITNAME="f_afdiste" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdistft.cpp" FORMNAME="frmAffDistFilesTaxi" UNITNAME="f_afdistft" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_carfours.cpp" FORMNAME="frmCarrefours" UNITNAME="f_carfours" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_deff.cpp" FORMNAME="frmDefFeux" UNITNAME="f_deff" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_defn.cpp" FORMNAME="frmDefNature" UNITNAME="f_defn" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_defv.cpp" FORMNAME="frmDefVoie" UNITNAME="f_defv" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_infbus.cpp" FORMNAME="frmInfosBus" UNITNAME="f_infbus" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_infptn.cpp" FORMNAME="frmInfosPieton" UNITNAME="f_infptn" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_inftaxi.cpp" FORMNAME="frmInfosTaxi" UNITNAME="f_inftaxi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_inftram.cpp" FORMNAME="frmInfosTram" UNITNAME="f_inftram" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_infveh.cpp" FORMNAME="frmInfosVehicule" UNITNAME="f_infveh" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmbus.cpp" FORMNAME="frmParamBus" UNITNAME="f_prmbus" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmsim.cpp" FORMNAME="frmParamSimul" UNITNAME="f_prmsim" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmtaxi.cpp" FORMNAME="frmParamTaxi" UNITNAME="f_prmtaxi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmtram.cpp" FORMNAME="frmParamTram" UNITNAME="f_prmtram" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_rech.cpp" FORMNAME="frmRecherche" UNITNAME="f_rech" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_simul.cpp" FORMNAME="frmSimulation" UNITNAME="f_simul" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_statsat.cpp" FORMNAME="frmStatsAttenteTrafic" UNITNAME="f_statsat" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_statsc.cpp" FORMNAME="frmStatsComposition" UNITNAME="f_statsc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_stats.cpp" FORMNAME="frmStatistiques" UNITNAME="f_stats" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_statsv.cpp" FORMNAME="frmStatsVehicules" UNITNAME="f_statsv" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="simul.cpp" FORMNAME="" UNITNAME="simul.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="winlinux.cpp" FORMNAME="" UNITNAME="winlinux.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_dimzone.cpp" FORMNAME="frmDimensionsZone" UNITNAME="f_dimzone" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_genres.cpp" FORMNAME="frmGeneration" UNITNAME="f_genres" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[HistoryLists\hlIncludePath]
+Count=3
+Item0=$(BCB)/include/stlport:$(BCB)/include:$(BCB)/include/vcl:/usr/include
+Item1=/usr/i386-glibc21-linux/include:$(BCB)/include/stlport:$(BCB)/include:$(BCB)/include/vcl:/usr/include
+Item2=../../..:$(BCB)/include/stlport:$(BCB)/include:$(BCB)/include/vcl:/usr/include
+
+[HistoryLists\hlLibraryPath]
+Count=3
+Item0=$(BCB)/lib/obj:$(BCB)/lib:/usr/lib:/lib:/usr/X11R6/lib:$(BCB)/bin
+Item1=/usr/i386-glibc21-linux/lib:$(BCB)/lib/obj:$(BCB)/lib:/usr/lib:/lib:/usr/X11R6/lib:$(BCB)/bin
+Item2=../../..:$(BCB)/lib/obj:$(BCB)/lib:/usr/lib:/lib:/usr/X11R6/lib:$(BCB)/bin
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=$(HOME)/cvx
+Item1=$(BCB)/projects/cvwx
+
+[HistoryLists\hlConditionals]
+Count=2
+Item0=_DEBUG:CV_LINUX
+Item1=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=2
+Item0=$(HOME)/cvx/obj
+Item1=$(BCB)/projects/cvwx/obj
+
+[HistoryLists\hlFinalOutputDir]
+Count=4
+Item0=$(HOME)/cvx/bin/
+Item1=$(HOME)/cvx/bin
+Item2=$(BCB)/projects/cvwx/runtime/
+Item3=$(BCB)/projects/cvwx/runtime
+
+[HistoryLists\hIBPIOutputDir]
+Count=2
+Item0=$(HOME)/cvx/bin
+Item1=$(BCB)/projects/cvwx/runtime
+
+[Debugging]
+DebugSourceDirs=$(HOME)/cvx
+
+[Parameters]
+RunParams=
+Launcher=/usr/X11R6/bin/xterm -T KylixDebuggerOutput -e bash -i -c %debuggee%
+UseLauncher=0
+DebugCWD=
+HostApplication=
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+  </IDEOPTIONS>
+</PROJECT>

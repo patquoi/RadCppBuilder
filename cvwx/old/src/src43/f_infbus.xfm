@@ -1,0 +1,464 @@
+object frmInfosBus: TfrmInfosBus
+  HelpContext = 671
+  Left = 17
+  Top = 247
+  Width = 289
+  Height = 396
+  HorzScrollBar.Range = 281
+  VertScrollBar.Range = 389
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Propri'#233't'#233's du bus'
+  Color = clButton
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  HelpFile = 'cvw.hlp'
+  ParentFont = False
+  Position = poDefault
+  OnHide = FormHide
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 18
+  TextWidth = 5
+  object Label0: TLabel
+    Left = 8
+    Top = 8
+    Width = 69
+    Height = 18
+    Caption = 'Coordonn'#233'es :'
+  end
+  object LabelCoordonnees: TLabel
+    Left = 80
+    Top = 8
+    Width = 30
+    Height = 19
+    Caption = '00, 00'
+    Font.Color = clText
+    Font.Height = 11
+    Font.Name = 'MS Sans Serif'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label17: TLabel
+    Left = 10
+    Top = 346
+    Width = 49
+    Height = 16
+    Caption = '(*) 0 = D'#233'p'#244't.'
+    Font.CharSet = fcsLatin1
+    Font.Color = clText
+    Font.Height = 9
+    Font.Name = 'Small Fonts'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label18: TLabel
+    Left = 70
+    Top = 346
+    Width = 137
+    Height = 16
+    Caption = '(**) Du dernier arr'#234't au prochain arr'#234't.'
+    Font.CharSet = fcsLatin1
+    Font.Color = clText
+    Font.Height = 9
+    Font.Name = 'Small Fonts'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+  end
+  object ButtonOk: TButton
+    Left = 59
+    Top = 364
+    Width = 75
+    Height = 25
+    Cancel = True
+    Caption = '&Vu'
+    Default = True
+    TabOrder = 3
+    OnClick = ButtonOkClick
+  end
+  object RadioButtonAucunBus: TRadioButton
+    Left = 19
+    Top = 32
+    Width = 97
+    Height = 17
+    Caption = 'Aucun bus'
+    Checked = True
+    Enabled = False
+    TabOrder = 0
+  end
+  object GroupBoxBus: TGroupBox
+    Left = 8
+    Top = 56
+    Width = 273
+    Height = 289
+    Caption = '                           '
+    Font.Color = clText
+    Font.Height = 11
+    Font.Name = 'MS Sans Serif'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 13
+      Top = 28
+      Width = 48
+      Height = 18
+      Caption = 'Direction :'
+    end
+    object Label3: TLabel
+      Left = 13
+      Top = 60
+      Width = 69
+      Height = 18
+      Caption = 'Dernier arr'#234't* :'
+    end
+    object Label5: TLabel
+      Left = 13
+      Top = 92
+      Width = 108
+      Height = 18
+      Caption = 'Sorti du d'#233'p'#244't au tour :'
+    end
+    object Label6: TLabel
+      Left = 13
+      Top = 124
+      Width = 72
+      Height = 18
+      Caption = 'Tours effectifs :'
+    end
+    object Label7: TLabel
+      Left = 13
+      Top = 140
+      Width = 123
+      Height = 18
+      Caption = 'Distance totale parcourue :'
+    end
+    object Label10: TLabel
+      Left = 13
+      Top = 220
+      Width = 87
+      Height = 18
+      Caption = 'Parcours effectu'#233' :'
+    end
+    object Label11: TLabel
+      Left = 13
+      Top = 236
+      Width = 78
+      Height = 18
+      Caption = 'D'#233'tour effectu'#233' :'
+    end
+    object Label12: TLabel
+      Left = 13
+      Top = 252
+      Width = 86
+      Height = 18
+      Caption = 'Attente effectu'#233'e :'
+    end
+    object LabelDernierArret: TLabel
+      Left = 129
+      Top = 60
+      Width = 127
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0 (00, 00)  jusqu'#39'au tour 0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelTourSortie: TLabel
+      Left = 250
+      Top = 92
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelParcours: TLabel
+      Left = 250
+      Top = 140
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelDirection: TLabel
+      Left = 262
+      Top = 29
+      Width = 1
+      Height = 19
+      Alignment = taRightJustify
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelTours: TLabel
+      Left = 250
+      Top = 124
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelParcoursEffectue: TLabel
+      Left = 221
+      Top = 220
+      Width = 35
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0,000%'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelDetour: TLabel
+      Left = 221
+      Top = 236
+      Width = 35
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0,000%'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 13
+      Top = 268
+      Width = 124
+      Height = 18
+      Caption = 'Vitesse max.(cases/tours) :'
+    end
+    object LabelAttente: TLabel
+      Left = 221
+      Top = 252
+      Width = 35
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0,000%'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelVitesse: TLabel
+      Left = 240
+      Top = 268
+      Width = 16
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0/0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 13
+      Top = 44
+      Width = 113
+      Height = 18
+      Caption = 'Num'#233'ro de ligne de bus :'
+    end
+    object LabelNumeroLigne: TLabel
+      Left = 250
+      Top = 44
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 13
+      Top = 188
+      Width = 210
+      Height = 18
+      Caption = 'Distance/Temps minimal restant '#224' parcourir** :'
+    end
+    object LabelDistance: TLabel
+      Left = 250
+      Top = 188
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelDistanceMin: TLabel
+      Left = 250
+      Top = 204
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 13
+      Top = 204
+      Width = 198
+      Height = 18
+      Caption = 'Distance/Temps minimal total '#224' parcourir** :'
+    end
+    object Label4: TLabel
+      Left = 13
+      Top = 76
+      Width = 72
+      Height = 18
+      Caption = 'Prochain arr'#234't :'
+    end
+    object LabelProchainArret: TLabel
+      Left = 129
+      Top = 76
+      Width = 127
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0 (00, 00) depuis le tour 0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 13
+      Top = 108
+      Width = 108
+      Height = 18
+      Caption = 'Nombre de personnes :'
+    end
+    object LabelNbPersonnes: TLabel
+      Left = 250
+      Top = 108
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label15: TLabel
+      Left = 13
+      Top = 172
+      Width = 196
+      Height = 18
+      Caption = 'Distance parcourue depuis le dernier arr'#234't :'
+    end
+    object LabelParcoursEntreArrets: TLabel
+      Left = 250
+      Top = 172
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 13
+      Top = 156
+      Width = 174
+      Height = 18
+      Caption = 'Tours effectifs depuis le dernier arr'#234't :'
+    end
+    object LabelToursEntreArrets: TLabel
+      Left = 250
+      Top = 156
+      Width = 6
+      Height = 19
+      Alignment = taRightJustify
+      Caption = '0'
+      Font.Color = clText
+      Font.Height = 11
+      Font.Name = 'MS Sans Serif'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object RadioButtonBusNumero: TRadioButton
+    Left = 19
+    Top = 55
+    Width = 77
+    Height = 17
+    Caption = 'Bus n'#176
+    Enabled = False
+    TabOrder = 1
+  end
+  object ButtonAide: TButton
+    Left = 144
+    Top = 364
+    Width = 75
+    Height = 25
+    Caption = '&Aide'
+    Enabled = False
+    TabOrder = 4
+    OnClick = ButtonAideClick
+  end
+end

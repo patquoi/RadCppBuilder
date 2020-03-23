@@ -1,0 +1,73 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+COMPRESS=12 Hall Zeck
+ERRORLOG=.\cvw.log
+LCID=0x40c 0x0 0x0 ; Français (France)
+REPORT=Yes
+CONTENTS=ASCV
+TITLE=Aide sur Centre-Ville
+COPYRIGHT=Copyright Patrice FOUQUET, 1998-2008
+CITATION=Copyright Patrice FOUQUET, 1998-2008
+DEFFONT=Comic Sans MS,8,0
+IGNORE=3096
+HLP=.\cvw.hlp
+
+[FILES]
+.\cvw.rtf
+
+[MAP]
+ADDJAADB=641         ; Affichage des distances jusqu'aux arrêts de bus
+ADDJAADT=642            ; Affichage des distances jusqu'aux arrêts de tram
+ADDJAE=63         ; Affichage des distances jusqu'aux parkings
+ADDJAFDP=644            ; Affichage des distances jusqu'aux files de parkings
+ADDJAFDT=643            ; Affichage des distances jusqu'aux files de taxis
+ASCV=0              ; Table des matières
+BDN=44              ; Boutons de navigation
+BR=10             ; But recherché
+C=432             ; Carrefours
+CDLS=313        ; Commandes de la simulation
+CDR=40               ; Construction du réseau routier
+DDDDLZDS=3111             ; Définition des dimensions de la zone de simulation
+DDF=42              ; Définition des feux
+DDLNDUZ=45          ; Définition de la nature d'une zone
+DDP=41              ; Définition des priorités
+EDLS=20               ; Eléments de la simulation
+EGDLS=611         ; Evolution générale de la simulation
+GADUR=3112          ; Génération aléatoire d'un réseau
+ISUB=671               ; Informations sur un bus
+ISUP=68               ; Informations sur un piéton
+ISUT=672               ; Informations sur un tram
+ISUV=66               ; Informations sur un véhicule
+ISUVDT=673          ; Informations sur un véhicule de taxi
+LBDE=34               ; La barre d'état
+LBDO=32               ; La barre d'outils
+LDEDLZDS=3301             ; Les différents éléments de la zone de simulation
+LDLS=50               ; Lancement de la simulation
+LMA=3102        ; Le Menu Affichage
+LMD=3302        ; Les menus déroulants
+LMF=3101        ; Le Menu Fichier
+LMI=3105        ; Le Menu ?
+LMP=31              ; Le menu principal
+LMSI=3103         ; Le Menu Simulation
+LMST=3104         ; Le Menu Statistiques
+LZDS=33               ; La zone de simulation
+MDE=70              ; Messages d'erreurs
+OCPCS=4312          ; Outils concernant plusieurs cases sélectionnées
+OCUCS=4311          ; Outils concernant une case sélectionnée
+ODC=431              ; Outils de construction
+PDLADSDE=316            ; Paramètres d'affichage des statistiques d'évolution
+PDLI=30               ; Présentation de l'interface
+PDLS=311        ; Paramètres de la simulation
+PDRDB=3121         ; Paramétrage du réseau de bus
+PDRDT=3122         ; Paramétrage du réseau de trams
+PDT=3123        ; Paramètres des taxis
+RC=69             ; Raccourcis clavier
+RDUEDLS=65         ; Recherche d'un élément de la simulation
+SDFEDT=612          ; Statistiques de fluidité et de trafic
+SDLS=314        ; Statistiques de la simulation
+SDVDUEAUA=62            ; Statistiques des véhicules d'une étape à une autre
+SSLCDR=315          ; Statistiques sur la composition du réseau
+
+[CONFIG]
+BrowseButtons()

@@ -1,0 +1,38 @@
+object frmStatistiques: TfrmStatistiques
+  Left = 811
+  Top = 180
+  Width = 208
+  Height = 227
+  Caption = 'Evolution'
+  Color = clBlack
+  Font.Color = clBlack
+  Font.Height = 16
+  Font.Name = 'Helvetica'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  ParentFont = False
+  OnCreate = FormCreate
+  OnHide = FormHide
+  OnShow = FormShow
+  PixelsPerInch = 102
+  TextHeight = 17
+  TextWidth = 7
+  object PaintBoxStats: TPaintBox
+    Left = 0
+    Top = 0
+    Width = 208
+    Height = 227
+    Hint = 'Sortis en jaune ; D'#233'plac'#233' en vert ; Arriv'#233's en rouge'
+    Align = alClient
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    OnPaint = PaintBoxStatsPaint
+  end
+end

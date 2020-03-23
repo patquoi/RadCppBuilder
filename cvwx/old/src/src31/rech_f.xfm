@@ -1,0 +1,232 @@
+object frmRecherche: TfrmRecherche
+  Left = 4
+  Top = 20
+  Width = 244
+  Height = 195
+  HorzScrollBar.Range = 240
+  VertScrollBar.Range = 190
+  ActiveControl = RadioButtonCoordonnees
+  BorderIcons = []
+  BorderStyle = fbsToolWindow
+  Caption = 'Recherche'
+  Color = clBackground
+  OnHide = FormHide
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 102
+  TextHeight = 17
+  TextWidth = 7
+  object RadioButtonCoordonnees: TRadioButton
+    Left = 8
+    Top = 8
+    Width = 113
+    Height = 17
+    Caption = '&Coordonn'#233'es'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 16
+    OnClick = RadioButtonClick
+  end
+  object RadioButtonEtape: TRadioButton
+    Left = 8
+    Top = 32
+    Width = 113
+    Height = 17
+    Caption = '&Etape n'#176
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = RadioButtonClick
+  end
+  object RadioButtonFeu: TRadioButton
+    Left = 8
+    Top = 56
+    Width = 113
+    Height = 17
+    Caption = '&Feu n'#176
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = RadioButtonClick
+  end
+  object RadioButtonVehicule: TRadioButton
+    Left = 8
+    Top = 80
+    Width = 113
+    Height = 17
+    Caption = '&Vehicule n'#176
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    OnClick = RadioButtonClick
+  end
+  object RadioButtonPieton: TRadioButton
+    Left = 8
+    Top = 104
+    Width = 113
+    Height = 17
+    Caption = '&Pi'#233'ton n'#176
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    OnClick = RadioButtonClick
+  end
+  object ButtonAnnuler: TButton
+    Left = 182
+    Top = 31
+    Width = 56
+    Height = 138
+    Caption = '&Fermer'
+    Default = True
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 15
+    OnClick = ButtonAnnulerClick
+  end
+  object SpinEditX: TSpinEdit
+    Left = 120
+    Top = 4
+    Width = 60
+    Height = 23
+    Max = 98
+    TabOrder = 7
+    OnChanged = SpinEditXChanged
+  end
+  object SpinEditY: TSpinEdit
+    Left = 180
+    Top = 4
+    Width = 60
+    Height = 23
+    Max = 62
+    TabOrder = 8
+    OnChanged = SpinEditYChanged
+  end
+  object SpinEditEtape: TSpinEdit
+    Left = 120
+    Top = 28
+    Width = 60
+    Height = 23
+    Max = 32
+    Min = 1
+    TabOrder = 9
+    Value = 1
+    OnChanged = SpinEditEtapeChanged
+  end
+  object SpinEditFeu: TSpinEdit
+    Left = 120
+    Top = 52
+    Width = 60
+    Height = 23
+    Min = 1
+    TabOrder = 10
+    Value = 1
+    OnChanged = SpinEditFeuChanged
+  end
+  object SpinEditVehicule: TSpinEdit
+    Left = 120
+    Top = 76
+    Width = 60
+    Height = 23
+    Max = 1000
+    Min = 1
+    TabOrder = 11
+    Value = 1
+    OnChanged = SpinEditVehiculeChanged
+  end
+  object SpinEditPieton: TSpinEdit
+    Left = 120
+    Top = 100
+    Width = 60
+    Height = 23
+    Max = 500
+    Min = 1
+    TabOrder = 12
+    Value = 1
+    OnChanged = SpinEditPietonChanged
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Top = 176
+    Width = 244
+    Height = 19
+    Panels = <>
+    SimplePanel = True
+    SizeGrip = False
+  end
+  object RadioButtonBus: TRadioButton
+    Left = 8
+    Top = 128
+    Width = 113
+    Height = 17
+    Caption = '&Bus n'#176
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    OnClick = RadioButtonClick
+  end
+  object SpinEditBus: TSpinEdit
+    Left = 120
+    Top = 124
+    Width = 60
+    Height = 23
+    Max = 500
+    Min = 1
+    TabOrder = 13
+    Value = 1
+    OnChanged = SpinEditBusChanged
+  end
+  object RadioButtonArretBus: TRadioButton
+    Left = 8
+    Top = 152
+    Width = 113
+    Height = 17
+    Caption = '&Arr'#234't Bus n'#176
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 6
+    OnClick = RadioButtonClick
+  end
+  object SpinEditArretBus: TSpinEdit
+    Left = 120
+    Top = 148
+    Width = 60
+    Height = 23
+    Max = 500
+    Min = 1
+    TabOrder = 14
+    Value = 1
+    OnChanged = SpinEditArretBusChanged
+  end
+end

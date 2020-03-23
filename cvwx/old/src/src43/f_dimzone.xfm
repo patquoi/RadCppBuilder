@@ -1,0 +1,107 @@
+object frmDimensionsZone: TfrmDimensionsZone
+  Left = 399
+  Top = 445
+  Width = 276
+  Height = 131
+  HorzScrollBar.Range = 269
+  VertScrollBar.Range = 121
+  ActiveControl = CSpinEditNbX
+  BorderIcons = []
+  Caption = 'Dimensions de la zone'
+  Color = clButton
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  Font.Weight = 48
+  ParentFont = False
+  Position = poScreenCenter
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 18
+  TextWidth = 5
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 68
+    Height = 18
+    Caption = 'Colonnes (X) :'
+  end
+  object Label2: TLabel
+    Left = 144
+    Top = 8
+    Width = 59
+    Height = 18
+    Caption = 'x lignes (Y) :'
+  end
+  object CSpinEditNbX: TSpinEdit
+    Left = 76
+    Top = 6
+    Width = 65
+    Height = 26
+    Max = 32768
+    TabOrder = 1
+    Value = 99
+  end
+  object CSpinEditNbY: TSpinEdit
+    Left = 204
+    Top = 6
+    Width = 65
+    Height = 26
+    Max = 32768
+    TabOrder = 3
+    Value = 63
+  end
+  object ButtonCreer: TButton
+    Left = 8
+    Top = 96
+    Width = 75
+    Height = 25
+    Caption = 'Cr'#233'er'
+    Default = True
+    ModalResult = 1
+    TabOrder = 5
+    OnClick = ButtonCreerClick
+  end
+  object ButtonAnnuler: TButton
+    Left = 96
+    Top = 96
+    Width = 75
+    Height = 25
+    Cancel = True
+    Caption = 'Annuler'
+    ModalResult = 2
+    TabOrder = 6
+  end
+  object ButtonAide: TButton
+    Left = 192
+    Top = 96
+    Width = 75
+    Height = 25
+    Cancel = True
+    Caption = 'Aide'
+    Enabled = False
+    TabOrder = 7
+    OnClick = ButtonAideClick
+  end
+  object CheckBoxAfficherParametres: TCheckBox
+    Left = 16
+    Top = 36
+    Width = 249
+    Height = 30
+    Caption = 'Afficher les param'#232'tres apr'#232's cr'#233'ation de la zone'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+  end
+  object CheckBoxGenererReseau: TCheckBox
+    Left = 16
+    Top = 60
+    Width = 249
+    Height = 30
+    Caption = 'G'#233'n'#233'rer al'#233'atoirement un r'#233'seau'
+    TabOrder = 8
+  end
+end

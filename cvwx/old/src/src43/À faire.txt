@@ -1,0 +1,57 @@
+-----------------------------------------------------------------------------
+GENERALITES
+-----------------------------------------------------------------------------
+
+À faire SYSTÉMATIQUEMENT APRÈS CHAQUE NOUVELLE DE FICHE dans cvw pour cvx :
+ - Griser le bouton Aide (s'il y a)
+ - Définir l'événement OnResize à appeler dès le début dans FormShow dans
+   une clause #ifdef CV_LINUX ... #endif
+ - Renommer les types TCSpinEdit (s'il y a) en TSPINEDIT dans les dfm/xfm
+
+Contrôles généraux
+ - Faire un réseau complet de A à Z (routes, bus & trams)
+ - Vérifier les rubriques et raccourcis clavier (liaisons avec ActionList)
+ - Vérifier les avertissements (CONTRÔLE PERMANENT : AVANT DIFFUSION FINALE)
+    · conversions int -> type enuméré
+    · déclarations & affectations inutiles
+
+-----------------------------------------------------------------------------
+VERSION COURANTE - Problèmes connus (IMPORTANT = >>) (BLOQUANT = >>>)
+-----------------------------------------------------------------------------
+
+Génération aléatoire de réseau
+>> Eliminer la génération des cases en sorties uniquement.
+
+Décors
+>> Empêcher de mettre des voies si Décors de trottoirs/Immeubles
+
+Simulation des piétons
+>> Faire descendre les piétons au début de la procédure DeplacePietons pour
+   alléger la simulation.
+
+Interface
+ - Pb de la rubrique Ouvrir qui ouvre automatiquement la simul courante 1
+   fois avant de proposer la boîte de dialogue.
+ - Revoir le calcul automatique de la hauteur des StringGrid de distances :
+   calculer d'abord la différence entre le TStringGrid et TForm et en déduire
+   la taille de la fiche connaissant la taille du TStringGrid et de la
+   différence précédente (invariante).
+
+Intégrité
+ - Finir les Verifie() pour les nouvelles propriétés d'éléments.
+
+-----------------------------------------------------------------------------
+VERSION > 4.2 - Idées d'éléments supplémentaires (IMPORTANT = >>)
+-----------------------------------------------------------------------------
+ - Fonction "Coller à partir de..."
+ - Gestion et affichage des embouteillages style 
+   E1 = 36 tours
+   E2 = 24 tours
+   E3 = 17 tours
+   À des endroits choisis à l'avance.
+   Dès qu'une voiture passe sur le repère on regarde où elle va puis on
+   compte combien elle a attendu.
+ - Cyclistes ; Rollers ; Pistes cyclables.
+ - Copier/Coller
+
+-----------------------------------------------------------------------------

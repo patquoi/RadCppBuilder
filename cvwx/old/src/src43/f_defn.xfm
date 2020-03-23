@@ -1,0 +1,119 @@
+object frmDefNature: TfrmDefNature
+  Left = 4
+  Top = 20
+  Width = 246
+  Height = 151
+  HorzScrollBar.Range = 235
+  VertScrollBar.Range = 145
+  ActiveControl = ButtonFermer
+  Caption = 'Nature de la zone s'#233'lectionn'#233'e'
+  Color = clButton
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  Font.Weight = 48
+  FormStyle = fsStayOnTop
+  ParentFont = False
+  Position = poDefault
+  OnHide = FormHide
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 18
+  TextWidth = 5
+  object LabelRq: TLabel
+    Left = 0
+    Top = 130
+    Width = 201
+    Height = 15
+    AutoSize = False
+    Caption = '(*) des cases non utilis'#233'es par les voies de circulation'
+    Font.CharSet = fcsLatin1
+    Font.Color = clText
+    Font.Height = 9
+    Font.Name = 'Small Fonts'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    Font.Weight = 48
+    ParentFont = False
+    WordWrap = True
+  end
+  object RadioGroupNature: TRadioGroup
+    Left = 8
+    Top = 8
+    Width = 161
+    Height = 97
+    Items.Strings = (
+      '&Voies             '
+      '&Trottoirs             '
+      '&Immeubles           ')
+    Caption = ' Nature* '
+    Font.Color = clText
+    Font.Height = 11
+    Font.Name = 'MS Sans Serif'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    Font.Weight = 48
+    ParentFont = False
+    TabOrder = 0
+    OnClick = RadioGroupNatureClick
+  end
+  object CheckBoxEcraser: TCheckBox
+    Left = 17
+    Top = 112
+    Width = 129
+    Height = 17
+    Caption = '&Ecraser si autre nature'
+    Font.Color = clText
+    Font.Height = 11
+    Font.Name = 'MS Sans Serif'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    Font.Weight = 48
+    ParentFont = False
+    TabOrder = 1
+  end
+  object ButtonAppliquer: TButton
+    Left = 176
+    Top = 48
+    Width = 59
+    Height = 25
+    Caption = 'A&ppliquer'
+    Default = True
+    Enabled = False
+    TabOrder = 3
+    OnClick = ButtonAppliquerClick
+  end
+  object ButtonFermer: TButton
+    Left = 176
+    Top = 16
+    Width = 59
+    Height = 25
+    Cancel = True
+    Caption = 'Fermer'
+    TabOrder = 2
+    OnClick = ButtonFermerClick
+  end
+  object ButtonAide: TButton
+    Left = 176
+    Top = 80
+    Width = 59
+    Height = 25
+    Cancel = True
+    Caption = 'Aide'
+    Enabled = False
+    TabOrder = 4
+    OnClick = ButtonAideClick
+  end
+  object CheckBoxPelouse: TCheckBox
+    Left = 90
+    Top = 49
+    Width = 65
+    Height = 30
+    Caption = 'Pelouse'
+    Enabled = False
+    TabOrder = 6
+  end
+end

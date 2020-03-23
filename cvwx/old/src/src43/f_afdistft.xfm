@@ -1,0 +1,54 @@
+object frmAffDistFilesTaxi: TfrmAffDistFilesTaxi
+  HelpContext = 643
+  Left = 591
+  Top = 0
+  Width = 133
+  Height = 88
+  HorzScrollBar.Visible = False
+  VertScrollBar.Visible = False
+  ActiveControl = StringGridDistances
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = ' '
+  Color = clButton
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  HelpFile = 'cvw.hlp'
+  ParentFont = False
+  Position = poDefault
+  OnHide = FormHide
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 18
+  TextWidth = 5
+  object StringGridDistances: TStringGrid
+    Left = 0
+    Top = 0
+    Width = 133
+    Height = 88
+    Align = alClient
+    ColCount = 4
+    DefaultColWidth = 28
+    DefaultRowHeight = 20
+    RowCount = 4
+    Font.CharSet = fcsUnicode
+    Font.Color = clText
+    Font.Height = 11
+    Font.Name = 'Symbol'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ScrollBars = ssVertical
+    ShowHint = False
+    TabOrder = 0
+    RowHeights = (
+      20
+      20
+      20
+      20)
+  end
+end

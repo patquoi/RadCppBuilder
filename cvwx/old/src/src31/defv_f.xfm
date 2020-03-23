@@ -1,0 +1,255 @@
+object frmDefVoie: TfrmDefVoie
+  Left = 32
+  Top = 294
+  Width = 275
+  Height = 420
+  HorzScrollBar.Range = 266
+  VertScrollBar.Range = 409
+  ActiveControl = RadioGroupPrioriteSud
+  BorderIcons = []
+  BorderStyle = fbsToolWindow
+  Caption = 'D'#233'finition des priorit'#233's de la case'
+  Color = clBackground
+  Font.Color = clBlack
+  Font.Height = 16
+  Font.Name = 'Helvetica'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  ParentFont = False
+  OnHide = FormHide
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 102
+  TextHeight = 17
+  TextWidth = 7
+  object RadioGroupPrioriteNord: TRadioGroup
+    Left = 64
+    Top = 32
+    Width = 140
+    Height = 105
+    Items.Strings = (
+      'A droite'
+      'C'#233'dez-le-passage'
+      'Stop'
+      'Feu...')
+    Caption = 'Priorit'#233' &Nord'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 3
+    OnClick = RadioGroupPrioriteClick
+  end
+  object Label1: TLabel
+    Left = 8
+    Top = 9
+    Width = 94
+    Height = 17
+    Caption = 'Coordonn'#233'es :'
+  end
+  object LabelCoordonnees: TLabel
+    Left = 109
+    Top = 10
+    Width = 36
+    Height = 15
+    Caption = '00, 00'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object RadioGroupPrioriteOuest: TRadioGroup
+    Tag = 3
+    Left = 8
+    Top = 144
+    Width = 148
+    Height = 105
+    Items.Strings = (
+      'A droite'
+      'C'#233'dez-le-passage'
+      'Stop'
+      'Feu...')
+    Caption = 'Priorit'#233' &Ouest'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 4
+  end
+  object RadioGroupPrioriteEst: TRadioGroup
+    Tag = 1
+    Left = 136
+    Top = 144
+    Width = 130
+    Height = 105
+    Items.Strings = (
+      'A droite'
+      'C'#233'dez-le-passage'
+      'Stop'
+      'Feu...')
+    Caption = 'Priorit'#233' &Est'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 5
+  end
+  object RadioGroupPrioriteSud: TRadioGroup
+    Left = 64
+    Top = 252
+    Width = 140
+    Height = 111
+    Items.Strings = (
+      'A droite'
+      'C'#233'dez-le-passage'
+      'Stop'
+      'Feu...')
+    Caption = 'Priorit'#233' &Sud'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 1
+  end
+  object BitBtnDefFeuO: TBitBtn
+    Tag = 4
+    Left = 97
+    Top = 219
+    Width = 24
+    Height = 24
+    Enabled = False
+    TabOrder = 6
+    OnClick = BitBtnDefFeuClick
+    Glyph.Data = {
+      7A010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000010000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00000000000000
+      000000000000000000000000000000000AA20000000000000FF8000000000000
+      AA22000000000000FF88000000000830AA22000000000880FF88000000088332
+      2A220000000888888F8800000883333222200000088888888880000082A33300
+      0BB3000088F888000FF800082A2A3300BB3300088F8F8800FF880082A2AA3000
+      BB330088F8FF8000FF88082A2AA230033B33088F8FF880088F8882A2AA880033
+      333088F8FF88008888802A2AA280000009918F8FF88000000FF8A2AA28000000
+      9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
+      1911FF88000000088F88A280000000111110F880000000888880}
+    NumGlyphs = 2
+  end
+  object BitBtnDefFeuE: TBitBtn
+    Tag = 2
+    Left = 226
+    Top = 219
+    Width = 24
+    Height = 24
+    Enabled = False
+    TabOrder = 7
+    OnClick = BitBtnDefFeuClick
+    Glyph.Data = {
+      7A010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000010000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00000000000000
+      000000000000000000000000000000000AA20000000000000FF8000000000000
+      AA22000000000000FF88000000000830AA22000000000880FF88000000088332
+      2A220000000888888F8800000883333222200000088888888880000082A33300
+      0BB3000088F888000FF800082A2A3300BB3300088F8F8800FF880082A2AA3000
+      BB330088F8FF8000FF88082A2AA230033B33088F8FF880088F8882A2AA880033
+      333088F8FF88008888802A2AA280000009918F8FF88000000FF8A2AA28000000
+      9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
+      1911FF88000000088F88A280000000111110F880000000888880}
+    NumGlyphs = 2
+  end
+  object BitBtnDefFeuS: TBitBtn
+    Tag = 3
+    Left = 153
+    Top = 326
+    Width = 24
+    Height = 24
+    Enabled = False
+    TabOrder = 8
+    OnClick = BitBtnDefFeuClick
+    Glyph.Data = {
+      7A010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000010000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00000000000000
+      000000000000000000000000000000000AA20000000000000FF8000000000000
+      AA22000000000000FF88000000000830AA22000000000880FF88000000088332
+      2A220000000888888F8800000883333222200000088888888880000082A33300
+      0BB3000088F888000FF800082A2A3300BB3300088F8F8800FF880082A2AA3000
+      BB330088F8FF8000FF88082A2AA230033B33088F8FF880088F8882A2AA880033
+      333088F8FF88008888802A2AA280000009918F8FF88000000FF8A2AA28000000
+      9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
+      1911FF88000000088F88A280000000111110F880000000888880}
+    NumGlyphs = 2
+  end
+  object ButtonOk: TButton
+    Left = 8
+    Top = 376
+    Width = 75
+    Height = 33
+    Caption = 'Ok'
+    Default = True
+    TabOrder = 9
+    OnClick = ButtonOkClick
+  end
+  object ButtonAnnuler: TButton
+    Left = 96
+    Top = 376
+    Width = 75
+    Height = 33
+    Cancel = True
+    Caption = 'Annuler'
+    TabOrder = 10
+    OnClick = ButtonAnnulerClick
+  end
+  object ButtonAppliquer: TButton
+    Left = 184
+    Top = 376
+    Width = 75
+    Height = 33
+    Cancel = True
+    Caption = 'Appliquer'
+    TabOrder = 11
+    OnClick = ButtonAppliquerClick
+  end
+  object BitBtnDefFeuN: TBitBtn
+    Tag = 1
+    Left = 154
+    Top = 107
+    Width = 24
+    Height = 24
+    Enabled = False
+    TabOrder = 12
+    OnClick = BitBtnDefFeuClick
+    Glyph.Data = {
+      7A010000424D7601000000000000760000002800000020000000100000000100
+      04000000000000010000120B0000120B00001000000010000000000000000000
+      80000080000000808000800000008000800080800000C0C0C000808080000000
+      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00000000000000
+      000000000000000000000000000000000AA20000000000000FF8000000000000
+      AA22000000000000FF88000000000830AA22000000000880FF88000000088332
+      2A220000000888888F8800000883333222200000088888888880000082A33300
+      0BB3000088F888000FF800082A2A3300BB3300088F8F8800FF880082A2AA3000
+      BB330088F8FF8000FF88082A2AA230033B33088F8FF880088F8882A2AA880033
+      333088F8FF88008888802A2AA280000009918F8FF88000000FF8A2AA28000000
+      9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
+      1911FF88000000088F88A280000000111110F880000000888880}
+    NumGlyphs = 2
+  end
+end

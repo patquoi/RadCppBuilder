@@ -1,0 +1,35 @@
+object frmStatistiques: TfrmStatistiques
+  HelpContext = 611
+  Left = 594
+  Top = 0
+  Width = 208
+  Height = 227
+  Caption = #201'volution'
+  Color = clBlack
+  Font.Color = clText
+  Font.Height = 11
+  Font.Name = 'MS Sans Serif'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  HelpFile = 'cvw.hlp'
+  ParentFont = False
+  Position = poDefault
+  OnCreate = FormCreate
+  OnHide = FormHide
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 18
+  TextWidth = 5
+  object PaintBoxStats: TPaintBox
+    Left = 0
+    Top = 0
+    Width = 208
+    Height = 227
+    Hint = 'Sortis en jaune ; D'#233'plac'#233's en vert et Arriv'#233's en rouge'
+    Align = alClient
+    ParentShowHint = False
+    ShowHint = True
+    OnPaint = PaintBoxStatsPaint
+  end
+end

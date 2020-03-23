@@ -1,0 +1,42 @@
+object frmAffDistArretsBus: TfrmAffDistArretsBus
+  Left = 658
+  Top = 300
+  Width = 189
+  Height = 88
+  ActiveControl = StringGridDistances
+  BorderIcons = [biSystemMenu]
+  BorderStyle = fbsToolWindow
+  Caption = ' '
+  Color = clBackground
+  Font.Color = clBlack
+  Font.Height = 16
+  Font.Name = 'Helvetica'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  ParentFont = False
+  OnHide = FormHide
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 75
+  TextHeight = 17
+  TextWidth = 7
+  object StringGridDistances: TStringGrid
+    Left = 0
+    Top = 0
+    Width = 189
+    Height = 88
+    Align = alClient
+    ColCount = 4
+    DefaultColWidth = 40
+    DefaultRowHeight = 20
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-courier'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+end

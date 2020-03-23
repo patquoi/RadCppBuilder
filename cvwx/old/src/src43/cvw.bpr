@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\bin\cvw.exe"/>
+    <OBJFILES value="..\obj\Cvw.obj ..\obj\f_simul.obj ..\obj\simul.obj ..\obj\f_defv.obj 
+      ..\obj\f_prmsim.obj ..\obj\f_deff.obj ..\obj\f_afdiste.obj 
+      ..\obj\f_afdistat.obj ..\obj\f_propos.obj ..\obj\f_stats.obj 
+      ..\obj\f_statsv.obj ..\obj\f_infveh.obj ..\obj\f_infptn.obj 
+      ..\obj\f_inftram.obj ..\obj\f_rech.obj ..\obj\f_carfours.obj 
+      ..\obj\f_statsc.obj ..\obj\f_statsat.obj ..\obj\f_prmtram.obj 
+      ..\obj\f_prmbus.obj ..\obj\f_inftaxi.obj ..\obj\f_afdistft.obj 
+      ..\obj\f_prmtaxi.obj ..\obj\f_afdistab.obj ..\obj\f_infbus.obj 
+      ..\obj\winlinux.obj ..\obj\f_defn.obj ..\obj\f_dimzone.obj 
+      ..\obj\f_genres.obj"/>
+    <RESFILES value="cvw.res"/>
+    <IDLFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) f_simul.dfm f_defv.dfm f_prmsim.dfm f_deff.dfm f_afdiste.dfm 
+      f_afdistat.dfm f_propos.dfm f_stats.dfm f_statsv.dfm f_infveh.dfm 
+      f_infptn.dfm f_inftram.dfm f_rech.dfm f_carfours.dfm f_statsc.dfm 
+      f_statsat.dfm f_prmtram.dfm f_prmbus.dfm f_inftaxi.dfm f_afdistft.dfm 
+      f_prmtaxi.dfm f_afdistab.dfm f_infbus.dfm f_defn.dfm f_dimzone.dfm 
+      f_genres.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="dclocx.lib vclx.lib bcbsmp.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib bcbsmp.lib vclx.lib dclocx.lib"/>
+    <PACKAGES value="vclx.bpi rtl.bpi vcl.bpi bcbsmp.bpi vclsmp.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG;CV_WINDOWS"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="Cvw.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\cvw.csm -Hc -Vx -Ve -Tkh30000 -X- -r- -a8 -b- -k -y -v 
+      -vi- -c -tW -tWM"/>
+    <CFLAG2 value=""/>
+    <CFLAG3 value=""/>
+    <PFLAGS value="-N2..\obj -N0..\obj -$YD -$W -$O- -$A8 -v -M -JPHNE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\bin -I..\obj -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <IFLAGS value=""/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="Cvw.cpp" FORMNAME="" UNITNAME="Cvw" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="cvw.res" FORMNAME="" UNITNAME="cvw" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_simul.cpp" FORMNAME="frmSimulation" UNITNAME="f_simul" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="simul.cpp" FORMNAME="" UNITNAME="simul" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_defv.cpp" FORMNAME="frmDefVoie" UNITNAME="f_defv" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmsim.cpp" FORMNAME="frmParamSimul" UNITNAME="f_prmsim" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_deff.cpp" FORMNAME="frmDefFeux" UNITNAME="f_deff" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdiste.cpp" FORMNAME="frmAffDistEtapes" UNITNAME="f_afdiste" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdistat.cpp" FORMNAME="frmAffDistArretsTram" UNITNAME="f_afdistat" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_propos.cpp" FORMNAME="frmAPropos" UNITNAME="f_propos" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_stats.cpp" FORMNAME="frmStatistiques" UNITNAME="f_stats" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_statsv.cpp" FORMNAME="frmStatsVehicules" UNITNAME="f_statsv" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_infveh.cpp" FORMNAME="frmInfosVehicule" UNITNAME="f_infveh" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_infptn.cpp" FORMNAME="frmInfosPieton" UNITNAME="f_infptn" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_inftram.cpp" FORMNAME="frmInfosTram" UNITNAME="f_inftram" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_rech.cpp" FORMNAME="frmRecherche" UNITNAME="f_rech" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_carfours.cpp" FORMNAME="frmCarrefours" UNITNAME="f_carfours" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_statsc.cpp" FORMNAME="frmStatsComposition" UNITNAME="f_statsc" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_statsat.cpp" FORMNAME="frmStatsAttenteTrafic" UNITNAME="f_statsat" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmtram.cpp" FORMNAME="frmParamTram" UNITNAME="f_prmtram" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmbus.cpp" FORMNAME="frmParamBus" UNITNAME="f_prmbus" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_inftaxi.cpp" FORMNAME="frmInfosTaxi" UNITNAME="f_inftaxi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdistft.cpp" FORMNAME="frmAffDistFilesTaxi" UNITNAME="f_afdistft" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_prmtaxi.cpp" FORMNAME="frmParamTaxi" UNITNAME="f_prmtaxi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_afdistab.cpp" FORMNAME="frmAffDistArretsBus" UNITNAME="f_afdistab" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_infbus.cpp" FORMNAME="frmInfosBus" UNITNAME="f_infbus" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="winlinux.cpp" FORMNAME="" UNITNAME="winlinux" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_defn.cpp" FORMNAME="frmDefNature" UNITNAME="f_defn" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_dimzone.cpp" FORMNAME="frmDimensionsZone" UNITNAME="f_dimzone" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="f_genres.cpp" FORMNAME="frmGeneration" UNITNAME="f_genres" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=1
+MajorVer=4
+MinorVer=3
+Release=1
+Build=1
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1036
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Patrice Fouquet
+FileDescription=Centre-Ville, simulation de circulation urbaine
+FileVersion=4.3.1.1
+InternalName=CVW
+LegalCopyright=© 1998-2004, Patrice FOUQUET
+LegalTrademarks=Centre-Ville
+OriginalFilename=CVW
+ProductName=Centre-Ville
+ProductVersion=4.3.1
+Comments=Licence GPL 2.0
+
+[Excluded Packages]
+c:\program files\borland\cbuilder6\Bin\dclocx60.bpl=Contrôles ActiveX importés exemples Borland
+
+[HistoryLists\hlIncludePath]
+Count=9
+Item0=$(BCB)\include;$(BCB)\include\vcl
+Item1=bmp16x16;$(BCB)\include;$(BCB)\include\vcl
+Item2=$(BCB)\Projects\cvw;$(BCB)\include;$(BCB)\include\vcl
+Item3=..\..\..\..\;w;vw;cvw;..\..\..\..\cvw;s\cvw;ts\cvw;cts\cvw;ects\cvw;jects\cvw;ojects\cvw;rojects\cvw;projects\cvw;..\..\..\..\projects\cvw;3\projects\cvw;r3\projects\cvw;er3\projects\cvw;der3\projects\cvw;lder3\projects\cvw;ilder3\projects\cvw;uilder3\projects\cvw;builder3\projects\cvw;.cbuilder3\projects\cvw;..cbuilder3\projects\cvw;..\.cbuilder3\projects\cvw;..\..cbuilder3\projects\cvw;..\..\.cbuilder3\projects\cvw;..\..\..cbuilder3\projects\cvw;..\..\..\..\cbuilder3\projects\cvw;cbuilder3\projects\cvw;..\cbuilder3\projects\cvw;..\..\cbuilder3\projects\cvw;..\..\..\cbuilder3\projects\cvw;..\explorateur;..\..\projects;..\..\bin;$(BCB)\Projects\cvw;$(BCB)\include;$(BCB)\include\vcl
+Item4=..\..\..\..\cbuilder3\projects\cvw;cbuilder3\projects\cvw;..\cbuilder3\projects\cvw;..\..\cbuilder3\projects\cvw;..\..\..\cbuilder3\projects\cvw;..\explorateur;..\..\projects;..\..\bin;$(BCB)\Projects\cvw;$(BCB)\include;$(BCB)\include\vcl
+Item5=..\explorateur;..\..\projects;..\..\bin;$(BCB)\Projects\cvw;$(BCB)\include;$(BCB)\include\vcl
+Item6=..\..\bin;$(BCB)\Projects\cvw;$(BCB)\include;$(BCB)\include\vcl
+Item7=h:\dev\wkc\cv\cvw;$(BCB)\include;$(BCB)\include\vcl
+Item8=f:\cbuilder3\projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=9
+Item0=$(BCB)\lib\obj;$(BCB)\lib
+Item1=bmp16x16;$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\..\..\..\;w;vw;cvw;..\..\..\..\cvw;s\cvw;ts\cvw;cts\cvw;ects\cvw;jects\cvw;ojects\cvw;rojects\cvw;projects\cvw;..\..\..\..\projects\cvw;3\projects\cvw;r3\projects\cvw;er3\projects\cvw;der3\projects\cvw;lder3\projects\cvw;ilder3\projects\cvw;uilder3\projects\cvw;builder3\projects\cvw;.cbuilder3\projects\cvw;..cbuilder3\projects\cvw;..\.cbuilder3\projects\cvw;..\..cbuilder3\projects\cvw;..\..\.cbuilder3\projects\cvw;..\..\..cbuilder3\projects\cvw;..\..\..\..\cbuilder3\projects\cvw;cbuilder3\projects\cvw;..\cbuilder3\projects\cvw;..\..\cbuilder3\projects\cvw;..\..\..\cbuilder3\projects\cvw;..\explorateur;..\..\projects;..\..\bin;$(BCB)\Projects\cvw;$(BCB)\lib\obj;$(BCB)\lib
+Item3=..\..\..\..\cbuilder3\projects\cvw;cbuilder3\projects\cvw;..\cbuilder3\projects\cvw;..\..\cbuilder3\projects\cvw;..\..\..\cbuilder3\projects\cvw;..\explorateur;..\..\projects;..\..\bin;$(BCB)\Projects\cvw;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\explorateur;..\..\projects;..\..\bin;$(BCB)\Projects\cvw;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..\bin;$(BCB)\Projects\cvw;$(BCB)\lib\obj;$(BCB)\lib
+Item6=$(BCB)\Projects\cvw;$(BCB)\lib\obj;$(BCB)\lib
+Item7=h:\dev\wkc\cv\cvw;$(BCB)\lib\obj;$(BCB)\lib
+Item8=f:\cbuilder3\projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=4
+Item0=C:\Program Files\Borland\CBuilder6\Examples\Controls\Source\
+Item1=$(BCB)\Projects\cvw;$(BCB)\source\vcl
+Item2=h:\dev\wkc\cv\cvw;$(BCB)\source\vcl
+Item3=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=5
+Item0=_DEBUG;CV_WINDOWS
+Item1=_DEBUG;WINDOWS
+Item2=_DEBUG
+Item3=_RTLDLL
+Item4=_RTLDLL;USEPACKAGES
+
+[HistoryLists\hlIntOutputDir]
+Count=6
+Item0=..\obj
+Item1=obj
+Item2=d:\Borland\CBuilder3\Projects\cvw\obj
+Item3=$(BCB)\Projects\cvw\obj
+Item4=h:\dev\wkc\cv\cvw\obj
+Item5=h:\dev\wkc\cv\cvw
+
+[HistoryLists\hlHostApplication]
+Count=2
+Item0=D:\Borland\CBuilder3\Projects\cvw\Cvw.exe
+Item1=H:\DEV\WKC\CV\CVW\Cvw.exe
+
+[HistoryLists\hlFinalOutputDir]
+Count=4
+Item0=..\bin\
+Item1=..\bin
+Item2=runtime\
+Item3=runtime
+
+[HistoryLists\hIBPIOutputDir]
+Count=3
+Item0=..\bin
+Item1=runtime
+Item2=runtime\
+
+[Debugging]
+DebugSourceDirs=
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=D:\Borland\CBuilder3\Projects\cvw\Cvw.exe
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+  </IDEOPTIONS>
+</PROJECT>

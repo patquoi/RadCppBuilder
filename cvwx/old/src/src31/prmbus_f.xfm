@@ -1,0 +1,1726 @@
+object frmParamBus: TfrmParamBus
+  Left = 279
+  Top = 234
+  Width = 492
+  Height = 480
+  HorzScrollBar.Range = 483
+  VertScrollBar.Range = 473
+  ActiveControl = GroupBox1
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = fbsDialog
+  Caption = 'Param'#232'tres du r'#233'seau de bus'
+  Color = clBackground
+  Font.Color = clBlack
+  Font.Height = 16
+  Font.Name = 'Helvetica'
+  Font.Pitch = fpVariable
+  Font.Style = []
+  ParentFont = False
+  PopupMenu = PopupMenu
+  OnResize = FormResize
+  OnShow = FormShow
+  PixelsPerInch = 102
+  TextHeight = 17
+  TextWidth = 7
+  object Shape1: TShape
+    Left = 28
+    Top = 88
+    Width = 16
+    Height = 16
+    Brush.Color = clBlue
+    Color = clBlue
+    Pen.Color = clBlue
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape2: TShape
+    Left = 28
+    Top = 112
+    Width = 16
+    Height = 16
+    Brush.Color = clRed
+    Color = clRed
+    Pen.Color = clRed
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape3: TShape
+    Left = 28
+    Top = 136
+    Width = 16
+    Height = 16
+    Brush.Color = clLime
+    Color = clLime
+    Pen.Color = clLime
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape4: TShape
+    Left = 28
+    Top = 160
+    Width = 16
+    Height = 16
+    Brush.Color = clYellow
+    Color = clYellow
+    Pen.Color = clYellow
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape5: TShape
+    Left = 28
+    Top = 184
+    Width = 16
+    Height = 16
+    Brush.Color = clFuchsia
+    Color = clFuchsia
+    Pen.Color = clFuchsia
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape6: TShape
+    Left = 28
+    Top = 208
+    Width = 16
+    Height = 16
+    Brush.Color = clAqua
+    Color = clAqua
+    Pen.Color = clAqua
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape7: TShape
+    Left = 28
+    Top = 232
+    Width = 16
+    Height = 16
+    Brush.Color = clPurple
+    Color = clPurple
+    Pen.Color = clPurple
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape8: TShape
+    Left = 28
+    Top = 256
+    Width = 16
+    Height = 16
+    Brush.Color = 16711808
+    Color = 16711808
+    Pen.Color = 16711808
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object Shape9: TShape
+    Left = 28
+    Top = 280
+    Width = 16
+    Height = 16
+    Brush.Color = 33023
+    Color = 33023
+    Pen.Color = 33023
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object ShapeT: TShape
+    Left = 28
+    Top = 304
+    Width = 16
+    Height = 16
+    Brush.Color = clBlack
+    Color = clBlack
+    Pen.Width = 0
+    Shape = stCircle
+  end
+  object GroupBox1: TGroupBox
+    Left = 5
+    Top = 3
+    Width = 277
+    Height = 56
+    Caption = 'Composition actuelle'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    object LabelNbArretsBus: TLabel
+      Left = 3
+      Top = 17
+      Width = 16
+      Height = 13
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '0'
+      Font.Color = clBlack
+      Font.Height = 11
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 22
+      Top = 17
+      Width = 118
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'arr'#234't(s) de bus d'#233'finis sur'
+      Font.Color = clBlack
+      Font.Height = 11
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 22
+      Top = 33
+      Width = 204
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'bus* forment l'#39'effectif total du r'#233'seau de bus'
+      Font.Color = clBlack
+      Font.Height = 11
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object LabelNbBus: TLabel
+      Left = 3
+      Top = 33
+      Width = 16
+      Height = 13
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '0'
+      Font.Color = clBlack
+      Font.Height = 11
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 160
+      Top = 17
+      Width = 105
+      Height = 13
+      Alignment = taRightJustify
+      Caption = 'arr'#234'ts de bus maximum'
+      Font.Color = clBlack
+      Font.Height = 11
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object LabelNbMaxArretsBus: TLabel
+      Left = 141
+      Top = 17
+      Width = 16
+      Height = 13
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '0'
+      Font.Color = clBlack
+      Font.Height = 11
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object ButtonOk: TButton
+    Left = 12
+    Top = 432
+    Width = 64
+    Height = 25
+    Caption = '&Vu'
+    Default = True
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 104
+    OnClick = ButtonOkClick
+  end
+  object ButtonAnnuler: TButton
+    Left = 82
+    Top = 432
+    Width = 64
+    Height = 25
+    Cancel = True
+    Caption = 'Annuler'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ModalResult = 2
+    ParentFont = False
+    TabOrder = 105
+  end
+  object ButtonAppliquer: TButton
+    Left = 153
+    Top = 432
+    Width = 64
+    Height = 25
+    Caption = 'A&ppliquer'
+    Default = True
+    Enabled = False
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 121
+    OnClick = ButtonAppliquerClick
+  end
+  object LabelLigne: TLabel
+    Left = 8
+    Top = 64
+    Width = 43
+    Height = 15
+    Caption = 'Ligne**'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object LabelArrets: TLabel
+    Left = 56
+    Top = 64
+    Width = 37
+    Height = 15
+    Caption = 'Arr'#234'ts'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object LabelNumerosArrets: TLabel
+    Left = 104
+    Top = 64
+    Width = 379
+    Height = 15
+    Caption = 'Num'#233'ros*** des arr'#234'ts dans l'#39'ordre du parcours de chaque ligne'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 12
+    Top = 85
+    Width = 16
+    Height = 22
+    TabOrder = 2
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox2: TCheckBox
+    Left = 12
+    Top = 109
+    Width = 16
+    Height = 22
+    TabOrder = 13
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox3: TCheckBox
+    Left = 12
+    Top = 133
+    Width = 16
+    Height = 22
+    TabOrder = 24
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox4: TCheckBox
+    Left = 12
+    Top = 157
+    Width = 16
+    Height = 22
+    TabOrder = 35
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox5: TCheckBox
+    Left = 12
+    Top = 181
+    Width = 16
+    Height = 22
+    TabOrder = 46
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox6: TCheckBox
+    Left = 12
+    Top = 205
+    Width = 16
+    Height = 22
+    TabOrder = 57
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox7: TCheckBox
+    Left = 12
+    Top = 229
+    Width = 16
+    Height = 22
+    TabOrder = 68
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox8: TCheckBox
+    Left = 12
+    Top = 253
+    Width = 16
+    Height = 22
+    TabOrder = 79
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBox9: TCheckBox
+    Left = 12
+    Top = 277
+    Width = 16
+    Height = 22
+    TabOrder = 90
+    Visible = False
+    OnClick = CheckBoxClick
+  end
+  object CheckBoxTout: TCheckBox
+    Left = 12
+    Top = 301
+    Width = 16
+    Height = 22
+    Hint = 'Cliquer ici pour cocher/d'#233'cocher TOUTES les lignes '#224' la fois'
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 101
+    OnClick = CheckBoxToutClick
+  end
+  object LabelL1: TLabel
+    Left = 28
+    Top = 88
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '1'
+    Font.Color = clWhite
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL2: TLabel
+    Left = 28
+    Top = 112
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '2'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL3: TLabel
+    Left = 28
+    Top = 136
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '3'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL9: TLabel
+    Left = 28
+    Top = 280
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '9'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL8: TLabel
+    Left = 28
+    Top = 256
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '8'
+    Font.Color = clWhite
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL7: TLabel
+    Left = 28
+    Top = 232
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '7'
+    Font.Color = clWhite
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL6: TLabel
+    Left = 28
+    Top = 208
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '6'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL5: TLabel
+    Left = 28
+    Top = 184
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '5'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelL4: TLabel
+    Left = 28
+    Top = 160
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '4'
+    Font.Color = clBlack
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object LabelT: TLabel
+    Left = 28
+    Top = 304
+    Width = 16
+    Height = 15
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'T'
+    Font.Color = clWhite
+    Font.Height = 13
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = [fsBold]
+    Masked = True
+    ParentFont = False
+    Transparent = True
+  end
+  object SpinEdit1: TSpinEdit
+    Left = 56
+    Top = 84
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 3
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit2: TSpinEdit
+    Left = 56
+    Top = 108
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 14
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit3: TSpinEdit
+    Left = 56
+    Top = 132
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 25
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit4: TSpinEdit
+    Left = 56
+    Top = 156
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 36
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit5: TSpinEdit
+    Left = 56
+    Top = 180
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 47
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit6: TSpinEdit
+    Left = 56
+    Top = 204
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 58
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit7: TSpinEdit
+    Left = 56
+    Top = 228
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 69
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit8: TSpinEdit
+    Left = 56
+    Top = 252
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 80
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit9: TSpinEdit
+    Left = 56
+    Top = 276
+    Width = 33
+    Height = 23
+    Max = 9
+    TabOrder = 91
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit11: TSpinEdit
+    Left = 104
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 4
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit12: TSpinEdit
+    Left = 146
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 5
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit13: TSpinEdit
+    Left = 188
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 6
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit14: TSpinEdit
+    Left = 230
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 7
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit15: TSpinEdit
+    Left = 272
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 8
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit16: TSpinEdit
+    Left = 314
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 9
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit17: TSpinEdit
+    Left = 356
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 10
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit18: TSpinEdit
+    Left = 398
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 11
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit19: TSpinEdit
+    Left = 440
+    Top = 84
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 12
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit21: TSpinEdit
+    Left = 104
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 15
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit22: TSpinEdit
+    Left = 146
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 16
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit23: TSpinEdit
+    Left = 188
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 17
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit24: TSpinEdit
+    Left = 230
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 18
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit25: TSpinEdit
+    Left = 272
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 19
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit26: TSpinEdit
+    Left = 314
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 20
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit27: TSpinEdit
+    Left = 356
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 21
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit28: TSpinEdit
+    Left = 398
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 22
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit29: TSpinEdit
+    Left = 440
+    Top = 108
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 23
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit31: TSpinEdit
+    Left = 104
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 26
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit32: TSpinEdit
+    Left = 146
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 27
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit33: TSpinEdit
+    Left = 188
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 28
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit34: TSpinEdit
+    Left = 230
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 29
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit35: TSpinEdit
+    Left = 272
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 30
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit36: TSpinEdit
+    Left = 314
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 31
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit37: TSpinEdit
+    Left = 356
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 32
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit38: TSpinEdit
+    Left = 398
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 33
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit39: TSpinEdit
+    Left = 440
+    Top = 132
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 34
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit41: TSpinEdit
+    Left = 104
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 37
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit42: TSpinEdit
+    Left = 146
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 38
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit43: TSpinEdit
+    Left = 188
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 39
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit44: TSpinEdit
+    Left = 230
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 40
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit45: TSpinEdit
+    Left = 272
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 41
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit46: TSpinEdit
+    Left = 314
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 42
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit47: TSpinEdit
+    Left = 356
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 43
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit48: TSpinEdit
+    Left = 398
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 44
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit49: TSpinEdit
+    Left = 440
+    Top = 156
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 45
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit51: TSpinEdit
+    Left = 104
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 48
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit52: TSpinEdit
+    Left = 146
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 49
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit53: TSpinEdit
+    Left = 188
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 50
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit54: TSpinEdit
+    Left = 230
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 51
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit55: TSpinEdit
+    Left = 272
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 52
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit56: TSpinEdit
+    Left = 314
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 53
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit57: TSpinEdit
+    Left = 356
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 54
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit58: TSpinEdit
+    Left = 398
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 55
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit59: TSpinEdit
+    Left = 440
+    Top = 180
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 56
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit61: TSpinEdit
+    Left = 104
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 59
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit62: TSpinEdit
+    Left = 146
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 60
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit63: TSpinEdit
+    Left = 188
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 61
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit64: TSpinEdit
+    Left = 230
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 62
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit65: TSpinEdit
+    Left = 272
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 63
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit66: TSpinEdit
+    Left = 314
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 64
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit67: TSpinEdit
+    Left = 356
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 65
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit68: TSpinEdit
+    Left = 398
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 66
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit69: TSpinEdit
+    Left = 440
+    Top = 204
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 67
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit71: TSpinEdit
+    Left = 104
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 70
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit72: TSpinEdit
+    Left = 146
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 71
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit73: TSpinEdit
+    Left = 188
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 72
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit74: TSpinEdit
+    Left = 230
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 73
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit75: TSpinEdit
+    Left = 272
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 74
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit76: TSpinEdit
+    Left = 314
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 75
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit77: TSpinEdit
+    Left = 356
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 76
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit78: TSpinEdit
+    Left = 398
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 77
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit79: TSpinEdit
+    Left = 440
+    Top = 228
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 78
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit81: TSpinEdit
+    Left = 104
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 81
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit82: TSpinEdit
+    Left = 146
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 82
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit83: TSpinEdit
+    Left = 188
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 83
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit84: TSpinEdit
+    Left = 230
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 84
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit85: TSpinEdit
+    Left = 272
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 85
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit86: TSpinEdit
+    Left = 314
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 86
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit87: TSpinEdit
+    Left = 356
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 87
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit88: TSpinEdit
+    Left = 398
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 88
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit89: TSpinEdit
+    Left = 440
+    Top = 252
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 89
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit91: TSpinEdit
+    Left = 104
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 92
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit92: TSpinEdit
+    Left = 146
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 93
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit93: TSpinEdit
+    Left = 188
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 94
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit94: TSpinEdit
+    Left = 230
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 95
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit95: TSpinEdit
+    Left = 272
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 96
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit96: TSpinEdit
+    Left = 314
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 97
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit97: TSpinEdit
+    Left = 356
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 98
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit98: TSpinEdit
+    Left = 398
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 99
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object SpinEdit99: TSpinEdit
+    Left = 440
+    Top = 276
+    Width = 41
+    Height = 23
+    Max = 81
+    TabOrder = 100
+    Visible = False
+    OnChanged = SpinEditChanged
+  end
+  object LabelRq1: TLabel
+    Left = 56
+    Top = 300
+    Width = 273
+    Height = 13
+    Caption = '(*) Par ligne. Soit n bus pour 3n-2 '#224' 3n arr'#234'ts (n de 1 '#224' 3).'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+  end
+  object LabelRq3: TLabel
+    Left = 56
+    Top = 325
+    Width = 76
+    Height = 13
+    Caption = '(***) 0 = ind'#233'fini.'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+  end
+  object LabelRqCochesLignesBus: TLabel
+    Left = 56
+    Top = 312
+    Width = 280
+    Height = 13
+    Caption = 
+      '(**) Cocher la case pour visualiser le trajet des bus de la lign' +
+      'e.'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+  end
+  object GroupBox2: TGroupBox
+    Left = 12
+    Top = 344
+    Width = 207
+    Height = 79
+    Caption = 'Param'#232'tres des bus'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 102
+    object Label9: TLabel
+      Left = 8
+      Top = 24
+      Width = 88
+      Height = 13
+      Caption = 'Capacit'#233' d'#39'un &bus :'
+      FocusControl = SpinEditNbMaxPersonnesBus
+    end
+    object SpinEditNbMaxPersonnesBus: TSpinEdit
+      Left = 101
+      Top = 19
+      Width = 42
+      Height = 23
+      Min = 10
+      TabOrder = 1
+      Value = 100
+      OnChanged = SpinEditParametresChanged
+    end
+    object Label10: TLabel
+      Left = 148
+      Top = 24
+      Width = 48
+      Height = 13
+      Caption = 'personnes'
+    end
+    object Label11: TLabel
+      Left = 8
+      Top = 48
+      Width = 67
+      Height = 13
+      Caption = '&Stop '#224' l'#39'arr'#234't :'
+      FocusControl = SpinEditNbToursStopArretBus
+    end
+    object SpinEditNbToursStopArretBus: TSpinEdit
+      Left = 101
+      Top = 43
+      Width = 42
+      Height = 23
+      TabOrder = 4
+      Value = 3
+      OnChanged = SpinEditParametresChanged
+    end
+    object Label12: TLabel
+      Left = 148
+      Top = 48
+      Width = 32
+      Height = 13
+      Caption = 'tour(s)'
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 228
+    Top = 344
+    Width = 253
+    Height = 129
+    Caption = 'Param'#232'tres des pi'#233'tons'
+    Font.Color = clBlack
+    Font.Height = 11
+    Font.Name = 'adobe-helvetica'
+    Font.Pitch = fpVariable
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 103
+    object Label13: TLabel
+      Left = 8
+      Top = 24
+      Width = 143
+      Height = 15
+      Caption = '&D'#233'tecte un arr'#234't jusqu'#39#224'...'
+      FocusControl = SpinEditNbCasesMaxArretBus
+      Font.Color = clBlack
+      Font.Height = 13
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object SpinEditNbCasesMaxArretBus: TSpinEdit
+      Left = 162
+      Top = 19
+      Width = 42
+      Height = 23
+      Max = 10
+      TabOrder = 1
+      Value = 5
+      OnChanged = SpinEditParametresChanged
+    end
+    object Label14: TLabel
+      Left = 209
+      Top = 24
+      Width = 33
+      Height = 13
+      Caption = 'case(s)'
+    end
+    object Label15: TLabel
+      Left = 8
+      Top = 48
+      Width = 143
+      Height = 15
+      Caption = '&Probabilit'#233' de s'#39'y diriger :'
+      FocusControl = SpinEditProbaDirArretBus
+      Font.Color = clBlack
+      Font.Height = 13
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object SpinEditProbaDirArretBus: TSpinEdit
+      Left = 162
+      Top = 43
+      Width = 42
+      Height = 23
+      TabOrder = 4
+      Value = 50
+      OnChanged = SpinEditParametresChanged
+    end
+    object Label16: TLabel
+      Left = 209
+      Top = 48
+      Width = 9
+      Height = 13
+      Caption = '%'
+    end
+    object Label17: TLabel
+      Left = 8
+      Top = 72
+      Width = 131
+      Height = 15
+      Caption = '&Attend un bus jusqu'#39#224'...'
+      FocusControl = SpinEditNbMaxToursAttenteBus
+      Font.Color = clBlack
+      Font.Height = 13
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object SpinEditNbMaxToursAttenteBus: TSpinEdit
+      Left = 162
+      Top = 67
+      Width = 42
+      Height = 23
+      Max = 50
+      TabOrder = 7
+      Value = 10
+      OnChanged = SpinEditParametresChanged
+    end
+    object Label18: TLabel
+      Left = 209
+      Top = 72
+      Width = 32
+      Height = 13
+      Caption = 'tour(s)'
+    end
+    object Label19: TLabel
+      Left = 8
+      Top = 96
+      Width = 150
+      Height = 15
+      Caption = 'Pro&babilit'#233' arr'#234't demand'#233' :'
+      FocusControl = SpinEditProbaArretDmd
+      Font.Color = clBlack
+      Font.Height = 13
+      Font.Name = 'adobe-helvetica'
+      Font.Pitch = fpVariable
+      Font.Style = []
+      ParentFont = False
+    end
+    object SpinEditProbaArretDmd: TSpinEdit
+      Left = 162
+      Top = 91
+      Width = 42
+      Height = 23
+      TabOrder = 10
+      Value = 10
+      OnChanged = SpinEditParametresChanged
+    end
+    object Label20: TLabel
+      Left = 209
+      Top = 96
+      Width = 9
+      Height = 13
+      Caption = '%'
+    end
+  end
+  object TimerClignotement: TTimer
+    Interval = 250
+    OnTimer = TimerClignotementTimer
+    Left = 416
+    Top = 16
+  end
+  object PopupMenu: TPopupMenu
+    Left = 448
+    Top = 16
+  end
+end

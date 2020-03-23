@@ -1,0 +1,368 @@
+************************************************
+* INFORMATIONS SUR LES SOURCES DE CENTRE-VILLE *
+************************************************
+
+================================================================================
+0. SOMMAIRE
+================================================================================
+
+1. LANGAGE ET OUTIL DE DEVELOPPEMENT
+2. DIFFÉRENCES ENTRE KYLIX 3 ET C++BUILDER 6
+3. ORGANISATION DES SOURCES
+4. INSTALLATION ET COMPILATION DES SOURCES
+5. NOTES SUR LA PROGRAMMATION
+6. AVERTISSEMENTS SUR LES MODIFICATIONS DES SOURCES
+7. ETAPES POUR AJOUTER UN NOUVEL ELEMENT DANS LA SIMULATION
+
+================================================================================
+1. LANGAGE ET OUTIL DE DEVELOPPEMENT
+================================================================================
+
+La version Windows de Centre-Ville est développée avec C++Builder.
+La dernière version est compilée avec C++Builder 6 Personnel.
+
+Pour la version Linux, Centre-Ville est compilée avec Kylix 3 Open Edition 
+(gratuit).
+
+Les sources sont communs malgré la différence de plateformes.
+Ceci est possible grâce aux points communs entre les deux outils
+(même langage, même EDI et quasiment mêmes bibliothèques).
+
+Les sources de la version 3.1 de Centre-Ville pour Linux ont été
+incluses en guise d'exemple de portage de C++Builder vers Kylix toutes
+versions (Langage Delphi). Ils se trouvent dans le dossier /SRC31 dans
+les archives.
+
+================================================================================
+2. DIFFÉRENCES ENTRE KYLIX 3 ET C++BUILDER 6
+================================================================================
+
+Les différences majeures concernent la bibliothèque. La bibliothèque dans
+Kylix s'appelle CLX et dans C++Builder et Delphi VCL.
+
+Tout d'abord, il y a un projet Kylix (cvx.bpr) et un projet C++Builder
+(cvw.bpr). Ensuite, les fiches dans C++Builder ont l'extension .DFM (comme
+dans Delphi) et .XFM dans Kylix. Les fichiers DFM et XFM sont au format texte
+(option récente).
+
+Pour pouvoir avoir des sources communs (.CPP et .H), j'ai dû avoir recours aux
+macros. J'ai donc défini la macro CV_LINUX dans Kylix et CV_WINDOWS dans
+C++Builder pour pouvoir définir du code spécifique pour un environnement ou
+l'autre.
+
+J'ai défini également un en-tête VCLX.H permettant d'inclure la bonne
+bibliothèque de composants visuels : CLX.H pour Kylix et VCL.H pour C++Builder.
+
+Pour éviter le plus possible d'avoir des blocs #ifdef CV_... #endif, j'ai
+défini un en-tête WINLINUX.H dans lequel j'ai défini des macros communes aux
+2 environnements. Ainsi la macro TSPINEDIT désigne le type SpinEdit. Il s'agit
+de TCSpinEdit sous C++Builder et SpinEdit dans Kylix. Deux "property" sont
+également différentes et les macros MAXVALUE et MINVALUE ont été aussi définies.
+Une fonction "AfficheMessage" permet dans les deux environnements d'afficher un
+message en transmettant les bons paramètres à la méthode Application->MessageBox
+qui n'ont pas du tout la même signature entre Kylix et C++Builder.
+
+Les en-têtes utilisés pour les bibliothèques diffèrent en dehors de l'en-tête 
+CLASSES.HPP. Les en-têtes Kylix commencent par Q. 
+Exemple: #include <QForms.hpp> pour Kylix correspond à #include <Forms.hpp>
+dans C++Builder.
+
+Les EDI de C++Builder et Kylix ajoutent automatiquement les en-tête 
+correspondant aux composants présents dans les fiches. Pour éviter de poser des
+problème dans le corps des fichiers .CPP, j'ai défini une clause #ifdef 
+CV_WINDOWSLINUX ... #endif dans laquelle s'insèrent les inclusions automatiques
+d'en-tête des EDI. Seuls seront inclus les en-tête des clauses #ifdef 
+CV_WINDOWS ... #endif pour C++Builder et les en-tête des clauses #ifdef 
+CV_LINUX ... #endif pour Kylix.
+
+Les projets cvw et cvx utilisent des listes de bitmaps (TImageList). Or les
+comportements en mode conception de ces composants sont très différents et 
+obligent à définir des bitmaps différentes. Voir paragraphe 6, section  
+"Problèmes dans les listes de bitmaps (TImageList)".
+
+================================================================================
+3. ORGANISATION DES SOURCES
+================================================================================
+
+/SRC		Dossier où se trouvent les sources
+/SRC31		Sources Kylix Delphi (Centre-Ville v3.1)
+/BIN		Fichiers exemples (*.cvw), fichiers texte d'information (*.txt)
+		et exécutable cvw.exe/cvx (généré depuis C++Builder/Kylix)
+/HLP		Sources (rtf) du fichier d'aide Windows
+/OBJ		Fichiers objets (*.obj/*.o) générés par C++Builder/Kylix lors de
+		la compilation
+/DCU		Fichiers objets (*.dcu) générés par Kylix (Delphi) lors de
+		la compilation du projet src31/cvx31.dpr
+
+*.dfm		Sources des fiches C++Builder
+*.xfm		Sources des fiches Kylix
+*.cpp, *.h(pp)	Unités, en-tête C++
+*.pas		Unités Kylix Delphi (dossier /SRC31 seulement)
+cvx.bpr		Fichier projet Kylix (Exécutable Linux = cvx)
+cvw.bpr		Fichier projet C++Builder (Exécutable Windows = cvw.exe)
+*.res		Fichiers de ressource
+*.d(e)sk	Fichiers de configuration du bureau de C++Builder (resp. Kylix).
+*.hpj		Fichier projet d'aide Windows (.HLP)
+*.rtf		Fichier source RTF de l'aide en ligne Windows
+svg-lnx		Script de nettoyage et de création d'une archive tar.gz 
+		(sous Linux)
+startcvx	Script de lancement de Centre-Ville (sous Linux)
+svg_win.bat	Script de nettoyage et de création de l'archive zip des sources
+license.txt	License GPL officielle (Anglais)
+licence.txt	Traduction de la licence GPL en français (non-officielle)
+lisezmoi.txt	Fichier lisezmoi
+À faire.txt	Notes sur des modifications et détails à voir à l'avenir
+infosrc.txt	Ce fichier
+
+================================================================================
+4. INSTALLATION ET COMPILATION DES SOURCES
+================================================================================
+
+----------
+SOUS LINUX
+----------
+
+Avant toute chose, je rappelle que les noms de fichiers et de dossiers SONT 
+SENSIBLES À LA CASSE, donc il faut bien respecter les noms écrits ci-après.
+
+Pour compiler les sources sous Linux, il faut installer Kylix 3 (la version 
+Open Edition est disponible gratuitement sur http://www.borland.com).
+
+Dans le dossier $HOME, créer un dossier "/cvx" et dézipper les sources
+dans ce dossier. Il faut dans le dossier "/cvx" les dossiers "/bin" 
+(destination de l'exécutable) et "/obj" (destination des modules compilés *.o). 
+
+Il suffit alors d'ouvrir le fichier projet cvx.bpr et de compiler le projet. 
+L'exécutable généré sera "/cvx/bin/cvx". Les fichiers exemples sont dans 
+"/cvx/bin". Pour exécuter cvx en dehors de Kylix, il faut :
+ - Avoir copié le fichier libborqt-6.9.0-qt2.3.so qui se trouve dans le dossier
+   /Kylix3/bin. Si vous n'avez pas Kylix3, il peut être téléchargé depuis mon 
+   site (http://persoweb.francenet.fr/~fouquetp) dans l'archive sans sources.
+ - Lancer en mode console le script profond/startcvx.sh :
+	cd ~/cvx
+	./startcvx.sh
+
+Le projet situé dans le dossier cvx/src31 se compile avec n'importe quelle 
+version de Kylix (EDI Delphi). Il s'agit des sources Kylix Delphi de la version 
+3.1 de Centre-Ville pour Linux. Il faut ouvrir le fichier projet 
+/src31/cvx31.bpr. Le fichier généré sera cvx/bin/cvx31.
+
+------------
+SOUS WINDOWS
+------------
+
+Pour compiler les sources sous Windows, il faut installer C++Builder 6. La 
+version Personnel n'est malheureusement pas gratuite.
+
+Dans le dossier "CBuilder6/Projects", dézipper les 
+sources dans un sous-dossier "/cvw" (pour donner en définitive 
+"/CBuilder6/projects/cvw"). Il faut dans le dossier "/cvw" les dossiers "/bin"
+(destination de l'exécutable) et "/obj" (destination des modules compilés 
+*.obj).
+
+Il suffit alors d'ouvrir le fichier projet cvw.bpr et de compiler. 
+L'exécutable généré sera "/cvw/bin/cvw.exe". Les fichiers exemples sont 
+dans "/cvw/bin".
+
+Pour compiler l'aide en ligne de Windows, il faut ouvrir le fichier 
+"/hlp/CVW.HPJ" avec le compilateur d'aide Windows de Microsoft HCW.EXE fourni 
+avec C++Builder (dans "/CBuilder6/Help/Tools").
+
+================================================================================
+5. NOTES SUR LA PROGRAMMATION
+================================================================================
+
+Je voulais surtout dire que les sources fournies ne sont pas dans un but de 
+donner une référence de programmation C++ (je ne l'ai pas écrit dans ce but-là)
+donc je vais justifier mes choix ici, choix qui ne seraient - pour des maniaques
+de la programmation objet - pas du tout bien pour une écriture propre. J'aurais, 
+de toutes façons, choisi un autre langage si j'avais voulu l'écrire en pur objet
+(le langage Eiffel pour ne pas le citer - peut-être un jour).
+
+Mais aujoud'hui, il est écrit dans le langage et avec les outils que je manipule
+le mieux. Cependant, il faut que j'explique mes choix qui peuvent paraître
+choquants pour certains et inaperçus pour d'autres.
+
+Il s'agît en particulier du principe d'utiliser une instance dans les méthode de 
+classe. Il s'agît en particulier de l'instance de la classe centre_ville *cv.
+Je l'utilise dans les méthodes de classe des éléments de la simulation.
+
+Il n'est pas du tout conseillé d'utiliser des instances dans les méthodes de
+classes. Cependant , j'ai pris cette liberté pour les raisons suivantes :
+
+1. Les classes d'éléments de la simulation sont des types de propriétés de la
+   classe centre_ville (ou leurs objets seront instanciés par ces propriétés)
+   et l'instance centre_ville *cv n'est utilisée que dans le cadre de l'activité
+   ou la définition de la simulation.
+2. l'instance de classe centre-ville est unique et créée en un seul exemplaire 
+   référencé par *cv.
+3. Si je n'avais pas pris cette liberté, j'aurais été obligé de transmettre
+   l'instance soit dans le constructeur ce qui est non négligeable en place 
+   mémoire, soit par paramètre dans les méthodes ce qui est franchement bête
+   quand il s'agît toujours du même. J'aurais pu aussi définir les méthodes
+   utilisant l'instance cv au sein de sa classe (centre_ville) mais il y en
+   aurait beaucoup trop définie au niveau de la classe centre_ville (et il y
+   en a déjà assez comme ça) et souvent j'utilise une fois l'instance.
+4. Il y a beaucoup d'interactions dans les différents éléments et j'ai déjà du 
+   mal à évaluer dans la classe de quel élément je vais définir telle ou telle
+   méthode.
+
+En fait je considère que les propriétés de la classe centre_ville sont amies
+MAIS au sein (et au travers) de l'instance centre_ville *cv.
+
+Voici les différentes classes de la simulation (par ordre de définition) :
+
+--------------------------------------------------------------------------------
+identifiant	Désignation				Apparition
+--------------------------------------------------------------------------------
+pieton		(piétons)				v2.0
+feu		(feux tricolores)			
+etape		(étapes)
+vehicule	(véhicules - voitures normales)
+depot_bus	(dépôt de bus)
+bus		(bus)					v3.0
+arret_bus	(arrêts de bus)				v3.0
+ligne_bus	(lignes de bus)				v3.0
+tram		(trams)					v3.5
+arret_tram	(arrêts de tram)			v3.5
+ligne_tram	(lignes de tram)			v3.5
+place_taxi	(places de taxi)			v3.6
+file_taxi	(files de taxis)			v3.6
+taxi		(taxis)					v3.6
+voie		(routes - par case)
+stats		(statistiques sur les véhicules)
+centre_ville 	(simulation)
+--------------------------------------------------------------------------------
+
+================================================================================
+6. AVERTISSEMENTS SUR LES MODIFICATIONS DES SOURCES
+================================================================================
+
+Je présente ici les difficultés et les remarques importantes concernant la
+modification des sources. En effet, le fait qu'il y ait des sources communs pour
+deux environnements différents, il faut faire attention aux conséquences d'une
+modification des sources dans un environnement par rapport à l'autre. De plus,
+la façon d'ajouter, de supprimer ou de modifier quelque chose n'est pas 
+forcément la même une fois sous l'autre environnement. Ceci est dû au fait que
+les fichiers sources C++ (*.c*/*.h*) sont communs mais pas les fichiers sources 
+des fiches (*.xfm et *.dfm).
+
+------------------------
+MODIFICATION D'UNE FICHE
+------------------------
+
+Lorsque l'on modifie une fiche, le fichier *.?fm (*.dfm/*.xfm) est modifié ainsi
+que le fichier en-tête (*.h) si les déclarations de composants changent.
+
+Dans l'autre projet (de l'autre environnement), si la déclaration a changé il y
+aura non concordance entre le fichier en-tête et le fichier *.?fm. Il faut donc
+modifier manuellement le fichier *.?fm d'où la nécessité qu'il soit sous format
+texte.
+
+Dans le même genre, il faut poser les mêmes composants dans les deux projets
+car les déclarations sont communes dans le fichier en-tête de la fiche.
+Par exemple,les toolbars sous Kylix n'ayant pas de propriété MenuItem, j'ai dû 
+définir des popupmenus comportant les mêmes éléments que les menuitems
+déroulants des speedbuttons de détail, suivi, distances et angles-droits de 
+routes.
+
+Lorsqu'une nouvelle fiche est créée, c'est plus simple : il suffit de faire une
+copie et renommer l'extension dfm en xfm pour créer la fiche Kylix depuis la 
+fiche C++Builder. Sous Kylix, il faut ensuite ouvrir le projet cvx, ajouter la
+nouvelle fiche et ignorer les messages d'incompatibilités éventuelles entre la
+VCL et la CLX.
+
+------------------------
+BIBLIOTHEQUES VCL et CLX
+------------------------
+
+Les bibliothèques Clx et Vcl ont beaucoup de choses en commun. Cependant il faut
+traiter les différences et il y en a. Elles doivent être le plus possibles 
+transparentes. Pour cela, j'ai défini l'unité "winlinux" dans laquelle sont 
+définis des appels communs pour tout ce qui est différents entre les deux 
+bibliothèques : soit par un appel de méthode ayant des paramètres utilisables 
+dans l'un ou l'autre des environnements (par exemple la méthode AfficheMessage),
+soit par utilisation de macros (par exemple des types de déclaration).
+
+--------------------------------
+FONCTIONNALITES NON IMPLEMENTEES
+--------------------------------
+
+Dans la version Linux, il y a des fonctionnalités non implémentées comme le zoom
+et l'aide contextuelle. Il faut en tenir compte. Mais il faut le faire dans 
+l'esprit de les implémenter plus tard. Ainsi l'appel à l'aide contextuelle est
+défini dans l'unité "winlinux" dans le cas où elle le sera dans le projet cvx 
+pour Linux.
+
+------------------------------------------------
+PROBLEMES DANS LES LISTES DE BITMAPS (TIMAGELIST)
+------------------------------------------------
+
+Une bitmap ajoutée dans un composant TImageList est associée à une couleur de
+transparence. Or, Sous Kylix, même si on la définit, il considérera le blanc et
+la couleur du pixel inférieur gauche comme couleurs de fond. C'est pour cela
+qu'il y a toujours un point visible dans la zone de simulation. C'est pour cette
+raison également qu'il y a des bitmaps pour cvx et des bitmaps pour cvw. Le 
+blanc a été retiré de toutes les bitmaps pour cvx.
+Enfin, il faut faire attention, il peut arriver que les bitmaps dans les listes
+d'images soient tramées !
+
+-----------------------------------------
+COMPILATION AVEC INFORMATIONS DE DEBOGAGE
+-----------------------------------------
+
+Il est fortement conseillé de compiler avec informations de débogage. En effet,
+il peut arriver que le comportement soit différent après avoir retiré l'option
+incluant les informations de débogage (Options | Compilateur | bouton "Version 
+finale") or tous les tests se font avec options de débogage.
+
+---------------------------------------------------
+OUVERTURE DE FICHIERS KYLIX DEPUIS L'EDI C++BUILDER
+---------------------------------------------------
+
+Par sécurité, les fichiers liés au projet Linux (cvx.*) sont en lecture
+seule pour éviter de les ouvrir avec C++Builder 6 et de les modifier par
+inadvertance. L'inverse n'étant pas possible, les fichiers du projet Windows
+(cvw.*) ne sont pas en lecture seule.
+
+===========================================================
+7. ETAPES POUR AJOUTER UN NOUVEL ELEMENT DANS LA SIMULATION
+===========================================================
+
+Le grand intérêt d'une simulation est de pouvoir y intégrer un nouveau type
+d'élément. Centre-Ville le permet assez aisément (il suffit de voir la 
+chronologie d'entrée des différents types d'éléments). Les étapes pour en 
+faire entrer un nouveau sont toujours les mêmes.
+
+Je commence déjà par imaginer comment l'élément va être représenté dans la
+simulation. Ensuite, je dessine les différentes bitmaps permettant de le
+représenter sous toutes ses formes. Du fait de la représentation sous formes
+de cases carrées, il y a des limites dans l'affichage (il faut utiliser si
+possible un nombre entier de cases). La façon de le représenter me donne 
+ainsi les données dont j'aurai besoin pour le dessiner et me permet d'en 
+déduire la structure des données de cet élément (les propriétés de sa 
+classe).
+
+Il faut ensuite penser à l'interaction avec les autres types d'éléments déjà
+présents et leur donner aussi un rôle et un intérêt.
+
+Il ne faut pas hésiter à réutiliser des comportements déjà existants comme
+l'attente des piétons pour prendre un taxi, un bus ou un tram. La façon 
+identique de représenter un bus et un tram, de paramétrer un réseau de bus et
+un réseau de trams, etc.
+
+En parlant de réutiliser, les développeurs C++ qui aiment utiliser l'héritage
+et la généricité (template) remarqueront qu'il n'y en a pas dans les sources.
+En effet, je préfère tout d'abord dupliquer les choses qui se ressemblent puis
+mettre en commun ce qui peut l'être mais sans utiliser ni l'héritage, ni la 
+généricité dans un premier temps. C++Builder utilise déjà l'héritage pour les
+objets de la VCL/CLX. La généricité pourrait être utilisée par exemple pour 
+les comportements des différents éléments comme la recherche et l'attente des
+bus, taxi et trams. Cependant, je pense que ce n'est pas une nécessité : ça 
+rendrait plus difficile la lisibilité, la compréhension des erreurs à la 
+compilation (surtout les "template") et peut dans certains cas consommer de 
+a mémoire à la création des éléments ce qui n'est pas négligeable dans une 
+simulation.
+
+
+Dernière mise à jour le 8 avril 2003.
