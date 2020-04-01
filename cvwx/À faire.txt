@@ -1,8 +1,6 @@
-Passage à 64 bits
-=================
-> Faire le tour du centre-ville !
-
 Version Pandémie
 ================
-1. Ajouter les piétons Z dans la collection...
-2. Propager la pandémie !
+! Pb de l'état du bouton Epidémie (blanc) après avoir cliqué dessus 
+! Le chargement d'un fichier remet à zéro les paramètres de l'épidémie
+! Certains véhicules tournent en rond à la fin de la simulation.
+! Voir les infos de l'épidémie (comme le rang -1)

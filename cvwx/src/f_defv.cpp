@@ -96,7 +96,7 @@ void TfrmDefVoie::AppliqueChoix()
           // A.1.b On supprime les références au feu à supprimer dans les feux de piéton (v5.2)
           for(int i=0; i<cv->NbFeuxPieton; i++)
            for(int j=0; j<cv->FeuP[i].NbFeux; j++)
-            if (cv->FeuP[i].NumFeux[j]==v->NumFeuP[d-1])
+			if (cv->FeuP[i].NumFeux[j]==v->NumFeuP[d-1])
              cv->FeuP[i].RetireFeu(v->NumFeuP[d-1]);
           // A.1.c On peut maintenant supprimer le feu
           cv->SupprimeFeu(v->NumFeu[d-1]-1);
@@ -126,7 +126,7 @@ void TfrmDefVoie::AppliqueChoix()
   // 4. On met à jour l'accessibilité des boutons et groupes
   ButtonAppliquer->Enabled=false;
   for(int d=nord; d<=ouest; d++)
-   BitBtnDefFeu[d-1]->Enabled=(RadioGroupPriorite[d-1]->ItemIndex==3);
+	BitBtnDefFeu[d-1]->Enabled=(RadioGroupPriorite[d-1]->ItemIndex==3);
 
   // 5. On rafraîchit la scène
   frmSimulation->RedessineCase(x, y, true);
@@ -154,30 +154,34 @@ void TfrmDefVoie::RafraichitInfos()
                       VoieTram[sud-1]+
                       VoieTram[ouest-1];
   LabelCoordonnees->Caption=Format("%2.2d, %2.2d", ARRAYOFCONST((x, y)));
+
   RadioGroupPrioriteNord->Enabled= (!VoiesTramEtRoutes)&&
-                                   (!v->NumParking)&&(!v->EstDepotBus())&&
-                                   (NbDirVoiesTram<3)&&
-                                   (((v->DirPoss&N)==N)||VoieTram[nord-1]);
-  RadioGroupPrioriteNord->Font->Color=VoieTram[nord-1]?clNavy:clBlack;
+								   (!v->NumParking)&&(!v->EstDepotBus())&&
+								   (NbDirVoiesTram<3)&&
+								   (((v->DirPoss&N)==N)||VoieTram[nord-1]);
+  RadioGroupPrioriteNord->Color=VoieTram[nord-1]?clAqua:clTeal;
   RadioGroupPrioriteNord->ItemIndex=v->Priorite[nord-1];
+
   RadioGroupPrioriteEst->Enabled= (!VoiesTramEtRoutes)&&
-                                  (!v->NumParking)&&(!v->EstDepotBus())&&
-                                  (NbDirVoiesTram<3)&&
-                                  (((v->DirPoss&E)==E)||VoieTram[est-1]);
-  RadioGroupPrioriteEst->Font->Color=VoieTram[est-1]?clNavy:clBlack;
+								  (!v->NumParking)&&(!v->EstDepotBus())&&
+								  (NbDirVoiesTram<3)&&
+								  (((v->DirPoss&E)==E)||VoieTram[est-1]);
+  RadioGroupPrioriteEst->Color=VoieTram[est-1]?clAqua:clTeal;
   RadioGroupPrioriteEst->ItemIndex=v->Priorite[est-1];
+
   RadioGroupPrioriteSud->Enabled= (!VoiesTramEtRoutes)&&
-                                  (!v->NumParking)&&(!v->EstDepotBus())&&
-                                  (NbDirVoiesTram<3)&&
-                                  (((v->DirPoss&S)==S)||VoieTram[sud-1]);
-  RadioGroupPrioriteSud->Font->Color=VoieTram[sud-1]?clNavy:clBlack;
+								  (!v->NumParking)&&(!v->EstDepotBus())&&
+								  (NbDirVoiesTram<3)&&
+								  (((v->DirPoss&S)==S)||VoieTram[sud-1]);
+  RadioGroupPrioriteSud->Color=VoieTram[sud-1]?clAqua:clTeal;
   RadioGroupPrioriteSud->ItemIndex=v->Priorite[sud-1];
   RadioGroupPrioriteOuest->Enabled= (!VoiesTramEtRoutes)&&
-                                    (!v->NumParking)&&(!v->EstDepotBus())&&
-                                    (NbDirVoiesTram<3)&&
-                                    (((v->DirPoss&O)==O)||VoieTram[ouest-1]);
-  RadioGroupPrioriteOuest->Font->Color=VoieTram[ouest-1]?clNavy:clBlack;
+									(!v->NumParking)&&(!v->EstDepotBus())&&
+									(NbDirVoiesTram<3)&&
+									(((v->DirPoss&O)==O)||VoieTram[ouest-1]);
+  RadioGroupPrioriteOuest->Color=VoieTram[ouest-1]?clAqua:clTeal;
   RadioGroupPrioriteOuest->ItemIndex=v->Priorite[ouest-1];
+
   BitBtnDefFeuN->Enabled=(RadioGroupPrioriteNord->ItemIndex==3);
   BitBtnDefFeuE->Enabled=(RadioGroupPrioriteEst->ItemIndex==3);
   BitBtnDefFeuS->Enabled=(RadioGroupPrioriteSud->ItemIndex==3);

@@ -1,0 +1,235 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(BDS)\bin\CodeGear.Deployment.targets')" Project="$(BDS)\bin\CodeGear.Deployment.targets"/>
+    <ProjectExtensions>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <PropertyGroup/>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win64'">
+        <DeployFile Include="cvw_Icon.ico" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw_Icon.ico</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\res\ico\cvwico44.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\Assets\</RemoteDir>
+            <RemoteName>Logo44x44.png</RemoteName>
+            <DeployClass>UWP_CppLogo44</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin64\cc64260mt.dll" Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cc64260mt.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\res\ico\Doc_cvw.ico" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>Doc_cvw.ico</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\res\ico\Doc_cvw.ico" Condition="'$(Config)'=='Release'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>Doc_cvw.ico</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\res\ico\cvwico150.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\Assets\</RemoteDir>
+            <RemoteName>Logo150x150.png</RemoteName>
+            <DeployClass>UWP_CppLogo150</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="cvw_Icon.ico" Condition="'$(Config)'=='Release'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw_Icon.ico</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin64\borlndmm.dll" Condition="'$(UsingDelphiRTL)'=='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>borlndmm.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin64\cc64260.dll" Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cc64260.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\bin\cvw.64.exe" Condition="'$(Config)'=='Release'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="..\bin\cvw.64.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice32'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="$(BDS)\bin\cc32c260.dll" Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cc32c260.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\cc32260.dll" Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cc32260.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\res\ico\cvwico150.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\Assets\</RemoteDir>
+            <RemoteName>Logo150x150.png</RemoteName>
+            <DeployClass>UWP_CppLogo150</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\bin\cvw.32.tds" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw.tds</RemoteName>
+            <DeployClass>DebugSymbols</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\bin\AppxManifest.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>AppxManifest.xml</RemoteName>
+            <DeployClass>ProjectUWPManifest</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\cc32260mt.dll" Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cc32260mt.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\borlndmm.dll" Condition="'$(UsingDelphiRTL)'=='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>borlndmm.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="cvw_Icon.ico" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw_Icon.ico</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\res\ico\Doc_cvw.ico" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>Doc_cvw.ico</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\cc32c260mt.dll" Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cc32c260mt.dll</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\bin\cvw.32.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>cvw\</RemoteDir>
+            <RemoteName>cvw.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='OSX32'">
+        <DeployFile Include="$(BDS)\Redist\osx32\libcgcrtl.dylib" Condition="'$(DynamicRTL)'=='true'">
+            <RemoteDir>cvw.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libcgcrtl.dylib</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\Redist\osx32\libcgstl.dylib" Condition="'$(DynamicRTL)'=='true'">
+            <RemoteDir>cvw.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libcgstl.dylib</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='iOSSimulator'"/>
+</Project>

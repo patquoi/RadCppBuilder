@@ -45,8 +45,6 @@ object frmAffDistFilesPark: TfrmAffDistFilesPark
     ScrollBars = ssVertical
     ShowHint = False
     TabOrder = 0
-    ExplicitWidth = 133
-    ExplicitHeight = 87
     RowHeights = (
       20
       20
@@ -60,9 +58,7 @@ object frmAffDistFilesPark: TfrmAffDistFilesPark
     Height = 17
     Align = alTop
     BevelOuter = bvNone
-    Caption = 'Panel'
     TabOrder = 1
-    ExplicitWidth = 133
     object CheckBoxCouloirsBus: TCheckBox
       Left = 1
       Top = 0

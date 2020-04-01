@@ -6,7 +6,7 @@ object frmStatsVehicules: TfrmStatsVehicules
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   ClientHeight = 351
-  ClientWidth = 481
+  ClientWidth = 490
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,11 +25,11 @@ object frmStatsVehicules: TfrmStatsVehicules
   object StringGridCoordParkings: TStringGrid
     Left = 8
     Top = 8
-    Width = 88
+    Width = 98
     Height = 235
     Hint = 'Coordonn'#233'es des '#233'tapes'
     ColCount = 2
-    DefaultColWidth = 20
+    DefaultColWidth = 26
     DefaultRowHeight = 20
     RowCount = 2
     Font.Charset = ANSI_CHARSET
@@ -44,13 +44,13 @@ object frmStatsVehicules: TfrmStatsVehicules
     ShowHint = True
     TabOrder = 0
     ColWidths = (
-      20
-      49)
+      26
+      52)
   end
   object ButtonFermer: TButton
-    Left = 16
+    Left = 20
     Top = 264
-    Width = 73
+    Width = 75
     Height = 25
     Caption = '&Vu'
     Default = True
@@ -58,7 +58,7 @@ object frmStatsVehicules: TfrmStatsVehicules
     OnClick = ButtonFermerClick
   end
   object TabControl: TTabControl
-    Left = 104
+    Left = 112
     Top = 8
     Width = 372
     Height = 336
@@ -75,7 +75,7 @@ object frmStatsVehicules: TfrmStatsVehicules
       Height = 311
       Hint = 'Etape de d'#233'part en abscisse et '#233'tape d'#39'arriv'#233'e en ordonn'#233'e'
       ColCount = 2
-      DefaultColWidth = 24
+      DefaultColWidth = 28
       DefaultRowHeight = 20
       RowCount = 2
       Font.Charset = ANSI_CHARSET
@@ -91,7 +91,7 @@ object frmStatsVehicules: TfrmStatsVehicules
     end
   end
   object ButtonAide: TButton
-    Left = 16
+    Left = 20
     Top = 296
     Width = 75
     Height = 25

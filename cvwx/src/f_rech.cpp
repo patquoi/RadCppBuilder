@@ -7,11 +7,8 @@
 #include "f_simul.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma resource "*.dfm"
-//---------------------------------------------------------------------------
-#ifdef WIN32
 #pragma link "cspin"
-#endif
+#pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 TfrmRecherche *frmRecherche;
 //---------------------------------------------------------------------------
@@ -269,15 +266,38 @@ void __fastcall TfrmRecherche::CSpinEditPietonChange(TObject *Sender)
    StatusBar->SimpleText=Format("Piéton n°%d trouvé en (%d, %d)", ARRAYOFCONST(((int)CSpinEditPieton->Value, p->x, p->y)));
   }
  else
-  if (p->NumBus)
+  if (p->NumBus||p->NumTaxi||p->NumVehlib) // v5.4.1 : oubli tram, taxi et vehlib
    {
-    frmSimulation->DrawGridSimul->Col=cv->Bus[p->NumBus-1].x;
-    frmSimulation->DrawGridSimul->Row=cv->Bus[p->NumBus-1].y;
-    StatusBar->SimpleText=Format( "Piéton n°%d trouvé dans le bus n°%d (%d, %d)",
-                                  ARRAYOFCONST(( (int)CSpinEditPieton->Value,
-                                                 (int)p->NumBus,
-                                                 cv->Bus[p->NumBus-1].x,
-                                                 cv->Bus[p->NumBus-1].y)));
+	if (p->NumBus)
+	 {
+	  frmSimulation->DrawGridSimul->Col=cv->Bus[p->NumBus-1].x;
+	  frmSimulation->DrawGridSimul->Row=cv->Bus[p->NumBus-1].y;
+	  StatusBar->SimpleText=Format( "Piéton n°%d trouvé dans le bus n°%d (%d, %d)",
+									ARRAYOFCONST(( (int)CSpinEditPieton->Value,
+												   (int)p->NumBus,
+												   cv->Bus[p->NumBus-1].x,
+												   cv->Bus[p->NumBus-1].y)));
+	 }
+	if (p->NumTaxi)
+	 {
+	  frmSimulation->DrawGridSimul->Col=cv->Taxi[p->NumTaxi-1].x;
+	  frmSimulation->DrawGridSimul->Row=cv->Taxi[p->NumTaxi-1].y;
+	  StatusBar->SimpleText=Format( "Piéton n°%d trouvé dans le taxi n°%d (%d, %d)",
+									ARRAYOFCONST(( (int)CSpinEditPieton->Value,
+												   (int)p->NumTaxi,
+												   cv->Bus[p->NumTaxi-1].x,
+												   cv->Bus[p->NumTaxi-1].y)));
+	 }
+	if (p->NumVehlib)
+	 {
+	  frmSimulation->DrawGridSimul->Col=cv->Bus[p->NumVehlib-1].x;
+	  frmSimulation->DrawGridSimul->Row=cv->Bus[p->NumVehlib-1].y;
+	  StatusBar->SimpleText=Format( "Piéton n°%d trouvé dans le vehlib n°%d (%d, %d)",
+									ARRAYOFCONST(( (int)CSpinEditPieton->Value,
+												   (int)p->NumVehlib,
+												   cv->Bus[p->NumVehlib-1].x,
+												   cv->Bus[p->NumVehlib-1].y)));
+	 }
    }
   else
    StatusBar->SimpleText=Format("Piéton n°%d non utilisé", ARRAYOFCONST(((int)CSpinEditPieton->Value)));

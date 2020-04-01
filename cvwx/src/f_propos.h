@@ -36,6 +36,8 @@ __published:
   TImageCollection *ImageCollection;
   TVirtualImageList *VirtualImageList;
 	TLabel *LabelAlignement;
+	TImage *ImageEditionSpeciale;
+	TLabel *LabelHDPI;
   void __fastcall TimerTimer(TObject *Sender);
   void __fastcall FormShow(TObject *Sender);
   void __fastcall FormHide(TObject *Sender);

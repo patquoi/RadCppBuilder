@@ -37,6 +37,7 @@
 #include "f_dimzone.h"
 #include "f_genres.h"
 #include "f_propos.h"
+#include "f_epidemie.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -77,6 +78,9 @@
 #define IDB_FEUT      423 // v5.2.4
 #define IDB_PLCVLB    439 // v5.3 (place non réservée = jaune)
 #define IDB_PLCVLBR   443 // v5.3 (place réservée = bleue)
+#define IDB_PTNSAIN   479 // v5.4.1 (mode épidémie - piéton sain/guéri)
+#define IDB_PTNCNTG   137 // v5.4.1 (mode épidémie - piéton contagieux)
+#define IDB_MORT      487 // v5.4.1 (tout mode - piéton victime épidémie)
 //---------------------------------------------------------------------------
 // ATTENTION, les IDB suivants
 // n'existent pas en bitmap 8x8.
@@ -146,9 +150,9 @@ const AnsiString asVide,
                  asFrmCaptionCV = "Centre-Ville - %s [%d]",
                  asTitreCV = "Centre-Ville",
                  asAsterisque[2] = {"","*"}, // v3.6
-                 asSupInf[3] = {"", ">", "<"}, // v3.6. Remplacement par <,> pour Linux (v3.8). v4.3 : asSupInf remplace as12
-                 asMort[2] = {"", "†"}, // v4.3. Suivant valeur de pieton::Ecrase
-                 asQstEnregistrerFichier = "Voulez-vous enregistrer le fichier ",
+				 asSupInf[3] = {"", ">", "<"}, // v3.6. Remplacement par <,> pour Linux (v3.8). v4.3 : asSupInf remplace as12
+				 asEtatPieton[6] = {"", "*", "†", "†*", "‡", "‡*"}, // v4.3 (création) v5.4.1 : asMort renommé en asEtatPieton ; "†" devient "*" pour "écrasé" alors que "†" est réservé à "Mort" (victime de l'épidémie) ; asEtatPieton fonction de pieton::Ecrase+2*pieton::Mort+4*pieton::EstContagieux()
+				 asQstEnregistrerFichier = "Voulez-vous enregistrer le fichier ",
                  asTypeVehicule[NBNIVEAUXPRIORITE]={"", "d'urgence","de police"},
                  asDebutNom[2]={"ToolBar", "MenuItem"}, // v3.5
 				 asNomElementBarreOutils[NBELEMENTSBARREOUTILS]={"Fichier", "Affichage", "EditionCase", "EditionSelection", "Simulation", "Informations", "Statistiques"}, // v3.5 : ajout. v5.4 : suppression de "Menu"
@@ -309,7 +313,7 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
    }
   else
    { // Calcul commun pour l'affichage du quadrillage, des routes, trottoirs et immeubles (v3.8)
-    if (Affichage&(aff_voie|aff_quadr|aff_env)) // v3.8.1 (aff_env)
+	if (Affichage&(aff_voie|aff_quadr|aff_env)) // v3.8.1 (aff_env)
      { // 1. On pose le dur : Bitume des routes et trottoirs ainsi que le murs des immeubles (ou plutôt le toit !). v3.8 (trottoir et immeubles)
       for(int d=nord; d<=ouest; d++)
        { // On détermine ici les orientations pour les routes et trottoirs
@@ -476,25 +480,32 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
         VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                            Rect.Left, Rect.Top,
                            IDB_SANG);
-      }
+	   if (p->Mort) // v5.4.1
+		VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
+						   Rect.Left, Rect.Top,
+						   IDB_MORT);
+	  }
     // 4b. Vue de vivant
     for(int i=0; i<NBMAXPIETONSPARCASE; i++)
      if (v->NumPieton[i])
       { // On décale les piétons pour qu'ils puissent entrer dans une case. On prend alors la direction du premier
        p=&(cv->Pieton[NumPieton=v->NumPieton[i]-1]);
-       if (!p->Ecrase) // v4.3
+       if (p->EstVivant()) // v4.3 (création) v5.4.1 : p->EstVivant() remplace !p->Ecrase pour prendre en compte p->Mort
         VirtualImageList8x8->Draw(DrawGridSimul->Canvas,
                            1+Rect.Left+(2*p->DemiCase-1)*dxr[p->Dir]*((1+Rect.Right-Rect.Left)/4),
                            1+Rect.Top+ (2*p->DemiCase-1)*dyr[p->Dir]*((1+Rect.Bottom-Rect.Top)/4),
-                           IDB_PIETON+                // Début image piéton
-                           8*(NumPieton%NBCOULDIFFP)+ // Couleur
-                           (p->TourDrnDepl<p->TourDrnAff?
-                            p->Dir-1: // à l'arrêt
-                            (4+p->DemiCase%2+2*(1-p->Dir%2)) // en mouvement
-                           ));
-       p->TourDrnAff=cv->TourCrt;
-      }
+						   ((Affichage&aff_infct)? // V5.4.1 : affichage infections (mode épidémie)
+							(p->EstContagieux()?IDB_PTNCNTG:IDB_PTNSAIN): // v5.4.1 : piéton contagieux ou sain
+							(IDB_PIETON+8*(NumPieton%NBCOULDIFFP)))+ // Début image piéton + Couleur
+						   (p->TourDrnDepl<p->TourDrnAff?
+							p->Dir-1: // à l'arrêt
+							(4+p->DemiCase%2+2*(1-p->Dir%2)) // en mouvement
+						   ));
+	   p->TourDrnAff=cv->TourCrt;
+	  }
    }
+
+
 
   if (Affichage&aff_veh&& // 5. Affichage des véhicules et bus et trams
       (!v->NumParking)&&(!v->EstDepotBus())) // Si pas de parkings ou dépôt sur la case. v3.0
@@ -763,9 +774,12 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
       if (v->NbPietons>1) asMsg=asMsg+"s";
       for(int i=0; i<NBMAXPIETONSPARCASE; i++)
        if (v->NumPieton[i])
-        asMsg=asMsg+Format(" %d%s", ARRAYOFCONST(( v->NumPieton[i],
-                                                   asSupInf[(!cv->Pieton[v->NumPieton[i]-1].Ecrase)*(1+cv->Pieton[v->NumPieton[i]-1].DemiCase)]+ // v4.3 (asSupInf remplace as12)
-                                                   asMort[cv->Pieton[v->NumPieton[i]-1].Ecrase]))); // v4.3
+		asMsg=asMsg+Format(" %d%s", ARRAYOFCONST(( v->NumPieton[i],
+												   asSupInf[(!!cv->Pieton[v->NumPieton[i]-1].EstVivant())*(1+cv->Pieton[v->NumPieton[i]-1].DemiCase)]+ // v4.3 (asSupInf remplace as12) v5.4.1 EstVivant() remplace Ecrase
+												   asEtatPieton[1*(!!cv->Pieton[v->NumPieton[i]-1].Ecrase)+ // "*" v4.3 (création) v5.4.1 : asMort renommé en asEtatPieton ; affiche "*" au lieu de "†" réservé à l'épidémie
+																2*(!!cv->Pieton[v->NumPieton[i]-1].Mort)+ // v5.4.1 : affiche "†"
+																4*(!!(cv->Pieton[v->NumPieton[i]-1].EstContagieux()&&(!cv->Pieton[v->NumPieton[i]-1].Mort)))] // v5.4.1 : affiche "‡"
+												)));
       asMsg=asMsg+". ";
      }
     if (v->NumPlaceTaxi) // v3.6
@@ -1598,6 +1612,7 @@ void __fastcall TfrmSimulation::FormShow(TObject *Sender)
  ActionAfficherPietons->Checked=!!(Affichage&aff_ptn);
  ActionAfficherEnvironnement->Checked=!!(Affichage&aff_env);
  ActionAfficherQuadrillage->Checked=!!(Affichage&aff_quadr);
+ ActionAfficherInfection->Checked=!!(Affichage&aff_infct); // v5.4.1
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::DrawGridSimulClick(TObject *Sender)
@@ -1610,6 +1625,7 @@ void __fastcall TfrmSimulation::DrawGridSimulClick(TObject *Sender)
  if (frmInfosBus->Visible) frmInfosBus->RafraichitInfos(); // v3.0
  if (frmInfosTram->Visible) frmInfosTram->RafraichitInfos(); // v3.5
  if (frmInfosTaxi->Visible) frmInfosTaxi->RafraichitInfos(); // v3.6
+ if (frmInfosVehlib->Visible) frmInfosVehlib->RafraichitInfos(); // v5.4.1 (oubli)
  if ((frmAffDistParkings->Visible)&&PasDeSelectionFeux)
   {
    frmAffDistParkings->EffaceInfos();
@@ -1662,7 +1678,7 @@ void __fastcall TfrmSimulation::TimerSimulTimer(TObject *Sender)
                 if (ActionDistancesPlacesVehlib->Checked) ActionDistancesPlacesVehlibExecute(ActionDistancesPlacesVehlib); // v5.3
                 if (ActionEvolution->Checked) ActionEvolutionExecute(ActionEvolution);
                 if (ActionAfficherVehicules->Checked) ActionAfficherVehiculesExecute(ActionAfficherVehicules);
-                if (ActionStatsParkings->Checked) ActionStatsParkingsExecute(ActionStatsParkings); // v3.9.2
+				if (ActionStatsParkings->Checked) ActionStatsParkingsExecute(ActionStatsParkings); // v3.9.2
                 AfficheBilan();
                 StatusBar->Panels->Items[0]->Text="Arrêt de la simulation et réinitialisation du réseau en cours...";
                 ActionOuvrir->Execute();
@@ -1690,12 +1706,22 @@ void __fastcall TfrmSimulation::TimerSimulTimer(TObject *Sender)
  else
   {
    cv->EffectueTourSimulation();
-   if (cv->NbVehiculesSortis&&(cv->NbVehiculesSortis-cv->NbVehiculesArrives))
-    StatusBar->Panels->Items[0]->Text=Format("Sur %d sortis [%d%%] : %d arrivé(s) [%d%%]. Sur %d en course : %d déplacé(s) [%d%%].",
-                                             ARRAYOFCONST((cv->NbVehiculesSortis, 100*cv->NbVehiculesSortis/cv->NbVehicules,
-                                                           cv->NbVehiculesArrives, 100*cv->NbVehiculesArrives/cv->NbVehiculesSortis,
-                                                           cv->NbVehiculesSortis-cv->NbVehiculesArrives,
-                                                           cv->NbVehiculesDeplaces, 100*cv->NbVehiculesDeplaces/(cv->NbVehiculesSortis-cv->NbVehiculesArrives))));
+   if (Affichage&aff_infct) // v5.4.1 : si l'affichage épidémie est activé, on affiche les stats épidémiques des piétons
+	{
+	 if (cv->NbVehiculesSortis&&(cv->NbVehiculesSortis-cv->NbVehiculesArrives))
+	   StatusBar->Panels->Items[0]->Text=Format("Sur %d piétons : %d guéri(s) [%d%%], %d infecté(s) [%d%%], %d mort(s) [%d%%].",
+												ARRAYOFCONST((cv->NbPietons,
+															  cv->NbPietonsGueris, 100*cv->NbPietonsGueris/cv->NbPietons,
+															  cv->NbPietonsInfectes, 100*cv->NbPietonsInfectes/cv->NbPietons,
+															  cv->NbPietonsMorts, 100*cv->NbPietonsMorts/cv->NbPietons)));
+	}
+   else
+	 if (cv->NbVehiculesSortis&&(cv->NbVehiculesSortis-cv->NbVehiculesArrives))
+	   StatusBar->Panels->Items[0]->Text=Format("Sur %d sortis [%d%%] : %d arrivé(s) [%d%%]. Sur %d en course : %d déplacé(s) [%d%%].",
+												ARRAYOFCONST((cv->NbVehiculesSortis, 100*cv->NbVehiculesSortis/cv->NbVehicules,
+															  cv->NbVehiculesArrives, 100*cv->NbVehiculesArrives/cv->NbVehiculesSortis,
+															  cv->NbVehiculesSortis-cv->NbVehiculesArrives,
+															  cv->NbVehiculesDeplaces, 100*cv->NbVehiculesDeplaces/(cv->NbVehiculesSortis-cv->NbVehiculesArrives))));
   }
 }
 //---------------------------------------------------------------------------
@@ -2407,7 +2433,8 @@ void __fastcall TfrmSimulation::ActionMarcheExecute(TObject *Sender)
    StatusBar->Repaint();
    cv->PrepareFeuxPietons();
 
-   cv->NbVehiculesSortis=cv->NbVehiculesDeplaces=cv->NbVehiculesArrives=0;
+   cv->NbVehiculesSortis=cv->NbVehiculesDeplaces=cv->NbVehiculesArrives=0L;
+   cv->NbPietonsGueris=cv->NbPietonsInfectes=cv->NbPietonsMorts=0L; // v5.4.1
    if (VerifierAvantSimulation)
     {
      StatusBar->Panels->Items[0]->Text="Contrôle d'intégrité du réseau...";
@@ -2465,6 +2492,7 @@ void __fastcall TfrmSimulation::ActionVerifierAvantSimulationExecute(
 void __fastcall TfrmSimulation::ActionEvolutionExecute(TObject *Sender)
 {
  ActionEvolution->Checked^=true;
+ frmStatistiques->AffichageEpidemique=!!(Affichage&aff_infct); // v5.4.1 : statistiques épidémiques si affichage épidémique
  frmStatistiques->Visible=ActionEvolution->Checked;
 }
 //---------------------------------------------------------------------------
@@ -3520,6 +3548,17 @@ void __fastcall TfrmSimulation::FormKeyDown(TObject *Sender, WORD &Key,
   }
 }
 //---------------------------------------------------------------------------
-
-
+void __fastcall TfrmSimulation::ActionEpidemieExecute(TObject *Sender)
+{ // v5.4.1
+ frmEpidemie->ShowModal();
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmSimulation::ActionAfficherInfectionExecute(TObject *Sender)
+{  // v5.4.1
+ ActionAfficherInfection->Checked^=true;
+ Affichage=(affichage)(Affichage^aff_infct);
+ frmStatistiques->AffichageEpidemique=!!(Affichage&aff_infct); // statistiques épidémiques si affichage épidémique
+ DrawGridSimul->Repaint();
+}
+//---------------------------------------------------------------------------
 

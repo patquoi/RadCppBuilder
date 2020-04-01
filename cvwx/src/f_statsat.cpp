@@ -7,11 +7,8 @@
 #include "f_simul.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma resource "*.dfm"
-//---------------------------------------------------------------------------
-#ifdef WIN32
 #pragma link "cspin"
-#endif
+#pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 #define ATTENTE 0
 #define TRAFIC  1
@@ -118,13 +115,13 @@ void TfrmStatsAttenteTrafic::RecalculeEtVisualise()
  LabelMax->Caption=IntToStr(m[RadioGroupType->ItemIndex]);
  LabelAttenteCumulee->Caption=IntToStr(t[ATTENTE]);
  if (n) // v1.8.4 : FormatFloat à la place de Format
-  LabelAttenteMoyenne->Caption=FormatFloat("%.1f", 1.0*t[ATTENTE]/n);
+  LabelAttenteMoyenne->Caption=FormatFloat("0.0", 1.0*t[ATTENTE]/n); // v3.0 (ajout). v5.4.1 : FormatFloat n'utilise pas le format "%.1f" mais "#.0"
  else
   LabelAttenteMoyenne->Caption="N/D";
  LabelAttenteMaximale->Caption=IntToStr(m[ATTENTE]);
  LabelTraficCumule->Caption=IntToStr(t[TRAFIC]);
  if (n) // v1.8.4 : FormatFloat à la place de Format
-  LabelTraficMoyen->Caption=FormatFloat("%.1f", 1.0*t[TRAFIC]/n);
+  LabelTraficMoyen->Caption=FormatFloat("0.0", 1.0*t[TRAFIC]/n); // v5.4.1 : FormatFloat n'utilise pas le format "%.1f" mais "#.0"
  else
   LabelTraficMoyen->Caption="N/D";
  LabelTraficMaximal->Caption=IntToStr(m[TRAFIC]);

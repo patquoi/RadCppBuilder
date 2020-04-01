@@ -32,6 +32,34 @@ avant ou les renommer (au menu principal, rubrique Fichier | Enregistrer sous).
 ------------------------------------------------------------------------------
 4. MODIFICATIONS APPORTÉES DANS LES VERSIONS SUCCESSIVES
 ------------------------------------------------------------------------------
+[Version 5.4.1] 
+Edition spéciale Coronavirus
+ - Ajout du paramétrage d'une épidémie (actions Simulation + Affichage).
+ - Si l'affichage épidémique est activé, le graphe d'évolution montre la 
+   progression de l'épidémie sinon elle montre la progression des véhicules.
+ - Les données épidémiques ont été rajoutées dans les informations du piéton.
+Autres 
+ - Ajout dans l'À propos du facteur multiplicateur HDPI par rapport à la 
+   résolution normale de 96dpi.
+ - Dans les affichages de propriétés d'élément les nombres à virgule n'étaient
+   pas affichés.`
+ - Les coordonnées du tram, taxi ou vehlib n'étaient pas affichées dans les 
+   informations de suivi de piéton quand celui-ci était dans un de ces trois
+   modes de transport.
+ - Le tram, taxi ou vehlib n'étaient pas montrés dans la recherche sur un 
+   piéton quand celui-ci était dans un de ces trois modes de transport.
+ - Les priorités de voies de tram apparaissent en fond ciel dans la boîte de
+   dialogue des priorités de voie. Le fond a été mis dans la couleur des voies
+   normales de circulation (Sarcelle). 
+ - La case à cocher "Avec couloir de bus" des statistiques de distance était
+   mal affichée.
+ - Les chiffres des statistiques de véhicules parkings à parkings étaient 
+   tronqués à l'affichage.
+ - Toutes les images de l'aide en ligne ont été refaites en PNG.
+ - Le détail vehlib ne suivait pas le changement de numéro dans la recherche.
+ - Les numéros des éléments affichés dans les boîtes de dialogue "Détail"
+   étaient tronqués.
+------------------------------------------------------------------------------
 [Version 5.4] Versions 32 et 64 bits
  - À partir de Windows 7, les fichiers de simulation (*.cvw) sont stockés dans
    %LocalAppData%\Patquoi.fr\Centre-Ville sur Windows 7 ou ultérieur ou sur
@@ -865,5 +893,5 @@ consulter le fichier INFOSRC.TXT.
  - Affichages d'estimation de durées (tours) de trajet jusqu'à une étape.
 
 ------------------------------------------------------------------------------
-Dernière mise à jour le 22/03/2020.
+Dernière mise à jour le 01/04/2020.
 ------------------------------------------------------------------------------

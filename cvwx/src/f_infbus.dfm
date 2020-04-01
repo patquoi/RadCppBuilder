@@ -441,7 +441,7 @@ object frmInfosBus: TfrmInfosBus
   object RadioButtonBusNumero: TRadioButton
     Left = 19
     Top = 55
-    Width = 77
+    Width = 50
     Height = 17
     Caption = 'Bus n'#176
     Enabled = False

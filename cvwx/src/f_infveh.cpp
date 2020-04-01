@@ -14,10 +14,10 @@ TfrmInfosVehicule *frmInfosVehicule;
 const AnsiString asDebutTitreCadreVehicule="                           ",
                  asFrmNumeroCoordonnees="%d (%2.2d, %2.2d)",
                  asFrmCoordonnees="%2.2d, %2.2d",
-                 asFrmPourcentage="%.3f%%", // v3.0
+				 asFrmPourcentage="#.000%", // v3.0. v5.4.1 : FormatFloat n'utilise pas le format "%.3f%%" mais "#.000%"
                  asFrmVitesse="%d/%d",
                  asNiveauPriorite[NBNIVEAUXPRIORITE]={"Normal", "Urgences", "Police"},
-                 asDepartArrivee[2]={"de départ","d'arrivée"}, // v5.0
+				 asDepartArrivee[2]={"de départ","d'arrivée"}, // v5.0
                  asFrmFileParking[2]={"Parking %s :","File Parking %s"}; // v5.0
 //---------------------------------------------------------------------------
 const TColor CouleurNiveauPriorite[NBNIVEAUXPRIORITE]={clBlack, clRed, clBlue};
@@ -34,7 +34,7 @@ void TfrmInfosVehicule::RendreVisibleInfos(bool ARendreVisible)
   if (ARendreVisible)
    {
     RadioButtonVehiculeNumero->Checked=true;
-    GroupBoxVehicule->Caption= GroupBoxVehicule->Caption+
+	GroupBoxVehicule->Caption= GroupBoxVehicule->Caption+
                                Format( asFrmNumeroCoordonnees,
                                        ARRAYOFCONST((v->NumVehicule, Veh->x, Veh->y)))+
                                " ";
@@ -72,7 +72,7 @@ void TfrmInfosVehicule::RafraichitInfos()
   bool Prioritaire;
   int DejaParcouru,
       ResteAParcourir,
-      DistMin;
+	  DistMin;
   voie *CaseDepart; // v5.0 : ATTENTION, le type de parking peut être souterrain ou extérieur !
   bool Afficher;
   x=frmSimulation->DrawGridSimul->Col;
@@ -110,7 +110,7 @@ void TfrmInfosVehicule::RafraichitInfos()
                                                          cv->Parking[NumParkingDepart-1].y)));
      }
 
-    if (NumFileParkArrivee) // v5.0
+	if (NumFileParkArrivee) // v5.0
      {
       LabelArrivee->Caption=Format( asFrmFileParking[FILEPARK], ARRAYOFCONST((asDepartArrivee[ARRIVEE])));
       LabelParkingArrivee->Caption=Format( asFrmNumeroCoordonnees,

@@ -12,7 +12,7 @@
 #define NBTYPESMESSAGE  5
 #define NBTYPESREPONSE  4
 #define NBMAXBOUTONS    3
-#define NBCONTEXTESAIDE 56
+#define NBCONTEXTESAIDE 57
 //---------------------------------------------------------------------------
 const int Style[NBTYPESMESSAGE]={MB_ICONINFORMATION, MB_ICONEXCLAMATION, MB_ICONHAND, MB_ICONQUESTION, MB_ICONQUESTION};
 const int Boutons[NBTYPESMESSAGE]={MB_OK, MB_OK, MB_OK, MB_YESNO, MB_YESNOCANCEL};
@@ -46,7 +46,8 @@ const struct { int Numero; const char *szHREF; } // v5.3 : aide type HLP convert
                        {313, "CDLS"},
                        {314, "SDLS"},
                        {315, "SSLCDR"},
-                       {316, "PDLADSDE"},
+					   {316, "PDLADSDE"},
+                       {317, "PDLE"}, // v5.4.1
                        {32, "LBDO"},
                        {33, "LZDS"},
                        {3301, "LDEDLZDS"},

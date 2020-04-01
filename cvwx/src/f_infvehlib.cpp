@@ -12,8 +12,8 @@
 TfrmInfosVehlib *frmInfosVehlib;
 //---------------------------------------------------------------------------
 const AnsiString asDebutTitreCadreVehlib="                           ",
-                 asAucune="Aucune", asNA="N/A", asNonDemarre="Non démarré",
-                 asFrmNumeroCoordonnees="%d (%2.2d, %2.2d)",
+				 asAucune="Aucune", asNA="N/A", asNonDemarre="N/D",
+				 asFrmNumeroCoordonnees="%d (%2.2d, %2.2d)",
                  asFrmCoordonnees="%2.2d, %2.2d",
                  asFrmPourcentage="%.3f%%",
                  asFrmVitesse="%d/%d",

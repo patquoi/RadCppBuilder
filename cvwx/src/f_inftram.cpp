@@ -21,7 +21,7 @@ const AnsiString asDebutTitreCadreTram="                           ",
                                              "%d (%2.2d, %2.2d)  jusqu'au tour %d",
                                              "%d (%2.2d, %2.2d) depuis le tour %d"},
                  asFrmCoordonnees="%2.2d, %2.2d",
-                 asFrmPourcentage="%.3f%%",
+                 asFrmPourcentage="0.000%", // v3.0. v5.4.1 : FormatFloat n'utilise pas le format "%.3f%%" mais "#.000%"
                  asFrmVitesse="%d/%d";
 //---------------------------------------------------------------------------
 __fastcall TfrmInfosTram::TfrmInfosTram(TComponent* Owner)

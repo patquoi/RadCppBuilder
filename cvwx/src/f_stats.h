@@ -18,6 +18,7 @@ __published:	// Composants gérés par l'EDI
           TShiftState Shift);
 private:	// Déclarations de l'utilisateur
 public:		// Déclarations de l'utilisateur
+    bool AffichageEpidemique; // v5.4.1. Définit avant l'appel à FormShow par frmSimulation
     __fastcall TfrmStatistiques(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

@@ -419,7 +419,7 @@ object frmInfosTram: TfrmInfosTram
   object RadioButtonTramNumero: TRadioButton
     Left = 19
     Top = 55
-    Width = 77
+    Width = 58
     Height = 17
     Caption = 'Tram n'#176
     Enabled = False

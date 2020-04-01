@@ -4,15 +4,16 @@
 //---------------------------------------------------------------------------
 #include <tchar.h>
 //---------------------------------------------------------------------------
+USEFORM("f_infvehlib.cpp", frmInfosVehlib);
 USEFORM("f_prmbus.cpp", frmParamBus);
 USEFORM("f_prmsim.cpp", frmParamSimul);
 USEFORM("f_prmtaxi.cpp", frmParamTaxi);
-USEFORM("f_prmtram.cpp", frmParamTram);
-USEFORM("f_infvehlib.cpp", frmInfosVehlib);
+USEFORM("f_infveh.cpp", frmInfosVehicule);
+USEFORM("f_infbus.cpp", frmInfosBus);
 USEFORM("f_infptn.cpp", frmInfosPieton);
 USEFORM("f_inftaxi.cpp", frmInfosTaxi);
 USEFORM("f_inftram.cpp", frmInfosTram);
-USEFORM("f_infveh.cpp", frmInfosVehicule);
+USEFORM("f_prmtram.cpp", frmParamTram);
 USEFORM("f_statsat.cpp", frmStatsAttenteTrafic);
 USEFORM("f_statsc.cpp", frmStatsComposition);
 USEFORM("f_statsv.cpp", frmStatsVehicules);
@@ -21,21 +22,21 @@ USEFORM("f_prmvehlib.cpp", frmParamVehlib);
 USEFORM("f_propos.cpp", frmAPropos);
 USEFORM("f_rech.cpp", frmRecherche);
 USEFORM("f_simul.cpp", frmSimulation);
+USEFORM("f_afdistab.cpp", frmAffDistArretsBus);
+USEFORM("f_afdistat.cpp", frmAffDistArretsTram);
 USEFORM("f_afdistfp.cpp", frmAffDistFilesPark);
 USEFORM("f_afdistft.cpp", frmAffDistFilesTaxi);
 USEFORM("f_afdistp.cpp", frmAffDistParkings);
-USEFORM("f_afdistpv.cpp", frmAffDistPlacesVehlib);
-USEFORM("f_afdistat.cpp", frmAffDistArretsTram);
-USEFORM("f_afdistab.cpp", frmAffDistArretsBus);
+USEFORM("f_defv.cpp", frmDefVoie);
 USEFORM("f_defvp.cpp", frmDefVoiePietons);
 USEFORM("f_dimzone.cpp", frmDimensionsZone);
 USEFORM("f_genres.cpp", frmGeneration);
-USEFORM("f_infbus.cpp", frmInfosBus);
-USEFORM("f_defv.cpp", frmDefVoie);
+USEFORM("f_defn.cpp", frmDefNature);
+USEFORM("f_afdistpv.cpp", frmAffDistPlacesVehlib);
 USEFORM("f_carfours.cpp", frmCarrefours);
 USEFORM("f_deff.cpp", frmDefFeux);
 USEFORM("f_deffp.cpp", frmDefFeuxPietons);
-USEFORM("f_defn.cpp", frmDefNature);
+USEFORM("f_epidemie.cpp", frmEpidemie);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -66,6 +67,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TfrmInfosBus), &frmInfosBus);
 		Application->CreateForm(__classid(TfrmInfosVehlib), &frmInfosVehlib);
 		Application->CreateForm(__classid(TfrmDefNature), &frmDefNature);
+		Application->CreateForm(__classid(TfrmEpidemie), &frmEpidemie);
 		Application->Run();
 	}
 	catch (Exception &exception)

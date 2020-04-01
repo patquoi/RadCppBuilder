@@ -9,9 +9,9 @@ object frmDefVoie: TfrmDefVoie
   Caption = 'Priorit'#233's de la case'
   ClientHeight = 368
   ClientWidth = 290
-  Color = clBtnFace
+  Color = clTeal
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clBlack
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
@@ -50,19 +50,16 @@ object frmDefVoie: TfrmDefVoie
     Width = 130
     Height = 89
     Caption = ' Priorit'#233' &Nord '
+    Color = clTeal
     Enabled = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
     ItemIndex = 0
     Items.Strings = (
       #192' droite'
       'C'#233'dez-le-passage'
       'Stop'
       'Feu...')
-    ParentFont = False
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 0
     OnClick = RadioGroupPrioriteClick
   end
@@ -73,6 +70,7 @@ object frmDefVoie: TfrmDefVoie
     Width = 130
     Height = 89
     Caption = ' Priorit'#233' &Ouest '
+    Color = clTeal
     Enabled = False
     ItemIndex = 0
     Items.Strings = (
@@ -80,6 +78,7 @@ object frmDefVoie: TfrmDefVoie
       'C'#233'dez-le-passage'
       'Stop'
       'Feu...')
+    ParentColor = False
     TabOrder = 2
     OnClick = RadioGroupPrioriteClick
   end
@@ -90,6 +89,7 @@ object frmDefVoie: TfrmDefVoie
     Width = 130
     Height = 89
     Caption = ' Priorit'#233' &Est '
+    Color = clTeal
     Enabled = False
     ItemIndex = 0
     Items.Strings = (
@@ -97,16 +97,18 @@ object frmDefVoie: TfrmDefVoie
       'C'#233'dez-le-passage'
       'Stop'
       'Feu...')
+    ParentColor = False
     TabOrder = 4
     OnClick = RadioGroupPrioriteClick
   end
   object RadioGroupPrioriteSud: TRadioGroup
     Tag = 2
     Left = 80
-    Top = 232
+    Top = 231
     Width = 130
     Height = 89
     Caption = ' Priorit'#233' &Sud'
+    Color = clTeal
     Enabled = False
     ItemIndex = 0
     Items.Strings = (
@@ -114,6 +116,8 @@ object frmDefVoie: TfrmDefVoie
       'C'#233'dez-le-passage'
       'Stop'
       'Feu...')
+    ParentBackground = False
+    ParentColor = False
     TabOrder = 6
     OnClick = RadioGroupPrioriteClick
   end
@@ -145,10 +149,6 @@ object frmDefVoie: TfrmDefVoie
     Height = 22
     Hint = 'D'#233'finit le feu Nord'
     Enabled = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 1
-    OnClick = BitBtnDefFeuClick
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
       0400000000000001000000000000000000001000000000000000000000000000
@@ -163,6 +163,10 @@ object frmDefVoie: TfrmDefVoie
       9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
       1911FF88000000088F88A280000000111110F880000000888880}
     NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    OnClick = BitBtnDefFeuClick
   end
   object BitBtnDefFeuO: TBitBtn
     Tag = 4
@@ -172,10 +176,6 @@ object frmDefVoie: TfrmDefVoie
     Height = 22
     Hint = 'D'#233'finit le feu Ouest'
     Enabled = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 3
-    OnClick = BitBtnDefFeuClick
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
       0400000000000001000000000000000000001000000000000000000000000000
@@ -190,6 +190,10 @@ object frmDefVoie: TfrmDefVoie
       9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
       1911FF88000000088F88A280000000111110F880000000888880}
     NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    OnClick = BitBtnDefFeuClick
   end
   object BitBtnDefFeuE: TBitBtn
     Tag = 2
@@ -199,10 +203,6 @@ object frmDefVoie: TfrmDefVoie
     Height = 22
     Hint = 'D'#233'finit le feu Est'
     Enabled = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 5
-    OnClick = BitBtnDefFeuClick
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
       0400000000000001000000000000000000001000000000000000000000000000
@@ -217,6 +217,10 @@ object frmDefVoie: TfrmDefVoie
       9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
       1911FF88000000088F88A280000000111110F880000000888880}
     NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 5
+    OnClick = BitBtnDefFeuClick
   end
   object BitBtnDefFeuS: TBitBtn
     Tag = 3
@@ -226,10 +230,6 @@ object frmDefVoie: TfrmDefVoie
     Height = 22
     Hint = 'D'#233'finit le feu Sud'
     Enabled = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 7
-    OnClick = BitBtnDefFeuClick
     Glyph.Data = {
       76010000424D7601000000000000760000002800000020000000100000000100
       0400000000000001000000000000000000001000000000000000000000000000
@@ -244,6 +244,10 @@ object frmDefVoie: TfrmDefVoie
       9911F8FF88000000FF882AA28000000099118FF880000000FF88AA2800000001
       1911FF88000000088F88A280000000111110F880000000888880}
     NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 7
+    OnClick = BitBtnDefFeuClick
   end
   object ButtonAppliquer: TButton
     Left = 142

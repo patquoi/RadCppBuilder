@@ -36,7 +36,7 @@
 // Types énumérés. /!\ v5.4 : le type char a été forcé pour que l'énuméré ne prenne pas la taille d'un entier (4 octets)
 //----------------------------------------------------------------------------------------------------------------------
 // pour RafraichitBoutonsEdition(...) v3.5
-enum affichage : char {aff_aucun, aff_dir, aff_sign, aff_veh=4, aff_ptn=8, aff_voie=16, aff_quadr=32, aff_env=64}; // v3.8.1 (aff_env)
+enum affichage : unsigned char {aff_aucun, aff_dir, aff_sign, aff_veh=4, aff_ptn=8, aff_voie=16, aff_quadr=32, aff_env=64, aff_infct=128}; // v3.8.1 (aff_env). v5.4.1 (unsigned + aff_infct)
 enum type_demande : char {tdRien, tdPause, tdArret};
 enum operation_avant : char {oaNouveau, oaOuvrir, oaQuitter};
 enum mode_edition : char {meAucun, meCase, meSelection}; // pour RafraichitBoutonEdition. v3.5
@@ -399,7 +399,12 @@ __published:	// Composants gérés par l'EDI
   TVirtualImageList *VirtualImageList16x16;
 	TVirtualImageList *VirtualImageList8x8;
 	TVirtualImageList *VirtualImageListGlyphes;
-	TPanel *PanelHaut; // v5.4
+	TPanel *PanelHaut;
+	TAction *ActionEpidemie;
+	TMenuItem *Epidemie1;
+	TToolButton *ToolButtonEpidemie;
+	TAction *ActionAfficherInfection;
+	TToolButton *ToolButtonAffInfct; // v5.4
   void __fastcall DrawGridSimulDrawCell(TObject *Sender, int Col,
 		int Row, TRect &Rect, TGridDrawState State);
   void __fastcall FormCreate(TObject *Sender);
@@ -515,6 +520,8 @@ __published:	// Composants gérés par l'EDI
   void __fastcall ActionDistancesPlacesVehlibExecute(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
+	void __fastcall ActionEpidemieExecute(TObject *Sender);
+	void __fastcall ActionAfficherInfectionExecute(TObject *Sender);
 private:
   affichage Affichage;
   bool SimulEnCours,
@@ -637,9 +644,10 @@ private:
   bool __fastcall ResurrectionEstDemandee() { return ActionResurrection->Checked; }; // v4.3.1
   void __fastcall ModifieDemandeResurrection(bool Resurrection) // v4.3.1
    {
-    ActionResurrection->Checked=Resurrection;
-    ActionResurrection->Enabled=!ActionResurrection->Checked;
+	ActionResurrection->Checked=Resurrection;
+	ActionResurrection->Enabled=!ActionResurrection->Checked;
    };
+  bool __fastcall EpidemieEstActive() { return ActionEpidemie->Checked; }; // v5.4.1
   bool ConfirmeSuppressionFeuxUtilisesDansSelection(type_voie TypeVoie);
   void SupprimeFeuxUtilisesDansSelection(type_voie TypeVoie);
   bool ConfirmeSuppressionArretsUtilisesDansSelection(type_voie TypeVoie); // v3.5
@@ -658,7 +666,8 @@ public:
 	__property bool SimulationModifiee = {read=SimulEstModifiee, write=ModifieSimul};
 	__property bool SimulationSanglante = {read=SimulEstSanglante, write=ModifieModeSanglant}; // v4.3
 	__property bool ResurrectionDemandee = {read=ResurrectionEstDemandee, write=ModifieDemandeResurrection}; // v4.3.1
-    bool SelectionFeuxDmd,
+	__property bool EpidemieActivee = {read=EpidemieEstActive}; // v5.4.1
+	bool SelectionFeuxDmd,
          SelectionFeuxAtt,
          SelectionFeuxPtn, // v5.2
          StatsAttenteTrafic, // v2.2.7

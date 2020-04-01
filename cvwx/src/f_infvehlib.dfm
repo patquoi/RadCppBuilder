@@ -288,7 +288,7 @@ object frmInfosVehlib: TfrmInfosVehlib
   object RadioButtonVehlibNumero: TRadioButton
     Left = 19
     Top = 55
-    Width = 77
+    Width = 58
     Height = 17
     Caption = 'Vehlib n'#176
     Enabled = False

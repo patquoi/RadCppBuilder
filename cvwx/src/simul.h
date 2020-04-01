@@ -73,6 +73,10 @@
 #define DEBUT true
 #define FIN   false
 //---------------------------------------------------------------------------
+// v5.4.1 : Pour infection::DonneTourDeb(bool Dernier) et DonneNumPieton(bool Dernier)
+#define PREMIER false
+#define DERNIER true
+//---------------------------------------------------------------------------
 // Version 1.5 : Ajout de la vitesse
 //  - Ajout de la propriété NbVitesses dans la classe centre_ville.
 //  - Il peut y avoir de 1 à 3 vitesses différentes : 1 case/tour /2 tours ou /3 tours.
@@ -120,6 +124,7 @@
 
 // version 5.3 : Ajout éléments vehlib, place_vehlib
 // version 5.4 : Version 32 et 64 bits
+// version 5.4.1 : Ajout de la notion d'épidémie (spécial Covid-19)
 //----------------------------------------------------------------------------------------------------------------------
 // Types énumérés. /!\ v5.4 : le type char a été forcé pour que l'énuméré ne prenne pas la taille d'un entier (4 octets)
 //----------------------------------------------------------------------------------------------------------------------
@@ -146,44 +151,101 @@ enum nature { voies,
               immeubles=0x20000};
 enum coin : char {aucun_coin, haut_droite, bas_droite, bas_gauche=4, haut_gauche=8, quatre_coins=15}; // v3.8
 //---------------------------------------------------------------------------
+class centre_ville;
+//---------------------------------------------------------------------------
+class infection // v5.4.1
+ {
+  int TourDeb, TourFin, // Contagieux si TourDeb < cv->TourCrt < TourFin
+	  TourFatal, // Si > 0 alors Mort programmée à TourFatal + cv->EpidemieInfectiosite
+	  NumPrmPieton, NumDrnPieton, // Pas de patient source car patient zéro donc... vaut zéro !
+	  PrmRang, DrnRang, // 0 = patient zéro.
+	  ChargeVirale; // Est incrémenté à chaque (ré)infection dans la période contagieuse
+  public:
+  infection *Svt;
+  infection(const centre_ville *cv); // Patient zéro
+  infection(int Tour, int NumPietonOrigine, int Rang);
+  ~infection() { if (Svt) delete Svt; };
+  bool EstContagieux(int Tour)
+   {
+	if ((Tour>TourDeb)&&(Tour<TourFin))
+	  return true;
+	else
+	  if (Svt)
+		return Svt->EstContagieux(Tour);
+	  else
+		return false;
+   };
+  bool Reinfecte(int Tour, int NumPieton, int Rang); // comme le constructeur mais pour une personne qui a déjà été infectée
+  int DonneRang(int Tour)
+   {
+	if ((Tour>TourDeb)&&(Tour<TourFin))
+	  return PrmRang;
+	else
+	  if (Svt)
+		return Svt->DonneRang(Tour);
+	  else
+		return -1; // Non contagieux au moment du tour
+   };
+  int DonneChargeVirale(int Tour)
+   {
+	if ((Tour>TourDeb)&&(Tour<TourFin))
+	  return ChargeVirale;
+	else
+	  if (Svt)
+		return Svt->DonneChargeVirale(Tour);
+	  else
+        return 0;
+   };
+  bool DoitSuccomber(int Tour);
+  int NbInfections() { if (Svt) return 1+Svt->NbInfections(); else return 1; };
+  int DonneDrnRang() { if (Svt) return Svt->DonneDrnRang(); else return DrnRang; };
+  int DonneTourFin() { if (Svt) return Svt->DonneTourFin(); else return TourFin; };
+  int DonneTourDeb(bool Dernier) { if (Dernier&&Svt) return Svt->DonneTourDeb(true); else return TourDeb; };
+  bool EstCondamne() { if (Svt) return Svt->EstCondamne(); else return (TourFatal>0); };
+ };
+//---------------------------------------------------------------------------
 class pieton // v2.0
  {
   int Numero;
   public:
-  int x, y, Dir, DemiCase,
-      NumArretBus, // v3.0. Arrêt de bus d'attente (si >0). Le piéton se trouve à côté de cet arrêt (à droite de la tête de l'arrêt de bus)
-      NumArretTram, // v3.5. Arrêt de tram d'attente (si >0). Le piéton se trouve à côté de cet arrêt (à droite de la tête de l'arrêt de tram)
-      NumFileTaxi, // v3.6. File de taxi d'attente (si >0). Le piéton se trouve à côté de cette file (à droite de la tête de file de taxi)
-      NumPlaceVehlib, // v5.3. Place vehlib d'attente (si >0). Le piéton se trouve à côté de cette place avant de monter dans le vehlib
-      NumBus, // v3.0. Bus dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
-      NumTram, // v3.5. Tram dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
-      NumTaxi, // v3.6. Tram dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
-      NumVehlib, // v5.3/ Vehlib dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
-      NumFeuP, // v5.2. Feu piéton au pied duquel le piéton attend pour traverser (>0 si AttendFeuP)
-      TourDrnDepl, TourDrnAff,
-      TourAttBus, // v3.0. Tour à partir duquel le piéton attend le bus
-      TourAttTram, // v3.5. Tour à partir duquel le piéton attend le tram
-      TourAttTaxi, // v3.6. Tour à partir duquel le piéton attend le taxi
-      DemiCasesParcourues; // v3.0. L'unité de longueur piétonne est la demi-case, pas la case !
+  int x, y,
+	  Dir, DemiCase,
+	  NumArretBus, // v3.0. Arrêt de bus d'attente (si >0). Le piéton se trouve à côté de cet arrêt (à droite de la tête de l'arrêt de bus)
+	  NumArretTram, // v3.5. Arrêt de tram d'attente (si >0). Le piéton se trouve à côté de cet arrêt (à droite de la tête de l'arrêt de tram)
+	  NumFileTaxi, // v3.6. File de taxi d'attente (si >0). Le piéton se trouve à côté de cette file (à droite de la tête de file de taxi)
+	  NumPlaceVehlib, // v5.3. Place vehlib d'attente (si >0). Le piéton se trouve à côté de cette place avant de monter dans le vehlib
+	  NumBus, // v3.0. Bus dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
+	  NumTram, // v3.5. Tram dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
+	  NumTaxi, // v3.6. Tram dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
+	  NumVehlib, // v5.3/ Vehlib dans lequel se trouve le piéton (si >0. Dans ce cas, x=-1 et y=-1)
+	  NumFeuP, // v5.2. Feu piéton au pied duquel le piéton attend pour traverser (>0 si AttendFeuP)
+	  TourDrnDepl, TourDrnAff,
+	  TourAttBus, // v3.0. Tour à partir duquel le piéton attend le bus
+	  TourAttTram, // v3.5. Tour à partir duquel le piéton attend le tram
+	  TourAttTaxi, // v3.6. Tour à partir duquel le piéton attend le taxi
+	  DemiCasesParcourues; // v3.0. L'unité de longueur piétonne est la demi-case, pas la case !
   bool PsgPtTrv,
-       ArretBusTrv, // v3.0. Arrêt de bus trouvé
-       AttendBus,  // v3.0. Attend un bus à l'arret NumArretBus
-       ArretTramTrv, // v3.5. Arrêt de tram trouvé
-       AttendTram,  // v3.5. Attend un tram à l'arret NumArretTram
-       AttendFeuP,  // v5.2. Attend que le feu piéton NumFeuP l'autorise à traverser la voie (tram/route).
-       FileTaxiTrv, // v3.5. File de taxi trouvée
-       PlaceVehlibTrv, // v5.3. Place de vehlib trouvée
-       AttendTaxi,  // v3.5. Attend un taxi à la file NumFileTaxi
-       AttendVehlib, // v5.3. Attend un vehlib à la file NumFileVehlib
-       VeutDescendre, // v3.0. Indique qu'il veut descendre du bus, du tram ou du taxi
-       Ecrase; // v4.3. Indique si ce piéton a été écrasé : Si c'est le cas les coordonnées sont l'endroit du crime 
+	   ArretBusTrv, // v3.0. Arrêt de bus trouvé
+	   AttendBus,  // v3.0. Attend un bus à l'arret NumArretBus
+	   ArretTramTrv, // v3.5. Arrêt de tram trouvé
+	   AttendTram,  // v3.5. Attend un tram à l'arret NumArretTram
+	   AttendFeuP,  // v5.2. Attend que le feu piéton NumFeuP l'autorise à traverser la voie (tram/route).
+	   FileTaxiTrv, // v3.5. File de taxi trouvée
+	   PlaceVehlibTrv, // v5.3. Place de vehlib trouvée
+	   AttendTaxi,  // v3.5. Attend un taxi à la file NumFileTaxi
+	   AttendVehlib, // v5.3. Attend un vehlib à la file NumFileVehlib
+	   VeutDescendre, // v3.0. Indique qu'il veut descendre du bus, du tram ou du taxi
+	   Ecrase, // v4.3. Indique si ce piéton a été écrasé : Si c'est le cas les coordonnées sont l'endroit du crime
+       Mort; // v5.4.1. Indique si ce piéton est victime de l'épidémie
+  infection *Infection; // v5.4.1
   void Initialise()
    {
-    x=-1; y=-1;
-    Dir=indefinie;
-    NumVehlib=NumPlaceVehlib=NumFeuP=NumTaxi=NumTram=NumBus=NumFileTaxi=NumArretTram=NumArretBus=DemiCase=0; // v3.6 (NumTaxi, NumFileTaxi), v5.2 (NumFeuP), v5.3 (vehlib)
-    DemiCasesParcourues=TourDrnAff=TourDrnDepl=0L;
-    Ecrase=VeutDescendre=AttendFeuP=AttendVehlib=AttendTaxi=AttendTram=AttendBus=PlaceVehlibTrv=FileTaxiTrv=ArretTramTrv=ArretBusTrv=PsgPtTrv=false; // v4.3 (Ecrase), v5.2 (AttendFeuP), v5.3 (vehlib)
+	x=y=-1; // v5.4.1 (xm, ym)
+	Dir=indefinie;
+	NumVehlib=NumPlaceVehlib=NumFeuP=NumTaxi=NumTram=NumBus=NumFileTaxi=NumArretTram=NumArretBus=DemiCase=0; // v3.6 (NumTaxi, NumFileTaxi), v5.2 (NumFeuP), v5.3 (vehlib)
+	DemiCasesParcourues=TourDrnAff=TourDrnDepl=0L;
+	Mort=Ecrase=VeutDescendre=AttendFeuP=AttendVehlib=AttendTaxi=AttendTram=AttendBus=PlaceVehlibTrv=FileTaxiTrv=ArretTramTrv=ArretBusTrv=PsgPtTrv=false; // v4.3 (Ecrase), v5.2 (AttendFeuP), v5.3 (vehlib), v5.4.1 (Mort)
+    Infection=NULL;
    };
   pieton() { Numero=0; Initialise(); };
   void AffecteNumero(int Num) { Numero=Num; };
@@ -191,14 +253,17 @@ class pieton // v2.0
   void Definit(int x0, int y0, direction Dir0, int DemiCase0) { x=x0; y=y0; Dir=Dir0; DemiCase=DemiCase0; TourDrnAff=TourDrnDepl=0L; PsgPtTrv=false; };
   void AnnuleRechercheEnCours()
    {
-    if (PsgPtTrv) PsgPtTrv=false;
-    if (ArretBusTrv) ArretBusTrv=false;
-    if (ArretTramTrv) ArretTramTrv=false;
-    if (FileTaxiTrv) FileTaxiTrv=false; // v3.6
-    if (PlaceVehlibTrv) PlaceVehlibTrv=false; // v5.3
+	if (PsgPtTrv) PsgPtTrv=false;
+	if (ArretBusTrv) ArretBusTrv=false;
+	if (ArretTramTrv) ArretTramTrv=false;
+	if (FileTaxiTrv) FileTaxiTrv=false; // v3.6
+	if (PlaceVehlibTrv) PlaceVehlibTrv=false; // v5.3
    };
   pieton(int x0, int y0, direction Dir0, int DemiCase0) { Definit(x0, y0, Dir0, DemiCase0); };
-  ~pieton() {};
+  ~pieton()
+   {
+	if (Infection) delete Infection; // v5.4.1
+   };
   void ChercheFileTaxi(); // v3.6
   bool Defini() { return (x>-1)&&(y>-1); };
   void Verifie(AnsiString &asMsgErr);
@@ -206,7 +271,21 @@ class pieton // v2.0
   void MonteDansTram(int t) { NumTram=t; AttendTram=false; x=-1; y=-1; }; // v3.6
   void MonteDansTaxi(int t) { NumTaxi=t; AttendTaxi=false; NumFileTaxi=0; x=-1; y=-1; }; // v3.6
   void MonteDansVehlib(int v) { NumVehlib=v; AttendVehlib=false; NumPlaceVehlib=0; x=-1; y=-1; }; // v5.3
-  void SeFaitEcraser() { Ecrase=true; PsgPtTrv=ArretBusTrv=ArretTramTrv=PlaceVehlibTrv=FileTaxiTrv=AttendVehlib=AttendBus=AttendTram=AttendTaxi=VeutDescendre=false; }; // v4.3. v5.3 (vehlib)
+  void SeFaitEcraser() { Ecrase=true; PsgPtTrv=ArretBusTrv=ArretTramTrv=PlaceVehlibTrv=FileTaxiTrv=AttendVehlib=AttendBus=AttendTram=AttendTaxi=VeutDescendre=false; }; // v4.3 (création) v5.3 (vehlib)
+  // v5.4.1 : gestion de l'épidémie
+  void SuccombeInfection() { Mort=true;	PsgPtTrv=ArretBusTrv=ArretTramTrv=PlaceVehlibTrv=FileTaxiTrv=AttendVehlib=AttendBus=AttendTram=AttendTaxi=VeutDescendre=false; }; // v5.4.1
+  bool EstVivant() { return (!Ecrase)&&(!Mort); };
+  bool EstContagieux();
+  void EstContaminePar(int NumPieton, int Rang); // v5.4.1. Utilisation : UnPieton->EstContaminePar(PietonContagieux->Numero+1, PietonContagieux->DonneRang()+1)
+  int DonneRang();
+  int DonneChargeVirale();
+  bool DoitSuccomber();
+  int NbInfections() { if (Infection) return Infection->NbInfections(); else return 0; };
+  int DonneDrnRang() { if (Infection) return Infection->DonneDrnRang(); else return -1; };
+  int DonneTourFin() { if (Infection) return Infection->DonneTourFin(); else return -1; };
+  int DonneTourDeb(bool Dernier) { if (Infection) return Infection->DonneTourDeb(Dernier); else return -1; };
+  bool EstCondamne() { if (Infection) return Infection->EstCondamne(); else return false; };
+  void SupprimeInfection() { if (Infection) { delete Infection; Infection=NULL; Mort=false; } }; // Utilisé par la résurrection !
  };
 //---------------------------------------------------------------------------
 class feu
@@ -217,67 +296,67 @@ class feu
   int x, y, Dir; // Orientation. Mais il peut y avoir max. 2 feux par case;
   etat_feu Etat, ProchainEtat;
   int NbFeuxDmd, // Nbre de feux demandant le rouge
-      NbFeuxAtt,// Nbre de feux devant être rouge pour que celui-ci (this) passe au vert
-      NbFeuxPtn, // Nbre de feux piétons liés (v5.2). ATTENTION: défini au lancement de la simulation car le lien est établi depuis les feux de piétons.
-      *NumFeuxDmd, // Liste des feux demandant le rouge
-      *NumFeuxAtt, // Liste des feux devant être rouge pour que celui-ci (this) passe au vert
-      *NumFeuxPtn, // Liste des feux de piétons (v5.2). ATTENTION: définie au lancement de la simulation car le lien est établi depuis les feux de piétons.
-      DureeRouge, DureeVert,
-      TourDrnChgEtat; // Tour du dernier changement d'état
+	  NbFeuxAtt,// Nbre de feux devant être rouge pour que celui-ci (this) passe au vert
+	  NbFeuxPtn, // Nbre de feux piétons liés (v5.2). ATTENTION: défini au lancement de la simulation car le lien est établi depuis les feux de piétons.
+	  *NumFeuxDmd, // Liste des feux demandant le rouge
+	  *NumFeuxAtt, // Liste des feux devant être rouge pour que celui-ci (this) passe au vert
+	  *NumFeuxPtn, // Liste des feux de piétons (v5.2). ATTENTION: définie au lancement de la simulation car le lien est établi depuis les feux de piétons.
+	  DureeRouge, DureeVert,
+	  TourDrnChgEtat; // Tour du dernier changement d'état
   dmd_vert TypeDmdVert; // Type de demande du vert : dès l'arrivée d'un vehicule ou dès le passage au rouge
   psg_rouge TypePsgRouge; // Type de passage au rouge : dès la première demande ou à l'unanimité des feux demandeurs
   bool DemandeVert, // Indique qu'il demande le rouge (à ceux qui ont Numero dans FeuxDmd[])
-       FeuxTousRouges, // Indique que les feux (FeuxAtt) sont tous rouges
-       RougeDemande, // Indique qu'un feu demande le rouge
-       ProchainVert, // Indique qu'il est autorisé à passer au vert
-       VerifEnCours; // Drapeau pour Verifie()
+	   FeuxTousRouges, // Indique que les feux (FeuxAtt) sont tous rouges
+	   RougeDemande, // Indique qu'un feu demande le rouge
+	   ProchainVert, // Indique qu'il est autorisé à passer au vert
+	   VerifEnCours; // Drapeau pour Verifie()
   void Initialise()
    {
-    x=-1; y=-1; Dir=indefinie; ProchainEtat=Etat=inactif;
-    TypeDmdVert=arrivee_vehicule;
-    TypePsgRouge=prm_dmd;
-    DureeVert=DureeRouge=NbFeuxPtn=NbFeuxAtt=NbFeuxDmd=0;
-    TourDrnChgEtat=0L;
-    ProchainVert=RougeDemande=FeuxTousRouges=DemandeVert=false;
-    VerifEnCours=false;
+	x=-1; y=-1; Dir=indefinie; ProchainEtat=Etat=inactif;
+	TypeDmdVert=arrivee_vehicule;
+	TypePsgRouge=prm_dmd;
+	DureeVert=DureeRouge=NbFeuxPtn=NbFeuxAtt=NbFeuxDmd=0;
+	TourDrnChgEtat=0L;
+	ProchainVert=RougeDemande=FeuxTousRouges=DemandeVert=false;
+	VerifEnCours=false;
    };
   feu() { Numero=0; Initialise(); NumFeuxPtn=NumFeuxDmd=NumFeuxAtt=NULL; CopieEnCours=false; /*v5.1*/}; // v3.8.2 (NULL) v5.2 (NumFeuP)
   void Copie(feu *f) // v5.1
    {
-    f->CopieEnCours=true;
-    Numero=f->Numero;
-    x=f->x;
-    y=f->y;
-    Dir=f->Dir;
-    Etat=f->Etat;
-    ProchainEtat=f->ProchainEtat;
-    NbFeuxDmd=f->NbFeuxDmd;
-    NbFeuxAtt=f->NbFeuxAtt;
-    NbFeuxPtn=f->NbFeuxPtn; // v5.2
-    NumFeuxDmd=f->NumFeuxDmd;
-    NumFeuxAtt=f->NumFeuxAtt;
-    NumFeuxPtn=f->NumFeuxPtn; // v5.2
-    DureeRouge=f->DureeRouge;
-    DureeVert=f->DureeVert;
-    TourDrnChgEtat=f->TourDrnChgEtat;
-    TypeDmdVert=f->TypeDmdVert;
-    TypePsgRouge=f->TypePsgRouge;
-    DemandeVert=f->DemandeVert;
-    FeuxTousRouges=f->FeuxTousRouges;
-    RougeDemande=f->RougeDemande;
-    ProchainVert=f->ProchainVert;
-    VerifEnCours=f->VerifEnCours;
+	f->CopieEnCours=true;
+	Numero=f->Numero;
+	x=f->x;
+	y=f->y;
+	Dir=f->Dir;
+	Etat=f->Etat;
+	ProchainEtat=f->ProchainEtat;
+	NbFeuxDmd=f->NbFeuxDmd;
+	NbFeuxAtt=f->NbFeuxAtt;
+	NbFeuxPtn=f->NbFeuxPtn; // v5.2
+	NumFeuxDmd=f->NumFeuxDmd;
+	NumFeuxAtt=f->NumFeuxAtt;
+	NumFeuxPtn=f->NumFeuxPtn; // v5.2
+	DureeRouge=f->DureeRouge;
+	DureeVert=f->DureeVert;
+	TourDrnChgEtat=f->TourDrnChgEtat;
+	TypeDmdVert=f->TypeDmdVert;
+	TypePsgRouge=f->TypePsgRouge;
+	DemandeVert=f->DemandeVert;
+	FeuxTousRouges=f->FeuxTousRouges;
+	RougeDemande=f->RougeDemande;
+	ProchainVert=f->ProchainVert;
+	VerifEnCours=f->VerifEnCours;
    };
   void AffecteNumero(int Num) { Numero=Num; };
   void Definit(int x0, int y0, int Dir0) { x=x0; y=y0; Dir=Dir0; Etat=inactif; };
   ~feu()
    {
-    if (!CopieEnCours) // v5.1
-     {
-      if (NbFeuxDmd) { delete[] NumFeuxDmd; NumFeuxDmd=NULL; }
-      if (NbFeuxAtt) { delete[] NumFeuxAtt; NumFeuxAtt=NULL;}
-      if (NbFeuxPtn) { delete[] NumFeuxPtn; NumFeuxPtn=NULL;} // v5.2
-     }
+	if (!CopieEnCours) // v5.1
+	 {
+	  if (NbFeuxDmd) { delete[] NumFeuxDmd; NumFeuxDmd=NULL; }
+	  if (NbFeuxAtt) { delete[] NumFeuxAtt; NumFeuxAtt=NULL;}
+	  if (NbFeuxPtn) { delete[] NumFeuxPtn; NumFeuxPtn=NULL;} // v5.2
+	 }
    };
   bool Defini() { return (x>-1)&&(y>-1)&&(Dir>aucune); };
   void AjouteFeuDmd(int NumNvFeu);
@@ -329,7 +408,7 @@ class feu_pieton // v5.2
    };
   bool Defini()
    {
-    return (x[0]>-1)&&(y[0]>-1)&&(Dir[0]>aucune)&&
+	return (x[0]>-1)&&(y[0]>-1)&&(Dir[0]>aucune)&&
            (x[1]>-1)&&(y[1]>-1)&&(Dir[1]>aucune);
    };
   void AjouteFeu(int NumNvFeu);
@@ -368,7 +447,7 @@ class parking
 //---------------------------------------------------------------------------
 class voie; // v5.0 : utilisée en paramètre d'une méthode de vehicule
 //---------------------------------------------------------------------------
-class vehicule
+class vehicule // instances créées au lancement de la simulation
  {
   int Numero;
   public:
@@ -408,7 +487,7 @@ class vehicule
 //---------------------------------------------------------------------------
 // Classes de GESTION DES BUS
 //---------------------------------------------------------------------------
-class depot_bus // v3.0. ATTENTION : il n'y en a qu'un !
+class depot_bus // v3.0 ATTENTION : il n'y en a qu'un !
  {
   public:
   int x, y, NumDrnBusSorti;
@@ -424,27 +503,27 @@ class depot_bus // v3.0. ATTENTION : il n'y en a qu'un !
   void Verifie(AnsiString &asMsgErr);
  };
 //---------------------------------------------------------------------------
-class bus // v3.0
+class bus// v3.0 instances créées au lancement de la simulation
  {
   int Numero;
   public:
   direction Dir, DirDrnDepl, DirAvtDrnDepl;
   int x, y, NumLigne,
-      NumDrnArret, NumArretSvt, // Index-1 de centre_ville::ArretBus
-      NbPersonnes, // Correspond aux nombre de Pieton ayant NumBus = Numero (piétons dans le bus)
-      TourDrnDepl, // Tour du dernier déplacement effectué
-      TourDepart, // Tour pdt lequel il a été placé sur la case du dépot
-      TourArriveDrnArret, // Tour lorsque le bus est arrêté au dernier arrêt
-      TourDepartArretSvt, // Tour pour le départ vers l'arrêt suivant
-      NbCasesParcourues, // Nombre de cases parcourues
-      NbCasesParcouruesDepuisDrnArret, // Idem mais remis à 0 à chaque arrêt de bus
-      NbToursRepos; // Tours pendant lesquels le bus ne s'est pas déplacé du fait de la vitesse réduite
+	  NumDrnArret, NumArretSvt, // Index-1 de centre_ville::ArretBus
+	  NbPersonnes, // Correspond aux nombre de Pieton ayant NumBus = Numero (piétons dans le bus)
+	  TourDrnDepl, // Tour du dernier déplacement effectué
+	  TourDepart, // Tour pdt lequel il a été placé sur la case du dépot
+	  TourArriveDrnArret, // Tour lorsque le bus est arrêté au dernier arrêt
+	  TourDepartArretSvt, // Tour pour le départ vers l'arrêt suivant
+	  NbCasesParcourues, // Nombre de cases parcourues
+	  NbCasesParcouruesDepuisDrnArret, // Idem mais remis à 0 à chaque arrêt de bus
+	  NbToursRepos; // Tours pendant lesquels le bus ne s'est pas déplacé du fait de la vitesse réduite
   void Initialise()
    {
-    x=-1; y=-1;
-    DirAvtDrnDepl=DirDrnDepl=Dir=indefinie;
-    NbPersonnes=NbToursRepos=NbCasesParcouruesDepuisDrnArret=NbCasesParcourues=TourArriveDrnArret=TourDepartArretSvt=TourDepart=TourDrnDepl=0L;
-    NumDrnArret=NumArretSvt=0;
+	x=-1; y=-1;
+	DirAvtDrnDepl=DirDrnDepl=Dir=indefinie;
+	NbPersonnes=NbToursRepos=NbCasesParcouruesDepuisDrnArret=NbCasesParcourues=TourArriveDrnArret=TourDepartArretSvt=TourDepart=TourDrnDepl=0L;
+	NumDrnArret=NumArretSvt=0;
    };
   bus() { Numero=0; Initialise(); };
   void AffecteNumero(int Num) { Numero=Num; };
@@ -469,7 +548,7 @@ class arret_bus // v3.0
   int x, y; // Position de la tête de l'arrêt de bus (indiquant les couleurs de lignes)
   bool Ligne[NBMAXLIGNESBUSTRAM]; // Indique si une ligne de bus passe par cet arrêt (Index-1)
   int NbLignes,
-      NumLigne[NBMAXLIGNESBUSTRAM]; // Liste des lignes de bus passant par cet arrêt (Index-1)
+	  NumLigne[NBMAXLIGNESBUSTRAM]; // Liste des lignes de bus passant par cet arrêt (Index-1)
   void Initialise();
   arret_bus() { Numero=0; Initialise(); };
   void Copie(arret_bus *a); // v5.1
@@ -506,14 +585,14 @@ class ligne_bus // v3.0
 //---------------------------------------------------------------------------
 // Classes de GESTION DES TRAMS
 //---------------------------------------------------------------------------
-class tram // v3.5
+class tram // v3.5 instances créées au lancement de la simulation
  {
   int Numero;
   public:
   int x, y, NumLigne;
   direction Dir, DirDrnDepl, DirAvtDrnDepl;
   int NumDrnArret, NumArretSvt, // Index-1 de centre_ville::ArretTram
-      NbPersonnes, // Correspond aux nombre de Pieton ayant NumTram = Numero (piétons dans le tram)
+	  NbPersonnes, // Correspond aux nombre de Pieton ayant NumTram = Numero (piétons dans le tram)
       TourDrnDepl, // Tour du dernier déplacement effectué
       TourArriveDrnArret, // Tour lorsque le tram est arrêté au dernier arrêt
       TourDepartArretSvt, // Tour pour le départ vers l'arrêt suivant
@@ -599,7 +678,7 @@ class place_taxi // v3.6
    {
     Numero=p->Numero;
     x=p->x; y=p->y;
-    NumFile=p->NumFile;
+	NumFile=p->NumFile;
    };
   void AffecteNumero(int Num) { Numero=Num; };
   bool Definie() { return (x>-1)&&(y>-1); };
@@ -616,7 +695,7 @@ class place_taxi // v3.6
   direction DirPlaceSvtMemeFile(); // Retourne la direction vers laquelle il y a une place de la même file
  };
 //---------------------------------------------------------------------------
-class file_taxi // v3.6
+class file_taxi // v3.6 instances créées au lancement de la simulation
  {
   int Numero;
   public:
@@ -627,7 +706,7 @@ class file_taxi // v3.6
   ~file_taxi() {};
  };
 //---------------------------------------------------------------------------
-class taxi // v3.6
+class taxi // v3.6 instances créées au lancement de la simulation
  {
   int Numero;
   public:
@@ -697,7 +776,7 @@ class place_park // v5.0
   int PlaceTeteFile(); // Retourne 1+NumPlace si elle existe, 0 sinon.
  };
 //---------------------------------------------------------------------------
-class file_park // v5.0
+class file_park // v5.0 instances créées au lancement de la simulation
  {
   int Numero;
   public:
@@ -732,7 +811,7 @@ class place_vehlib // v5.3
   bool EstLibre();
  };
 //---------------------------------------------------------------------------
-class vehlib  // v5.3
+class vehlib // v5.3 instances créées au lancement de la simulation
  {
   int Numero;
   public:
@@ -744,7 +823,7 @@ class vehlib  // v5.3
       NbPersonnes,
       TourDrnDepl, // Tour du dernier déplacement effectué
       TourDepart, // Tour pdt lequel il a été placé sur le parking de départ
-      NbCasesParcourues, // Nombre de cases parcourues
+	  NbCasesParcourues, // Nombre de cases parcourues
       NbToursRepos; // Tours pendant lesquels le véhicule ne s'est pas déplacé du fait de la vitesse réduite
   void Initialise()
    {
@@ -788,7 +867,7 @@ class voie
        PassagePietons, // v2.0. Si PassagePieton, est perpendiculaire au sens de la route
        PassageBus, // v3.0. Si PassageBus, seuls les bus peuvent franchir la case (et véhicules prioritaires)
        LigneBus[NBMAXLIGNESBUSTRAM], // v3.0. Si Ligne[i] alors la ligne n°i+1 passe par cette case (visualisation par la fiche paramètres du réseau de bus UNIQUEMENT)
-       LigneTram[NBMAXLIGNESBUSTRAM]; // v3.5. Si Ligne[i] alors la ligne n°i+1 passe par cette case (visualisation par la fiche paramètres du réseau de tram UNIQUEMENT)
+	   LigneTram[NBMAXLIGNESBUSTRAM]; // v3.5. Si Ligne[i] alors la ligne n°i+1 passe par cette case (visualisation par la fiche paramètres du réseau de tram UNIQUEMENT)
   int NumFeu[NBFEUXPARCASE], // >0 si feu éventuel (=index+1 de cv->Feu) (v5.2: NBFEUXPARCASE)
       NumFeuP[NBFEUXPARCASE],// v5.2. >0 si feu piéton éventuel (=index+1 de cv->FeuP)
       NumVehicule, // >0 si véhicule éventuel (=index+1 de cv->Vehicule)
@@ -821,7 +900,7 @@ class voie
       **Trafic,  // v2.2.7. Nombre de véhicules passés par la case
       **DistArretBus, // v3.0. Distance à un arrêt de bus (même principe que DistParking)
       **DistArretTram,// v3.5. Distance à un arrêt de tram (même principe que DistParking mais uniquement quand SensVoieTram>aucune_voie)
-      **DistFileTaxi, // v3.6. Distance juqu'à la queue de la file de taxis.
+	  **DistFileTaxi, // v3.6. Distance juqu'à la queue de la file de taxis.
       ***DistFilePark, // v5.0. Distance juqu'à la queue de la file parkings.
       **DistPlaceVehlib;// v5.3. Distance jusqu'à une place de vehlib (pas de notion de priorité d'où le ** au lieu de ***).
   voie();
@@ -908,9 +987,16 @@ class stats
   public:
   int NbVehiculesDeplaces,
       NbVehiculesArrives,
-      NbVehiculesSortis;
+	  NbVehiculesSortis;
+  // v5.4.1 : stats piétons (épidémie)
+  int NbPietonsGueris,
+	  NbPietonsInfectes,
+	  NbPietonsMorts;
   stats() // v3.5 : manquait un s !!!
-   { NbVehiculesDeplaces=NbVehiculesArrives=NbVehiculesSortis=0L; };
+   {
+	NbVehiculesDeplaces=NbVehiculesArrives=NbVehiculesSortis=0L;
+	NbPietonsGueris=NbPietonsInfectes=NbPietonsMorts=0L; // v5.4.1 : stats épidémiques des piétons
+   };
   void Definit();
  };
 //---------------------------------------------------------------------------
@@ -946,9 +1032,14 @@ class centre_ville
       DureeOrange, // Duree de l'orange dans la simulation;
       DureeRouge, // Durée du rouge PAR DEFAUT (à la création d'un feu)
       xErr, yErr, // Coordonnées de la case concernant la dernière erreur
-      NbVehiculesDeplaces,
-      NbVehiculesArrives,
-      NbVehiculesSortis,
+	  // stats véhicules
+	  NbVehiculesDeplaces,
+	  NbVehiculesArrives,
+	  NbVehiculesSortis,
+	  // stats épidémiques des piétons
+	  NbPietonsGueris,
+	  NbPietonsInfectes,
+	  NbPietonsMorts,
       NbToursStats, // Nombre de tours soumis à la statistiques (derniers)
       NbVitesses, // v1.5. Vitesse
       NbMaxCasesDetectPsgPt, // v2.0. Maximum de cases qu'un piéton peut contrôler pour détecter un passage piéton
@@ -975,15 +1066,20 @@ class centre_ville
       NbMaxToursAttenteTram, // v3.5. Nombre max d'attente d'un tram à l'arrêt
       NbMaxToursAttenteTaxi, // v3.6. Nombre max d'attente d'un taxi
       AttenteMaxVeh,  // Attente max d'un vehicule bloqué avant choix d'un autre trajet. AttenteMaxVeh/2 pour un piéton et 5*AttenteMaxVeh pour un bus.
-      NbToursParSeconde, // Vitesse de simulation
+	  NbToursParSeconde, // Vitesse de simulation
       NbCasesParcourues, // Nb total de cases parcourues par tous les véhicules
-      NbToursParcourus, // Nb Total de tours tous véhicules confondus
+	  NbToursParcourus, // Nb Total de tours tous véhicules confondus
       Xc, Yc, NbXc, NbYc; // v4.0.1 Coordonnées et taille de la sélection à copier
 // DEBUT Propriétés pour la génération aléatoire de réseau (v4.2)
   int LgrMinSgmtRoute, LgrMaxSgmtRoute, // Longueur de segment (min/max) de route dans une dir. donnée
       ProbaSortieIntersection,  // en dixième : probabilité de créer une nouvelle direction (sortie d'intersection) après chaque segment tracé
       ProbaEntreeIntersection, // en dixième : probabilité de déboucher sur une route (entrée d'intersection) après chaque segment tracé
-      ProbaTraverseeRoute;      // en dixième : probabilité qu'un segment traverse une route (entrée + franchissement + sortie d'intersection)
+	  ProbaTraverseeRoute;      // en dixième : probabilité qu'un segment traverse une route (entrée + franchissement + sortie d'intersection)
+// v5.4.1 paramètres de l'épidémie (si active)
+  int EpidemieInfectiosite, // Nb tours
+	  EpidemieIterationPatientZero, // Nb piétons
+	  EpidemieChargeFatale; // en % piétons infectés au bout de la période d'infectiosité
+
 // FIN Propriétés pour la génération aléatoire de réseau
   bool VerifOk, DistancesCalculees, QuadrillageStats;
   type_stats TypeStats;
@@ -1200,11 +1296,10 @@ extern int dx[NBDIR+1], dy[NBDIR+1],
            SvgNbFeux, SvgNbParkings, SvgNbVehicules, SvgNbPietons, SvgNbArretsBus,
            SvgNbArretsTram, // v3.5
            SvgNbPlacesTaxi; // v3.6
-//---------------------------------------------------------------------------
 extern centre_ville *cv;
 //---------------------------------------------------------------------------
 extern void AppelleAuChaos();
-
+//---------------------------------------------------------------------------
 // v5.4 : conversion BCB6>BCBX (extern après template)
 //extern template <class E> int IncrementeNombre(E **e, int &n); // v5.1
 template <class E> extern int IncrementeNombre(E **e, int &n);

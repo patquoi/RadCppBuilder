@@ -7,11 +7,8 @@
 #include "f_dimzone.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
-#pragma resource "*.dfm"
-//---------------------------------------------------------------------------
-#ifdef WIN32
 #pragma link "cspin"
-#endif
+#pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 TfrmDimensionsZone *frmDimensionsZone;
 //---------------------------------------------------------------------------
@@ -19,25 +16,27 @@ bool DefinitDimensionsZone(int &NbX, int &NbY, bool &GenereReseau)
  {
   int mrRep=mrCancel;
   if ((frmDimensionsZone=new TfrmDimensionsZone(Application)))
-   try
-    {
-     frmDimensionsZone->NbX=NbX;
-     frmDimensionsZone->NbY=NbY;
-     if ((mrRep=frmDimensionsZone->ShowModal())==mrOk)
-      {
-       NbX=frmDimensionsZone->NbX;
-       NbY=frmDimensionsZone->NbY;
-       if (frmDimensionsZone->CheckBoxAfficherParametres->Checked) // v4.1
-        frmSimulation->ActionParametres->Execute();
-       GenereReseau=frmDimensionsZone->CheckBoxGenererReseau->Checked; // v4.2
-      }
-    }
+   {
+	try
+	 {
+	  frmDimensionsZone->NbX=NbX;
+	  frmDimensionsZone->NbY=NbY;
+	  if ((mrRep=frmDimensionsZone->ShowModal())==mrOk)
+	   {
+		NbX=frmDimensionsZone->NbX;
+		NbY=frmDimensionsZone->NbY;
+		if (frmDimensionsZone->CheckBoxAfficherParametres->Checked) // v4.1
+		 frmSimulation->ActionParametres->Execute();
+		GenereReseau=frmDimensionsZone->CheckBoxGenererReseau->Checked; // v4.2
+	   }
+	 }
    __finally
-    {
-     delete frmDimensionsZone;
-     frmDimensionsZone=NULL;
-     return (mrRep==mrOk);
-    }
+	 {
+	  delete frmDimensionsZone;
+	  frmDimensionsZone=NULL;
+	 }
+	return (mrRep==mrOk);
+   }
   else
    return false;
  }

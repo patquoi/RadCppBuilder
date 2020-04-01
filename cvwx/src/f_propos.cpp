@@ -24,6 +24,7 @@ __fastcall TfrmAPropos::TfrmAPropos(TComponent* Owner) : TForm(Owner)
   #else
   LabelAlignement->Caption=Format(LabelAlignement->Caption, ARRAYOFCONST((32)));
   #endif
+  LabelHDPI->Caption = LabelHDPI->Caption + FormatFloat("0.0", Screen->PixelsPerInch/96.0); // v5.4.1
  }
 //---------------------------------------------------------------------------
 void __fastcall TfrmAPropos::TimerTimer(TObject *Sender)

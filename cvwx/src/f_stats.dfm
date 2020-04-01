@@ -26,7 +26,6 @@ object frmStatistiques: TfrmStatistiques
     Top = 0
     Width = 192
     Height = 188
-    Hint = 'Sortis en jaune ; D'#233'plac'#233's en vert et Arriv'#233's en rouge'
     Align = alClient
     ParentShowHint = False
     ShowHint = True

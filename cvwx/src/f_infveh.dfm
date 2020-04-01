@@ -352,7 +352,7 @@ object frmInfosVehicule: TfrmInfosVehicule
   object RadioButtonVehiculeNumero: TRadioButton
     Left = 19
     Top = 55
-    Width = 77
+    Width = 75
     Height = 17
     Caption = 'V'#233'hicule n'#176
     Enabled = False

@@ -82,9 +82,9 @@ const sens_voie_tram_base SensVoieTramBase[NBSENSVOIETRAM]={ aucune_voie_base, n
                                                              aucune_voie_base, aucune_voie_base, aucune_voie_base, se,
                                                              aucune_voie_base, aucune_voie_base, aucune_voie_base, aucune_voie_base,
                                                              aucune_voie_base, aucune_voie_base, aucune_voie_base, eo,
+															 aucune_voie_base, aucune_voie_base, aucune_voie_base, aucune_voie_base,
                                                              aucune_voie_base, aucune_voie_base, aucune_voie_base, aucune_voie_base,
-                                                             aucune_voie_base, aucune_voie_base, aucune_voie_base, aucune_voie_base,
-                                                             aucune_voie_base, aucune_voie_base, aucune_voie_base, aucune_voie_base,
+															 aucune_voie_base, aucune_voie_base, aucune_voie_base, aucune_voie_base,
                                                              aucune_voie_base, aucune_voie_base, aucune_voie_base, so};
 //---------------------------------------------------------------------------
 // v3.5                                                           DirDest:  indef, nord,  est,  sud,ouest  // DirOrig
@@ -93,7 +93,7 @@ const bool DirPossSensVoieTramBase[NBSENSVOIETRAMBASE][NBDIR+1][NBDIR+1]={{{fals
                                                                            {false,false,false,false,false},// est
                                                                            {false,false,false,false,false},// sud
                                                                            {false,false,false,false,false}},//ouest
-                                                                          {{false, true, true,false,false},// indef.// ne
+																		  {{false, true, true,false,false},// indef.// ne
                                                                            {false,false, true,false,false},// nord
                                                                            {false, true,false,false,false},// est
                                                                            {false,false,false,false,false},// sud
@@ -127,7 +127,7 @@ const bool DirPossSensVoieTramBase[NBSENSVOIETRAMBASE][NBDIR+1][NBDIR+1]={{{fals
 const coin CoinDir[NBDIR+1]={aucun_coin, haut_droite, bas_droite, bas_gauche, haut_gauche}; // v3.8
 //---------------------------------------------------------------------------
 const AnsiString asDir[NBDIR+1]={"", "Nord", "Est", "Sud", "Ouest"},
-                 asDirPoss[16]={"", "Nord", "Est", "Nord+Est",
+				 asDirPoss[16]={"", "Nord", "Est", "Nord+Est",
                                 "Sud", "Nord+Sud", "Est+Sud", "Nord+Est+Sud",
                                 "Ouest", "Nord+Ouest", "Est+Ouest", "Nord+Est+Ouest",
                                 "Sud+Ouest", "Nord+Sud+Ouest", "Est+Sud+Ouest", "Nord+Est+Sud+Ouest"};
@@ -264,6 +264,69 @@ void VerifiePsgRouge(AnsiString asMsgErr, AnsiString asSource, psg_rouge pr)
 //-----------------------------------------------------------------------------
 // Méthodes des classes
 //-----------------------------------------------------------------------------
+infection::infection(const centre_ville *cv) // Patient zéro initialisé à la création (centre_ville *cv) ou au démarrage de la simulation
+ {
+  TourDeb = 0;
+  TourFin = cv->EpidemieInfectiosite; // au tour TourFin, le piéton n'est plus contagieux
+  TourFatal = 0; // Permet de savoir le tour fatal (TourFatal + cv->EpidemieInfectiosite)
+  NumDrnPieton = NumPrmPieton = 0; // Pas de patient source car patient zéro donc... vaut zéro !
+  DrnRang = PrmRang = 0; // Patient zéro ben... vaut zéro !
+  ChargeVirale = 1; // Incrémenté à chaque (ré)infection sur la période de contagion
+  Svt = NULL;
+ };
+infection::infection(int Tour, int NumPieton, int Rang) // v5.4.1. NumPieton>0 (pieton::Numero+1)
+ {
+  TourDeb = Tour + 1; // Le piéton est contagieux à partir du tour suivant
+  TourFin = Tour + 1 + cv->EpidemieInfectiosite;
+  TourFatal = 0;
+  NumDrnPieton = NumPrmPieton = NumPieton;
+  DrnRang = PrmRang = Rang;
+  ChargeVirale = 1;
+  Svt = NULL;
+ }
+//-----------------------------------------------------------------------------
+bool infection::Reinfecte(int Tour, int NumPieton, int Rang) // comme le constructeur mais pour une personne qui a déjà été infectée
+ { // retourne vrai si la réinfection a bien eu lieu
+  if ((Tour+1>=TourDeb)&&(Tour+1<=TourFin))
+   {
+	if (NumDrnPieton==NumPieton)
+	  return false; // Un même piéton ne contamine pas deux fois de suite la même personne
+	else
+	 {
+	  if (!TourFatal)
+		TourFin = Tour + cv->EpidemieInfectiosite;
+	  TourFin = Tour + cv->EpidemieInfectiosite;
+	  NumDrnPieton = NumPieton;
+	  DrnRang = Rang;
+	  ChargeVirale++;
+	  if (ChargeVirale==cv->EpidemieChargeFatale)
+		TourFatal=Tour; // Mort programmée
+	  return true;
+	 }
+   }
+  else
+   {
+	if (Svt)
+	  return Svt->Reinfecte(Tour, NumPieton, Rang);
+	else
+	 {
+	  Svt = new infection(Tour, NumPieton, Rang);
+	  return true;
+	 }
+   }
+};
+//-----------------------------------------------------------------------------
+bool infection::DoitSuccomber(int Tour)
+ {
+  if (TourFatal)
+	return (Tour >= TourFatal + cv->EpidemieInfectiosite);
+  else
+	if (Svt)
+	  return Svt->DoitSuccomber(Tour);
+	else
+      return false;
+ }
+//-----------------------------------------------------------------------------
 void pieton::Verifie(AnsiString &asMsgErr)
  {
   AnsiString asSource=Format("Piéton n°%d (%d,%d)", ARRAYOFCONST((Numero, x, y)));
@@ -310,10 +373,10 @@ void pieton::ChercheFileTaxi() // v3.6
      TourAttTaxi=cv->TourCrt;
      Dir=DirPlace;
      return;
-    }
+	}
   if ((ProchDir=cv->PlaceTaxi[NumPlaceTaxi-1].DirPlaceSvtMemeFile())!=DirPlace)
    {
-    if (cv->V(x,y,ProchDir).PietonPeutAller(ProchDir))
+	if (cv->V(x,y,ProchDir).PietonPeutAller(ProchDir))
      {
       Dir=ProchDir; // Cas ou on longe simplement la file
       return;
@@ -339,6 +402,46 @@ void pieton::ChercheFileTaxi() // v3.6
     FileTaxiTrv=false;
     NumFileTaxi=0;
    }
+ }
+//-----------------------------------------------------------------------------
+bool pieton::EstContagieux()
+ {
+  if (EstVivant()&&Infection)
+	return Infection->EstContagieux(cv->TourCrt);
+  else
+	return false;
+ }
+//-----------------------------------------------------------------------------
+void pieton::EstContaminePar(int NumPieton, int Rang) // v5.4.1. NumPieton>0 (pieton::Numero+1)
+ {// Utilisation : UnPieton->EstContaminePar(PietonContagieux->Numero, 1+PietonContagieux->DonneRang())
+  if (Infection)
+	Infection->Reinfecte(cv->TourCrt, NumPieton, Rang);
+  else
+	Infection = new infection(cv->TourCrt, NumPieton, Rang);
+ }
+//-----------------------------------------------------------------------------
+int pieton::DonneRang()
+ {
+  if (Infection)
+	return Infection->DonneRang(cv->TourCrt);
+  else
+	return -1;
+ }
+//-----------------------------------------------------------------------------
+int pieton::DonneChargeVirale()
+ {
+  if (Infection)
+	return Infection->DonneChargeVirale(cv->TourCrt);
+  else
+	return 0;
+ }
+//-----------------------------------------------------------------------------
+bool pieton::DoitSuccomber()
+ {
+  if (Infection)
+	return Infection->DoitSuccomber(cv->TourCrt);
+  else
+    return false;
  }
 //-----------------------------------------------------------------------------
 void feu::AjouteFeuDmd(int NumNvFeu)
@@ -2569,9 +2672,9 @@ void voie::CalculeProchainVehiculeOuBusOuTramOuTaxiOuVehlib() // v3.6. Rq : Néce
   if ((!frmSimulation->SimulationSanglante)&& // Mode Sanglant OU
       NbPietons&&                             // NbPietons=NbPiétonsEcrases ALORS on peut rouler dessus (v4.3)
       (NbPietons!=(NumPieton[0]&&
-                   (cv->Pieton[NumPieton[0]-1].Ecrase))+
-                  (NumPieton[1]&&
-                   (cv->Pieton[NumPieton[1]-1].Ecrase))))
+				   (!cv->Pieton[NumPieton[0]-1].EstVivant()))+ // v5.4.1 : !EstVivant() au lieu de Ecrase
+				  (NumPieton[1]&&
+                   (!cv->Pieton[NumPieton[1]-1].EstVivant()))))   // v5.4.1 : !EstVivant() au lieu de Ecrase
    return;
   // 1bis. S'il y a déjà un véhicule et que ce n'est pas un parking, aucun ne peut arriver
   if (NumVehicule&&(!NumParking)) return;
@@ -2776,7 +2879,7 @@ void voie::DeplaceVehiculeOuBusOuTramOuTaxi() // v3.6 (Taxis)
       cv->PlaceVehicule(-1, -1, NumProchVeh); // v2.2.7. Inclut les stats d'Attente/Trafic
       cv->NbVehiculesArrives++;
      }
-    cv->NbVehiculesDeplaces++;
+	cv->NbVehiculesDeplaces++;
     cv->Vehicule[NumProchVeh-1].NbCasesParcourues++;
     cv->Vehicule[NumProchVeh-1].TourDrnDepl=cv->TourCrt;
     frmSimulation->RedessineCase(x, y, false);
@@ -2913,35 +3016,39 @@ bool voie::RetirePieton(int NumPietonARetirer) //v2.0
 void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la montée et la descente du bus/tram 
  {
   bool DirTrv;
-  int i, d, dd, n;
+  int i, d, dd, n,
+      NbPietonsDehors=0,
+	  NumPietonDehors[NBMAXPIETONSPARCASE]={0,0}; // v5.4.1 : pour savoir si l'on peut effectuer la contamination
   pieton *p, *pv;
   direction NvDir;
   for(i=0; i<NBMAXPIETONSPARCASE; i++)
    if (NumPieton[i]&&
-       (!cv->Pieton[NumPieton[i]-1].NumBus)&& // Ne doit pas être dans un bus,   v3.0
-       (!cv->Pieton[NumPieton[i]-1].NumTram)&&  //             ni dans un tram,  v3.5
-       (!cv->Pieton[NumPieton[i]-1].NumTaxi)&&  //             ni dans un taxi,  v3.6
-       (!cv->Pieton[NumPieton[i]-1].NumVehlib)&&//             ni dans un vehlib v5.3
-       (!cv->Pieton[NumPieton[i]-1].Ecrase)&&   //             ni écrasé.        v4.3
-       (cv->Pieton[NumPieton[i]-1].TourDrnDepl<cv->TourCrt))
-    {
-     p=&(cv->Pieton[NumPieton[i]-1]);
-     NvDir=indefinie;
-     if (p->ArretBusTrv&&(!PassagePietons)&&(n=cv->V(x,y,p->Dir).NumArretBus)) // Pas d'attente sur un passage piéton (v3.6)
-      { // Si Arrêt de bus trouvé et qu'il arrive dessus alors on attend le bus (bloque le piéton)
-       p->ArretBusTrv=false;
-       p->NumArretBus=n;
-       p->AttendBus=true;
-       p->TourAttBus=cv->TourCrt;
-      }
-     if (p->ArretTramTrv&&(!PassagePietons)&&(n=cv->V(x,y,p->Dir).NumArretTram))// Pas d'attente sur un passage piéton (v3.6)
-      { // Si Arrêt de tram trouvé et qu'il arrive dessus alors on attend le tram (bloque le piéton)
+	   (!cv->Pieton[NumPieton[i]-1].NumBus)&& // Ne doit pas être dans un bus,    v3.0
+	   (!cv->Pieton[NumPieton[i]-1].NumTram)&&  //             ni dans un tram,   v3.5
+	   (!cv->Pieton[NumPieton[i]-1].NumTaxi)&&  //             ni dans un taxi,   v3.6
+	   (!cv->Pieton[NumPieton[i]-1].NumVehlib)&&//             ni dans un vehlib  v5.3
+	   cv->Pieton[NumPieton[i]-1].EstVivant()&& //             ni mort            v4.3. v5.4.1 : !Ecrase remplacé par EstVivant pour prendre en compte Mort d'épidémie
+	   (cv->Pieton[NumPieton[i]-1].TourDrnDepl<cv->TourCrt))
+	{
+     NbPietonsDehors++;
+	 NumPietonDehors[i]=NumPieton[i]; // v5.4.1 : pour savoir si l'on peut effectuer la contamination après déplacement
+	 p=&(cv->Pieton[NumPieton[i]-1]);
+	 NvDir=indefinie;
+	 if (p->ArretBusTrv&&(!PassagePietons)&&(n=cv->V(x,y,p->Dir).NumArretBus)) // Pas d'attente sur un passage piéton (v3.6)
+	  { // Si Arrêt de bus trouvé et qu'il arrive dessus alors on attend le bus (bloque le piéton)
+	   p->ArretBusTrv=false;
+	   p->NumArretBus=n;
+	   p->AttendBus=true;
+	   p->TourAttBus=cv->TourCrt;
+	  }
+	 if (p->ArretTramTrv&&(!PassagePietons)&&(n=cv->V(x,y,p->Dir).NumArretTram))// Pas d'attente sur un passage piéton (v3.6)
+	  { // Si Arrêt de tram trouvé et qu'il arrive dessus alors on attend le tram (bloque le piéton)
        p->ArretTramTrv=false;
        p->NumArretTram=n;
        p->AttendTram=true;
        p->TourAttTram=cv->TourCrt;
       }
-     if (p->FileTaxiTrv)
+	 if (p->FileTaxiTrv)
 	  if ((n=cv->V(x,y,p->Dir).NumPlaceTaxi))
        { // Si file de taxis trouvée
         if ((!PassagePietons)&&(cv->PlaceTaxi[n-1].EstTeteFile())) // v3.6. Pas sur passage piétons
@@ -2953,7 +3060,7 @@ void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la
          }
         else
          { // Phase 1 : Recherche de la tête de la file de taxi. ATTENTION ! p->NumFileTaxi>0 n'implique pas que le piéton attend un taxi comme les bus ou les trams.
-          if (!p->NumFileTaxi) p->NumFileTaxi=cv->PlaceTaxi[n-1].NumFile+1; // On fixe la file à chercher
+		  if (!p->NumFileTaxi) p->NumFileTaxi=cv->PlaceTaxi[n-1].NumFile+1; // On fixe la file à chercher
           p->ChercheFileTaxi(); // Change p->Dir pour se diriger vers la tête de file
          }
        }
@@ -2968,7 +3075,7 @@ void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la
          }
        }
      if (p->AttendBus&&(p->TourAttBus+cv->NbMaxToursAttenteBus<cv->TourCrt)) // v3.0.
-      { // Si attente de bus trop longue (paramètre), le piéton abandonne
+	  { // Si attente de bus trop longue (paramètre), le piéton abandonne
        p->ArretBusTrv=false;
        p->NumArretBus=0;
        p->AttendBus=false;
@@ -2977,12 +3084,12 @@ void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la
      if (p->AttendTram&&(p->TourAttTram+cv->NbMaxToursAttenteTram<cv->TourCrt)) // v3.5.
       { // Si attente de tram trop longue (paramètre), le piéton abandonne
        p->ArretTramTrv=false;
-       p->NumArretTram=0;
+	   p->NumArretTram=0;
        p->AttendTram=false;
        p->TourAttTram=0;
       }
      if (p->AttendTaxi&&(p->TourAttTaxi+cv->NbMaxToursAttenteTaxi<cv->TourCrt)) // v3.6.
-      { // Si attente de taxi trop longue (paramètre), le piéton abandonne
+	  { // Si attente de taxi trop longue (paramètre), le piéton abandonne
        p->FileTaxiTrv=false;
        p->NumFileTaxi=0;
        p->AttendTaxi=false;
@@ -2995,39 +3102,39 @@ void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la
          (!p->PsgPtTrv)&& // Le piéton ne se dirige pas déjà vers un passage piéton OU
          (!p->ArretBusTrv)&& //                              vers un arrêt de bus OU
          (!p->ArretTramTrv)&& //                             vers un arrêt de tram OU (v3.5)
-         (!p->FileTaxiTrv)&& //                              vers une tête de file de taxis OU (v3.6)
+		 (!p->FileTaxiTrv)&& //                              vers une tête de file de taxis OU (v3.6)
          (!p->PlaceVehlibTrv)) //                            vers une place de vehlibs (v5.3)
       { // 1. Recherche de passage piéton
        if (cv->ProbaDirPsgPt&& // Si recherche de passage piéton il y a ET
            (NvDir=cv->CherchePassagePietons(x, y, (sens)(2-p->Dir%2)))&& // Passage piéton trouvé ET
-           ((rand()%100)<cv->ProbaDirPsgPt)) // Probabilité d'y aller (paramètre)
+		   ((rand()%100)<cv->ProbaDirPsgPt)) // Probabilité d'y aller (paramètre)
         { // Il va vers le passage piéton trouvé
-         p->Dir=NvDir;
-         p->PsgPtTrv=true; // Indique qu'il est en train d'aller vers un passage piéton (inhibe les futures recherches)
-        }
-       else // 2. Recherche d'arrêt de bus. v3.0
-        if (cv->ProbaDirArretBus&& // Si recherche d'arret de bus il y a ET
-            (NvDir=cv->ChercheArretBus(x, y, (sens)(2-p->Dir%2)))&& // Arret bus trouvé ET
-            ((rand()%100)<cv->ProbaDirArretBus)) // Probabilité d'y aller (paramètre)
-         { // Il va vers l'arrêt de bus
-          p->Dir=NvDir;
-          p->ArretBusTrv=true; // Indique qu'il est en train d'aller vers un arrêt de bus (inhibe les futures recherches)
-         }
-        else // 3. Recherche d'arrêt de tram. v3.5
-         if (cv->ProbaDirArretTram&& // Si recherche d'arret de tram il y a ET
-             (NvDir=cv->ChercheArretTram(x, y, (sens)(2-p->Dir%2)))&& // Arret tram trouvé ET
-             ((rand()%100)<cv->ProbaDirArretTram)) // Probabilité d'y aller (paramètre)
-          { // Il va vers l'arrêt de tram
-           p->Dir=NvDir;
-           p->ArretTramTrv=true; // Indique qu'il est en train d'aller vers un arrêt de tram (inhibe les futures recherches)
-          }
-         else // 4. Recherche de file de taxi. v3.6
-          if (cv->ProbaDirFileTaxi&& // Si recherche de file de taxi il y a ET
-              (NvDir=cv->CherchePlaceTaxi(x, y, (sens)(2-p->Dir%2)))&& // Place de taxi trouvée ET
-              ((rand()%100)<cv->ProbaDirFileTaxi)) // Probabilité d'y aller (paramètre)
-           { // Il va vers le tête de file de taxi
-            p->Dir=NvDir;
-            p->FileTaxiTrv=true; // Indique qu'il est en train d'aller vers une tête de file de taxi (inhibe les futures recherches)
+		 p->Dir=NvDir;
+		 p->PsgPtTrv=true; // Indique qu'il est en train d'aller vers un passage piéton (inhibe les futures recherches)
+		}
+	   else // 2. Recherche d'arrêt de bus. v3.0
+		if (cv->ProbaDirArretBus&& // Si recherche d'arret de bus il y a ET
+			(NvDir=cv->ChercheArretBus(x, y, (sens)(2-p->Dir%2)))&& // Arret bus trouvé ET
+			((rand()%100)<cv->ProbaDirArretBus)) // Probabilité d'y aller (paramètre)
+		 { // Il va vers l'arrêt de bus
+		  p->Dir=NvDir;
+		  p->ArretBusTrv=true; // Indique qu'il est en train d'aller vers un arrêt de bus (inhibe les futures recherches)
+		 }
+		else // 3. Recherche d'arrêt de tram. v3.5
+		 if (cv->ProbaDirArretTram&& // Si recherche d'arret de tram il y a ET
+			 (NvDir=cv->ChercheArretTram(x, y, (sens)(2-p->Dir%2)))&& // Arret tram trouvé ET
+			 ((rand()%100)<cv->ProbaDirArretTram)) // Probabilité d'y aller (paramètre)
+		  { // Il va vers l'arrêt de tram
+		   p->Dir=NvDir;
+		   p->ArretTramTrv=true; // Indique qu'il est en train d'aller vers un arrêt de tram (inhibe les futures recherches)
+		  }
+		 else // 4. Recherche de file de taxi. v3.6
+		  if (cv->ProbaDirFileTaxi&& // Si recherche de file de taxi il y a ET
+			  (NvDir=cv->CherchePlaceTaxi(x, y, (sens)(2-p->Dir%2)))&& // Place de taxi trouvée ET
+			  ((rand()%100)<cv->ProbaDirFileTaxi)) // Probabilité d'y aller (paramètre)
+		   { // Il va vers le tête de file de taxi
+			p->Dir=NvDir;
+			p->FileTaxiTrv=true; // Indique qu'il est en train d'aller vers une tête de file de taxi (inhibe les futures recherches)
 		   }
 		 else // 5. Recherche de file de vehlib. v5.3
 		  if (cv->ProbaDirFileVehlib&& // Si recherche de file de vehlib il y a ET
@@ -3084,18 +3191,47 @@ void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la
 		}
 	  }
 	}
+  // v5.4.1 Contamination si mode épidémique
+  if (frmSimulation->EpidemieActivee)
+   {
+	// 1. Infection par contact
+	if (NbPietonsDehors==2)
+	 {
+	  int np1=NumPietonDehors[0],
+		  np2=NumPietonDehors[1];
+	  pieton *p1=&(cv->Pieton[np1-1]),
+			 *p2=&(cv->Pieton[np2-1]);
+	  if (p1->EstContagieux())
+		p2->EstContaminePar(np1, p1->DonneRang()+1);
+	  if (p2->EstContagieux())
+		p1->EstContaminePar(np2, p2->DonneRang()+1);
+	 }
+
+	// 2. Infection fatale
+	for(i=0; i<NBMAXPIETONSPARCASE; i++)
+	  if (NumPietonDehors[i])
+	   {
+		p=&(cv->Pieton[NumPietonDehors[i]-1]);
+		if ((!p->Mort)&&p->DoitSuccomber())
+		 {
+		  p->SuccombeInfection();
+		  if (p->Defini())
+			cv->v[p->x][p->y].RedessineCase(false);
+		 }
+	   }
+   }
   frmSimulation->RedessineCase(x, y, false);
  }
 //-----------------------------------------------------------------------------
 void voie::RetireArretBus() // v3.0
  {
   int Numero=NumArretBus,
-      d;
+	  d;
   NumArretBus=0;
   if (frmSimulation) frmSimulation->RedessineCase(x,y,true);
   for(d=nord; d<=ouest; d++)
    if (cv->V(x,y,d).NumArretBus==Numero)
-    cv->V(x,y,d).RetireArretBus();
+	cv->V(x,y,d).RetireArretBus();
  }
 //-----------------------------------------------------------------------------
 void voie::RetireArretTram() // v3.5
@@ -3878,6 +4014,10 @@ void stats::Definit()
   NbVehiculesDeplaces=cv->NbVehiculesDeplaces;
   NbVehiculesArrives=cv->NbVehiculesArrives;
   NbVehiculesSortis=cv->NbVehiculesSortis;
+  // v5.4.1 : stats épidémiques des piétons
+  NbPietonsGueris=cv->NbPietonsGueris;
+  NbPietonsInfectes=cv->NbPietonsInfectes;
+  NbPietonsMorts=cv->NbPietonsMorts;
  }
 //-----------------------------------------------------------------------------
 void centre_ville::CreeZone() // v4.0 (allocation dynamique)
@@ -3902,7 +4042,9 @@ centre_ville::centre_ville(bool NbElementsParDefaut, int NbX, int NbY)  // v4.0 
   Xc=Yc=NbXc=NbYc=0; // v4.0.1
   dtTop=dtTemps=0; // v3.9.2
   NbToursParcourus=NbCasesParcourues=TourCrt=0L; NbToursParSeconde=10L; // v4.2 (NbToursParSeconde=10L au lieu de 2L)
-  NbVehiculesSortis=NbVehiculesDeplaces=NbVehiculesArrives=DureeOrange=NbParkings=NbTrams=NbBus=NbVehicules=NbFeux=NbFeuxPieton=0; // v3.0 (NbBus) v3.5 (NbTrams), v5.2 (NbFeuxPieton)
+  NbVehiculesSortis=NbVehiculesDeplaces=NbVehiculesArrives=0L;
+  NbPietonsGueris=NbPietonsInfectes=NbPietonsMorts=0L; // v5.4.1 : stats épidémiques des piétons
+  DureeOrange=NbParkings=NbTrams=NbBus=NbVehicules=NbFeux=NbFeuxPieton=0L; // v3.0 (NbBus) v3.5 (NbTrams), v5.2 (NbFeuxPieton)
   AttenteMaxVeh=10L;
   NbVitesses=1;
   NbToursStats=100;
@@ -3959,6 +4101,10 @@ centre_ville::centre_ville(bool NbElementsParDefaut, int NbX, int NbY)  // v4.0 
    }
   // Propriétés pour la génération aléatoire de réseau (v4.2)
   LgrMinSgmtRoute=LgrMaxSgmtRoute=ProbaSortieIntersection=ProbaEntreeIntersection=ProbaTraverseeRoute=0;
+  // v5.4.1 paramètres par défaut de l'épidémie (si activée)
+  EpidemieInfectiosite=100; // Nb tours
+  EpidemieIterationPatientZero=100; // Nb piétons
+  EpidemieChargeFatale=10; // Charge virale à partir de laquelle le piéton succombera au bout de la période d'infectiosité
  }
 //-----------------------------------------------------------------------------
 centre_ville::~centre_ville()
@@ -4083,7 +4229,14 @@ int centre_ville::DefinitNbPietons(int n)
   NbPietons=0;
   if (n&&(Pieton=new pieton[n]))
    {
-    for(i=0; i<n; i++) Pieton[i].AffecteNumero(i+1);
+	for(i=0; i<n; i++)
+	 {
+	  Pieton[i].AffecteNumero(i+1);
+	  if ((frmSimulation->EpidemieActivee)&& // Si épidémie activée ET
+		  EpidemieIterationPatientZero&& // Si patients zéro à définir ALORS
+		  (!((i+1)%EpidemieIterationPatientZero))) // On définit les patients zéro
+		Pieton[i].Infection = new infection(this);
+	 }
     NbPietons=n;
    }
   return NbPietons;
@@ -5701,10 +5854,15 @@ void centre_ville::RessuscitePietons() // v4.3.1
    {
     pieton *p=Pieton+i;
     if (p->Ecrase)
-     {
-      p->Ecrase=false;
+	 {
+	  p->Ecrase=false;
       frmSimulation->RedessineCase(p->x, p->y, true);
      }
+	if (p->Mort) // v5.4.1
+	 {
+	  p->SupprimeInfection();
+	  frmSimulation->RedessineCase(p->x, p->y, true);
+	 }
    }
  }
 //-----------------------------------------------------------------------------
@@ -5801,16 +5959,31 @@ void __fastcall centre_ville::EffectueTourSimulation()
    for(j=0; j<NbY; j++)
     if (v[i][j].NbPietons)
      v[i][j].DeplacePietons();
-
+  NbPietonsGueris=NbPietonsInfectes=NbPietonsMorts=0L;
+  // 0bis. v5.4.1 : On calcule les stats épidémiques de piétons si mode épidémie
+  if (frmSimulation->ActionEpidemie->Checked)
+	for(i=0; i<NbPietons; i++)
+	 {
+	  if (Pieton[i].Mort)
+		NbPietonsMorts++;
+	  else
+	   {
+		if (Pieton[i].EstContagieux())
+		  NbPietonsInfectes++;
+		else
+		  if (Pieton[i].NbInfections()>0)
+		  NbPietonsGueris++;
+	   }
+	 }
   // 1. On calcule les priorités de passage sur chaque case de la voie
   for(i=0; i<NbX; i++)
    for(j=0; j<NbY; j++)
-    v[i][j].CalculeProchainVehiculeOuBusOuTramOuTaxiOuVehlib();
+	v[i][j].CalculeProchainVehiculeOuBusOuTramOuTaxiOuVehlib();
 
   // 2. On déplace les véhicules
   for(i=0; i<NbX; i++)
    for(j=0; j<NbY; j++)
-    v[i][j].DeplaceVehiculeOuBusOuTramOuTaxi();
+	v[i][j].DeplaceVehiculeOuBusOuTramOuTaxi();
 
   // 3. On fait tourner les feux...
   for(i=0; i<NbFeuxPieton; i++) FeuP[i].Evolue(); // v5.2
