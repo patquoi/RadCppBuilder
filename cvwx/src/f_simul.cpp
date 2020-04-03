@@ -907,9 +907,9 @@ void __fastcall TfrmSimulation::DrawGridSimulDrawCell(TObject *Sender,
     // v3.1
     ActionPassageBus->Checked=v->PassageBus;
     ActionPassageBus->Enabled=(v->DirPoss>aucune)&&EditionAutorisee;
-    ActionMarche->Enabled=(!DefFeux)&&(!SimulationEnCours);
+	ActionMarche->Enabled=(!DefFeux)&&(!SimulationEnCours);
 
-    ActionPriorites->Enabled=(!v->NumParking)&&(v->DirPoss||v->SensVoieTram)&&EditionAutorisee; // v5.2 : On n'autorise si voies de circulation (voie de tram/route)
+	ActionPriorites->Enabled=(!v->NumParking)&&(v->DirPoss||v->SensVoieTram)&&EditionAutorisee; // v5.2 : On n'autorise si voies de circulation (voie de tram/route)
     ActionPrioritesPietons->Enabled=(!v->DirPoss)&&(!v->SensVoieTram)&&EditionAutorisee; // v5.2 : Priorités Piétons si pas de vois de circulation (voie de tram/route)
     ToolButtonPriorites->Action=(v->DirPoss||v->SensVoieTram)?ActionPriorites:ActionPrioritesPietons; // v5.2 : Le bouton de la barre d'outil sert pour les deux selon la présence de voies ou non.
 
@@ -3550,7 +3550,8 @@ void __fastcall TfrmSimulation::FormKeyDown(TObject *Sender, WORD &Key,
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::ActionEpidemieExecute(TObject *Sender)
 { // v5.4.1
- frmEpidemie->ShowModal();
+ if (ActionEpidemie->Checked) // v5.4.2 : l'action est en AutoCheck et la case dans les paramètres n'est plus modifiable
+   frmEpidemie->ShowModal();
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmSimulation::ActionAfficherInfectionExecute(TObject *Sender)

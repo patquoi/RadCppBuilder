@@ -28,7 +28,7 @@ __published:	// Composants gérés par l'EDI
 	TCheckBox *CheckBoxActiver;
 	TLabel *Label7;
 	TLabel *Label8;
-	void __fastcall CheckBoxActiverClick(TObject *Sender);
+	TCheckBox *CheckBoxReinfections;
 	void __fastcall ButtonOkClick(TObject *Sender);
 	void __fastcall ButtonAideClick(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);

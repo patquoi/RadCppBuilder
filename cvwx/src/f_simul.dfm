@@ -1504,6 +1504,7 @@ object frmSimulation: TfrmSimulation
     end
     object ActionEpidemie: TAction
       Category = 'Simulation (g'#233'n'#233'ral)'
+      AutoCheck = True
       Caption = '&Epid'#233'mie...'
       Hint = 'Active/D'#233'sactive et param'#232'tre une '#233'pid'#233'mie'
       ImageIndex = 87
@@ -1623,6 +1624,7 @@ object frmSimulation: TfrmSimulation
       end
       object Epidemie1: TMenuItem
         Action = ActionEpidemie
+        AutoCheck = True
       end
       object MenuItemResurrection: TMenuItem
         Action = ActionResurrection

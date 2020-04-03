@@ -4,8 +4,8 @@ object frmEpidemie: TfrmEpidemie
   HelpContext = 317
   BorderStyle = bsDialog
   Caption = 'Param'#232'tres de l'#39#233'pid'#233'mie'
-  ClientHeight = 176
-  ClientWidth = 350
+  ClientHeight = 205
+  ClientWidth = 384
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object frmEpidemie: TfrmEpidemie
   TextHeight = 13
   object Label7: TLabel
     Left = 0
-    Top = 154
-    Width = 350
+    Top = 183
+    Width = 384
     Height = 22
     Align = alBottom
     AutoSize = False
@@ -38,8 +38,8 @@ object frmEpidemie: TfrmEpidemie
   end
   object Label8: TLabel
     Left = 0
-    Top = 136
-    Width = 350
+    Top = 165
+    Width = 384
     Height = 18
     Align = alBottom
     AutoSize = False
@@ -50,8 +50,8 @@ object frmEpidemie: TfrmEpidemie
   object GroupBox: TGroupBox
     Left = 8
     Top = 24
-    Width = 249
-    Height = 105
+    Width = 289
+    Height = 135
     Caption = ' '
     TabOrder = 0
     object Label1: TLabel
@@ -71,7 +71,7 @@ object frmEpidemie: TfrmEpidemie
       FocusControl = CSpinEditPatientZero
     end
     object Label3: TLabel
-      Left = 195
+      Left = 227
       Top = 47
       Width = 35
       Height = 13
@@ -86,21 +86,21 @@ object frmEpidemie: TfrmEpidemie
       FocusControl = CSpinEditChargeViraleFatale
     end
     object Label5: TLabel
-      Left = 195
+      Left = 227
       Top = 75
       Width = 46
       Height = 13
       Caption = 'infections'
     end
     object Label6: TLabel
-      Left = 195
+      Left = 227
       Top = 19
       Width = 25
       Height = 13
       Caption = 'tours'
     end
     object CSpinEditInfectiosite: TCSpinEdit
-      Left = 140
+      Left = 172
       Top = 16
       Width = 49
       Height = 22
@@ -110,7 +110,7 @@ object frmEpidemie: TfrmEpidemie
       Value = 100
     end
     object CSpinEditPatientZero: TCSpinEdit
-      Left = 140
+      Left = 172
       Top = 44
       Width = 49
       Height = 22
@@ -120,7 +120,7 @@ object frmEpidemie: TfrmEpidemie
       Value = 100
     end
     object CSpinEditChargeViraleFatale: TCSpinEdit
-      Left = 140
+      Left = 172
       Top = 72
       Width = 49
       Height = 22
@@ -128,10 +128,19 @@ object frmEpidemie: TfrmEpidemie
       TabOrder = 2
       Value = 10
     end
+    object CheckBoxReinfections: TCheckBox
+      Left = 16
+      Top = 103
+      Width = 169
+      Height = 17
+      Alignment = taLeftJustify
+      Caption = '&R'#233'infections apr'#232's gu'#233'rison'
+      TabOrder = 3
+    end
   end
   object ButtonOk: TButton
-    Left = 274
-    Top = 16
+    Left = 320
+    Top = 38
     Width = 56
     Height = 25
     Caption = 'Vu'
@@ -141,8 +150,8 @@ object frmEpidemie: TfrmEpidemie
     OnClick = ButtonOkClick
   end
   object ButtonAnnuler: TButton
-    Left = 274
-    Top = 55
+    Left = 320
+    Top = 77
     Width = 56
     Height = 25
     Cancel = True
@@ -151,8 +160,8 @@ object frmEpidemie: TfrmEpidemie
     TabOrder = 2
   end
   object ButtonAide: TButton
-    Left = 274
-    Top = 94
+    Left = 320
+    Top = 116
     Width = 56
     Height = 25
     Hint = 'Pour avoir de l'#39'aide (F1)'
@@ -165,8 +174,8 @@ object frmEpidemie: TfrmEpidemie
     Top = 6
     Width = 106
     Height = 17
-    Caption = 'Activer l'#39#233'pid'#233'mie '
+    Caption = '&Epid'#233'mie activ'#233'e'
+    Enabled = False
     TabOrder = 4
-    OnClick = CheckBoxActiverClick
   end
 end

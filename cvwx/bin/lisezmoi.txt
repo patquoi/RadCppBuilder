@@ -32,6 +32,20 @@ avant ou les renommer (au menu principal, rubrique Fichier | Enregistrer sous).
 ------------------------------------------------------------------------------
 4. MODIFICATIONS APPORTÉES DANS LES VERSIONS SUCCESSIVES
 ------------------------------------------------------------------------------
+[Version 5.4.2] 
+ - La notion de rang d'infection a été revu : Si un piéton qui a eu plusieurs
+   infections infecte un autre piéton, ce dernier prend son dernier rang qui
+   est incrémenté de 1 (au lieu du premier rang).
+ - Ajout du paramètre "Réinfections possibles après guérison".
+ - La case à cocher "Activer l'épidémie" dans les paramètres n'est plus 
+   modifiable et a été renommée "Epidémie activée". Le bouton et la rubrique
+   "Simulation | Epidémie"... deviennent des interrupteurs : ils activent ou 
+   désactivent l'épidémie. Si l'épidémie est activée, la boîte de dialogue
+   des paramètres s'affiche. Si une simulation est en cours ou en pause, il
+   n'est plus possible de voir les paramètres de l'épidémie, qu'elle soit
+   activée ou non.
+ - Aide en ligne mise à jour : paramètres de l'épidémie.
+
 [Version 5.4.1] 
 Edition spéciale Coronavirus
  - Ajout du paramétrage d'une épidémie (actions Simulation + Affichage).
@@ -893,5 +907,5 @@ consulter le fichier INFOSRC.TXT.
  - Affichages d'estimation de durées (tours) de trajet jusqu'à une étape.
 
 ------------------------------------------------------------------------------
-Dernière mise à jour le 01/04/2020.
+Dernière mise à jour le 03/04/2020.
 ------------------------------------------------------------------------------

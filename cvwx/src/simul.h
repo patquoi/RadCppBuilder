@@ -179,7 +179,7 @@ class infection // v5.4.1
   int DonneRang(int Tour)
    {
 	if ((Tour>TourDeb)&&(Tour<TourFin))
-	  return PrmRang;
+	  return DrnRang; // v5.4.2 : Au lieu de PrmRang
 	else
 	  if (Svt)
 		return Svt->DonneRang(Tour);
@@ -198,7 +198,7 @@ class infection // v5.4.1
    };
   bool DoitSuccomber(int Tour);
   int NbInfections() { if (Svt) return 1+Svt->NbInfections(); else return 1; };
-  int DonneDrnRang() { if (Svt) return Svt->DonneDrnRang(); else return DrnRang; };
+  int DonnePrmRang() { return PrmRang; }; // v5.4.2 : au lieu de DonneDrnRang()
   int DonneTourFin() { if (Svt) return Svt->DonneTourFin(); else return TourFin; };
   int DonneTourDeb(bool Dernier) { if (Dernier&&Svt) return Svt->DonneTourDeb(true); else return TourDeb; };
   bool EstCondamne() { if (Svt) return Svt->EstCondamne(); else return (TourFatal>0); };
@@ -281,11 +281,12 @@ class pieton // v2.0
   int DonneChargeVirale();
   bool DoitSuccomber();
   int NbInfections() { if (Infection) return Infection->NbInfections(); else return 0; };
-  int DonneDrnRang() { if (Infection) return Infection->DonneDrnRang(); else return -1; };
+  int DonnePrmRang() { if (Infection) return Infection->DonnePrmRang(); else return -1; };
   int DonneTourFin() { if (Infection) return Infection->DonneTourFin(); else return -1; };
   int DonneTourDeb(bool Dernier) { if (Infection) return Infection->DonneTourDeb(Dernier); else return -1; };
   bool EstCondamne() { if (Infection) return Infection->EstCondamne(); else return false; };
   void SupprimeInfection() { if (Infection) { delete Infection; Infection=NULL; Mort=false; } }; // Utilisé par la résurrection !
+  bool EstGueri() { return (!EstContagieux())&&(NbInfections()>0); }; // v5.4.2
  };
 //---------------------------------------------------------------------------
 class feu
@@ -1078,7 +1079,8 @@ class centre_ville
 // v5.4.1 paramètres de l'épidémie (si active)
   int EpidemieInfectiosite, // Nb tours
 	  EpidemieIterationPatientZero, // Nb piétons
-	  EpidemieChargeFatale; // en % piétons infectés au bout de la période d'infectiosité
+	  EpidemieChargeFatale, // en % piétons infectés au bout de la période d'infectiosité
+      EpidemieReinfections; // v5.4.2 : Si vrai, alors même guéri, un piéton peut être réinfecté, si faux, il ne peut plus l'être (faux par défaut)
 
 // FIN Propriétés pour la génération aléatoire de réseau
   bool VerifOk, DistancesCalculees, QuadrillageStats;

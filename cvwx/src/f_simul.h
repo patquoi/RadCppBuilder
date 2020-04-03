@@ -574,13 +574,14 @@ private:
 
     ActionNouveau->Enabled=(!Pause)&&(!EnCours); // v4.4.3
     ActionOuvrir->Enabled=(!Pause)&&(!EnCours); // v4.4.3
-    ActionEnregistrer->Enabled=(!Pause)&&(!EnCours); // v4.4.3
-    ActionEnregistrerSous->Enabled=(!Pause)&&(!EnCours); // v4.4.3
+	ActionEnregistrer->Enabled=(!Pause)&&(!EnCours); // v4.4.3
+	ActionEnregistrerSous->Enabled=(!Pause)&&(!EnCours); // v4.4.3
 	ActionVerifierReseau->Enabled=(!Pause)&&(!EnCours);
-    ActionMarche->Enabled=!EnCours;
-    ActionInterruption->Enabled=EnCours;
-    ActionArret->Enabled=EnCours;
-    ActionEvolution->Enabled=Pause||EnCours;
+	ActionMarche->Enabled=!EnCours;
+	ActionInterruption->Enabled=EnCours;
+	ActionArret->Enabled=EnCours;
+	ActionEpidemie->Enabled=(!Pause)&&(!EnCours); // v5.4.2 : Action en mode interrupteur donc désactivé pendant la simulation
+	ActionEvolution->Enabled=Pause||EnCours;
     ActionFluiditeTrafic->Enabled=Pause||EnCours;
     ActionStatsParkings->Enabled=Pause||EnCours;
     ActionDirectionHaut->Enabled=(!Pause)&&(!EnCours);

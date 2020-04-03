@@ -274,6 +274,7 @@ infection::infection(const centre_ville *cv) // Patient zéro initialisé à la cré
   ChargeVirale = 1; // Incrémenté à chaque (ré)infection sur la période de contagion
   Svt = NULL;
  };
+//-----------------------------------------------------------------------------
 infection::infection(int Tour, int NumPieton, int Rang) // v5.4.1. NumPieton>0 (pieton::Numero+1)
  {
   TourDeb = Tour + 1; // Le piéton est contagieux à partir du tour suivant
@@ -3201,9 +3202,11 @@ void voie::DeplacePietons() //v3.5 : Inclut l'attente aux arrêts de bus/tram, la
 		  np2=NumPietonDehors[1];
 	  pieton *p1=&(cv->Pieton[np1-1]),
 			 *p2=&(cv->Pieton[np2-1]);
-	  if (p1->EstContagieux())
+	  if (p1->EstContagieux()&&
+		  (cv->EpidemieReinfections||(!p2->EstGueri()))) // v5.4.2 : Si réinfections possibles (nouveau paramètre) alors un guéri peut être réinfecté
 		p2->EstContaminePar(np1, p1->DonneRang()+1);
-	  if (p2->EstContagieux())
+	  if (p2->EstContagieux()&&
+		  (cv->EpidemieReinfections||(!p1->EstGueri()))) // v5.4.2 : Si réinfections possibles (nouveau paramètre) alors un guéri peut être réinfecté
 		p1->EstContaminePar(np2, p2->DonneRang()+1);
 	 }
 
@@ -4105,6 +4108,7 @@ centre_ville::centre_ville(bool NbElementsParDefaut, int NbX, int NbY)  // v4.0 
   EpidemieInfectiosite=100; // Nb tours
   EpidemieIterationPatientZero=100; // Nb piétons
   EpidemieChargeFatale=10; // Charge virale à partir de laquelle le piéton succombera au bout de la période d'infectiosité
+  EpidemieReinfections = false; // v5.4.2
  }
 //-----------------------------------------------------------------------------
 centre_ville::~centre_ville()

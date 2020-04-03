@@ -295,8 +295,8 @@ void TfrmInfosPieton::RafraichitInfos()
 	  LabelInfections->Caption=NbInfections;
 	  if (NbInfections>0)
 	   {
-		int Rang=p->DonneRang(),
-			DrnRang=p->DonneDrnRang(),
+		int Rang=p->DonnePrmRang(), // v5.4.2 : au lieu de DonneRang()
+			DrnRang=p->DonneRang(), // v5.4.2 : au lieu de DonneDrnRang()
 			PrmTourDeb=p->DonneTourDeb(PREMIER),
 			DrnTourDeb=p->DonneTourDeb(DERNIER),
 			DrnTourFin=p->DonneTourFin();

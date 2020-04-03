@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Centre-Ville"
-#define MyAppVersion "5.4.1.21"
+#define MyAppVersion "5.4.2.3"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr#cvw"
 #define MyAppExeName "cvw.exe"

@@ -168,7 +168,7 @@ object frmAPropos: TfrmAPropos
     Top = 34
     Width = 9
     Height = 14
-    Caption = ',1'
+    Caption = ',2'
     Color = clBlack
     Font.Charset = ANSI_CHARSET
     Font.Color = clLime

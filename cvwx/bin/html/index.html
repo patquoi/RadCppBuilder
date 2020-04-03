@@ -424,9 +424,13 @@ Depuis la version 5.4.1, il est possible de simuler une épidémie.<BR>
 Celle-ci est à paramétrer avant le début de la simulation.<BR>
 Pour ce faire, il faut appuyer sur le bouton <IMG SRC="BPDLE.png" WIDTH=16 HEIGHT=16 BORDER=0> ou choisir au menu <I><U>S</U>imulation | <U>E</U>pidémie...</I>.<BR>
 Cette boîte de dialogue s&rsquo;affiche&nbsp;:<P>
-<IMG Alt="Paramètres de l'épidémie" SRC="PDLE.png" WIDTH 356 HEIGHT=208 BORDER=0><P>
-Pour activer et modifier les paramètres, il faut cocher la case <I>Activer l'épidémie</I>.<BR>
-Les paramètres doivent être définis avant le lancement d'une simulation. Une fois commencée les paramètres ne sont plus modifiables.
+<IMG Alt="Paramètres de l'épidémie" SRC="PDLE.png" WIDTH 390 HEIGHT=237 BORDER=0><P>
+L&rsquo;épidémie est activée si cette boîte de dialogue s&rsquo;affiche sinon elle est désactivée.<BR>
+Les paramètres doivent être définis avant le lancement d&rsquo;une simulation&nbsp;: Une fois celle-ci commencée les paramètres ne sont plus accessibles y compris en pause.<P>
+<B>Période d&rsquo;infectiosité</B>&nbsp;: Si un piéton est infecté il devient contagieux. Il guérit au bout de la période d&rsquo;infectiosité et n&rsquo;est plus contagieux. 100 tours par défaut.<P>
+<B>Un patient zéro tous les...</B>&nbsp;: Au moment d&rsquo;ajouter les piétons au démarrage de la simulation, un patient zéro (infecté) est activé à la fréquence indiquée (10 piétons = 10% de patients zéro, 20 = 5%, 50 = 2%, 100 = 1%). 100 piétons par défaut (1%).<P>
+<B>Charge virale fatale</B>&nbsp;: A la fin de la période d&rsquo;infectiosité, un piéton qui a une charge virale supérieure ou égale à cette charge fatale, le piéton meurt. 10 infections par défaut.<P>
+<B>Réinfections après guérison</B>&nbsp;: Si coché, un piéton guéri ne peut plus être réinfecté. Si décoché, un piéton peut être réinfecté à chaque contact (sauf par le même piéton s&rsquo;il vient de l&rsquo;infecter). Décoché par défaut.<P>
 
 <HR>
 
@@ -544,7 +548,7 @@ Si un message d&rsquo;erreur s&rsquo;affiche lors de la vérification du réseau e
 <TR><TD><IMG Alt="Véhicules d'urgence" SRC="VEHPU1.png" HEIGHT=16 WIDTH=16 BORDER=0>&nbsp;<IMG Alt="" SRC="VEHPU2.png" HEIGHT=16 WIDTH=16 BORDER=0>&nbsp;&nbsp;<IMG Alt="Véhicules de police" SRC="VEHPP1.png" HEIGHT=16 WIDTH=16 BORDER=0>&nbsp;<IMG Alt="" SRC="VEHPP2.png" HEIGHT=16 WIDTH=16 BORDER=0></TD><TD>Véhicules prioritaires (urgence en rouge, police en blanc)</TD></TR>
 <TR><TD><IMG Alt="" SRC="PTN1.png" HEIGHT=16 WIDTH=16 BORDER=0>&nbsp;<IMG Alt="" SRC="PTN2.png" HEIGHT=16 WIDTH=16 BORDER=0>&nbsp;<IMG Alt="" SRC="PTN3.png" HEIGHT=16 WIDTH=16 BORDER=0>&nbsp;<IMG Alt="" SRC="PTN4.png" HEIGHT=16 WIDTH=16 BORDER=0></TD><TD>Piétons</TD></TR>
 <TR><TD><IMG Alt="Piéton écrasé" SRC="PTNE.png" HEIGHT=16 WIDTH=16 BORDER=0></TD><TD>Piéton(s) écrasé(s)</TD></TR>
-<TR><TD><IMG Alt="Piéton victime de l'épidémie" SRC="PTNM.png" HEIGHT=16 WIDTH=16 BORDER=0></TD><TD>Piéton(s) victime(s) de l'épidémie</TD></TR>
+<TR><TD><IMG Alt="Piéton victime de l'épidémie" SRC="PTNM.png" HEIGHT=16 WIDTH=16 BORDER=0></TD><TD>Piéton(s) victime(s) de l&rsquo;épidémie</TD></TR>
 <TR><TD><IMG Alt="Trottoirs" SRC="DCR1.png" HEIGHT=45 WIDTH=75 BORDER=0></TD><TD>Trottoirs</TD></TR>
 <TR><TD><IMG Alt="Habitation" SRC="DCR2.png" HEIGHT=48 WIDTH=64 BORDER=0></TD><TD>Immeubles</TD></TR>
 <TR><TD><IMG Alt="Bus et trams" SRC="BUSTRM1.png" HEIGHT=32 WIDTH=15 BORDER=0>&nbsp;<IMG Alt="" SRC="BUSTRM2.png" HEIGHT=13 WIDTH=35 BORDER=0>&nbsp;<IMG Alt="" SRC="BUSTRM3.png" HEIGHT=14 WIDTH=31 BORDER=0></TD><TD>Bus, trams</TD></TR>
@@ -955,7 +959,7 @@ Depuis la version 4.3.1, il est possible de <B>ressusciter</B> tous les piétons 
 Depuis la version 5.0, les étapes deviennent des parkings souterrains et il est possible de définir des places de parking en surface dans le même but que les parkings souterrains anciennement étapes : faire partir et arriver des véhicules des ou vers ces places de parking.<P>
 <H3>Informations sur les éléments de la simulation</H3>
 Au cours de la simulation, il est possible d&rsquo;obtenir des informations et visualiser les statistiques en temps réel.<BR>
-Tout est accessible depuis la barre d'outils&nbsp;: <IMG Alt="Barre d'outils d'informations sur les éléments de la simulation" SRC="BDOISLEDLS.png" HEIGHT=24 WIDTH=188 BORDER=0><UL>
+Tout est accessible depuis la barre d&rsquo;outils&nbsp;: <IMG Alt="Barre d'outils d'informations sur les éléments de la simulation" SRC="BDOISLEDLS.png" HEIGHT=24 WIDTH=188 BORDER=0><UL>
 <LI>Si vous appuyez sur le bouton <B>Détail</B> <IMG Alt="Bouton Détail sur élément sélectionné" SRC="BDOISLEDLS2.png" WIDTH=24 HEIGHT=24 BOORDER=0>, vous obtenez &nbsp;: <IMG Alt="Menu contextuel Détails" SRC="MCDTL.png" WIDTH=126 HEIGHT=120 BORDER=0>
 <LI>Si vous appuyez sur le bouton <B>Suivi</B> <IMG Alt="Bouton Suivi de l'élément sélectionné" SRC="BDOISLEDLS3.png" WIDTH=24 HEIGHT=24 BOORDER=0>, vous obtenez &nbsp;: <IMG Alt="Menu contextuel Suivi" SRC="MCSVI.png" WIDTH=162 HEIGHT=147 BORDER=0>
 <LI>Si vous appuyez sur le bouton <B>Distances</B> <IMG Alt="Bouton Distances" SRC="BDOISLEDLS4.png" WIDTH=24 HEIGHT=24 BOORDER=0>, vous obtenez&nbsp;: <IMG Alt="Menu contextuel Distances" SRC="MCDST.png" WIDTH=210 HEIGHT=120 BORDER=0></UL>
@@ -1000,7 +1004,7 @@ L&rsquo;évolution de la simulation est représentée par trois courbes&nbsp;:<UL>
 <LI>celle des véhicules qui ont <B>rejoint</B> le parking d&rsquo;arrivée (<FONT COLOR="#800000"><B>couleur rouge</B></FONT>) ;
 <LI>celle des véhicules qui se sont <B>déplacés</B> (<FONT COLOR="#008000"><B>couleur verte</B></FONT>).</UL>
 
-Si une épidémie a été activée avant le lancement de la simulation (Menu <I><U>S</U>imulation | <U>E</U>pidémie</I>... ou bouton <IMG Alt="Bouton Epidémie" SRC="BBDOSI7.png" HEIGHT=24 WIDTH=24 BORDER=0>) et que l'affichage épidémique est activé (bouton <IMG Alt="Bouton Affichage épidémique" SRC="BBDOA9.png" HEIGHT=24 WIDTH=24 BORDER=0>) alors l'évolution est celle de l'épidémie parmi les piétons.<P>
+Si une épidémie a été activée avant le lancement de la simulation (Menu <I><U>S</U>imulation | <U>E</U>pidémie</I>... ou bouton <IMG Alt="Bouton Epidémie" SRC="BBDOSI7.png" HEIGHT=24 WIDTH=24 BORDER=0>) et que l&rsquo;affichage épidémique est activé (bouton <IMG Alt="Bouton Affichage épidémique" SRC="BBDOA9.png" HEIGHT=24 WIDTH=24 BORDER=0>) alors l&rsquo;évolution est celle de l&rsquo;épidémie parmi les piétons.<P>
 <IMG Alt="" SRC="EP.png" HEIGHT=251 WIDTH=594 BORDER=0><P>
 L&rsquo;évolution de la simulation est représentée par trois courbes&nbsp;:<UL>
 <LI>celle des piétons <B>infectés</B> (<FONT COLOR="#808000"><B>couleur jaune</B></FONT>) ;
@@ -1242,7 +1246,7 @@ Dans le cas où une épidémie est activée, la partie inférieure est activée&nbsp;:
 <LI>Enfin depuis les versions 5.4.1 et supérieures&nbsp;:<UL>
  <LI> si le symbole &laquo;&nbsp;*&nbsp;&raquo; apparaît après le numéro, cela indique qu&rsquo;il a été &laquo;&nbsp;écrasé&nbsp;&raquo;&nbsp;;
  <LI> si le symbole &laquo;&nbsp;&dagger;&nbsp;&raquo; apparaît après le numéro, cela indique qu&rsquo;il a été &laquo;&nbsp;victime&nbsp;&raquo;&nbsp;;
- <LI> si le symbole &laquo;&nbsp;&ddagger;&nbsp;&raquo; apparaît après le numéro, cela indique qu&rsquo;il a été &laquo;&nbsp;contaminé&nbsp;&raquo; par l'épidémie et est contagieux.</UL></UL>
+ <LI> si le symbole &laquo;&nbsp;&ddagger;&nbsp;&raquo; apparaît après le numéro, cela indique qu&rsquo;il a été &laquo;&nbsp;contaminé&nbsp;&raquo; par l&rsquo;épidémie et est contagieux.</UL></UL>
 <HR>
 
 <A NAME="RC"></A><H2>Racccourcis clavier</H2>
@@ -1491,7 +1495,7 @@ Pour ce faire, sélectionner une zone, choisir <I>Définir la nature de la zone</I
 
 <HR>
 
-<CENTER>Dernière modification&nbsp;: le 29 mars 2020.</CENTER>
+<CENTER>Dernière modification&nbsp;: le 3 avril 2020.</CENTER>
 
 </BODY>
 </HTML> 
