@@ -9,6 +9,7 @@ del /S *.pdi
 del /S *.tmp
 del /S *.cbproj.local
 del /S *.groupproj.local
+del /S *.deployproj
 del bin\cvw.32.i??
 rd /S /Q src\__astcache
 rd /S /Q src\__history
