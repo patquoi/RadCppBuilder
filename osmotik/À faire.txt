@@ -16,7 +16,7 @@ A FAIRE - Légende
 =============================================================
 PASSAGE C++Builder 6 > Rad Studio 10.3.3 (Windows 32+64 bits)
 =============================================================
-- Problème au chargement d'une partie version précédente sur WinXP (?) -> Tester enregistrement
-- Réutiliser la police "small font" si taille plateau trop petite (comme version antérieure) pour les écrans basse résolution (WinXP)
+!! Problème au chargement d'une partie version précédente sur WinXP (?) -> Tester enregistrement
+
 
 

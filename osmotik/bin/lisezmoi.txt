@@ -41,6 +41,13 @@ VERSION DU DICTIONNAIRE INTEGRE
 La version du dictionnaire intégré (ODS) est indiqué dans l'À propos accessible
 dans le menu "?".
 
+SOURCES INCLUSES
+----------------
+
+Les sources sont fournies avec l'installation. Elles sont dans l'archive 
+smtk-src-win64.zip. Il faut RAD Studio C++ 10.3.3, la version Community 
+(gratuite) est suffisante pour recompiler les sources.
+
 HISTORIQUE DES VERSIONS
 -----------------------
 [Version 1.4] - 11 avril 2020
@@ -118,4 +125,4 @@ HISTORIQUE DES VERSIONS
  - Première version mise en ligne.
 
 
-Dernière modification le 11 avril 2020.
+Dernière modification le 12 avril 2020.

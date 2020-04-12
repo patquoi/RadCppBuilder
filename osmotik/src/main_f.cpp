@@ -25,6 +25,92 @@
 const char stSectionOptions[] = "Options";
 const char stEntreePolice[] = "Police";
 const char stEntreeFond[] = "Fond"; // v0.9.3
+// v1.4 Définition du curseur "+1" pour CreateCursor car LoadCursor ne marche pas !!!
+BYTE ANDmaskCursor[] =
+{
+	0xFF, 0xFF, 0xFF, 0xFF,   // 1
+	0xFF, 0xFF, 0xFF, 0xFF,   // 2
+	0xFF, 0xFF, 0xFF, 0xFF,   // 3
+	0xFF, 0xFF, 0xFF, 0x3F,   // 4
+
+	0xFF, 0xFF, 0xFE, 0xDF,   // 5
+	0xFF, 0xFF, 0xFD, 0xDF,   // 6
+	0xFF, 0xFF, 0xFB, 0xDF,   // 7
+	0xFF, 0xFF, 0xF7, 0xDF,   // 8
+
+	0xFF, 0xFF, 0xEF, 0xDF,   // 9
+	0xFF, 0xFF, 0xEF, 0xDF,   // 10
+	0xFF, 0x1F, 0xEF, 0xDF,   // 11
+	0xFE, 0xEF, 0xF1, 0xDF,   // 12
+
+	0xFE, 0xEF, 0xFD, 0xDF,   // 13
+	0xFE, 0xEF, 0xFD, 0xDF,   // 14
+	0xFE, 0xEF, 0xFD, 0xDF,   // 15
+	0xE0, 0xE0, 0xFD, 0xDF,   // 16
+
+	0xDF, 0xFF, 0x7D, 0xDF,   // 17
+	0xDF, 0xFF, 0x7D, 0xDF,   // 18
+	0xDF, 0xFF, 0x7D, 0xDF,   // 19
+	0xE0, 0xE0, 0xFD, 0xDF,   // 20
+
+	0xFE, 0xEF, 0xFD, 0xDF,   // 21
+	0xFE, 0xEF, 0xFD, 0xDF,   // 22
+	0xFE, 0xEF, 0xFD, 0xDF,   // 23
+	0xFE, 0xEF, 0xFD, 0xDF,   // 24
+
+	0xFF, 0x1F, 0xF1, 0xC7,   // 25
+	0xFF, 0xFF, 0xEF, 0xFB,   // 26
+	0xFF, 0xFF, 0xEF, 0xFB,   // 27
+	0xFF, 0xFF, 0xEF, 0xFB,   // 28
+
+	0xFF, 0xFF, 0xF0, 0x07,   // 29
+	0xFF, 0xFF, 0xFF, 0xFF,   // 30
+	0xFF, 0xFF, 0xFF, 0xFF,   // 31
+	0xFF, 0xFF, 0xFF, 0xFF    // 32
+},
+	 XORmaskCursor[] =
+{
+    0x00, 0x00, 0x00, 0x00,   // 1
+	0x00, 0x00, 0x00, 0x00,   // 2
+	0x00, 0x00, 0x00, 0x00,   // 3
+	0x00, 0x00, 0x00, 0x00,   // 4
+
+	0x00, 0x00, 0x00, 0xC0,   // 5
+	0x00, 0x00, 0x01, 0xC0,   // 6
+	0x00, 0x00, 0x03, 0xC0,   // 7
+	0x00, 0x00, 0x07, 0xC0,   // 8
+
+	0x00, 0x00, 0x0F, 0xC0,   // 9
+	0x00, 0x00, 0x0F, 0xC0,   // 10
+	0x00, 0x00, 0x0D, 0xC0,   // 11
+	0x00, 0xE0, 0x01, 0xC0,   // 12
+
+	0x00, 0xE0, 0x01, 0xC0,   // 13
+	0x00, 0xE0, 0x01, 0xC0,   // 14
+	0x00, 0xE0, 0x01, 0xC0,   // 15
+	0x00, 0xE0, 0x01, 0xC0,   // 16
+
+	0x1F, 0xFF, 0x01, 0xC0,   // 17
+	0x1F, 0xFF, 0x01, 0xC0,   // 18
+	0x1F, 0xFF, 0x01, 0xC0,   // 19
+	0x00, 0xE0, 0x01, 0xC0,   // 20
+
+	0x00, 0xE0, 0x01, 0xC0,   // 21
+	0x00, 0xE0, 0x01, 0xC0,   // 22
+	0x00, 0xE0, 0x01, 0xC0,   // 23
+	0x00, 0xE0, 0x01, 0xC0,   // 24
+
+	0x00, 0x00, 0x01, 0xC0,   // 25
+	0x00, 0x00, 0x0F, 0xF8,   // 26
+	0x00, 0x00, 0x0F, 0xF8,   // 27
+	0x00, 0x00, 0x0F, 0xF8,   // 28
+
+	0x00, 0x00, 0x00, 0x00,   // 29
+	0x00, 0x00, 0x00, 0x00,   // 30
+	0x00, 0x00, 0x00, 0x00,   // 31
+	0x00, 0x00, 0x00, 0x00    // 32
+};
+
 //---------------------------------------------------------------------------
 TFormMain *FormMain;
 //---------------------------------------------------------------------------
@@ -292,7 +378,16 @@ int TFormMain::NbLignes() // v1.4 : décalage dans le formatage des ligne, dans S
 //---------------------------------------------------------------------------
 __fastcall TFormMain::TFormMain(TComponent* Owner)
   : TForm(Owner)
-{
+{ // v1.4 : création du curseur "+1" à la volée sans passer par les ressources (LoadCursor ne marche pas)
+ // HICON crPlus1=LoadCursorFromFile(String(ExtractFilePath(Application->ExeName)+"\\plus1.cur").c_str()); // Marche mais oblige à fournir le fichier .cur
+ // HICON crPlus1=LoadCursor(HInstance, L"CURSOR_PLUS1"); // Ne marche pas !
+ HICON crPlus1=CreateCursor(HInstance, // app. instance
+							16, // horizontal position of hot spot
+							15, // vertical position of hot spot
+							32, // cursor width
+							32, // cursor height
+							ANDmaskCursor,     // AND mask
+							XORmaskCursor);   // XOR mask
  PaintBox->Canvas->TextFlags=ETO_OPAQUE;
  // v1.4 : on recalcul l'espace coordonnées à cause de la HDPI (au lieu de LARGEURESPACECOORDONNNEES
  StatusBar->Panels->Items[0]->Width=StatusBar->Width - StatusBar->Panels->Items[1]->Width
@@ -302,7 +397,7 @@ __fastcall TFormMain::TFormMain(TComponent* Owner)
 													 - StatusBar->Panels->Items[5]->Width
 													 - StatusBar->Panels->Items[6]->Width
 													 - StatusBar->Panels->Items[7]->Width;
- Screen->Cursors[CURSEUR_PLUS_1]=LoadCursor(HInstance, L"P1");
+ Screen->Cursors[CURSEUR_PLUS_1] = crPlus1;
  OpenDialog->InitialDir = stRepLocalAppData(); // v1.4
  SaveDialog->InitialDir = stRepLocalAppData(); // v1.4
  if ((OuvertureAuto=(ParamCount()>0)))
@@ -326,10 +421,10 @@ void __fastcall TFormMain::PaintBoxMouseMove(TObject *Sender,
    if (P->CoordonneesValides(Xs, Ys))
 	{
 	 if (P->LettreCapitalisable(Xs, Ys)&&(P->h[Xs][Ys].Camp==P->CampCrt))
-	  Cursor=TCursor(CURSEUR_PLUS_1);
+	  Screen->Cursor=TCursor(CURSEUR_PLUS_1);
 	 else
-	  if (Cursor!=crDefault)
-	   Cursor=crDefault;
+	  if (Screen->Cursor!=crDefault)
+	   Screen->Cursor=crDefault;
 	 PopupMenuPlacer->Tag= P->PartieEnCours&& // Permet l'affichage du menu Placer QUE Si partie en cours et case vide (pas de lettre)
 						   (!P->FormationMotEnCours)&&
 						   (!P->h[Xs][Ys].Lettre);
@@ -340,8 +435,8 @@ void __fastcall TFormMain::PaintBoxMouseMove(TObject *Sender,
 	}
    else
 	{
-	 if (Cursor!=crDefault)
-	  Cursor=crDefault;
+	 if (Screen->Cursor!=crDefault)
+	  Screen->Cursor=crDefault;
 	 PopupMenuPlacer->Tag=0; // NE Permet PAS l'affichage du menu Placer
 	 P->ChangeHexagoneCourant(PaintBox->Canvas, -1, -1);
 	 StatusBar->Panels->Items[0]->Text=asVide; // v0.8.5. v0.9.4 : Affichage en tête
@@ -473,9 +568,9 @@ void __fastcall TFormMain::PaintBoxClick(TObject *Sender)
    P->DessineCapitalLettres(PaintBox->Canvas);
    P->h[P->Xs][P->Ys].Dessine(PaintBox->Canvas);
    if (P->LettreCapitalisable(P->Xs, P->Ys)&&(P->h[P->Xs][P->Ys].Camp==P->CampCrt))
-	Cursor=TCursor(CURSEUR_PLUS_1);
+	Screen->Cursor=TCursor(CURSEUR_PLUS_1);
    else
-	Cursor=crDefault;
+	Screen->Cursor=crDefault;
   }
 }
 //---------------------------------------------------------------------------
