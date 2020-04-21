@@ -1,0 +1,39 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+USERES("lebrgw.res");
+USERES("lebrgw2.res");
+USEFORM("plt_f.cpp", frmPlateau);
+USEUNIT("base.cpp");
+USEFORM("prmniv_f.cpp", frmPrmNiveau);
+USEUNIT("tourniv.cpp");
+USEFORM("score_f.cpp", frmScore);
+USEFORM("apropos_f.cpp", frmAPropos);
+USEFORM("records_f.cpp", frmRecords);
+USEFORM("prt_f.cpp", frmParties);
+USEFORM("nomjou_f.cpp", frmNomJoueur);
+USEFORM("avertissement_f.cpp", frmAvertissement);
+USEFORM("diplome_f.cpp", frmDiplome);
+USEFORM("comm_f.cpp", frmCommandes);
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    try
+    {
+        Application->Initialize();
+        Application->Title = "Le Berger";
+        Application->HelpFile = "Lebrgw.hlp";
+        Application->CreateForm(__classid(TfrmPlateau), &frmPlateau);
+        Application->CreateForm(__classid(TfrmPrmNiveau), &frmPrmNiveau);
+        Application->CreateForm(__classid(TfrmParties), &frmParties);
+        Application->CreateForm(__classid(TfrmNomJoueur), &frmNomJoueur);
+        Application->CreateForm(__classid(TfrmAvertissement), &frmAvertissement);
+        Application->Run();
+    }
+    catch (Exception &exception)
+    {
+        Application->ShowException(&exception);
+    }
+    return 0;
+}
+//---------------------------------------------------------------------------

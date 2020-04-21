@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\bin\lebrgw.exe"/>
+    <OBJFILES value="..\obj\lebrgw.obj ..\obj\plt_f.obj ..\obj\base.obj ..\obj\prmniv_f.obj 
+      ..\obj\tourniv.obj ..\obj\score_f.obj ..\obj\apropos_f.obj 
+      ..\obj\records_f.obj ..\obj\prt_f.obj ..\obj\nomjou_f.obj 
+      ..\obj\avertissement_f.obj ..\obj\diplome_f.obj ..\obj\comm_f.obj"/>
+    <RESFILES value="lebrgw.res lebrgw2.res"/>
+    <IDLFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) plt_f.dfm prmniv_f.dfm score_f.dfm apropos_f.dfm records_f.dfm 
+      prt_f.dfm nomjou_f.dfm avertissement_f.dfm diplome_f.dfm comm_f.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="vclx.lib bcbsmp.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib bcbsmp.lib vclx.lib"/>
+    <PACKAGES value="vclx.bpi rtl.bpi vcl.bpi bcbsmp.bpi dclocx.bpi nmfast.bpi inetdb.bpi 
+      inet.bpi dbrtl.bpi vcldb.bpi bdertl.bpi qrpt.bpi vcldbx.bpi teeui.bpi 
+      vclsmp.bpi teedb.bpi tee.bpi ibsmp.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value=""/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="lebrgw.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -H=c:\PROGRA~1\BORLAND\CBUILD~1\lib\vcl35.csm -Hc -Vx -Ve -Tkh30000 
+      -X- -r- -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <CFLAG2 value=""/>
+    <CFLAG3 value=""/>
+    <PFLAGS value="-N2..\obj -N0..\obj -$YD -$W -$O- -$A8 -v -M -JPHNE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-I..\obj -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <IFLAGS value=""/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="lebrgw.cpp" FORMNAME="" UNITNAME="lebrgw" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lebrgw.res" FORMNAME="" UNITNAME="lebrgw" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lebrgw2.res" FORMNAME="" UNITNAME="lebrgw2" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="plt_f.cpp" FORMNAME="frmPlateau" UNITNAME="plt_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="base.cpp" FORMNAME="" UNITNAME="base" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="prmniv_f.cpp" FORMNAME="frmPrmNiveau" UNITNAME="prmniv_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="tourniv.cpp" FORMNAME="" UNITNAME="tourniv" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="score_f.cpp" FORMNAME="frmScore" UNITNAME="score_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="apropos_f.cpp" FORMNAME="frmAPropos" UNITNAME="apropos_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="records_f.cpp" FORMNAME="frmRecords" UNITNAME="records_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="prt_f.cpp" FORMNAME="frmParties" UNITNAME="prt_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="nomjou_f.cpp" FORMNAME="frmNomJoueur" UNITNAME="nomjou_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="avertissement_f.cpp" FORMNAME="frmAvertissement" UNITNAME="avertissement_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="diplome_f.cpp" FORMNAME="frmDiplome" UNITNAME="diplome_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="comm_f.cpp" FORMNAME="frmCommandes" UNITNAME="comm_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=1
+MajorVer=1
+MinorVer=6
+Release=1
+Build=1
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1036
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=I.H.S.V. Productions
+FileDescription=Le Berger pour Windows 32 bits
+FileVersion=1.6.1.1
+InternalName=Le Berger
+LegalCopyright=1999, Patrice FOUQUET
+LegalTrademarks=
+OriginalFilename=LEBRGW
+ProductName=Le Berger
+ProductVersion=1.6.1
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=2
+Item0=$(BCB)\include;$(BCB)\include\vcl
+Item1=..\..\..\projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=2
+Item0=$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\..\..\projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_RTLDLL;USEPACKAGES
+
+[HistoryLists\hlIntOutputDir]
+Count=2
+Item0=..\obj
+Item1=obj
+
+[HistoryLists\hlRunParameters]
+Count=3
+Item0=D:\Borland\CBuilder3\Projects\Lebrgw\niveaux\original.020.nlb
+Item1=fh
+Item2=dhj
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\bin\
+Item1=..\bin
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+  </IDEOPTIONS>
+</PROJECT>

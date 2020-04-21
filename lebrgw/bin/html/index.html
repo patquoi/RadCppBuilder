@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Bienvenue dans l'aide contextuelle de Le Berger</TITLE>
+<META Name="description" Content="Aide de Le Berger, une autre vision sur le métier de berger">
+<META Name="keywords" Content="aide, berger, bête, GPL, sources, windows">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<A NAME="ASLB"></A><H1>Aide sur Le Berger</H1>
+<UL>
+<LI><A HREF="#RDJ">Règle du jeu</A><P>
+ <UL>
+  <LI><A HREF="#PDJ">Principes du jeu</A><P>
+   <UL>
+    <LI><A HREF="#LP">Les portes</A>
+	<LI><A HREF="#LD">Les déclencheurs</A>
+	<LI><A HREF="#LN">Les niveaux</A><P>
+   </UL>
+  <LI><A HREF="#EDJ">Éléments du jeu</A><P>
+ </UL> 
+<LI><A HREF="#U">Utilisation</A><P>
+ <UL>
+  <LI><A HREF="#P">Présentation</A>
+  <LI><A HREF="#MJ">Mode Jeu</A>
+  <LI><A HREF="#ME">Mode Éditeur</A>
+  <LI><A HREF="#CUN">Créer un niveau</A>
+  <LI><A HREF="#RDDDEDJ">Règles de disposition des éléments de jeu</A>
+  <LI><A HREF="#TUN">Tester un niveau</A>
+  <LI><A HREF="#R">Records</A>
+  <LI><A HREF="#CDJ">Commandes du jeu</A>
+  <LI><A HREF="#AP">Autres paramétrages</A>
+ </UL>
+</UL><P>
+
+<HR>
+
+<A NAME="RDJ"></A><H1>Règle du jeu</H1>
+
+<A NAME="PDJ"></A><H2>Principes du jeu</H2>
+
+Le jeu consiste à enfermer de charmantes bêtes bleues (une genre de limaces) de telle sorte qu&rsquo;elles ne puissent plus bouger.<P>
+Pour cela, vous disposez d&rsquo;une scène (comme des pâturages) contenant des &laquo;&nbsp;cellules&nbsp;&raquo; dans lesquelles vous pouvez les enfermer.<P>
+Les limaces ont la particularité de vous suivre ou plutôt de suivre un curseur que vous pouvez déplacer. Le curseur symbolise une balise émettant un signal qui attire les limaces. Cependant, lorsqu&rsquo;une limace touche la balise, celle-ci perd de son effet attirant et les limaces ont de plus en plus tendance à errer. Votre balise a un certain nombre de points d&rsquo;effet. Lorsqu&rsquo;elle touche une limace de face, elle perd 2 points ; lorsque la balise touche le côté d&rsquo;une limace, elle perd 1 point. En revanche, aucun point n&rsquo;est perdu lorsque la balise touche l&rsquo;arrière d&rsquo;une limace. La balise a un effet de départ égal à 5 fois le nombre de bêtes présentes. La probabilité pour qu&rsquo;une limace suive la balise est égal au rapport entre le nombre de points de la balise à ce moment et le nombre de points qu&rsquo;elle avait au départ.<P>
+Dans une scène, vous pourrez trouver trois sortes d&rsquo;éléments : des murs, des portes et des déclencheurs (rouges et bleus). Votre balise, comme pour les limaces, ne peut franchir les murs ainsi que les portes qui ne sont pas ouvertes (c&rsquo;est-à-dire qui sont en train de se fermer ou qui le sont déjà). Notez bien que les limaces ne font demi-tour que lorsqu&rsquo;elles sont dans un cul-de-sac.
+
+<A NAME="LP"></A><H3>Les portes</H3>
+
+Les portes peuvent être ouvertes de deux manières : soit en marchant sur un déclencheur rouge ou bleu, soit en les actionnant à distance depuis la balise dans les directions horizontales ou verticales, à condition qu&rsquo;il n&rsquo;y ait pas de déclencheur de part et d&rsquo;autre de la porte. Il ne doit pas y avoir non plus d&rsquo;obstacles entre la balise et la porte comme une limace, un mur ou une autre porte même ouverte, sauf si une limace est sur l&rsquo;emplacement de la porte.
+
+<A NAME="LD"></A><H3>Les déclencheurs</H3>
+
+À la différence d&rsquo;un déclencheur bleu, le déclencheur rouge ne peut être utilisé qu&rsquo;une seule fois : soit par une limace, soit par la balise. Après utilisation, il disparaît. Les limaces n&rsquo;ont que les déclencheurs comme seul moyen d&rsquo;actionner les portes. Enfin, si une porte doit se fermer et qu&rsquo;il y a un obstacle qui l&rsquo;en empêche (limace ou balise), elle se ferme dès qu&rsquo;il s&rsquo;est déplacé.<P>
+
+<A NAME="LN"></A><H3>Les niveaux</H3>
+
+Chaque niveau est limité dans le temps. Il ne se termine que dans trois cas&nbsp;: votre temps imparti est écoulé, l&rsquo;effet de votre balise a atteint le seuil minimum (sauf s&rsquo;il est égal à l&rsquo;effet de départ) ou alors vous avez immobilisé toutes vos bêtes.<P>
+Pour passer au niveau suivant vous devez avoir atteint un certain nombre de points appelé &laquo;&nbsp;barre&nbsp;&raquo; (la notion de partie n&rsquo;existe pas encore dans les versions inférieures à la version 1.0).<P>
+Le score d&rsquo;un niveau se compose des totaux suivants&nbsp;:
+ <UL>
+  <LI>1000 points par limace immobilisée&nbsp;;
+  <LI>100 fois le niveau d&rsquo;effet restant au dessus du seuil minimum&nbsp;;
+  <LI>5 points par unité de temps restantes.
+ </UL>
+
+<A NAME="EDJ"></A><H2>Éléments du jeu</H2>
+
+<TABLE cellspacing=1 cellpadding=2 border=0>
+<TR><TD align=left><I>Chemins</I></TD><TD align=center><IMG Alt="chemin" SRC="Chemin1.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="chemin" SRC="Chemin2.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="chemin" SRC="Chemin3.png" WIDTH=32 HEIGHT=32 BORDER=0></TD></TR>
+<TR><TD align=left><I>Murs</I></TD><TD align=center><IMG Alt="mur" SRC="Mur1.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="mur" SRC="Mur2.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="mur" SRC="Mur3.png" WIDTH=32 HEIGHT=32 BORDER=0></TD></TR>
+<TR><TD align=left><I>portes ouvertes</I></TD><TD align=center><IMG Alt="porte ouverte" SRC="PorteO1.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="porte ouverte" SRC="PorteO2.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="porte ouverte" SRC="PorteO3.png" WIDTH=32 HEIGHT=32 BORDER=0></TD></TR>
+<TR><TD align=left><I>portes fermées</I></TD><TD align=center><IMG Alt="porte fermée" SRC="PorteHF1.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="porte fermée" SRC="PorteHF2.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="porte fermée" SRC="PorteHF3.png" WIDTH=32 HEIGHT=32 BORDER=0></TD></TR>
+<TR><TD></TD><TD align=center><IMG Alt="porte fermée" SRC="PorteVF1.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="porte fermée" SRC="PorteVF2.png" WIDTH=32 HEIGHT=32 BORDER=0></TD><TD align=center><IMG Alt="porte fermée" SRC="PorteVF3.png" WIDTH=32 HEIGHT=32 BORDER=0></TD></TR>
+</TABLE>
+
+<HR>
+ 
+<A NAME="U"></A><H1>Utilisation</H1>
+
+<A NAME="P"></A><H2>Présentation</H2>
+
+Lorsque vous lancez le jeu, vous obtenez une fenêtre avec un menu, une partie principale à fond jaune et deux lignes de statut. La partie au fond jaune représente l&rsquo;arène du jeu. En dessous sont affichés les paramètres évoluant au cours du jeu.<P>
+Le programme a deux modes : le mode <I>Jeu</I> et le mode <I>Éditeur</I>. Le mode <I>Jeu</I> est le mode par défaut au lancement (à partir de la version 1.3).<P>
+Le mode <I>Jeu</I> permet de jouer une partie en commençant par le niveau 0 d&rsquo;une série jusqu&rsquo;au dernier niveau ou jusqu&rsquo;à ce que la barre d&rsquo;un niveau ne soit pas atteinte (voir règle du jeu). La série par défaut a pour nom débutant (à partir de la version 1.3). Si les niveaux de cette série sont dans le même dossier que le programme, le premier niveau de cette série est automatiquement chargé et prêt à être lancé. Sinon, le programme vous demandera d&rsquo;en ouvrir une. Si vous ne spécifiez pas de série, le mode par défaut devient alors le mode éditeur.<P>
+Le mode <I>Éditeur</I> permet de créer, modifier et tester des niveaux (le plus intéressant des modes).
+
+<A NAME="MJ"</A><H2>Mode Jeu</H2>
+
+Pour être en mode jeu, allez dans le menu Mode et vérifiez que le point est bien en face de <I><U>J</U>eu</I>. Dans le cas contraire appuyez dessus ou appuyez sur <B><I>Ctrl+J</I></B> (voir l&rsquo;illustration ci-dessous).<P>
+En mode <I>Jeu</I>, le menu <I><U>P</U>artie</I> est accessible mais pas le menu <I><U>E</U>diteur</I>. Le titre de la fenêtre contient le commentaire sur le niveau courant (il contient quelques fois un indice concernant le niveau !).<P>
+
+<IMG Alt="Choix du mode" SRC="Modes.png" HEIGHT=82 WIDTH=349 BORDER=0><P>
+
+Toutes les commandes principales de jeu sont dans le menu <I><U>P</U>artie</I>&nbsp;:<P>
+
+<IMG Alt="Menu Partie" SRC="MenuPartie.png" HEIGHT=83 WIDTH=167 BORDER=0><P>
+ 
+La rubrique <I><U>N</U>ouvelle</I> (<B><I>F4</I></B> au clavier) permet de commencer une nouvelle partie avec la série courante.<BR>
+La rubrique <I><U>A</U>rrêter</I> (<B><I>F4</I></B> au clavier) permet d&rsquo;abandonner la partie en cours.<BR>
+La rubrique <I><U>I</U>nterrompre</I> (<B><I>F5</I></B> au clavier) permet de faire une pause dans une partie en cours<BR>
+La rubrique <I><U>C</U>ontinuer</I> (<B><I>F5</I></B> au clavier) permet de reprendre la partie après l&rsquo;avoir interrompue.<P>
+La rubrique <I><U>O</U>uvrir</I> (<B><I>F3</I></B> au clavier) affiche la fenêtre suivante&nbsp;:<P>
+
+<IMG Alt="Ouvrir une partie" SRC="Ouvrir.png" HEIGHT=426 WIDTH=390 BORDER=0><P>
+
+Il faut tout d&rsquo;abord choisir un nom dans la liste <I><U>J</U>oueur</I>.<BR>Lorsqu&rsquo;un nom est sélectionné, la liste des parties sauvegardées s&rsquo;affiche. Il suffit alors de double cliquer sur la partie souhaitée.<BR>Appuyer sur <B><I>Entrée</I></B> ou appuyer sur le bouton <I><U>V</U>u</I> ouvre la partie sélectionnée.<P>
+Il est possible d&rsquo;accéder à cette fenêtre des parties dans la rubrique Parties sauvegardées du menu Informations du menu principal ou en appuyant sur <B><I>Ctrl+G</I></B>. Par cet accès, il n&rsquo;est pas possible d&rsquo;ouvrir une partie sauvegardée.<P>
+La rubrique <I><U>C</U>hanger de série</I> (<I><B>Ctrl+F4</B></I> au clavier) permet de choisir une autre série. Une boîte de dialogue vous demande alors de choisir le fichier du premier niveau de la série souhaitée.<P>
+La partie est automatiquement sauvegardée après chaque niveau réussi. Dans ce cas, cette sauvegarde remplace l&rsquo;éventuelle sauvegarde de la même partie au niveau précédent.<P>
+Pendant le jeu, les <A HREF="#CDJ">commandes de jeu</A> deviennent accessibles.
+
+<HR>
+
+<A NAME="ME"</A><H2>Mode Éditeur</H2>
+
+Pour être en mode <I>Éditeur</I>, allez dans le menu <I><U>M</U>ode</I> et vérifiez que le point est bien en face de <I><U>E</U>diteur</I>.<BR>Dans le cas contraire appuyez dessus ou appuyez sur <B><I>Ctrl+E</I></B> (voir l&rsquo;illustration ci-dessus).<P>
+En mode <I>Éditeur</I>, le menu Editeur est accessible mais pas le menu <I><U>P</U>artie</I>.<P>
+Toutes les commandes principales de l&rsquo;éditeur sont dans le menu <I><U>E</U>diteur</I>&nbsp;:<P> 
+
+<IMG Alt="Menu Editeur" SRC="MenuEditeur.png" HEIGHT=176 WIDTH=212 BORDER=0><P>
+
+Un niveau fait toujours partie d&rsquo;une série. La série <B><I>Original</I></B> correspond aux niveaux d&rsquo;origine du jeu dans sa version <I>Dos</I>. Un niveau est donc défini par un nom de série et un numéro.<BR>
+À chaque niveau correspond un fichier dont le nom est formé comme ceci&nbsp;:<P>
+
+<CENTER><I>Nom de la série</I>&gt;.&lt;<I>n° du niveau sur trois chiffres</I>&gt;.NLB</CENTER><P>
+
+Exemple&nbsp;: <TT>original.012.NLB</TT> (13<SUP>ème</SUP> niveau de la série <I>Original</I>).
+
+<HR>
+
+<A NAME="CUN"</A><H2>Créer un niveau</H2>
+
+Choisissez  <I><U>N</U>ouveau niveau</I> dans le menu <I><U>E</U>diteur</I> ou appuyez sur <I><B>Maj+F4</B></I>.
+Une boîte de dialogue apparaît comme ceci&nbsp;:<P>
+
+<IMG Alt="Paramètres du niveau" SRC="PrmNiv.png" HEIGHT=389 WIDTH=213 BORDER=0><P>
+
+Il s&rsquo;agit de définir les paramètres principaux du niveau à créer (dans l&rsquo;ordre)&nbsp;:
+<UL>
+ <LI> Le nom de la série (avec des caractères autorisés dans les noms de fichiers) ;
+ <LI> Le numéro du niveau (0 pour le premier, jusqu&rsquo;à 999) ;
+ <LI> Le nombre maximal de bêtes (vous ne pourrez pas en mettre plus, une fois commencé le niveau, sans retirer toutes les bêtes pour augmenter ce nombre) ;
+ <LI> Le délai entre deux tours (en millisecondes, minimum 50) ;
+ <LI> Le nombre maximum de tours (donc temps max. = délai entre 2 tours ? nombre max. de tours) ;
+ <LI> La barre à atteindre (en nombre de points, voir <A HREF="RDJ">Règle du jeu</A>) ;
+ <LI> Le nombre de bêtes à immobiliser pour finir le niveau (pas forcément égal au nombre de bêtes présentes) ;
+ <LI> L&rsquo;effet limite du curseur (en nombre de points, voir <A HREF="RDJ">Règle du jeu</A>) : si cette valeur est égal à 5 fois le nombre de bêtes présentes dans l&rsquo;arène la balise ne doit pas toucher de limace de face ou de côté, de plus aucun point ne sera attribué concernant l&rsquo;effet de la balise à la fin du niveau ;
+</UL><P>
+Il est possible de mettre une bordure de murs dans l&rsquo;arène en cochant la case <I>Ajouter une bordure de murs</I>.<P>
+
+Enfin, appuyer sur <I><U>V</U>u &amp; appliqué</I> pour valider les paramètres et enfin commencer la saisie des éléments du niveau.
+
+Pour poser ou retirer un élément dans l&rsquo;arène, vous avez deux possibilités&nbsp;:
+<UL>
+ <LI> Cliquer avec le bouton droit de la souris sur la case destinataire et choisissez l&rsquo;élément dans le menu déroulant ci-dessous, ou<BR>
+ <LI> Appuyer sur la touche correspondant au raccourci indiqué à côté de la rubrique du menu déroulant ci-dessus.
+</UL><P>
+<IMG SRC="MenuPose.png" <HEIGHT=185 WIDTH=223 BORDER=0>
+
+<HR>
+
+<A NAME="RDDDEDJ"</A><H2>Règles de disposition des éléments de jeu</H2>
+
+Il faut respecter les règles suivantes de disposition des éléments de jeu&nbsp;:
+<UL>
+ <LI> Vous ne pouvez pas poser de mur sur une case où il y a une bête.
+ <LI> Vous devez poser une porte ouverte ou fermée entre deux murs ou entre un mur et le bord.
+ <LI> Vous devez poser un déclencheur bleu ou rouge à côté d&rsquo;une porte.
+ <LI> Vous ne pouvez pas poser de bête sur un mur.
+ <LI> Vous ne pouvez pas poser de bête sur une porte qui n&rsquo;est pas ouverte.
+ <LI> Vous ne pouvez pas ajouter de bêtes si le nombre maximal de bêtes est atteint : pour augmenter ce nombre, il faut retirer toutes les bêtes, modifier le paramètre Nombre maximal de bêtes (Rubrique Editeur | Paramètres du niveau ou Maj+F6) puis remettre les bêtes.
+ <LI> Vous ne pouvez pas retirer un mur à côté d&rsquo;une porte : il faut d&rsquo;abord retirer les portes adjacentes à un mur avant de retirer ce dernier. 
+ <LI> Vous ne pouvez pas retirer une porte à côté d&rsquo;un déclencheur isolé (déclencheur adjacent à une seule porte) : il faut d&rsquo;abord retirer les déclencheurs isolés adjacents à une porte avant de retirer cette dernière.
+ <LI> Vous devez laisser le curseur sur une case libre (position initiale du niveau) avant d&rsquo;enregistrer le niveau.
+</UL><P>
+À ceci s&rsquo;ajoute la restriction d&rsquo;enregistrer le niveau avant de le tester.<P>
+À chaque fois que l&rsquo;une de ces règles ne sera pas respectée, un message vous le signalera. Ils sont signalés dans une boîte de dialogue avec un point d&rsquo;exclamation si l&rsquo;option <I><U>A</U>ffichage | <U>M</U>essages | Dans une boîte de <U>d</U>ialogue</I> est sélectionnée, ou en défilant dans la ligne de statut en bas de la fenêtre principale si l&rsquo;option <I><U>A</U>ffichage | <U>M</U>essages | Dans la ligne de <U>s</U>tatut</I> est sélectionnée.<P>
+Une fois terminée la saisie des éléments du niveau, enregistrez-le en choisissant la rubrique <I><U>E</U>diteur | <U>E</U>nregistrer le niveau</I> ou en appuyant sur <B><I>Maj+F2</I></B>.<P>
+Vous pouvez régler l&rsquo;affichage des différents éléments dans l&rsquo;arène ainsi que le quadrillage en mode <I>Éditeur</I>&nbsp;: allez dans le menu <I><U>A</U>ffichage | <U>E</U>diteur</I> (voir ci-dessous). La rubrique Rien (<I><B>Ctrl+zéro</B></I>) permet de n&rsquo;afficher aucun élément (que les chemins) et Tout (Ctrl+zéro) permet d&rsquo;afficher tous les éléments.<P>
+
+<IMG Alt="Menu Affichage | Editeur" SRC="MenuAffEditeur.png" WIDTH=147 HEIGHT=107 BORDER=0>
+
+<HR>
+
+<A NAME="TUN"</A><H2>Tester un niveau</H2>
+
+Après avoir ouvert ou enregistré un niveau, vous pouvez le tester en choisissant la rubrique <I><U>E</U>diteur | <U>T</U>ester le niveau</I> ou en appuyant sur <I><B>Ctrl+F5</B></I>. Il est possible de tester le niveau avec des paramètres d&rsquo;affichage.<P>
+Pour arrêter le test, appuyez à nouveau sur <I><B>Ctrl+F5</B></I>. Pour faire une pause, utilisez <B><I>F5</I></B> (<I><U>I</U>nterrompre le niveau</I>). Appuyez à nouveau sur F5 pour poursuivre le niveau.
+
+<HR>
+
+<A NAME="R"</A><H2>Records</H2>
+
+Les records des parties et des niveaux d&rsquo;une série sont mémorisées.<P>
+Lorsque vous battez un record une fenêtre de ce type s&rsquo;affiche&nbsp;:<P>
+
+<IMG Alt="Records" SRC="Records.png" WIDTH=478 HEIGHT=487 BORDER+0><P>
+
+Vous devez alors entrer votre nom.<P>
+Cette fenêtre s&rsquo;affiche aussi bien lorsque vous battez un record de niveau qu&rsquo;un record de partie pour la série courante.<P>
+Cette fenêtre permet également de consulter les records d&rsquo;une série, d&rsquo;une partie et d&rsquo;un niveau donné. Pour afficher cette fenêtre, choisissez la rubrique <I><U>R</U>ecords...</I> du menu <I><U>I</U>nformations</I> dans le menu principal ou alors appuyez sur <B><I>Ctrl+R</I></B>.<P>
+
+Pour afficher des records&nbsp;:
+<UL>
+ <LI> Choisissez le nom d&rsquo;une série dans la liste <I><U>S</U>érie</I>&nbsp;;
+ <LI> Choisissez ensuite si vous souhaitez les records de parties ou les records d&rsquo;un niveau en cliquant sur le bouton radio correspondant ;
+ <LI> Si vous avez choisi d&rsquo;afficher les records d&rsquo;un niveau, choisissez le numéro du niveau souhaité dans la liste qui apparaît à droite.
+</UL><P>
+Il est également possible d&rsquo;effacer des records : cliquez sur le bouton radio correspondant à votre choix dans le cadre <I><U>R</U>éinitialiser les records</I>. Appuyez ensuite sur le bouton <I>Appli<U>q</U>uer</I> ou sur le bouton <I><U>V</U>u</I> (ou <B><I>Entrée</I></B>) si vous voulez fermer la fenêtre des records.
+
+<HR>
+
+<A NAME="CDJ"</A><H2>Commandes du jeu</H2>
+
+Les commandes par défaut sont les suivantes&nbsp;:
+<UL>
+ <LI> Pour diriger la balise (curseur) dans les quatre directions, utilisez les touches fléchées.
+ <LI> Pour actionner les portes dans les quatre directions, utilisez les touches suivantes&nbsp;:
+</UL><P>
+
+<CENTER><TT><FONT SIZE=5><B>Z<BR>
+Q + S<BR>
+W</B></FONT></TT></CENTER><P>
+
+En faisant un clic droit pendant le jeu, les commandes courantes s&rsquo;affichent&nbsp;:<P>
+
+<IMG Alt="Menu Action" SRC="MenuAction.png" WIDTH=225 HEIGHT=195 BORDER=0><P>
+
+Cependant il est possible de les modifier en allant à la rubrique <I><U>J</U>eu | <U>C</U>ommandes au clavier</I> (<B><I>Ctrl+K</I></B>). Cette boîte de dialogue apparaît&nbsp;:<P>
+
+<IMG Alt="Commandes au clavier" SRC="Clavier.png" WIDTH=239 HEIGHT=346 BORDER=0><P>
+
+Il suffit alors de sélectionner un choix parmi 6 possibilités (respectivement les touches pour diriger la balise et les touches pour actionner les portes) puis de valider en appuyant du Vu & Appliqué. Comme il indiqué en bas de la boîte de dialogue, l&rsquo;utilisation du pavé numérique nécessite l&rsquo;activation du verrouillage numérique (touche <B><I>Verr.Num.</I></B> activée).<P>
+
+<HR>
+
+<A NAME="AP"</A><H2>Autres paramétrages</H2>
+
+L&rsquo;autre option du jeu est la couleur du curseur (rubrique <I><U>O</U>ptions | <U>C</U>ouleur du curseur...</I> ou <I><B>Ctrl+C</B></I>).<P>
+Une fenêtre de choix de couleur apparaît&nbsp;:<P>
+
+<IMG Alt="Couleurs" SRC="Couleurs.png" WIDTH=224 HEIGHT=323 BORDER=0><P>
+
+Il suffit alors de cliquer sur la case de la couleur souhaitée et d&rsquo;appuyer sur le bouton <I>OK</I>.
+
+<HR>
+
+<CENTER>Dernière modification&nbsp;: le 21 avril 2020.</CENTER>
+
+</BODY>
+</HTML> 

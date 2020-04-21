@@ -1,0 +1,4 @@
+LE BERGER C++ BUILDER 6 -> RAD STUDIO 10.3.3
+============================================
+ - La couleur du curseur n'apparaît pas.
+ - Quand on bouge lme curseur, ça ralentit le jeu.
