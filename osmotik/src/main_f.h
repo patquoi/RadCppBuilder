@@ -89,6 +89,7 @@ private:	// Déclarations de l'utilisateur
   TIniFile *IniFile; // v0.9.3
   TColor FBackColor; // v0.9.3
   String FFontName; // v1.4 FontName is a property now !
+  HICON crPlus1; // v1.4
   void SetBackColor(const TColor NewBackColor) { FBackColor = NewBackColor; Color=NewBackColor; PaintBox->Color=NewBackColor; RichEdit->Color=NewBackColor; };
   void SetFontName(const String NewFontName) { FFontName = NewFontName; PaintBox->Font->Name=NewFontName; LabelLettresAPlacer->Font->Name=NewFontName; }; // v1.4 FontName is a property now !
   bool OuvertureAuto;

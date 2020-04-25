@@ -381,13 +381,13 @@ __fastcall TFormMain::TFormMain(TComponent* Owner)
 { // v1.4 : création du curseur "+1" à la volée sans passer par les ressources (LoadCursor ne marche pas)
  // HICON crPlus1=LoadCursorFromFile(String(ExtractFilePath(Application->ExeName)+"\\plus1.cur").c_str()); // Marche mais oblige à fournir le fichier .cur
  // HICON crPlus1=LoadCursor(HInstance, L"CURSOR_PLUS1"); // Ne marche pas !
- HICON crPlus1=CreateCursor(HInstance, // app. instance
-							16, // horizontal position of hot spot
-							15, // vertical position of hot spot
-							32, // cursor width
-							32, // cursor height
-							ANDmaskCursor,     // AND mask
-							XORmaskCursor);   // XOR mask
+ crPlus1=CreateCursor(HInstance, // app. instance
+					  16, // horizontal position of hot spot
+					  15, // vertical position of hot spot
+					  32, // cursor width
+					  32, // cursor height
+					  ANDmaskCursor,     // AND mask
+					  XORmaskCursor);   // XOR mask
  PaintBox->Canvas->TextFlags=ETO_OPAQUE;
  // v1.4 : on recalcul l'espace coordonnées à cause de la HDPI (au lieu de LARGEURESPACECOORDONNNEES
  StatusBar->Panels->Items[0]->Width=StatusBar->Width - StatusBar->Panels->Items[1]->Width
@@ -407,8 +407,6 @@ __fastcall TFormMain::TFormMain(TComponent* Owner)
   }
 }
 //---------------------------------------------------------------------------
-
-
 void __fastcall TFormMain::PaintBoxMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
@@ -754,6 +752,7 @@ void __fastcall TFormMain::FormCreate(TObject *Sender)
 void __fastcall TFormMain::FormDestroy(TObject *Sender)
 { // v0.9.3
  EcritParametres();
+ if (crPlus1) DestroyCursor(crPlus1); // v1.4
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormMain::MenuItemOptionsCouleurFondClick(TObject *Sender)
