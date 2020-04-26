@@ -50,8 +50,8 @@ Root: HKCR; SubKey: "nivlbrg\shell\open\command"; ValueType: string; ValueData: 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\{#MyAppExeName}"; IconIndex: 0; Flags: createonlyiffileexists useapppaths
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Uninstall.ico"; Comment: "Désinstalle Le Berger"; IconIndex: 0
-Name: "{group}\Lisez-Moi"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
-Name: "{group}\Sources"; Filename: "{app}\lebrgw-src-win64.zip"; Comment: "Code source de Le Berger"
+Name: "{group}\Lisez-Moi (Le Berger)"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
+Name: "{group}\Sources de Le Berger"; Filename: "{app}\lebrgw-src-win64.zip"; Comment: "Code source de Le Berger"
 
 [Run]
 Filename: "{app}\Lisezmoi.txt"; Description: "Lisez-moi !"; Flags: postinstall shellexec skipifsilent
