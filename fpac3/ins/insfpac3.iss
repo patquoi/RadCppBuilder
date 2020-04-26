@@ -44,8 +44,8 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\{#MyAppExeName}"; IconIndex: 0; Flags: createonlyiffileexists useapppaths
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Uninstall.ico"; Comment: "Désinstalle FPac 3"; IconIndex: 0
-Name: "{group}\Lisez-Moi"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
-Name: "{group}\Sources"; Filename: "{app}\fpac3-src-win64.zip"; Comment: "Code source de FPac 3"
+Name: "{group}\Lisez-Moi (FPac 3)"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
+Name: "{group}\Sources de Fpac 3"; Filename: "{app}\fpac3-src-win64.zip"; Comment: "Code source de FPac 3"
 
 [Run]
 Filename: "{app}\impcfgfpac3.exe"; Parameters: """{app}"""; Description: "Importer une configuration déjà existante"; Flags: postinstall skipifsilent
