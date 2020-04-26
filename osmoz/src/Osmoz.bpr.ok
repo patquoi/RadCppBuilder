@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\bin\Osmoz.exe"/>
+    <OBJFILES value="..\obj\Osmoz.obj ..\obj\plateau_f.obj ..\obj\base.obj ..\obj\dico_f.obj 
+      ..\obj\nomjo_f.obj ..\obj\scores_f.obj ..\obj\messages_f.obj 
+      ..\obj\apropos_f.obj ..\obj\param_f.obj ..\obj\records_f.obj"/>
+    <RESFILES value="Osmoz.res"/>
+    <IDLFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) plateau_f.dfm dico_f.dfm nomjo_f.dfm scores_f.dfm 
+      messages_f.dfm apropos_f.dfm param_f.dfm records_f.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="vclx.lib bcbsmp.lib vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib bcbsmp.lib vclx.lib"/>
+    <PACKAGES value="vclx.bpi rtl.bpi vcl.bpi dbrtl.bpi vcldb.bpi bdertl.bpi vcldbx.bpi 
+      bcbsmp.bpi dclocx.bpi qrpt.bpi teeui.bpi vclsmp.bpi teedb.bpi tee.bpi 
+      ibsmp.bpi nmfast.bpi inetdb.bpi inet.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="Osmoz.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par -w-8027 -w-8026 -w-csu"/>
+    <WARNOPTSTR value=""/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <CFLAG1 value="-Od -H=c:\PROGRA~1\BORLAND\CBUILD~1\lib\vcl35.csm -Hc -Vx -Ve -Tkh30000 
+      -X- -r- -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <CFLAG2 value=""/>
+    <CFLAG3 value=""/>
+    <PFLAGS value="-N2..\obj -N0..\obj -$YD -$W -$O- -$A8 -v -M -JPHNE"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zn"/>
+    <LFLAGS value="-I..\obj -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <IFLAGS value=""/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="Osmoz.cpp" FORMNAME="" UNITNAME="Osmoz" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Osmoz.res" FORMNAME="" UNITNAME="Osmoz" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="plateau_f.cpp" FORMNAME="frmPlateau" UNITNAME="plateau_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="base.cpp" FORMNAME="" UNITNAME="base" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="dico_f.cpp" FORMNAME="frmDico" UNITNAME="dico_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="nomjo_f.cpp" FORMNAME="frmNomJoueurs" UNITNAME="nomjo_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="scores_f.cpp" FORMNAME="frmScores" UNITNAME="scores_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="messages_f.cpp" FORMNAME="frmMessages" UNITNAME="messages_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="apropos_f.cpp" FORMNAME="frmAPropos" UNITNAME="apropos_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="param_f.cpp" FORMNAME="frmParametresAutomates" UNITNAME="param_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="records_f.cpp" FORMNAME="frmRecords" UNITNAME="records_f" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=1
+MajorVer=4
+MinorVer=4
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1036
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=Patrice FOUQUET
+FileDescription=Osmoz
+FileVersion=4.4.0.0
+InternalName=Osmoz
+LegalCopyright=2001~2019 © Patrice FOUQUET
+LegalTrademarks=Osmoz
+OriginalFilename=
+ProductName=Osmoz
+ProductVersion=4.4
+Comments=Dictionnaire intégré : ODS8 (2020)
+
+[HistoryLists\hlIncludePath]
+Count=2
+Item0=$(BCB)\include;$(BCB)\include\vcl
+Item1=..\..\..\projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=2
+Item0=$(BCB)\lib\obj;$(BCB)\lib
+Item1=..\..\..\projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=3
+Item0=_DEBUG
+Item1=DEBUG
+Item2=_RTLDLL;USEPACKAGES
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\obj
+
+[HistoryLists\hlRunParameters]
+Count=4
+Item0=&quot;c:\mes documents\fin.gdm&quot;
+Item1=&quot;c:\mes documents\debut.gdm&quot;
+Item2=&quot;c:\mes documents\test.gdm&quot;
+Item3=&quot;c:\mes documents\test fin.gdm&quot;
+
+[HistoryLists\hlFinalOutputDir]
+Count=4
+Item0=..\bin\
+Item1=..\bin
+Item2=..\runtime\
+Item3=..\runtime
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+  </IDEOPTIONS>
+</PROJECT>

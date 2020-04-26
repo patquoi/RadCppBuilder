@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+
+<TITLE>Guide d'utilisation d'Osmoz</TITLE>
+<BODY BGCOLOR="000000" TEXT="FFFFFF" LINK="00FFFF" VLINK="A0A0FF">
+<FONT COLOR="FFFFFF">
+
+<BODY BACKGROUND="FONDHEXA.JPG"></BODY>
+
+<H2><CENTER>
+<IMG SRC="osmoz.jpg"><BR><BR><BR>
+<A HREF="#prs">Pr&eacute;sentation du jeu</A><BR><BR>
+<A HREF="#dsc">Description du jeu</A><BR><BR>
+<A HREF="#drl">D&eacute;roulement du jeu</A><BR><BR>
+<A HREF="#lnc">Lancement d'une partie</A><BR><BR>
+<A HREF="#prm">Param&eacute;trage du jeu</A><BR><BR><BR><BR></H2>
+</CENTER>
+
+<HR>
+<A NAME="prs"><H2>Pr&eacute;sentation du jeu</H2></A><BR>
+<I>Osmoz</I> est un amalgame de <I>mots-m&ecirc;l&eacute;s</I> et de <I>wargame</I>.<BR>
+Le but du jeu est celui d'un <I>wargame</I> : s'&eacute;tendre le plus possible et d&eacute;truire son ou ses ennemis.<BR>
+Le seul moyen d'arriver &agrave; ses fins est de former des mots de 2 &agrave; 15 lettres dans tous les sens.<BR>
+Le terrain de la bataille est un hexagone compos&eacute; de 169 cases hexagonales (91 cases avant la version 3.4).<BR><BR>
+
+
+<HR>
+<A NAME="dsc"><H2>Description du jeu</H2></A><BR>
+<IMG SRC="PLATEAU.JPG"><BR><BR>
+L'espace de jeu est compos&eacute; de 3 parties :<BR><BR>
+Au milieu, il y a le plateau de jeu sur lequel on pose des lettres (une par tour de jeu).<BR><BR>
+&Agrave; droite du plateau de jeu, sont affich&eacute;es toutes les lettres de l'alphabet.<BR>
+Ce sont les lettres dont dispose le joueur courant (son jeu).<BR>
+Elles sont de la m&ecirc;me couleur que celle du joueur sauf les lettres que le joueur ne dispose pas et qui sont en gris.<BR>
+Au d&eacute;part du jeu, chaque joueur dispose de toutes les lettres de l'alphabet en un seul exemplaire.<BR>
+Le nombre d'exemplaires de chaque lettre dont dispose le joueur courant est inscrit sous la lettre.<BR><BR>
+&Agrave; gauche du plateau de jeu, il y a &eacute;galement toutes les lettres de l'alphabet.<BR>
+Sous chaque lettre est inscrit un nombre de points.<BR>
+Celui-ci permet &agrave; un joueur de gagner une lettre suppl&eacute;mentaire dans son jeu.<BR>
+Si une de ses lettres sur le plateau de jeu atteint ce nombre de points, il clique dessus et obtient dans son jeu un exemplaire suppl&eacute;mentaire de cette lettre.<BR><BR>
+
+
+<HR>
+<A NAME="drl"><H2>D&eacute;roulement du jeu</H2></A><BR>
+Le jeu se joue &agrave; 2, 3 ou 6 joueurs (humains et automates).<BR>
+Chaque joueur dispose au d&eacute;part des 26 lettres de l'alphabet en un exemplaire.<BR>
+Dans chaque tour de jeu et pour chaque joueur, il y a trois actions diff&eacute;rentes possibles :<BR><BR>
+<H3>Le rechargement de lettres</H3>
+Il r&eacute;cup&egrave;re de nouvelles lettres en cliquant dans le plateau de jeu sur toutes les lettres de sa couleur qui ont un score sup&eacute;rieur ou &eacutegal &agrave; celui indiqu&eacute; dans le jeu de gauche (elles sont d'apparence plus p&acirc;les et le curseur prend alors la forme <B>+1</B>).<BR>
+Ce nombre de points est retir&eacute; du score de la lettre sur le plateau.<BR><BR>
+<H3>La pose d'une lettre</H3>
+Il choisit une des lettres de son jeu (&agrave; droite) pour la poser sur le plateau de jeu (au centre).<BR>
+La case du plateau de jeu doit :<BR>
+ - toucher une lettre de sa couleur. Le curseur prend la forme de la lettre<BR>
+ - permettre de former au moins un mot de 2 &agrave; 15 lettres align&eacute;es dans n'importe quel sens.<BR>
+La premi&egrave;re lettre doit &ecirc;tre pos&eacute;e dans le coin impos&eacute; (voir <A HREF="#cd">Cases d&eacute;part</A> et <A HREF="#lnc">Lancement d'une partie</A>) et doit &ecirc;tre diff&eacute;rente des autres lettres d&eacute;j&agrave; pos&eacute;es.<BR><BR>
+<H3>Le d&eacute;placement d'une lettre</H3>
+Il choisit une des lettres sur le plateau de jeu pour la d&eacute;placer sur une case libre.<BR>
+La lettre et la case doivent :<BR>
+ - avoir au moins un chemin de cases libres contigu&euml;s entre elles.<BR>
+ - permettre de former au moins un mot de 2 &agrave; 15 lettres align&eacute;es dans n'importe quel sens (apr&egrave;s d&eacute;placement).<BR>
+ - &ecirc;tre telles que le nombre minimum de cases libres contigu&euml;s entre elles doit &ecirc;tre inf&eacute;rieur ou &eacute;gal au score courant de la lettre.<BR>
+Une fois le d&eacute;placement effectu&eacute;, le score courant de la lettre d&eacute;plac&eacute;e, est diminu&eacute; du nombre de points correspondant au nombre de cases du chemin le plus court (case libres) de la lettre &agrave; la case finale.<BR><BR>
+<IMG SRC="DEPLT.JPG"><BR>
+Dans l'exemple ci-dessus, le A jaune est d&eacute;plac&eacute; de 3 cases et donc perd ses 3 points &agrave; l'arriv&eacute;e (il ne lui reste plus qu'1 point).<BR>
+<H3>Passer son tour</H3>
+Un joueur passe son tour lorsqu'il ne pose ou ne d&eacute;place aucune lettre pendant son tour de jeu.<BR>
+Attention : on consid&egrave;re aussi qu'un joueur qui ne fait que r&eacute;approvisionner son jeu en lettre(s) passe son tour.<BR>
+Un joueur peut passer son tour, il n'est pas oblig&eacute; de jouer sauf au premier tour : on est oblig&eacute; de poser la premi&egrave;re lettre.<BR>
+Si un joueur ne peut pas jouer, il doit passer son tour. Un joueur n'est jamais retir&eacute; d&eacute;finitivement du jeu. Une case peut se lib&eacute;rer &agrave; tout moment.<BR><BR>
+<A NAME="cd"><H3>Cases d&eacute;part</H3></A>
+&Agrave; 3 joueurs, on part d'un coin sur deux.<BR>
+&Agrave; 2 joueurs, les coins sont oppos&eacute;s.<BR><BR>
+<H3>Score des lettres</H3>
+Le nombre inscrit en dessous d'une lettre a trois significations suivant o&ugrave; elle se situe :<BR>
+ - Si elle se situe sur le plateau de jeu, il s'agit du score de la lettre (appartenant au joueur de la m&ecirc;me couleur).<BR>
+ - Si elle se situe &agrave; droite du plateau, il s'agit de son nombre d'exemplaires dans le jeu du joueur courant.<BR>
+ - Si elle se situe &agrave; gauche du plateau, il s'agit du score minimal que doit avoir une lettre du plateau pour r&eacute;approvisionner le jeu de son propri&eacute;taire d'un exemplaire suppl&eacute;mentaire.<BR><BR>
+<H3>D&eacute;compte des mots form&eacute;s</H3>
+Apr&egrave;s pose ou d&eacute;placement d'une lettre, on comptabilise chaque mot v&eacute;rifiant les conditions suivantes :<BR>
+ - Il contient la lettre qui vient d'&ecirc;tre pos&eacute;e ou d&eacute;plac&eacute;e.<BR>
+ - Les lettres formant le mot sont contigu&euml;s et align&eacute;es et ce dans n'importe quelle direction.<BR>
+ - Il n'est pas contenu dans un autre mot form&eacute; dans le m&ecirc;me sens ou le sens oppos&eacute;.<BR>
+Exemple : le mot <B>REMERCIER</B> contient <B>MERCI</B> (RE<I>MERCI</I>ER) et <B>CREME</B> (R<I>EMERC</I>IER).<BR><BR>
+<H3>D&eacute;compte des points</H3>
+Lors du d&eacute;compte des mots form&eacute;s, &agrave; chaque fois qu'une lettre (d&eacute;j&agrave; plac&eacute;e ou non) compose un nouveau mot, elle voit son score :<BR>
+ - Augmenter d'1 point s'il s'agit d'une lettre du joueur courant.<BR>
+ - Diminuer d'1 point s'il s'agit d'une lettre appartenant &agrave; un adversaire.<BR><BR>
+Dans le cas o&ugrave; la lettre a un score nul et appartient &agrave; un adversaire, elle passe alors du c&ocirc;t&eacute; du joueur courant et son score passe &agrave; 1 point.<BR><BR>
+Le score de chaque joueur est la somme des nombres de lettres de tous les mots form&eacute;s.<BR>
+Autrement dit, une lettre donne autant de points que le nombre de fois qu'elle permet de former un mot.<BR>
+<BR><IMG SRC="DECOMPTE.JPG"><BR><BR>
+Dans l'exemple ci-dessus, le joueur bleu pose la lettre <B>U</B> (en gris).<BR><BR>
+Il forme d'abord <B>NU</B> en utilisant le N du joueur ciel ce qu'il lui donne 2 points.
+Le joueur ciel voit sa lettre <B>N</B> diminuer d'1 point (qui passe &agrave; 0).<BR><BR>
+Il forme ensuite <B>SOU</B> (voir ci-dessus) ce qui donne 3 points suppl&eacute;mentaires (soit un total de 5 points).<BR>
+Le score de la lettre pos&eacute;e (<B>U</B>) a donc augment&eacute; de 2 points (2 mots form&eacute;s).<BR><BR>
+Les lettres plus sombres sont les lettres ayant un nombre de points nul susceptibles d'&ecirc;tre prises par l'adversaire.<BR><BR>
+<H3>La fin de partie</H3>
+La partie s'arr&ecirc;te dans deux cas :<BR>
+ - D&egrave;s qu'il n'y a plus de case libre sur le plateau de jeu.<BR>
+ - Pendant un tour de jeu complet, tous les joueurs ont pass&eacute; leur tour (suite &agrave; impossiblit&eacute; de jouer ou non).<BR><BR>
+<H3>Le gagnant</H3>
+Le gagnant est celui qui a obtenu le plus de points.<BR>
+En cas d'&eacute;galit&eacute;, c'est le joueur ayant le plus de lettres (de sa couleur) sur le plateau.<BR>
+En cas d'&eacute;galit&eacute; &agrave; nouveau, c'est le joueur ayant le plus de points sur ces lettres pos&eacute;es.<BR>
+C'est l'ordre de jeu qui d&eacute;partage d&eacute;finitivement les joueurs en cas d'&eacute;galit&eacute; parfaite.<BR><BR>
+
+
+<HR>
+<A NAME="lnc"><H2>Lancement d'une partie</H2></A><BR>
+Pour jouer une partie, il suffit de choisir la rubrique <U><I>N</U>ouvelle</I> dans le menu <I><U>P</U>artie</I>.<BR>
+<BR><IMG SRC="JOUEURS.JPG"><BR><BR>
+Ensuite choisissez le nombre de joueurs puis entrez leurs noms (humains et automates).<BR>
+Pour chaque joueur cochez la case <I>Automate</I> si vous souhaitez qu'il soit contr&ocirc;l&eacute; par l'ordinateur.<BR>
+Pour les param&egrave;tres situ&eacute;s apr&egrave;s les cases <I>Automate</I>, voir le paragraphe <B>Param&eacute;trage du jeu</B> ci-apr&egrave;s.<BR>
+D&egrave;s que vous &ecirc;tes pr&ecirc;ts, appuyez sur le bouton <I><U>V</U>u & appliqu&eacute;</I>.<BR><BR>
+La couleur des joueurs est automatique suivant le nombre et l'ordre des joueurs :<BR>
+Dans une partie &agrave; 6 joueurs : <FONT COLOR="0000FF"><B>bleu</B></FONT>, <FONT COLOR="00FF00"><B>vert</B></FONT>, <FONT COLOR="00FFFF"><B>ciel</B></FONT>, <FONT COLOR="FF0000"><B>rouge</B></FONT>, <FONT COLOR="FF00FF"><B>mauve</B></FONT> puis <FONT COLOR="FFFF00"><B>jaune</B></FONT>.<BR>
+Dans une partie &agrave; 3 joueurs : <FONT COLOR="0000FF"><B>bleu</B></FONT>, <FONT COLOR="00FF00"><B>vert</B></FONT> puis <FONT COLOR="00FFFF"><B>ciel</B></FONT>.<BR>
+Dans une partie &agrave; 2 joueurs : <FONT COLOR="0000FF"><B>bleu</B></FONT> puis <FONT COLOR="00FF00"><B>vert</B></FONT>.<BR><BR>
+
+
+<HR>
+<A NAME="prm"><H2>Param&eacute;trage du jeu</H2></A><BR>
+Pour param&eacute;trer le jeu, il faut aller dans le menu <I><U>O</U>ptions</I>.<BR>
+ - Pour changer les noms et les types de joueurs, choisissez la rubrique <I><U>J</U>oueurs...</I> (voir fen&ecirc;tre ci-dessus).<BR>
+ - Pour changer le comportement du jeu lors du tour des automates, choisissez la rubrique <I><U>A</U>utomates...</I>  (voir fen&ecirc;tre ci-dessous). Attention, les param&egrave;tres par d&eacute;faut agissent sur les param&egrave;tres pour chaque automate d&eacute;finis dans la fen&ecirc;tre des joueurs (ci-dessus).<BR>
+ - Pour enregistrer les messages du jeu avec les parties sauvegard&eacute;es (sous forme de fichiers texte), cochez l'option <I>Enregistrer les <U>m</U>essages</I>.<BR>
+<BR><IMG SRC="PARAMS.JPG"><BR>
+
+<HR>
+</FONT>
+</BODY>
+</HTML>

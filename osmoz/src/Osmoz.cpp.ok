@@ -1,0 +1,34 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+USERES("Osmoz.res");
+USEFORM("plateau_f.cpp", frmPlateau);
+USEUNIT("base.cpp");
+USEFORM("dico_f.cpp", frmDico);
+USEFORM("nomjo_f.cpp", frmNomJoueurs);
+USEFORM("scores_f.cpp", frmScores);
+USEFORM("messages_f.cpp", frmMessages);
+USEFORM("apropos_f.cpp", frmAPropos);
+USEFORM("param_f.cpp", frmParametresAutomates);
+USEFORM("records_f.cpp", frmRecords);
+//---------------------------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    try
+    {
+        Application->Initialize();
+        Application->Title = "Osmoz²";
+        Application->CreateForm(__classid(TfrmPlateau), &frmPlateau);
+        Application->CreateForm(__classid(TfrmScores), &frmScores);
+        Application->CreateForm(__classid(TfrmMessages), &frmMessages);
+        Application->CreateForm(__classid(TfrmParametresAutomates), &frmParametresAutomates);
+        Application->CreateForm(__classid(TfrmRecords), &frmRecords);
+        Application->Run();
+    }
+    catch (Exception &exception)
+    {
+        Application->ShowException(&exception);
+    }
+    return 0;
+}
+//---------------------------------------------------------------------------

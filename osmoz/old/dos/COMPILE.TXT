@@ -1,0 +1,34 @@
+Borland C++ 5.2 Copyright (c) 1987, 1997 Borland International
+Mar 19 1997 17:29:40
+wordwars.cpp:
+Warning wordwars.cpp 66: Possibly incorrect assignment in function Sauvegarde()
+Warning wordwars.cpp 101: Possibly incorrect assignment in function Chargement()
+Warning wordwars.cpp 180: Possibly incorrect assignment in function main()
+Warning wordwars.cpp 249: Possibly incorrect assignment in function main()
+Warning wordwars.cpp 296: Possibly incorrect assignment in function main()
+dico.cpp:
+dico2345.cpp:
+dico6.cpp:
+affgraph.cpp:
+Warning affgraph.cpp 258: Possibly incorrect assignment in function graphmode::SaisitChaine(char *,char *,int,int)
+Warning affgraph.cpp 477: Possibly incorrect assignment in function graphmode::AfficheMessage(unsigned char *,unsigned int,unsigned int)
+Warning affgraph.cpp 521: Possibly incorrect assignment in function graphmode::PoseQuestion(unsigned char *,unsigned char *,unsigned int)
+Warning affgraph.cpp 523: Possibly incorrect assignment in function graphmode::PoseQuestion(unsigned char *,unsigned char *,unsigned int)
+mouse.cpp:
+joueur.cpp:
+Warning joueur.cpp 162: Possibly incorrect assignment in function joueur::IncrementeScore(int)
+plateau.cpp:
+Warning plateau.cpp 24: Continuation character \ found in // comment
+Warning plateau.cpp 158: Possibly incorrect assignment in function plateau::ChoixCase(unsigned int *,unsigned int *,unsigned int *)
+Warning plateau.cpp 190: Possibly incorrect assignment in function plateau::ChoixCase(unsigned int *,unsigned int *,unsigned int *)
+Warning plateau.cpp 195: Possibly incorrect assignment in function plateau::ChoixCase(unsigned int *,unsigned int *,unsigned int *)
+Warning plateau.cpp 334: Possibly incorrect assignment in function plateau::PlaceLettre()
+Warning plateau.cpp 346: Possibly incorrect assignment in function plateau::PlaceLettre()
+Warning plateau.cpp 397: Possibly incorrect assignment in function plateau::PlaceLettre()
+Warning plateau.cpp 534: Possibly incorrect assignment in function plateau::PlaceLettreAuto()
+Warning plateau.cpp 563: Possibly incorrect assignment in function plateau::PlaceLettreAuto()
+Warning plateau.cpp 565: Possibly incorrect assignment in function plateau::PlaceLettreAuto()
+Warning plateau.cpp 567: Possibly incorrect assignment in function plateau::PlaceLettreAuto()
+Warning plateau.cpp 636: Possibly incorrect assignment in function plateau::PlaceLettreAuto()
+Warning plateau.cpp 712: Possibly incorrect assignment in function plateau::ChercheMotsFormes(int,int)
+Turbo Link  Version 7.1.32.2. Copyright (c) 1987, 1996 Borland International

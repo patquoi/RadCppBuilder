@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{384DEB08-8EB5-447B-9074-7202D4DE4B83}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="osmoz.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\cur2cpp\src\cur2cpp.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="osmoz">
+        <MSBuild Projects="osmoz.cbproj"/>
+    </Target>
+    <Target Name="osmoz:Clean">
+        <MSBuild Projects="osmoz.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="osmoz:Make">
+        <MSBuild Projects="osmoz.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="cur2cpp">
+        <MSBuild Projects="..\cur2cpp\src\cur2cpp.cbproj"/>
+    </Target>
+    <Target Name="cur2cpp:Clean">
+        <MSBuild Projects="..\cur2cpp\src\cur2cpp.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cur2cpp:Make">
+        <MSBuild Projects="..\cur2cpp\src\cur2cpp.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="osmoz;cur2cpp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="osmoz:Clean;cur2cpp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="osmoz:Make;cur2cpp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

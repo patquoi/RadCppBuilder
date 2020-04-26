@@ -1,0 +1,114 @@
+                        ÚLAÄGUERREÄDESÄMOTSÄÄÄÄÄÄÄÄÄ¿
+                        ³ · ÖÖÄ·ÄÄ·ÄÒ·ÿ· ÖÖÄ·ÄÄ·ÖÄ· ³
+                        ³ º³ºº ºÄÒ½ ºº º³ºÇÄ¶ÄÒ½ÓÄ· ³
+                        ³ ÓÁ½ÓÄ½ ÓÄÄĞ½ ÓÁ½½ Ó ÓÄÄÄ½ ³
+                        ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄVersionÄ1.1Ù
+                      I.H.S.V. Productions - octobre 94
+
+1. Pr‚sentation du jeu
+
+"Word Wars" - la guerre des mots, est un amalgame de mots-mˆl‚s et de warga-
+mes. Le but du jeu est celui d'un wargame : s'‚tendre le plus possible et d‚-
+truire son ou ses ennemis. Le seul moyen d'arriver … ses fins est de former 
+des mots de deux … six lettres dans tous les sens. Le terrain de la bataille
+est un hexagone compos‚ de 91 cases hexagonales.
+
+2. Mat‚riel requis
+
+Il faut poss‚der :
+ş un compatible IBM,
+ş un ‚cran VGA supportant le mode 640x480 en 16 couleurs,
+ş une souris compatible Microsoft.
+
+3. Lancement du jeu
+
+Pour lancer le jeu, il faut effectuer les op‚rations suivantes :
+ş lancer le pilote de la souris (MOUSE.COM en g‚n‚ral) sauf sous Windows 9x,
+ş lancer le programme principal WORDWARS.EXE tel quel.
+
+Lorsque vous lancez le jeu, le plateau de jeu s'affiche et une fenˆtre vous
+demande si vous voulez charger une partie sauvegard‚e. Cela permet de repren-
+dre imm‚diatement une partie sauvegard‚e au cours d'une session pr‚c‚dente.
+Dans ce cas, vous r‚pondez oui en appuyant sur la touche [O]. Dans le cas con-
+traire, r‚pondez non en appuyant sur la touche [N].
+
+Au cas o— vous r‚pondez non, on vous demande alors le nombre de joueurs de la 
+nouvelle partie. Tapez la touche correspondant au nombre de joueurs souhait‚s.
+Seuls 2, 3 et 6 sont possibles. Les joueurs pilot‚s par l'ordinateur doivent
+ˆtre pris en consid‚ration. En fait, vous pouvez jouer jusqu'… six personnes.
+
+AprŠs le nombre de joueurs, vous devez entre le nom de chaque joueur et indi-
+quer si c'est un automate ou un humain. Le nom de des joueurs a sept caractŠ-
+res maximum. Si vous voulez qu'un joueur soit pilot‚ par l'ordinateur (auto-
+mate), r‚pondez oui … la question "Automate (O/N) ?" en appuyant sur la tou-
+che [O]. Dans le cas contraire, r‚pondez non en appuyant sur la touche [N].
+Les joueurs sont toujours d‚finis dans le mˆme ordre qui sera celui du tour de 
+jeu. Ainsi, le joueur qui commence la partie est toujours le joueur bleu. Sui-
+vant le nombre de joueurs, voici l'ordre des joueurs :
+
+Jeu … deux joueurs : bleu puis vert.
+Jeu … trois joueurs : bleu, vert puis cyan.
+Jeu … six joueurs : bleu, vert, cyan, rouge, mauve puis jaune.
+
+Pour enregistrer la partie, reprendre une partie, modifier la dur‚e de r‚fle-
+xion ou quitter en cours de jeu, cliquez avec les deux boutons simultan‚ment
+et faŒtes votre choix.
+
+4. Description du jeu
+
+L'espace de jeu est compos‚ de trois parties :
+
+ş Au milieu, il y a le plateau de jeu sur lequel on pose des lettres (une par
+  tour de jeu).
+ş A droite, sont affich‚es toutes les lettres de l'alphabet. Ce sont les let-
+  tres dont dispose le joueur courant (son jeu). Elles sont de la mˆme couleur
+  que celle du joueur sauf les lettres que le joueur ne dispose pas et qui
+  sont en gris. Au d‚part du jeu, chaque joueur dispose de toutes les lettres
+  de l'alphabet en un seul exemplaire. Le nombre d'exemplaires de chaque let-
+  tre dont dispose le joueur courant est inscrit sous la lettre.
+ş A gauche, il y a ‚galement toutes les lettres de l'alphabet. Sous chaque
+  lettre est inscrit un nombre de points. Celui-ci permet … un joueur de ga-
+  gner une lettre suppl‚mentaire dans son jeu. Si une de ses lettres sur le
+  plateau de jeu atteint ce nombre de point, il clique dessus et obtient dans
+  son jeu un exemplaire suppl‚mentaire de cette lettre.
+
+5. D‚roulement du jeu
+
+Le jeu se joue … deux, trois ou six joueurs.
+Chaque joueur dispose au d‚part des 26 lettres de l'alphabet en un exemplaire.
+Dans chaque tour de jeu et pour chaque joueur, il y a deux ‚tapes :
+ ş Il r‚cupŠre de nouvelles lettres en cliquant dans le plateau de jeu sur
+   toutes les lettres de sa couleur qui ont un score sup‚rieur ou ‚gal … celui
+   indiqu‚ dans le jeu de gauche (le curseur prend alors la forme "+1"). Son
+   score sur le plateau repart alors … z‚ro.
+ ş Ensuite il choisit une des lettres de son jeu (… droite) pour la poser sur
+   le plateau de jeu (au centre). La case du plateau de jeu doit :
+    - toucher une lettre de sa couleur. Le curseur prend la forme de la lettre
+    - permettre de former au moins un mot de deux … six lettres align‚es dans
+      n'importe quel sens.
+   La premiŠre lettre doit ˆtre pos‚e dans un coin. A trois joueurs, on part
+   d'un coin sur deux. A deux joueurs, les coins sont oppos‚s.
+
+AprŠs d‚compte des mots form‚s, … chaque fois qu'une lettre (d‚j… plac‚e ou
+non) compose un nouveau mot, elle voit son score :
+ ş Augmenter d'un point s'il s'agit d'une lettre du joueur courant.
+ ş Diminuer d'un point s'il s'agit d'une lettre appartenant … un adversaire.
+
+Dans le cas o— la lettre a un score nul et appartient … un adversaire, elle
+passe d‚sormais du c“t‚ du joueur courant et son score passe … 1 point.
+
+Le score de chaque joueur est le total de points gagn‚s par ses lettres plus
+le total de points pris aux lettres de ses adversaires.
+
+Le gagnant est celui qui a obtenu le plus de points lorsqu'il n'y a plus de
+cases vides.
+
+Conseils :
+
+1. Lancer une d‚mo pour illustrer la rŠgle du jeu.
+   Pour cela d‚finir six joueurs automates.
+2. Attention … ne pas trop gaspiller les voyelles !
+3. Contre l'ordinateur, il faut adopter une strat‚gie ax‚e sur la r‚partition
+   les lettres sur le plateau et essayer d'‚touffer ses adversaires (mˆme …
+   l'aide d'autres joueurs dirig‚s par l'ordinateur).
+

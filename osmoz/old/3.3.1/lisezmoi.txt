@@ -1,0 +1,111 @@
+OSMOZ - INFORMATIONS IMPORTANTES
+--------------------------------
+
+CONFIGURATION MINIMALE
+
+Ce jeu fonctionne avec une résolution minimale de 800 par 600.
+Il utilise la police "Comics Sans MS" (COMIC.TTF) disponible par défaut dans
+les versions Windows 98 mais elle n'est cependant pas nécessaire au fonction-
+nement du jeu.
+
+
+PARAMETRES DU JEU
+
+Ils sont stockés dans le fichier osmoz.ini situé dans le même dossier que le
+programme osmoz.exe.
+
+Si ce fichier osmoz.ini n'existe pas ou est supprimé, les paramètres par défaut
+suivants seront utilisés :
+ - 3 secondes de pause,
+ - Interruption avant chaque tour d'automate,
+ - Enregistrement des messages.
+
+
+HISTORIQUE DES VERSIONS
+
+Note : Avant la version 3.0, Ozmoz s'appelait Word Wars, la guerre des mots.
+
+[1.x]
+Versions Dos
+
+[2.0] 
+Première version Windows.
+
+[2.1] 2 corrections.
+- Partie à moins de 6 joueurs possible.
+- Coordonnées Internet ajoutées dans la fenêtre "À propos de...".
+
+[2.2] 1 modification et 1 ajout.
+ - Extension du dictionnaire : Mots de 7 à 9 lettres + Mots plus récents
+   (ODS3).
+ - Records de tours enregistrés automatiquement : mot le plus long, score,
+   nombre de points et de lettres pris à l'adversaire.
+
+[2.3] 1 modification et 1 ajout.
+ - La police de caractère a été réduite dans les boîtes de dialogues Joueurs
+   et Paramètres des automates
+ - La taille maximale des mots cherchés par les automates peut être limitée 
+   (de 6 à 9 lettres). Attention : ceci n'empêche pas qu'une fois posée une 
+   lettre, des mots dont la taille dépasse la limite fixée, soient trouvés !
+
+[2.3.1] 2 corrections dans le fichier d'aide html.
+ - Nombre de lettres maximal des mots (passé de 6 à 9) 
+ - Récupération d'une lettre dans son jeu (score réduit au lieu d'être remis
+   à 0)
+
+[3.0] Naissance d'Osmoz (nouvelles règles)
+ - Dans cette version, il est possible de déplacer les jetons déjà placés sur
+   le plateau de jeu. Un tour de jeu consiste donc, à présent, de poser un
+   jeton sur le plateau de jeu ou alors de déplacer de sa couleur un jeton
+   déjà placé sur le plateau de jeu. Le nombre maximales de cases correspond
+   au nombre de points courants du jeton. À chaque case du déplacement corres-
+   pond donc un point en moins sur le jeton. Il est possible de placer un je-
+   ton sur une case s'il existe entre la case origine et la case destination
+   un chemin constitué de cases vides ou si les cases origine et destination
+   sont contiguës. Le nombre de cases minimum entre la case origine (exclue)
+   et la case destination (incluse) doit être inférieur ou égal au nombre de
+   points du jeton. 
+ - Les modifications dues au changement de nom et règles sont les suivantes :
+   · Les fichiers de parties sauvegardées ont l'extension smz.
+   · Les fichiers de parties sauvegardées d'extension gdm ne peuvent plus être
+     ouvertes.
+ - Les paramètres relatifs aux comportements des automates sont personnalisa-
+   bles pour chaque automate avec par défaut les paramètres définis globale-
+   ment. De plus, une colonne indique la couleur et la case départ pour chaque
+   joueur.
+ - L'heuristique obligeait au deuxième tour de prendre une lettre récupérable
+   immédiatement (exemple : le Y à côté du A ; V à côté du S etc.).
+
+[3.0.1] Modifications dans l'aide
+
+[3.1] 2 Modifications
+ - Eclaircissements dans l'aide (définition des chiffres sous les lettres, 
+   formation des mots et définition de passer son tour).
+ - Fin de partie si lors d'un tour de jeu complet, tout le monde passe son tour.
+ - Le paramètre d'automate personnalisé "Taille max. des mots" n'était pas 
+   sauvegardé dans les fichiers de partie.
+
+[3.2] 2 modifications
+ - Les paramètres par défaut des automates (recherche des déplacement et taille 
+   maximale des mots recherchés) n'étaient pas utilisés lorsque l'on choisissait
+   Nouvelle Partie.
+ - Le paramètre par défaut "Recherche des déplacements" était toujours non coché
+   la première fois.
+
+[3.2.1] 1 modification
+ - Corrections dans l'aide html.
+
+[3.2.2] 1 modification
+ - La zone de sélection du plateau a été agrandie du côté droit (elle n'allait 
+   pas jusqu'au bord).
+
+[3.3] 2 modifications
+ - Les lettres du plateau ayant un score de 0 sont de couleur plus sombre.
+ - Les records sont affichés à présent au sommet de la fenêtre principale
+   permettant de voir les messages sur la barre de statut.
+
+[3.3.1] 1 modification
+ - Les coordonnées électroniques ont changé.
+
+
+Mis à jour le 16 décembre 2004.

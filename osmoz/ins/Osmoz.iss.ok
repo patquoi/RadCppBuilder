@@ -1,0 +1,63 @@
+[Dirs]
+Name: {app}\html
+Name: {app}\v3.3.1
+[Files]
+Source: ..\bin\html\decompte.jpg; DestDir: {app}\html\
+Source: ..\bin\html\deplt.jpg; DestDir: {app}\html\
+Source: ..\bin\html\fondhexa.jpg; DestDir: {app}\html\
+Source: ..\bin\html\joueurs.jpg; DestDir: {app}\html\
+Source: ..\bin\html\osmoz.html; DestDir: {app}\html\
+Source: ..\bin\html\osmoz.jpg; DestDir: {app}\html\
+Source: ..\bin\html\params.jpg; DestDir: {app}\html\
+Source: ..\bin\html\plateau.jpg; DestDir: {app}\html\
+Source: ..\bin\v3.3.1\decompte.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\deplt.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\fondhexa.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\joueurs.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\L23456789; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\lisezmoi.txt; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\Osmoz.exe; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\osmoz.html; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\Osmoz.ini; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\osmoz.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\params.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\v3.3.1\plateau.jpg; DestDir: {app}\v3.3.1\
+Source: ..\bin\Osmoz.exe; DestDir: {app}
+Source: ..\bin\L23456789ABCDEF; DestDir: {app}
+Source: ..\bin\lisezmoi.txt; DestDir: {app}
+Source: ..\bin\OsmozX.ico; DestDir: {app}
+[Icons]
+Name: {group}\Osmoz; Filename: {app}\Osmoz.exe; WorkingDir: {app}; IconIndex: 0
+Name: {group}\Règle et utilisation; Filename: {app}\html\osmoz.html; WorkingDir: {app}\html; Comment: Aide en HTML
+Name: {group}\Lisez-moi !; Filename: {app}\lisezmoi.txt; WorkingDir: {app}; Comment: À lire avant de commencer !
+Name: {group}\{cm:UninstallProgram, Osmoz}; Filename: {uninstallexe}; IconFilename: {app}\OsmozX.ico; Comment: Désinstalle Osmoz; IconIndex: 0
+[Languages]
+Name: Francais; MessagesFile: compiler:Languages\French.isl; InfoBeforeFile: C:\Borland\CBuilder6\Projects\Osmoz\bin\lisezmoi.txt; InfoAfterFile: C:\Borland\CBuilder6\Projects\Osmoz\bin\lisezmoi.txt
+[Setup]
+OutputBaseFilename=insosmoz
+VersionInfoVersion=4.4
+VersionInfoCompany=Patrice Fouquet
+VersionInfoDescription=Osmoz
+VersionInfoCopyright=2007, Patrice Fouquet
+AppName=Osmoz
+AppVerName=Osmoz 4.4
+AppCopyright=2007, Patrice Fouquet
+InfoAfterFile=C:\Borland\CBuilder6\Projects\Osmoz\bin\lisezmoi.txt
+InfoBeforeFile=C:\Borland\CBuilder6\Projects\Osmoz\bin\lisezmoi.txt
+DefaultDirName={pf}\Ihsv\Osmoz
+DefaultGroupName=Ihsv\Osmoz
+AppPublisher=Patrice Fouquet
+AppPublisherURL=http://patquoi.fr
+AppSupportURL=http://patquoi.fr
+AppUpdatesURL=http://patquoi.fr
+AppVersion=4.3
+UninstallDisplayName=Osmoz 4.3'
+UninstallDisplayIcon={app}\OsmozX.ico
+AppContact=osmoz@patquoi.fr
+OutputDir=.
+WizardImageFile=C:\Borland\CBuilder6\Projects\Osmoz\install\grande.bmp
+WizardImageBackColor=clGray
+WizardSmallImageFile=C:\Borland\CBuilder6\Projects\Osmoz\install\petite.bmp
+SetupIconFile=C:\Borland\CBuilder6\Projects\Osmoz\src\Osmoz.ico
+[Run]
+Filename: {app}\Osmoz.exe; Description: Lancer Osmoz; StatusMsg: Lancer Osmoz; Flags: waituntilidle postinstall

@@ -1,0 +1,167 @@
+OSMOZ - INFORMATIONS IMPORTANTES
+--------------------------------
+
+CONFIGURATION MINIMALE ET RECOMMANDEE
+
+Ce jeu fonctionne avec une résolution minimale de 800 par 600.
+Cependant, une résolution 1024x768 est recommandée.
+
+La police de caractères "Comics Sans MS" (COMIC.TTF) est utilisée par le jeu
+mais n'est pas nécessaire à son fonctionnement.
+
+
+FICHIERS DE PARTIES DE VERSION 3.3.1 ET ANTERIEURES
+
+La version 3.3.1 a été fournie pour permettre de continuer les parties entamées
+avec cette version ou antérieure (taille du plateau à 91 cases au lieu de 169,
+taille maximale des mots limité à 9 lettres au lieu de 15). En effet, il ne 
+faut pas ouvrir une partie enregistrée avec une version 3.3.1 ou antérieure 
+avec une version 3.4 ou supérieure et vice versa. Les données (records, 
+paramètres) entre les versions 3.4 ou supérieures et les versions 3.3.1 ou 
+antérieures, sont totalement dissociées. La version 3.3.1 est fournie afin de 
+pouvoir ouvrir les fichiers de parties des versions 3.3.1 et antérieures.
+ 
+
+PARAMETRES DU JEU
+
+Ils sont stockés dans le fichier osmoz.ini qui se trouve dans le dossier
+	%LocalAppData%\Patquoi.fr\Osmoz
+ou
+	%UserProfile%\Local Settings\Application Data\Patquoi.fr\Osmoz.
+
+Si ce fichier osmoz.ini n'existe pas ou est supprimé, les paramètres par défaut
+suivants seront utilisés :
+ - 2 secondes de pause (v4.0 et ultérieur),
+ - Interruption avant chaque tour d'automate,
+ - Enregistrement des messages.
+
+
+HISTORIQUE DES VERSIONS
+
+Note : Avant la version 3.0, Ozmoz s'appelait Word Wars, la guerre des mots.
+
+[4.5] version 32/64 bits et support HDPI
+ - L'alignement est affiché dans l'À propos (32/64 bits)
+ - Le facteur HDPI est affiché dans l'À propos (HDPI si > x1.0).
+ - La progression des automates n'est plus affichée sous forme de '|' mais en
+   pourcentage.
+
+[4.4] dictionnaire de référence : ODS 8 (2020)
+
+[4.3] dictionnaire de référence : ODS 7 (2016)
+
+[4.2] dictionnaire de référence : ODS 6 (2012)
+
+[4.1.1] 1 correction
+ - Le nombre de lettres du nouveau dictionnaire n'étit pas à jour.s
+
+[4.1] Dictionnaire de référence : ODS 5 (2008)
+
+[4.0] Elargissement du plateau de jeu + nouveau dictionnaire jusqu'à 15 lettres
+ - Le dictionnaire de référence est l'ODS4 (2004) allant de 2 à 15 lettres.
+ - Extension du plateau de 11 à 15 cases en ce qui concerne les diagonales ce
+   qui fait passer le nombre de cases de 91 à 169.
+ - Elargissement de la fenêtre des messages (feuille de match) et de la fenêtre
+   des records à cause de l'augmentation de la taille maximale des mots (de 9 à
+   15 lettres).
+ - L'intervalle de recherche des automates passe de 4~7 lettres à 5~15 lettres
+   modifiant la fenêtre de définition des joueurs (règle à la place de boutons-
+   radios pour la taille maximale des mots recherchés par les automates).
+ - Revue de la structure des fichiers : l'aide HTML est dans un dossier Html
+ - Bulle d'aide affichant la légende du tableau des scores.
+ - L'archive d'installation a changé (InnoSetup au lieu d'InstallShield). 
+ - Les paramètres d'automates ne sont plus accessibles si la case "Automate"
+   n'est pas cochée. 
+ - Courriel obsolète dans la boîte "À propos".
+ - Le titre de la fenêtre principale a été modifié (Osmoz²) pour différencier
+   la version 3.4 des versions antérieures.
+ - L'extension des parties d'Osmoz a changé : .sm² au lieu de .smz réservées
+   aux parties des versions 3.3.1 et antérieures. 
+ - Le temps de pause par défaut a été fixé à 2 secondes au lieu de 3.
+ - Les automates peuvent alimenter leur réserve de lettres AVANT de (dé)placer
+   un jeton.
+
+[3.3.1] 1 modification
+ - Les coordonnées électroniques ont changé.
+
+[3.3] 2 modifications
+ - Les lettres du plateau ayant un score de 0 sont de couleur plus sombre.
+ - Les records sont affichés à présent au sommet de la fenêtre principale
+   permettant de voir les messages sur la barre de statut.
+
+[3.2.2] 1 modification
+ - La zone de sélection du plateau a été agrandie du côté droit (elle n'allait 
+   pas jusqu'au bord).
+
+[3.2.1] 1 modification
+ - Corrections dans l'aide html.
+
+[3.2] 2 modifications
+ - Les paramètres par défaut des automates (recherche des déplacement et taille 
+   maximale des mots recherchés) n'étaient pas utilisés lorsque l'on choisissait
+   Nouvelle Partie.
+ - Le paramètre par défaut "Recherche des déplacements" était toujours non coché
+   la première fois.
+
+[3.1] 2 Modifications
+ - Eclaircissements dans l'aide (définition des chiffres sous les lettres, 
+   formation des mots et définition de passer son tour).
+ - Fin de partie si lors d'un tour de jeu complet, tout le monde passe son tour.
+ - Le paramètre d'automate personnalisé "Taille max. des mots" n'était pas 
+   sauvegardé dans les fichiers de partie.
+
+[3.0.1] Modifications dans l'aide
+
+[3.0] Naissance d'Osmoz (nouvelles règles)
+ - Dans cette version, il est possible de déplacer les jetons déjà placés sur
+   le plateau de jeu. Un tour de jeu consiste donc, à présent, de poser un
+   jeton sur le plateau de jeu ou alors de déplacer de sa couleur un jeton
+   déjà placé sur le plateau de jeu. Le nombre maximales de cases correspond
+   au nombre de points courants du jeton. À chaque case du déplacement corres-
+   pond donc un point en moins sur le jeton. Il est possible de placer un je-
+   ton sur une case s'il existe entre la case origine et la case destination
+   un chemin constitué de cases vides ou si les cases origine et destination
+   sont contiguës. Le nombre de cases minimum entre la case origine (exclue)
+   et la case destination (incluse) doit être inférieur ou égal au nombre de
+   points du jeton. 
+ - Les modifications dues au changement de nom et règles sont les suivantes :
+   · Les fichiers de parties sauvegardées ont l'extension smz.
+   · Les fichiers de parties sauvegardées d'extension gdm ne peuvent plus être
+     ouvertes.
+ - Les paramètres relatifs aux comportements des automates sont personnalisa-
+   bles pour chaque automate avec par défaut les paramètres définis globale-
+   ment. De plus, une colonne indique la couleur et la case départ pour chaque
+   joueur.
+ - L'heuristique obligeait au deuxième tour de prendre une lettre récupérable
+   immédiatement (exemple : le Y à côté du A ; V à côté du S etc.).
+
+[2.3.1] 2 corrections dans le fichier d'aide html.
+ - Nombre de lettres maximal des mots (passé de 6 à 9) 
+ - Récupération d'une lettre dans son jeu (score réduit au lieu d'être remis
+   à 0)
+
+[2.3] 1 modification et 1 ajout.
+ - La police de caractère a été réduite dans les boîtes de dialogues Joueurs
+   et Paramètres des automates
+ - La taille maximale des mots cherchés par les automates peut être limitée 
+   (de 6 à 9 lettres). Attention : ceci n'empêche pas qu'une fois posée une 
+   lettre, des mots dont la taille dépasse la limite fixée, soient trouvés !
+
+[2.2] 1 modification et 1 ajout.
+ - Extension du dictionnaire : Mots de 7 à 9 lettres + Mots plus récents
+   (ODS3).
+ - Records de tours enregistrés automatiquement : mot le plus long, score,
+   nombre de points et de lettres pris à l'adversaire.
+
+[2.1] 2 corrections.
+- Partie à moins de 6 joueurs possible.
+- Coordonnées Internet ajoutées dans la fenêtre "À propos de...".
+
+[2.0] 
+Première version Windows.
+
+[1.x]
+Versions Dos
+
+   
+Dernière modification le 26 avril 2020.
