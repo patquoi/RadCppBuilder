@@ -1,7 +1,1 @@
-Version 5 (32/64 bits)
-
- - Intégrer les curseurs
- - Enregistrer l'extension .smz dans l'installation
-
-Version antérieure à 5
  - Remplacer les constantes en dur de la v4.0 !
