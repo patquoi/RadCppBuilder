@@ -44,7 +44,7 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 [Registry]
 Root: HKCR; SubKey: ".smt"; ValueType: string; ValueData: "Smt";
 Root: HKCR; SubKey: "Smt"; ValueType: string; ValueData: "Partie d'Osmotik";
-Root: HKCR; SubKey: "Smt\DefaultIcon"; ValueType: string; ValueData: "{app}\bin\{#MyAppExeName},1";
+Root: HKCR; SubKey: "Smt\DefaultIcon"; ValueType: string; ValueData: "{app}\bin\{#MyAppExeName},0";
 Root: HKCR; SubKey: "Smt\shell\open\command"; ValueType: string; ValueData: "{app}\bin\{#MyAppExeName} ""%1""";
 
 [Icons]
