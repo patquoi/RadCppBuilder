@@ -56,7 +56,8 @@ const String stInterrompre=L"Choisissez la rubrique \"Partie\" | \"Interrompre\"
 const char stSectionPolice[] = "Police",
 		   stEntreeNom[] = "Nom",
 		   stEntreeGras[] = "Gras",
-		   stEntreeTaille[] = "Taille";
+		   stEntreeTaille[] = "Taille",
+		   stNomFichierIni[] = "Osmoz.ini"; // v4.6
 //---------------------------------------------------------------------------
 __fastcall TfrmPlateau::TfrmPlateau(TComponent* Owner)
 	: TForm(Owner)
@@ -78,20 +79,20 @@ __fastcall TfrmPlateau::TfrmPlateau(TComponent* Owner)
 //---------------------------------------------------------------------------
 void TfrmPlateau::LitParametres() // v4.6 : ajout options
  {
-  if ((IniFile=new TIniFile(stRepLocalAppData()+"Osmoz.ini")))
+  if ((IniFile=new TIniFile(stRepLocalAppData()+stNomFichierIni))) // v4.6 (stNomFichierIni)
    {
 	Font->Name=IniFile->ReadString(stSectionPolice, stEntreeNom, L"Comic Sans MS");
 	Font->Style=TFontStyles();
 	if (IniFile->ReadBool(stSectionPolice, stEntreeGras, false))
 	  Font->Style=Font->Style << fsBold;
-    Font->Size=IniFile->ReadInteger(stSectionPolice, stEntreeTaille, 14);
+	Font->Size=IniFile->ReadInteger(stSectionPolice, stEntreeTaille, 14);
 	delete IniFile;
    }
  }
 //---------------------------------------------------------------------------
 void TfrmPlateau::EcritParametres() // v4.6 : ajout options
  {
-  if ((IniFile=new TIniFile(stRepLocalAppData()+"Osmoz.ini")))
+  if ((IniFile=new TIniFile(stRepLocalAppData()+stNomFichierIni))) // v4.6 (stNomFichierIni)
    {
 	IniFile->WriteString(stSectionPolice, stEntreeNom, Font->Name);
 	IniFile->WriteBool(stSectionPolice, stEntreeGras, Font->Style.Contains(fsBold));
@@ -797,14 +798,14 @@ void __fastcall TfrmPlateau::RubriquePoliceClick(TObject *Sender)
 { // v4.6 : Ajout d'options
  FontDialog->Font->Name=Font->Name;
  FontDialog->Font->Size=Font->Size; // Fixée à 14 (taille réelle)
+ if (Font->Style.Contains(fsBold)) // v4.6
+   FontDialog->Font->Style = TFontStyles() << fsBold;
  if (FontDialog->Execute())
   {
    Font->Name=FontDialog->Font->Name;
    Font->Style=TFontStyles();
    if (FontDialog->Font->Style.Contains(fsBold))
 	 Font->Style=Font->Style << fsBold;
-   if (FontDialog->Font->Style.Contains(fsItalic))
-	 Font->Style=Font->Style << fsItalic;
    Font->Size=FontDialog->Font->Size;
    Refresh();
   }

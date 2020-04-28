@@ -39,7 +39,7 @@ void TfrmParametresAutomates::LitParametres()
 __fastcall TfrmParametresAutomates::TfrmParametresAutomates(TComponent* Owner)
 	: TForm(Owner)
 {
- IniFile=new TIniFile(stRepLocalAppData()+"Osmoz.ini");
+ IniFile=new TIniFile(stRepLocalAppData()+stNomFichierIni); // v4.6 (stNomFichierIni)
  LitParametres();
 }
 //---------------------------------------------------------------------------

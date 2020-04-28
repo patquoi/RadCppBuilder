@@ -129,5 +129,6 @@ public:		// Déclarations de l'utilisateur
 extern PACKAGE TfrmPlateau *frmPlateau;
 
 extern const TColor clJo[7][2];
+extern const char stNomFichierIni[]; // v4.6
 //---------------------------------------------------------------------------
 #endif
