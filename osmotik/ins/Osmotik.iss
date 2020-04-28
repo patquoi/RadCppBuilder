@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Osmotik"
-#define MyAppVersion "1.4.0.27"
+#define MyAppVersion "1.4.1.1"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr/#osmotik"
 #define MyAppExeName "osmotik.exe"
@@ -76,12 +76,12 @@ Source: "..\bin\html\beurre4.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversi
 Source: "..\bin\html\beurre5.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 Source: "..\bin\html\epave.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 Source: "..\bin\html\findetour.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\fondhexa.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\nouvelle.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\Osmotik.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\fondhexa.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\nouvelle.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 Source: "..\bin\html\osmotik.html"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\osmotik.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 Source: "..\bin\html\placement.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\plateau.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\plateau.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 Source: "..\bin\html\scores.gif"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

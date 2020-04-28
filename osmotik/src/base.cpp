@@ -188,7 +188,7 @@ void hexagone::Dessine(TCanvas *Canvas)
   int x0=(int)(K*(lh*(Y-X))+0.5)+P->Xc,
 	  y0=(int)(K*(hh*(X+Y-2*N+2))+0.5)+P->Yc,
 	  xl=x0-Canvas->TextWidth(stLettre)/2,
-	  yl=y0-Canvas->TextHeight(stLettre)/2-Canvas->TextHeight(stLettre)/9,
+	  yl=y0-Canvas->TextHeight(stLettre)/2-K*hh/6,  // v1.4.1 : On part du milieu et on retire 1/6ème de la hauteur de l'hexagone
 	  tfv=(int)(0.5+kfv*(K*hl/FacteurHDPI)/4); // v1.4 + FacteurHDPI
   Canvas->TextRect( Rect(xl,yl+1,
 						 xl+Canvas->TextWidth(stLettre)-1,

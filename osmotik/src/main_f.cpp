@@ -24,7 +24,10 @@
 // v1.4 : string au lieu de AnsiString
 const char stSectionOptions[] = "Options";
 const char stEntreePolice[] = "Police";
+const char stEntreeGras[] = "Gras"; // v1.4.1 (ajout)
 const char stEntreeFond[] = "Fond"; // v0.9.3
+const char stNomFichierIni[] = "Osmotik.ini"; // v1.4.1
+//---------------------------------------------------------------------------
 // v1.4 Définition du curseur "+1" pour CreateCursor car LoadCursor ne marche pas !!!
 BYTE ANDmaskCursor[] =
 {
@@ -118,20 +121,33 @@ TFormMain *FormMain;
 //---------------------------------------------------------------------------
 void TFormMain::LitParametres() // v0.9.3
  {
-  if ((IniFile=new TIniFile(stRepLocalAppData()+"Osmotik.ini"))) // v1.4 : stRepLocalAppData au lieu de ExtractFilePath(Application->ExeName
+  if ((IniFile=new TIniFile(stRepLocalAppData()+stNomFichierIni))) // v1.4 : stRepLocalAppData au lieu de ExtractFilePath(Application->ExeName. v1.4.1 : stNomFichierIni
    {
-	FontName=IniFile->ReadString(stSectionOptions, stEntreePolice, L"Comic Sans MS"); // v1.4 FontName is a property now !
-	BackColor=(TColor)IniFile->ReadInteger(stSectionOptions, stEntreeFond, (int)clSilver); // v0.9.3
+	PaintBox->Font->Name=IniFile->ReadString(stSectionOptions, stEntreePolice, L"Comic Sans MS"); // v1.4.1 : on affecte directement PaintBox->Font
+
+	// v1.4.1 : ajout du style de la police (gras ou non)
+	PaintBox->Font->Style=TFontStyles();
+	if (IniFile->ReadBool(stSectionOptions, stEntreeGras, false))
+	  PaintBox->Font->Style=PaintBox->Font->Style << fsBold;
+	LabelLettresAPlacer->Font=PaintBox->Font;
+
+	PaintBox->Color=(TColor)IniFile->ReadInteger(stSectionOptions, stEntreeFond, (int)clSilver); // v1.4.1 : on affecte directement PaintBox->Color
+	RichEdit->Color=PaintBox->Color;
+
 	delete IniFile;
    }
  }
 //---------------------------------------------------------------------------
 void TFormMain::EcritParametres() // v0.9.3
  {
-  if ((IniFile=new TIniFile(stRepLocalAppData()+"Osmotik.ini")))
+  if ((IniFile=new TIniFile(stRepLocalAppData()+stNomFichierIni))) // v1.4 : stRepLocalAppData au lieu de ExtractFilePath(Application->ExeName. v1.4.1 : stNomFichierIni
    {
-	IniFile->WriteString(stSectionOptions, stEntreePolice, FontName); // v1.4 FontName is a property of TFormMain now !
-	IniFile->WriteInteger(stSectionOptions, stEntreeFond, (int)BackColor); // v0.9.3
+	IniFile->WriteString(stSectionOptions, stEntreePolice, PaintBox->Font->Name); // v1.4.1 : on va directement voir PaintBox->Font
+
+	// v1.4.1 : ajout du style (gras ou non) et de la taille de la police
+	IniFile->WriteBool(stSectionOptions, stEntreeGras, PaintBox->Font->Style.Contains(fsBold));
+
+	IniFile->WriteInteger(stSectionOptions, stEntreeFond, (int)PaintBox->Color); // v1.4.1 : on va directement voir PaintBox->Color
 	delete IniFile;
    }
  }
@@ -687,7 +703,7 @@ void __fastcall TFormMain::MenuItemAProposClick(TObject *Sender)
  // v1.4 : Facteur HDPI + alignement 32/64 bits
  String stFacteurHDPI = FormatFloat("0.0", Screen->PixelsPerInch / 96.0);
  const String stFrmAPropos = "\
-OSMOTIK 1.4 version %d bits\n\
+OSMOTIK 1.4.1 version %d bits\n\
 Facteur HDPI : x%s\n\
 Dictionnaire intégré : ODS8.\n\n\
 GPL 2.0 - Fourni SANS AUCUNE GARANTIE que ce soit.\n\
@@ -734,12 +750,19 @@ void __fastcall TFormMain::MenuItemAideClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormMain::MenuItemOptionsPoliceClick(TObject *Sender)
-{ // v0.9.2
- // v1.4 FontName is a property of TFormMain now !
- FontDialog->Font->Name=FontName; // v0.9.3
- if (FontDialog->Execute()) // v0.9.3 (if)
+{
+ // v1.4.1 : on va chercher directement PaintBox->Font
+ FontDialog->Font->Name=PaintBox->Font->Name;
+ if (FontDialog->Execute())
   {
-   FontName=FontDialog->Font->Name;
+   PaintBox->Font->Name=FontDialog->Font->Name;
+
+   // v1.4.1 : ajout du style (gras ou non)
+   PaintBox->Font->Style=TFontStyles();
+   if (FontDialog->Font->Style.Contains(fsBold))
+	 PaintBox->Font->Style=Font->Style << fsBold;
+
+   LabelLettresAPlacer->Font=PaintBox->Font;
    Refresh();
   }
 }
@@ -756,11 +779,13 @@ void __fastcall TFormMain::FormDestroy(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 void __fastcall TFormMain::MenuItemOptionsCouleurFondClick(TObject *Sender)
-{ // v0.9.3
- ColorDialog->Color=BackColor;
+{
+ // v1.4.1 : on va chercher directement PaintBox->Color
+ ColorDialog->Color=PaintBox->Color;
  if (ColorDialog->Execute())
   {
-   BackColor=ColorDialog->Color;
+   PaintBox->Color=ColorDialog->Color;
+   RichEdit->Color=ColorDialog->Color;
    Refresh();
   }
 }

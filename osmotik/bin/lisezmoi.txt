@@ -50,6 +50,11 @@ smtk-src-win64.zip. Il faut RAD Studio C++ 10.3.3, la version Community
 
 HISTORIQUE DES VERSIONS
 -----------------------
+[Version 1.4.1] - 28 avril 2020
+ - Prise en compte du style (gras ou non) lors du choix de la police.
+ - Les images de l'aide HTML ont été revues (PNG au lieu de JPG).
+ - Un paragraphe "Options de jeu" a été ajouté à l'aide HTML.
+ 
 [Version 1.4] - 11 avril 2020
  - Versions 32 et 64 bits
  - Prise en compte de la haute résolution (High DPI)
@@ -125,4 +130,4 @@ HISTORIQUE DES VERSIONS
  - Première version mise en ligne.
 
 
-Dernière modification le 12 avril 2020.
+Dernière modification le 28 avril 2020.

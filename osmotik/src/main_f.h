@@ -87,11 +87,7 @@ __published:	// Composants gérés par l'EDI
         void __fastcall TimerReflexionTimer(TObject *Sender);
 private:	// Déclarations de l'utilisateur
   TIniFile *IniFile; // v0.9.3
-  TColor FBackColor; // v0.9.3
-  String FFontName; // v1.4 FontName is a property now !
   HICON crPlus1; // v1.4
-  void SetBackColor(const TColor NewBackColor) { FBackColor = NewBackColor; Color=NewBackColor; PaintBox->Color=NewBackColor; RichEdit->Color=NewBackColor; };
-  void SetFontName(const String NewFontName) { FFontName = NewFontName; PaintBox->Font->Name=NewFontName; LabelLettresAPlacer->Font->Name=NewFontName; }; // v1.4 FontName is a property now !
   bool OuvertureAuto;
   void LitParametres(); // v0.9.3
   void EcritParametres(); // v0.9.3
@@ -109,8 +105,6 @@ private:	// Déclarations de l'utilisateur
   bool Sauve(int f);
   int NbLignes(); // v1.4 : décalage dans le formatage des ligne, dans SelStart, il faut retrancher 1 par retour à la ligne.
 public:
-  __property TColor BackColor = { read=FBackColor, write=SetBackColor, nodefault}; // v0.9.3
-  __property String FontName = { read=FFontName, write=SetFontName, nodefault}; // v1.4 FontName is a property now !
   __fastcall TFormMain(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
