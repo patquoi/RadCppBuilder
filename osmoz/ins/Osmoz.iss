@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Osmoz²"
-#define MyAppVersion "4.5.0.6"
+#define MyAppVersion "4.6.0.5"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr"
 #define MyAppExeName "osmoz.exe"
@@ -68,13 +68,13 @@ Source: "..\bin\osmoz.64.exe"; DestDir: "{app}\bin"; DestName: {#MyAppExeName}; 
 Source: "..\bin\osmoz.32.exe"; DestDir: "{app}\bin"; DestName: {#MyAppExeName}; Check: not Is64BitInstallMode; Flags: solidbreak ignoreversion
 Source: "..\bin\L23456789ABCDEF"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "..\..\osmoz-src-win64.zip"; DestDir: "{app}"; Flags: Ignoreversion
-Source: "..\bin\html\decompte.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\deplt.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\fondhexa.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\joueurs.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\decompte.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\deplt.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\fondhexa.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\joueurs.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 Source: "..\bin\html\osmoz.html"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\osmoz.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\params.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
-Source: "..\bin\html\plateau.jpg"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\osmoz.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\params.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
+Source: "..\bin\html\plateau.png"; DestDir: "{app}\bin\html"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

@@ -58,12 +58,15 @@ void __fastcall TfrmParametresAutomates::ButtonValiderClick(TObject *Sender)
  IniFile->WriteString(stSection, stEntreeAutorisation, stBool[CheckBoxAutorisation->Checked]);
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TfrmParametresAutomates::FormShow(TObject *Sender)
 {
  LitParametres();
  TrackBar1->SetFocus();
 }
 //---------------------------------------------------------------------------
-
+void __fastcall TfrmParametresAutomates::FormDestroy(TObject *Sender)
+{
+ if (IniFile) delete IniFile; // v4.6 (oubli)
+}
+//---------------------------------------------------------------------------
 

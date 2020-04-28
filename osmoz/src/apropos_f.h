@@ -22,7 +22,6 @@ __published:	// Composants gérés par l'EDI
     TLabel *LabelUrl;
     TLabel *LabelEMail;
         TPanel *Panel4;
-	TStatusBar *StatusBar;
 	TPanel *PanelAlignement;
 	TPanel *PanelHDPI;
     void __fastcall TimerTimer(TObject *Sender);

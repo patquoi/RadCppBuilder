@@ -10,8 +10,9 @@
 #include <Menus.hpp>
 #include <ComCtrls.hpp>
 #include <Dialogs.hpp>
+#include <IniFiles.hpp>
 #include "curseurs.h"
-
+//---------------------------------------------------------------------------
 #define BLANC   0
 #define BLEU    1
 #define VERT    2
@@ -19,11 +20,10 @@
 #define ROUGE   4
 #define MAGENTA 5
 #define JAUNE   6
-
+//---------------------------------------------------------------------------
 #define FONCE 0
 #define CLAIR 1
-
-
+//---------------------------------------------------------------------------
 enum situation : char {aucune_situation, choix_lettre, choix_case, decompte_points};
 enum phase : char {aucune_phase, pose, deplacement}; // Se combine avec choix_lettre et choix_case pour pose et deplacement
 //---------------------------------------------------------------------------
@@ -57,6 +57,8 @@ __published:	// Composants gérés par l'EDI
     TMenuItem *RubriqueInterrompre;
     TMenuItem *RubriqueRecords;
     TMenuItem *Sep0;
+	TMenuItem *RubriquePolice;
+	TFontDialog *FontDialog;
     void __fastcall FormPaint(TObject *Sender);
     void __fastcall FormMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
@@ -70,7 +72,6 @@ __published:	// Composants gérés par l'EDI
     
     void __fastcall RubriqueEnregistrerClick(TObject *Sender);
     void __fastcall RubriqueEnregistrerSousClick(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);
     
     
@@ -89,17 +90,30 @@ __published:	// Composants gérés par l'EDI
     void __fastcall MenuOptionsClick(TObject *Sender);
     void __fastcall RubriqueRecordsClick(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall RubriquePoliceClick(TObject *Sender);
     
-    
+
 private:	// Déclarations de l'utilisateur
-    HICON crSmz[NBCURSEURS]; // v4.5 : On crée les curseurs
-    situation Sit;
-    void ChangeSituation(situation NvSit);
-    bool EnregistrerMessages;
+	// v4.6 : ajout d'options
+	TIniFile *IniFile;
+
+	HICON crSmz[NBCURSEURS]; // v4.5 : On crée les curseurs
+	situation Sit;
+
+	// v4.6 : ajout d'options
+
+	// v4.6 : ajout options
+	void LitParametres();
+	void EcritParametres();
+
+	void ChangeSituation(situation NvSit);
+	bool EnregistrerMessages;
 public:		// Déclarations de l'utilisateur
-    phase Phase;
-    __property situation Situation = {read=Sit, write=ChangeSituation};
-    int xCrt, yCrt, // Coordonnées de la dernière case mise en évidence (curseur dessus)
+	phase Phase;
+	__property situation Situation = {read=Sit, write=ChangeSituation};
+
+	int xCrt, yCrt, // Coordonnées de la dernière case mise en évidence (curseur dessus)
         xCase, yCase, // Coordonnées de la dernière case sélectionnable (curseur dessus et case valide pour opération en cours)
         xLAD, yLAD; // Coordonnées de la lettre en cours de déplacement
     char LettreAPoser,    // Lettre courante/sélectionnée (mise en évidence sur le jeu ou à poser)

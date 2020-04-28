@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
-
+//---------------------------------------------------------------------------
 #include "apropos_f.h"
 #include "plateau_f.h"
 #include "base.h"
@@ -58,8 +58,9 @@ void TfrmAPropos::AfficheValeurs(int x, int y, char Lettre, int Valeur, int Fond
   Canvas->Brush->Color=clJo[Fond][CLAIR];
   Canvas->Brush->Style=bsSolid;
   Canvas->Font->Color=Couleur;
-  Canvas->Font->Name="Comic Sans MS";
-  Canvas->Font->Size=14;
+  Canvas->Font->Name=frmPlateau->Font->Name; // v4.6 : la police est une option
+  Canvas->Font->Style=frmPlateau->Font->Style; // v4.6 : le style est une option
+  Canvas->Font->Size=frmPlateau->Font->Size;  // v4.6 : la taille est une option
 
   // v4.5 : prise en charge HDPI
   tw=_HDPI(Canvas->TextWidth(st));

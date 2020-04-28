@@ -30,39 +30,44 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-
+//---------------------------------------------------------------------------
 TfrmPlateau *frmPlateau;
+//---------------------------------------------------------------------------
 const TColor clJo[7][2]={{clGray, clLtGray},
-                         {clNavy, clBlue},
-                         {clGreen, clLime},
-                         {clTeal, clAqua},
-                         {clMaroon, clRed},
-                         {clPurple, clFuchsia},
-                         {clOlive, clYellow}};
-const String stInterrompre="Choisissez la rubrique \"Partie\" | \"Interrompre\" ou appuyez sur Alt+I pour faire une pause.",
-			 stContinuer=  "Choisissez la rubrique \"Partie\" | \"Continuer\" ou appuyez sur Alt+C pour poursuivre le jeu.",
-			 stTitre="Osmoz²",
-			 stTitrePause="Osmoz² [PAUSE]",
-			 stCommentChoisirLaLettreAPlacer="Cliquez gauche sur la lettre à placer sur le plateau de jeu.",
-			 stCommentChoisirLaLettreAPlacerAuDebut="Vous devez placer une lettre au sommet du plateau correspondant à votre couleur.",
-			 stCommentChoisirLaLettreADeplacer="Cliquez gauche sur la lettre à déplacer sur le plateau de jeu.",
-			 stCommentPoserLaLettreSurLePlateau="Cliquez gauche sur la case où vous souhaitez placer la lettre ou cliquez droit pour annuler (choisir une autre lettre).",
-			 stCommentChoisirLaLettreSurLePlateau="Cliquez gauche sur la lettre à déplacer ou cliquez droit sur la lettre pour incrémenter son compte dans votre jeu (curseur +1).",
-             stDecompteDesPoints="Décompte des points : appuyez sur le bouton Continuer de la boîte de dialogue sous les scores pour continuer...";
+						 {clNavy, clBlue},
+						 {clGreen, clLime},
+						 {clTeal, clAqua},
+						 {clMaroon, clRed},
+						 {clPurple, clFuchsia},
+						 {clOlive, clYellow}};
+//---------------------------------------------------------------------------
+const String stInterrompre=L"Choisissez la rubrique \"Partie\" | \"Interrompre\" ou appuyez sur Alt+I pour faire une pause.",
+			 stContinuer=L"Choisissez la rubrique \"Partie\" | \"Continuer\" ou appuyez sur Alt+C pour poursuivre le jeu.",
+			 stTitre=L"Osmoz²",
+			 stTitrePause=L"Osmoz² [PAUSE]",
+			 stCommentChoisirLaLettreAPlacer=L"Cliquez gauche sur la lettre à placer sur le plateau de jeu.",
+			 stCommentChoisirLaLettreAPlacerAuDebut=L"Vous devez placer une lettre au sommet du plateau correspondant à votre couleur.",
+			 stCommentChoisirLaLettreADeplacer=L"Cliquez gauche sur la lettre à déplacer sur le plateau de jeu.",
+			 stCommentPoserLaLettreSurLePlateau=L"Cliquez gauche sur la case où vous souhaitez placer la lettre ou cliquez droit pour annuler (choisir une autre lettre).",
+			 stCommentChoisirLaLettreSurLePlateau=L"Cliquez gauche sur la lettre à déplacer ou cliquez droit sur la lettre pour incrémenter son compte dans votre jeu (curseur +1).",
+			 stDecompteDesPoints=L"Décompte des points : appuyez sur le bouton Continuer de la boîte de dialogue sous les scores pour continuer...";
+//---------------------------------------------------------------------------
+// v4.6 : ajout options
+const char stSectionPolice[] = "Police",
+		   stEntreeNom[] = "Nom",
+		   stEntreeGras[] = "Gras",
+		   stEntreeTaille[] = "Taille";
 //---------------------------------------------------------------------------
 __fastcall TfrmPlateau::TfrmPlateau(TComponent* Owner)
-    : TForm(Owner)
+	: TForm(Owner)
 {
  int i;
  for(i=0; i<NBCURSEURS; i++)
   { // v4.5 : On crée les curseurs
-   crSmz[i]=CreateCursor(HInstance, // app. instance
-						 16, // horizontal position of hot spot
-						 16, // vertical position of hot spot
-						 32, // cursor width
-						 32, // cursor height
-						 ANDmaskCursor[i],     // AND mask
-						 XORmaskCursor[i]);   // XOR mask
+   crSmz[i]=CreateCursor(HInstance,
+						 16, 16, 32, 32,
+						 ANDmaskCursor[i],
+						 XORmaskCursor[i]);
    Screen->Cursors[i+1]=crSmz[i];
   }
  xCrt=yCrt=xCase=yCase=xLAD=yLAD=INDEFINI;
@@ -71,11 +76,35 @@ __fastcall TfrmPlateau::TfrmPlateau(TComponent* Owner)
  SaveDialog->InitialDir=stRepLocalAppData();
 }
 //---------------------------------------------------------------------------
+void TfrmPlateau::LitParametres() // v4.6 : ajout options
+ {
+  if ((IniFile=new TIniFile(stRepLocalAppData()+"Osmoz.ini")))
+   {
+	Font->Name=IniFile->ReadString(stSectionPolice, stEntreeNom, L"Comic Sans MS");
+	Font->Style=TFontStyles();
+	if (IniFile->ReadBool(stSectionPolice, stEntreeGras, false))
+	  Font->Style=Font->Style << fsBold;
+    Font->Size=IniFile->ReadInteger(stSectionPolice, stEntreeTaille, 14);
+	delete IniFile;
+   }
+ }
+//---------------------------------------------------------------------------
+void TfrmPlateau::EcritParametres() // v4.6 : ajout options
+ {
+  if ((IniFile=new TIniFile(stRepLocalAppData()+"Osmoz.ini")))
+   {
+	IniFile->WriteString(stSectionPolice, stEntreeNom, Font->Name);
+	IniFile->WriteBool(stSectionPolice, stEntreeGras, Font->Style.Contains(fsBold));
+	IniFile->WriteInteger(stSectionPolice, stEntreeTaille, Font->Size);
+	delete IniFile;
+   }
+ }
+//---------------------------------------------------------------------------
 void TfrmPlateau::ChangeSituation(situation NvSit)
  {
   switch(NvSit)
    {
-    case choix_lettre:    if (J[Jo].Automate)
+	case choix_lettre:    if (J[Jo].Automate)
                            {
                             if (p.JeuEnCours)
                              {
@@ -83,7 +112,7 @@ void TfrmPlateau::ChangeSituation(situation NvSit)
                               p.PlaceLettreAuto();
                               JoueurSuivant();
                              }
-                            else
+							else
                              {
                               RubriqueContinuer->Enabled=true;
                               if (!frmParametresAutomates->Interruption)
@@ -151,6 +180,9 @@ void TfrmPlateau::AfficheValeurs(int x, int y, char Lettre, int Score, int Fond,
   bool FondTropFonce=(Fond==1)&&(!Score)&&(Couleur==clBlack);
   wchar_t ws[3]=L" ", wsScore;
   String st;
+
+  // Lettre
+
   ws[0]=Lettre;
   st=String(ws);
   Canvas->Pen->Color=clJo[Fond][((!Fond)||Score)?CLAIR:FONCE]; // v3.3
@@ -159,19 +191,23 @@ void TfrmPlateau::AfficheValeurs(int x, int y, char Lettre, int Score, int Fond,
   Canvas->Brush->Color=clJo[Fond][((!Fond)||Score)?CLAIR:FONCE]; // v3.3
   Canvas->Brush->Style=bsSolid;
   Canvas->Font->Color=FondTropFonce?clGray:Couleur;
-  Canvas->Font->Name="Comic Sans MS";
-  Canvas->Font->Size=14;
+  Canvas->Font->Name=Font->Name; // v4.6 : la police est une option
+  Canvas->Font->Style=Font->Style; // v4.6 : le style est une option
+  Canvas->Font->Size=Font->Size;  // v4.6 : la taille est une option
 
   // v4.5 : prise en charge HDPI
   tw=_HDPI(Canvas->TextWidth(st));
   th=_HDPI(Canvas->TextHeight(st));
   xc=HDPI(x+9-tw/2);
-  yc=HDPI(y+26-th);
+  yc=HDPI(y); // v4.6. y au lieu de y+26-th
 
   Canvas->TextOut(xc, yc, st);    //y+23
+
+  // Score
+
   st=IntToStr(Score);
   Canvas->Font->Name="Small Fonts";
- Canvas->Font->Size=7;
+  Canvas->Font->Size=7;
 
   // v4.5 : prise en charge HDPI
   tw=_HDPI(Canvas->TextWidth(st));
@@ -319,7 +355,7 @@ void __fastcall TfrmPlateau::FormMouseMove(TObject *Sender,
                               EffaceSelectionCouranteCase(LAISSE);
                            }
                           else
-                           EffaceSelectionCouranteCase(LAISSE);
+						   EffaceSelectionCouranteCase(LAISSE);
                          }
                         else
                          EffaceSelectionCouranteCase(LAISSE);
@@ -368,7 +404,7 @@ void __fastcall TfrmPlateau::FormMouseMove(TObject *Sender,
                                                       }
                                                     }
                                                   }
-                                                 else
+												 else
                                                   CaseDepot=(xc==J[Jo].CoordDeb[0])&&(yc==J[Jo].CoordDeb[1]);
                                                  if (CaseDepot)
                                                   { // C'est bien ou case dépôt : on met en évidence que s'en est une
@@ -515,7 +551,7 @@ void __fastcall TfrmPlateau::FormMouseUp(TObject *Sender,
                                                                 JoueurSuivant();
                                                                }
                                                               else
-                                                               p.CalculNbCasesEnCours=false;
+															   p.CalculNbCasesEnCours=false;
                                                              }
 															break;
                                           default:          break;
@@ -636,10 +672,6 @@ void __fastcall TfrmPlateau::RubriqueEnregistrerSousClick(TObject *Sender)
   RubriqueEnregistrer->Click();
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmPlateau::FormCreate(TObject *Sender)
-{
-}
-//---------------------------------------------------------------------------
 void __fastcall TfrmPlateau::FormShow(TObject *Sender)
 {
  int n;
@@ -751,8 +783,31 @@ void __fastcall TfrmPlateau::RubriqueRecordsClick(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TfrmPlateau::FormDestroy(TObject *Sender)
 {
+ EcritParametres(); // v4.6 : ajout d'options
  for(int i=0; i<NBCURSEURS; i++)
    DestroyCursor(crSmz[i]);
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmPlateau::FormCreate(TObject *Sender)
+{ // v4.6 : Ajout d'options
+ LitParametres();
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmPlateau::RubriquePoliceClick(TObject *Sender)
+{ // v4.6 : Ajout d'options
+ FontDialog->Font->Name=Font->Name;
+ FontDialog->Font->Size=Font->Size; // Fixée à 14 (taille réelle)
+ if (FontDialog->Execute())
+  {
+   Font->Name=FontDialog->Font->Name;
+   Font->Style=TFontStyles();
+   if (FontDialog->Font->Style.Contains(fsBold))
+	 Font->Style=Font->Style << fsBold;
+   if (FontDialog->Font->Style.Contains(fsItalic))
+	 Font->Style=Font->Style << fsItalic;
+   Font->Size=FontDialog->Font->Size;
+   Refresh();
+  }
 }
 //---------------------------------------------------------------------------
 

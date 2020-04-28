@@ -30,6 +30,7 @@ __published:	// Composants gérés par l'EDI
     TButton *ButtonAnnuler;
     void __fastcall ButtonValiderClick(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);
+	void __fastcall FormDestroy(TObject *Sender);
 private:	// Déclarations de l'utilisateur
     void LitParametres();
 public:		// Déclarations de l'utilisateur
