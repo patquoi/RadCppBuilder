@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Centre-Ville"
-#define MyAppVersion "5.4.2.3"
+#define MyAppVersion "5.4.3.2"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr#cvw"
 #define MyAppExeName "cvw.exe"
@@ -30,7 +30,7 @@ WizardImageFile=Gauche.bmp
 WizardSmallImageFile=Coin.bmp
 OutputDir="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\cvwx\ins\output"
 OutputBaseFilename=inscvw95
-SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\cvwx\ins\cvw5.ico"
+SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\cvwx\src\cvw_Icon.ico"
 AppComments=La simulation de circulation urbaine
 AppContact=cvw@patquoi.fr
 Compression=lzma
@@ -52,6 +52,8 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\bin\{#MyAppExeName}"; IconFilenam
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Uninstall.ico"; Comment: "Désinstalle Centre-Ville"; IconIndex: 0
 Name: "{group}\Lisez-Moi (Centre-Ville)"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
 Name: "{group}\Sources de Centre-Ville"; Filename: "{app}\cvw-src-win64.zip"; Comment: "Code source de Centre-Ville"
+Name: "{group}\Aide (Centre-Ville)"; Filename: "{app}\bin\html\index.html"; WorkingDir: "{app}\bin\html"; Comment: "Aide HTML de Centre-Ville"
+
 
 [Run]
 Filename: "{app}\Lisezmoi.txt"; Description: "Lisez-moi !"; Flags: postinstall shellexec skipifsilent

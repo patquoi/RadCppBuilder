@@ -22,6 +22,7 @@ USEFORM("f_prmvehlib.cpp", frmParamVehlib);
 USEFORM("f_propos.cpp", frmAPropos);
 USEFORM("f_rech.cpp", frmRecherche);
 USEFORM("f_simul.cpp", frmSimulation);
+USEFORM("f_genres.cpp", frmGeneration);
 USEFORM("f_afdistab.cpp", frmAffDistArretsBus);
 USEFORM("f_afdistat.cpp", frmAffDistArretsTram);
 USEFORM("f_afdistfp.cpp", frmAffDistFilesPark);
@@ -30,13 +31,12 @@ USEFORM("f_afdistp.cpp", frmAffDistParkings);
 USEFORM("f_defv.cpp", frmDefVoie);
 USEFORM("f_defvp.cpp", frmDefVoiePietons);
 USEFORM("f_dimzone.cpp", frmDimensionsZone);
-USEFORM("f_genres.cpp", frmGeneration);
+USEFORM("f_epidemie.cpp", frmEpidemie);
 USEFORM("f_defn.cpp", frmDefNature);
 USEFORM("f_afdistpv.cpp", frmAffDistPlacesVehlib);
 USEFORM("f_carfours.cpp", frmCarrefours);
 USEFORM("f_deff.cpp", frmDefFeux);
 USEFORM("f_deffp.cpp", frmDefFeuxPietons);
-USEFORM("f_epidemie.cpp", frmEpidemie);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
