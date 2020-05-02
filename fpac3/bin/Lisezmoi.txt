@@ -55,6 +55,9 @@ Le dossier /src/Fpac1 contient les sources en C de la version DOS d'origine
 HISTORIQUE
 ----------
 
+[Version 1.3.1]
+ - Icône en haute résolution.
+ 
 [Version 1.3] Versions 32 et 64 bits
 Le jeu a été porté en 64 bits avec prise en charge de la haute résolution.
 La version 32 bits est maintenue et s'installera dans les cas nécessaires.
@@ -147,5 +150,5 @@ Il y a plusieurs façons d'obtenir des informations depuis le jeu et même en
 cours de partie : utilisez le menu ?.
 
 -------------------------------------  
-Dernière mise à jour le 11 août 2019.
+Dernière mise à jour le 2 mai 2020.
 -------------------------------------

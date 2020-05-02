@@ -547,11 +547,11 @@ void __fastcall TFormMain::ActionInfosAProposExecute(TObject *Sender)
 {
 #ifdef _WIN64
  MsgStatut.Affiche(0, "\
-== FP#@3.VERSION 1.3.0 = GPL2 @ 2008.2019 ==\n\
+== FP#@3.VERSION 1.3.1 = GPL2 @ 2008.2019 ==\n\
 == PAR PATRICE FOUQUET = FP#@3~ @ 64 BITS ==");
 #else
  MsgStatut.Affiche(0, "\
-== FP#@3.VERSION 1.3.0 = GPL2 @ 2008.2019 ==\n\
+== FP#@3.VERSION 1.3.1 = GPL2 @ 2008.2019 ==\n\
 == PAR PATRICE FOUQUET = FP#@3~ @ 32 BITS ==");
 #endif
  TimerDemo->Tag=0;

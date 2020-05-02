@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "FPac 3"
-#define MyAppVersion "1.3.0.24"
+#define MyAppVersion "1.3.1.3"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr"
 #define MyAppExeName "fpac3.exe"
@@ -30,7 +30,7 @@ WizardImageFile=fpac3.bmp
 WizardSmallImageFile=icone.bmp
 OutputDir="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\fpac3\ins\Output"
 OutputBaseFilename=insfpac3
-SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\fpac3\src\fpac3.ico"
+SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\fpac3\ins\fpac3@256.ico"
 AppComments=Pacman en quadriptyque
 AppContact=fpac3@patquoi.fr
 Compression=lzma
