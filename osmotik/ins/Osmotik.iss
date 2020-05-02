@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Osmotik"
-#define MyAppVersion "1.4.2.1"
+#define MyAppVersion "1.4.2.2"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr/#osmotik"
 #define MyAppExeName "osmotik.exe"
