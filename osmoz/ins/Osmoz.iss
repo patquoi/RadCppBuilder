@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Osmoz²"
-#define MyAppVersion "4.6.1.1"
+#define MyAppVersion "4.6.1.2"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr"
 #define MyAppExeName "osmoz.exe"
