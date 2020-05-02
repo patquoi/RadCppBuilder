@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Osmoz²"
-#define MyAppVersion "4.6.0.7"
+#define MyAppVersion "4.6.1.1"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr"
 #define MyAppExeName "osmoz.exe"
@@ -30,7 +30,7 @@ WizardImageFile=grande.bmp
 WizardSmallImageFile=petite.bmp
 OutputDir="..\ins\Output"
 OutputBaseFilename=insosmoz
-SetupIconFile="..\ins\Osmoz.ico"
+SetupIconFile="..\ins\Osmoz256.ico"
 AppComments=Etendez votre territoire et partez à la conquête des mots adverses !
 AppContact=osmoz@patquoi.fr
 Compression=lzma

@@ -78,11 +78,12 @@
         <SanitizedProjectName>osmoz</SanitizedProjectName>
         <VerInfo_Locale>1036</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Patquoi.fr;FileDescription=$(MSBuildProjectName);FileVersion=4.6.0.7;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.patquoi.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=4.6;Comments=Licence Publique Générale 2.0</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Patquoi.fr;FileDescription=$(MSBuildProjectName);FileVersion=4.6.1.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.patquoi.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=4.6.1;Comments=Licence Publique Générale 2.0</VerInfo_Keys>
         <VerInfo_MajorVer>4</VerInfo_MajorVer>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_MinorVer>6</VerInfo_MinorVer>
-        <VerInfo_Build>7</VerInfo_Build>
+        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindengine;CloudService;CustomIPTransport;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXInterBaseDriver;DBXMySQLDriver;DBXSqliteDriver;dsnap;dsnapcon;dsnapxml;FireDAC;FireDACADSDriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACIBDriver;FireDACMSAccDriver;FireDACMySQLDriver;FireDACPgDriver;FireDACSqliteDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;svn;tethering;vcl;vclactnband;vcldb;vcldsnap;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -95,6 +96,8 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <Icon_MainIcon>osmoz_Icon.ico</Icon_MainIcon>
+        <UWP_CppLogo44>..\res\png\osmico44.png</UWP_CppLogo44>
+        <UWP_CppLogo150>..\res\png\osmico150.png</UWP_CppLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindengine;CloudService;CustomIPTransport;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXInterBaseDriver;DBXMySQLDriver;DBXSqliteDriver;dsnap;dsnapcon;dsnapxml;FireDAC;FireDACADSDriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACIBDriver;FireDACMSAccDriver;FireDACMySQLDriver;FireDACPgDriver;FireDACSqliteDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;tethering;vcl;vclactnband;vcldb;vcldsnap;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -107,6 +110,8 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <Icon_MainIcon>osmoz_Icon.ico</Icon_MainIcon>
+        <UWP_CppLogo44>..\res\png\osmico44.png</UWP_CppLogo44>
+        <UWP_CppLogo150>..\res\png\osmico150.png</UWP_CppLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
@@ -150,15 +155,15 @@
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <Icon_MainIcon>osmoz_Icon.ico</Icon_MainIcon>
         <LinkPackageStatics>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib</LinkPackageStatics>
-        <VerInfo_Build>8</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Patquoi.fr;FileDescription=$(MSBuildProjectName);FileVersion=4.6.0.8;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.patquoi.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=4.6;Comments=Licence Publique Générale 2.0</VerInfo_Keys>
+        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Patquoi.fr;FileDescription=$(MSBuildProjectName);FileVersion=4.6.1.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.patquoi.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=4.6.1;Comments=Licence Publique Générale 2.0</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <Icon_MainIcon>osmoz_Icon.ico</Icon_MainIcon>
         <LinkPackageStatics>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib</LinkPackageStatics>
-        <VerInfo_Build>8</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Patquoi.fr;FileDescription=$(MSBuildProjectName);FileVersion=4.6.0.8;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.patquoi.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=4.6;Comments=Licence Publique Générale 2.0</VerInfo_Keys>
+        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Patquoi.fr;FileDescription=$(MSBuildProjectName);FileVersion=4.6.1.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.patquoi.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=4.6.1;Comments=Licence Publique Générale 2.0</VerInfo_Keys>
+        <Icon_MainIcon>osmoz_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <ItemGroup>
         <CppCompile Include="apropos_f.cpp">
@@ -264,6 +269,13 @@
                 </Source>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="..\res\png\osmico150.png" Configuration="Release" Class="UWP_CppLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c260.dll" Class="DependencyModule">
                     <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
@@ -315,6 +327,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="..\res\png\osmico44.png" Configuration="Release" Class="UWP_CppLogo44">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64260.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
@@ -328,6 +347,20 @@
                 <DeployFile LocalName=".\Win32\Debug\osmoz.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>osmoz.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\res\png\osmico150.png" Configuration="Release" Class="UWP_CppLogo150">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\res\png\osmico44.png" Configuration="Release" Class="UWP_CppLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
