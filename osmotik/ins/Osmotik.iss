@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Osmotik"
-#define MyAppVersion "1.4.1.1"
+#define MyAppVersion "1.4.2.1"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr/#osmotik"
 #define MyAppExeName "osmotik.exe"
@@ -30,7 +30,7 @@ WizardImageFile=Osm.bmp
 WizardSmallImageFile=Smtk.bmp
 OutputDir="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\Osmotik\ins\output"
 OutputBaseFilename=insosmotik
-SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\Osmotik\ins\osmotik.ico"
+SetupIconFile="C:\Users\Patrice Fouquet\Documents\Embarcadero\Studio\Projets\Osmotik\ins\osmotik256.ico"
 AppComments=Etendez votre territoire et partez à la conquête des mots adverses !
 AppContact=osmotik@patquoi.fr
 Compression=lzma

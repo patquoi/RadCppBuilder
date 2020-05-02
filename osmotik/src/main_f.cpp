@@ -753,6 +753,9 @@ void __fastcall TFormMain::MenuItemOptionsPoliceClick(TObject *Sender)
 {
  // v1.4.1 : on va chercher directement PaintBox->Font
  FontDialog->Font->Name=PaintBox->Font->Name;
+ if (PaintBox->Font->Style.Contains(fsBold)) // v1.4.1
+   FontDialog->Font->Style = TFontStyles() << fsBold;
+
  if (FontDialog->Execute())
   {
    PaintBox->Font->Name=FontDialog->Font->Name;
