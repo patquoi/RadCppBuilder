@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Le Berger"
-#define MyAppVersion "1.7.0.5"
+#define MyAppVersion "1.7.0.6"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr/#lb"
 #define MyAppExeName "lebrgw.exe"
@@ -48,66 +48,66 @@ Root: HKCR; SubKey: "nivlbrg\DefaultIcon"; ValueType: string; ValueData: "{app}\
 Root: HKCR; SubKey: "nivlbrg\shell\open\command"; ValueType: string; ValueData: "{app}\bin\{#MyAppExeName} ""%1""";
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\{#MyAppExeName}"; IconIndex: 0; Flags: createonlyiffileexists useapppaths
+Name: "{group}\{#MyAppName}"; Filename: "{app}\bin\{#MyAppExeName}"; IconFilename: "{app}\bin\{#MyAppExeName}"; IconIndex: 0; Flags: createonlyiffileexists useapppaths
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\Uninstall.ico"; Comment: "Désinstalle Le Berger"; IconIndex: 0
 Name: "{group}\Lisez-Moi (Le Berger)"; Filename: "{app}\Lisezmoi.txt"; WorkingDir: "{app}"; Comment: "Fichier lisez-moi à lire en premier !"
 Name: "{group}\Sources de Le Berger"; Filename: "{app}\lebrgw-src-win64.zip"; Comment: "Code source de Le Berger"
 
 [Run]
 Filename: "{app}\Lisezmoi.txt"; Description: "Lisez-moi !"; Flags: postinstall shellexec skipifsilent
-Filename: "{app}\{#MyAppExeName}"; Description: "Jouer à Le Berger !"; Flags: postinstall nowait skipifsilent
+Filename: "{app}\bin\{#MyAppExeName}"; Description: "Jouer à Le Berger !"; Flags: postinstall nowait skipifsilent
 
 [Files]
 Source: "Uninstall.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\bin\lebrgw.64.exe"; DestDir: "{app}"; DestName: "lebrgw.exe"; Check: Is64BitInstallMode; Flags: ignoreversion
-Source: "..\bin\lebrgw.32.exe"; DestDir: "{app}"; DestName: "lebrgw.exe"; Check: not Is64BitInstallMode; Flags: solidbreak ignoreversion
+Source: "..\bin\lebrgw.64.exe"; DestDir: "{app}\bin"; DestName: "lebrgw.exe"; Check: Is64BitInstallMode; Flags: ignoreversion
+Source: "..\bin\lebrgw.32.exe"; DestDir: "{app}\bin"; DestName: "lebrgw.exe"; Check: not Is64BitInstallMode; Flags: solidbreak ignoreversion
 Source: "..\bin\licence.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\lisezmoi.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\niv\chaos.000.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\chaos.ini"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.000.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.001.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.002.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.003.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.004.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.005.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.006.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.007.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.008.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.009.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\débutant.ini"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.000.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.001.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.002.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.003.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.004.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.005.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.006.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.007.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.008.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.009.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.010.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.011.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.012.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.013.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.014.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.015.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.016.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.017.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.018.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.019.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.020.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.021.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.022.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.023.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.024.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.025.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.026.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.027.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.028.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.029.NLB"; DestDir: "{app}\niv"; Flags: ignoreversion
-Source: "..\niv\original.ini"; DestDir: "{app}\niv"; Flags: ignoreversion
+Source: "..\niv\chaos.000.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\chaos.ini"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.000.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.001.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.002.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.003.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.004.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.005.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.006.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.007.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.008.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.009.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\débutant.ini"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.000.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.001.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.002.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.003.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.004.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.005.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.006.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.007.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.008.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.009.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.010.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.011.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.012.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.013.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.014.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.015.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.016.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.017.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.018.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.019.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.020.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.021.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.022.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.023.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.024.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.025.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.026.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.027.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.028.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.029.NLB"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
+Source: "..\niv\original.ini"; DestDir: "{app}\bin\niv"; Flags: ignoreversion
 Source: "..\bin\html\index.html"; DestDir: "{app}\html"; Flags: ignoreversion
 Source: "..\bin\html\Chemin1.png"; DestDir: "{app}\html"; Flags: ignoreversion
 Source: "..\bin\html\Chemin2.png"; DestDir: "{app}\html"; Flags: ignoreversion
