@@ -7,13 +7,13 @@
 USEFORM("prmniv_f.cpp", frmPrmNiveau);
 USEFORM("plt_f.cpp", frmPlateau);
 USEFORM("nomjou_f.cpp", frmNomJoueur);
-USEFORM("prt_f.cpp", frmParties);
 USEFORM("score_f.cpp", frmScore);
 USEFORM("records_f.cpp", frmRecords);
-USEFORM("avertissement_f.cpp", frmAvertissement);
+USEFORM("prt_f.cpp", frmParties);
 USEFORM("apropos_f.cpp", frmAPropos);
-USEFORM("comm_f.cpp", frmCommandes);
 USEFORM("diplome_f.cpp", frmDiplome);
+USEFORM("comm_f.cpp", frmCommandes);
+USEFORM("avertissement_f.cpp", frmAvertissement);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
