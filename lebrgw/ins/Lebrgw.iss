@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Le Berger"
-#define MyAppVersion "1.7.0.6"
+#define MyAppVersion "1.7.0.8"
 #define MyAppPublisher "Patquoi.fr"
 #define MyAppURL "http://patquoi.fr/#lb"
 #define MyAppExeName "lebrgw.exe"

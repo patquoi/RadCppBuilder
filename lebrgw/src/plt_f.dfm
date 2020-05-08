@@ -12,6 +12,7 @@ object frmPlateau: TfrmPlateau
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  KeyPreview = True
   Menu = MainMenu
   OldCreateOrder = True
   Position = poScreenCenter
@@ -19,6 +20,8 @@ object frmPlateau: TfrmPlateau
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -430,6 +433,11 @@ object frmPlateau: TfrmPlateau
           ShortCut = 16432
           OnClick = RubriqueToutClick
         end
+      end
+      object MenuItemDiplome: TMenuItem
+        Caption = '&Dipl'#244'me...'
+        Visible = False
+        OnClick = MenuItemDiplomeClick
       end
     end
     object MenuInformations: TMenuItem

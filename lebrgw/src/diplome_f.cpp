@@ -1,7 +1,8 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
-
+//---------------------------------------------------------------------------
+#include <Clipbrd.hpp>
 #include "diplome_f.h"
 #include "plt_f.h"
 //---------------------------------------------------------------------------
@@ -11,7 +12,7 @@
 TfrmDiplome *frmDiplome;
 //---------------------------------------------------------------------------
 __fastcall TfrmDiplome::TfrmDiplome(TComponent* Owner)
-    : TForm(Owner)
+	: TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
@@ -52,19 +53,46 @@ void __fastcall TfrmDiplome::FormShow(TObject *Sender)
  LabelScore->Left=Label4->Left+Label4->Width+6;
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmDiplome::Fermer1Click(TObject *Sender)
+void __fastcall TfrmDiplome::RubriqueFermerClick(TObject *Sender)
 {
- Close();   
-}
-//---------------------------------------------------------------------------
-void __fastcall TfrmDiplome::RubriqueImprimerClick(TObject *Sender)
-{
- Print();
+ Close();
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmDiplome::FormPaint(TObject *Sender)
-{
- int i;
- for(i=0; i<64; i++) VirtualImageList->Draw(Canvas, 64*(i%8), 46*(i/8), 0);
+{ // v1.7 : le motif de fond est "Patquoi.fr"
+ int dx = VirtualImageList->Width,
+	 dy = VirtualImageList->Height,
+	 xMax = ClientWidth/dx,
+	 yMax = ClientHeight/dy;
+ for(int x=0; x<=xMax; x++)
+   for(int y=0; y<=yMax; y++)
+	 VirtualImageList->Draw(Canvas, x*dx, y*dy, 0);
 }
 //---------------------------------------------------------------------------
+void __fastcall TfrmDiplome::FormCreate(TObject *Sender)
+{ // v1.7 : on exporte en image au lieu d'imprimer
+ bmDiplome = new TBitmap();
+ SaveDialogImage->InitialDir = stRepLocalAppData();
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmDiplome::FormDestroy(TObject *Sender)
+{ // v1.7 : on exporte en image au lieu d'imprimer
+ delete bmDiplome;
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmDiplome::RubriqueCopierClick(TObject *Sender)
+{ // v1.7 : on exporte en image au lieu d'imprimer
+ bmDiplome = GetFormImage();
+ Clipboard()->Assign(bmDiplome);
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmDiplome::RubriqueExporterClick(TObject *Sender)
+{ // v1.7 : on exporte en image au lieu d'imprimer
+ if (SaveDialogImage->Execute())
+  {
+   bmDiplome = GetFormImage();
+   bmDiplome->SaveToFile(SaveDialogImage->FileName);
+  }
+}
+//---------------------------------------------------------------------------
+

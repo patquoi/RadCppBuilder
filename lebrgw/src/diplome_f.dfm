@@ -14,6 +14,8 @@ object frmDiplome: TfrmDiplome
   OldCreateOrder = True
   PopupMenu = PopupMenu
   Position = poScreenCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnPaint = FormPaint
   OnShow = FormShow
   PixelsPerInch = 96
@@ -309,15 +311,19 @@ object frmDiplome: TfrmDiplome
   object PopupMenu: TPopupMenu
     Left = 24
     Top = 16
-    object RubriqueImprimer: TMenuItem
-      Caption = '&Imprimer'
-      ShortCut = 16457
-      OnClick = RubriqueImprimerClick
+    object RubriqueExporter: TMenuItem
+      Caption = '&Exporter sous forme d'#39'image...'
+      ShortCut = 16453
+      OnClick = RubriqueExporterClick
     end
-    object Fermer1: TMenuItem
+    object RubriqueCopier: TMenuItem
+      Caption = '&Copier dans le presse-papier'
+      ShortCut = 16451
+      OnClick = RubriqueCopierClick
+    end
+    object RubriqueFermer: TMenuItem
       Caption = '&Fermer'
-      ShortCut = 13
-      OnClick = Fermer1Click
+      OnClick = RubriqueFermerClick
     end
   end
   object ImageCollection: TImageCollection
@@ -386,5 +392,12 @@ object frmDiplome: TfrmDiplome
     Height = 46
     Left = 408
     Top = 56
+  end
+  object SaveDialogImage: TSaveDialog
+    DefaultExt = 'bmp'
+    Filter = 'Image (*.bmp)|.bmp'
+    Title = 'Enregistrer l'#39'image sous...'
+    Left = 24
+    Top = 72
   end
 end

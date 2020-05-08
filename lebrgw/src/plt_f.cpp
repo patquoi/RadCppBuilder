@@ -10,6 +10,7 @@
 #include "prt_f.h"
 #include "nomjou_f.h"
 #include "comm_f.h"
+#include "diplome_f.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -204,7 +205,8 @@ void __fastcall TfrmPlateau::DemarreArreteJeu(bool LancerNiveau)
    {
     TimerJeu->Interval=Niv->Delai;
     if (!Niv->Lance) Niv->Initialise();
-    DrawGrid->PopupMenu=PopupMenuJeu;
+	DrawGrid->PopupMenu=PopupMenuJeu;
+    CmdTour = false; // v1.7 : On limite une commande par tour de jeu pour éviter la saturation des répétitions de touches
    }
   else DrawGrid->PopupMenu=(Mode==editeur)?PopupMenuEditeur:NULL;
   switch(Mode)
@@ -810,6 +812,7 @@ void __fastcall TfrmPlateau::TimerJeuTimer(TObject *Sender)
 {
  if (Niv->TourEnCours) return;
  ThreadTour=new TThreadTour(false);
+ if (CmdTour) CmdTour = false;
 }
 //---------------------------------------------------------------------------
 
@@ -1275,4 +1278,48 @@ void TfrmPlateau::EcritParametreCouleurCurseur(const TColor CouleurCurseur) // v
     delete IniFile;
    }
  }
+
+void __fastcall TfrmPlateau::MenuItemDiplomeClick(TObject *Sender)
+{ // v1.7 : invisible uniquement pour test
+ if ((frmDiplome=new TfrmDiplome(Application)))
+  {
+   frmDiplome->ShowModal();
+   delete frmDiplome;
+   frmDiplome=NULL;
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmPlateau::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+
+{
+ if ((Key>=37)&&(Key<=40)) // Touches fléchées
+  {
+   if (CmdTour) // v1.7 : on limite les commandes à une par tour de jeu
+	 Key = 0;
+   else
+	 CmdTour = true;
+  }
+ // StatusBar->Panels->Items[0]->Text = "FormKeyDown: " + IntToStr(Key);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmPlateau::FormKeyPress(TObject *Sender, System::WideChar &Key)
+
+{
+   switch(Key)
+	{
+	 case '2': case '4': case '6': case '8': // Directions sur pavé numérique
+	 case 'z': case 'w': case 'q': case 's': // Directions sur z/s/w/q
+	 case 'Z': case 'W': case 'Q': case 'S': // Directions sur Z/S/W/Q
+		if (CmdTour) // v1.7 : on limite les commandes à une par tour de jeu
+		  Key = '\x0';
+		else
+		  CmdTour = true;
+	 default :
+		break;
+	}
+ // StatusBar->Panels->Items[0]->Text = "FormKeyPress: " + Key;
+}
+//---------------------------------------------------------------------------
 

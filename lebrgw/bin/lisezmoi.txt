@@ -31,11 +31,17 @@ dans le mode éditeur.
  - L'aide est à présent au format html et se trouve dans le
    dossier html où se trouve l'application.
  - Support de la haute résolution HDPI.
+ - Le diplôme en fin de jeu peut être enregistré sous forme
+   d'image de deux manières uniquement :
+    - en exportant sous forme de fichier (Ctrl+E)
+    - en copiant dans le presse-papier (Ctrl+C)
+   au lieu d'être uniquement imprimable (Ctrl+I).
+ - Changement de l'icône (haute résolution)  
 
 [1.6.1] 1 correction + 1 ajout
 - Après avoir fini une série et perdu le premier niveau d'une
-  nouvelle partie, le score n'est pas réinitialisé !
-- Ajout d'un fichier licence.txt
+  nouvelle partie, le score n'était pas réinitialisé !
+- Ajout des fichiers licen?e.txt
   
 [1.6] 1 amélioration
 - Les paramètres sont enregistrés dans un fichier LEBRGW.INI.
@@ -182,4 +188,4 @@ dans le mode éditeur.
 
 
 
-Modifié le 21 avril 2020.
+Modifié le 8 mai 2020.

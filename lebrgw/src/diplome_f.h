@@ -13,6 +13,7 @@
 #include <Vcl.BaseImageCollection.hpp>
 #include <Vcl.ImageCollection.hpp>
 #include <Vcl.VirtualImageList.hpp>
+#include <Vcl.Dialogs.hpp>
 //---------------------------------------------------------------------------
 class TfrmDiplome : public TForm
 {
@@ -45,16 +46,22 @@ __published:	// Composants gérés par l'EDI
     TLabel *LabelScore;
     TLabel *Label5;
     TPopupMenu *PopupMenu;
-    TMenuItem *RubriqueImprimer;
-    TMenuItem *Fermer1;
+	TMenuItem *RubriqueExporter;
+	TMenuItem *RubriqueFermer;
 	TImageCollection *ImageCollection;
 	TVirtualImageList *VirtualImageList;
+	TMenuItem *RubriqueCopier;
+	TSaveDialog *SaveDialogImage;
     void __fastcall FormShow(TObject *Sender);
-    void __fastcall Fermer1Click(TObject *Sender);
-    void __fastcall RubriqueImprimerClick(TObject *Sender);
+    void __fastcall RubriqueFermerClick(TObject *Sender);
     
     void __fastcall FormPaint(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall FormDestroy(TObject *Sender);
+	void __fastcall RubriqueCopierClick(TObject *Sender);
+	void __fastcall RubriqueExporterClick(TObject *Sender);
 private:	// Déclarations de l'utilisateur
+    TBitmap *bmDiplome;
 public:		// Déclarations de l'utilisateur
     __fastcall TfrmDiplome(TComponent* Owner);
 };

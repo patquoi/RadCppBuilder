@@ -175,6 +175,7 @@ __published:	// Composants gérés par l'EDI
     TMenuItem *SepS;
 	TImageCollection *ImageCollection;
 	TVirtualImageList *VirtualImageList;
+	TMenuItem *MenuItemDiplome;
     void __fastcall FormShow(TObject *Sender);
     void __fastcall DrawGridDrawCell(TObject *Sender, int Col, int Row,
           TRect &Rect, TGridDrawState State);
@@ -248,6 +249,9 @@ __published:	// Composants gérés par l'EDI
     
     void __fastcall RubriqueCommandesClick(TObject *Sender);
     void __fastcall DrawGridKeyPress(TObject *Sender, char &Key);
+	void __fastcall MenuItemDiplomeClick(TObject *Sender);
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
 private:	// Déclarations de l'utilisateur
     TRegistry *Registry;
     TIniFile *IniFile;
@@ -258,7 +262,8 @@ private:	// Déclarations de l'utilisateur
          Charge1erNiveau;
 	String stMsgCrt;
 	String stChnAff;
-    int PosCrtMsg;
+	int PosCrtMsg;
+	bool CmdTour; // v1.7 : On limite une commande par tour de jeu pour éviter la saturation des répétitions de touches
     TThreadTour *ThreadTour;
     __fastcall mode LitMode() { return ModePrg; };
     void __fastcall ChangeMode(mode NvMode);
