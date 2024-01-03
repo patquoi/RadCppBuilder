@@ -1017,67 +1017,21 @@ int joueur::Charge(int f)
 dico::dico()
  {
   int f=FileOpen(ExtractFilePath(Application->ExeName)+"L23456789ABCDEF", fmOpenRead);
-  // v4.4 : ODS8 (v1.2 : ODS8)
+  // v4.7 : ODS9
   nbl[0]=162L;
-  nbl[1]=1899L;
-  nbl[2]=10492L;
-  nbl[3]=39900L;
-  nbl[4]=107946L;
-  nbl[5]=225610L;
-  nbl[6]=384312L;
-  nbl[7]=536256L;
-  nbl[8]=629540L;
-  nbl[9]=635624L;
-  nbl[10]=558012L;
-  nbl[11]=428506L;
-  nbl[12]=292404L;
-  nbl[13]=181155L;
-  /* // v4.3 : ODS7
-  nbl[0]=160L;
-  nbl[1]=1863L;
-  nbl[2]=10256L;
-  nbl[3]=39115L;
-  nbl[4]=106086L;
-  nbl[5]=221718L;
-  nbl[6]=377272L;
-  nbl[7]=525897L;
-  nbl[8]=615870L;
-  nbl[9]=621104L;
-  nbl[10]=543972L;
-  nbl[11]=417651L;
-  nbl[12]=284998L;
-  nbl[13]=176550L;
-  // v4.2 : ODS6
-  nbl[0]=160L;
-  nbl[1]=1830L;
-  nbl[2]=10036L;
-  nbl[3]=38225L;
-  nbl[4]=103908L;
-  nbl[5]=217490L;
-  nbl[6]=370632L;
-  nbl[7]=517203L;
-  nbl[8]=604870L;
-  nbl[9]=609796L;
-  nbl[10]=533616L;
-  nbl[11]=409383L;
-  nbl[12]=278488L;
-  nbl[13]=171930L;
-  // v4.1 : OSD5
-  nbl[0]=154L;
-  nbl[1]=1767L;
-  nbl[2]=9764L;
-  nbl[3]=37415L;
-  nbl[4]=102210L;
-  nbl[5]=214431L;
-  nbl[6]=365136L;
-  nbl[7]=509157L;
-  nbl[8]=595260L;
-  nbl[9]=598862L;
-  nbl[10]=522204L;
-  nbl[11]=398970L;
-  nbl[12]=269906L;
-  nbl[13]=165930L;
-  */
+  nbl[1]=1917L;
+  nbl[2]=10628L;
+  nbl[3]=40295L;
+  nbl[4]=109068L;
+  nbl[5]=227885L;
+  nbl[6]=388696L;
+  nbl[7]=542871L;
+  nbl[8]=637360L;
+  nbl[9]=643764L;
+  nbl[10]=564948L;
+  nbl[11]=433498L;
+  nbl[12]=295960L;
+  nbl[13]=183420L;
   Indice[0]=0L;
   for(int i=1; i<NBLMAX; i++)
    Indice[i]=Indice[i-1]+nbl[i-1];

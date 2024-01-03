@@ -16,7 +16,7 @@
 #define NBLMIN           2  // v4.0
 #define NBLMAX          15  // v4.0. Avant : 9
 #define NBPRMLTR       114
-#define NTL        4031818L // v4.4. ODS8 // v.4.3 = ODS7: 3867567L // v4.2 : ODS6 (v4.1.1, ODS5 : 3791166L. ODS4 : 3688194L)
+#define NTL       4080472L  // v.4.7 (ODS9) // v4.4 = ODS8:  4031818L // v.4.3 = ODS7: 3867567L // v4.2 : ODS6 (v4.1.1, ODS5 : 3791166L. ODS4 : 3688194L)
 #define NBCASES        169  // v4.0. Avant : 91
 #define NBXY            15  // v4.0. Avant : 11
 #define NBDIR            6

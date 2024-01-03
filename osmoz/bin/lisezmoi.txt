@@ -40,6 +40,8 @@ HISTORIQUE DES VERSIONS
 
 Note : Avant la version 3.0, Ozmoz s'appelait Word Wars, la guerre des mots.
 
+[4.7] dictionnaire de référence : ODS 9 (2024)
+
 [4.6.1]
  - Icône en haute résolution.
 
@@ -172,4 +174,4 @@ Première version Windows.
 Versions Dos
 
    
-Dernière modification le 2 mai 2020.
+Dernière modification le 3 janvier 2024.
