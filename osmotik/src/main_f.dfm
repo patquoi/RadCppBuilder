@@ -9,7 +9,6 @@ object FormMain: TFormMain
   ParentFont = True
   KeyPreview = True
   Menu = MainMenu
-  OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -17,8 +16,7 @@ object FormMain: TFormMain
   OnDestroy = FormDestroy
   OnKeyPress = FormKeyPress
   OnResize = FormResize
-  PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 32
   object PaintBox: TPaintBox
     Left = 0
     Top = 0
@@ -84,6 +82,8 @@ object FormMain: TFormMain
     SizeGrip = False
     UseSystemFont = False
     OnDrawPanel = StatusBarDrawPanel
+    ExplicitTop = 489
+    ExplicitWidth = 818
   end
   object PanelDroite: TPanel
     Left = 632
@@ -93,6 +93,8 @@ object FormMain: TFormMain
     Align = alRight
     ParentColor = True
     TabOrder = 1
+    ExplicitLeft = 618
+    ExplicitHeight = 489
     object RichEdit: TRichEdit
       Left = 1
       Top = 30
@@ -117,7 +119,7 @@ object FormMain: TFormMain
       ShowHint = True
       TabOrder = 0
       WordWrap = False
-      Zoom = 100
+      ExplicitHeight = 458
     end
     object PanelMilieu: TPanel
       Left = 1
@@ -224,12 +226,14 @@ object FormMain: TFormMain
       Tag = 6
       Caption = '10h'
       ImageIndex = 5
+      ImageName = '6NO'
       OnClick = MenuItemPlacerClick
     end
     object MenuItemPlacer8h: TMenuItem
       Tag = 5
       Caption = '  8h'
       ImageIndex = 4
+      ImageName = '5SO'
       OnClick = MenuItemPlacerClick
     end
     object MenuItemPlacer0h: TMenuItem
@@ -237,12 +241,14 @@ object FormMain: TFormMain
       Break = mbBreak
       Caption = '  0h'
       ImageIndex = 0
+      ImageName = '1N'
       OnClick = MenuItemPlacerClick
     end
     object MenuItemPlacer6h: TMenuItem
       Tag = 4
       Caption = '  6h'
       ImageIndex = 3
+      ImageName = '4S'
       OnClick = MenuItemPlacerClick
     end
     object MenuItemPlacer2h: TMenuItem
@@ -250,12 +256,14 @@ object FormMain: TFormMain
       Break = mbBreak
       Caption = '  2h'
       ImageIndex = 1
+      ImageName = '2NE'
       OnClick = MenuItemPlacerClick
     end
     object MenuItemPlacer4h: TMenuItem
       Tag = 3
       Caption = '  4h'
       ImageIndex = 2
+      ImageName = '3SE'
       OnClick = MenuItemPlacerClick
     end
   end
@@ -498,43 +506,35 @@ object FormMain: TFormMain
     Top = 96
   end
   object VirtualImageList: TVirtualImageList
-    DisabledGrayscale = False
-    DisabledSuffix = '_Disabled'
     Images = <
       item
         CollectionIndex = 0
         CollectionName = 'Directions\1N'
-        Disabled = False
         Name = '1N'
       end
       item
         CollectionIndex = 1
         CollectionName = 'Directions\2NE'
-        Disabled = False
         Name = '2NE'
       end
       item
         CollectionIndex = 2
         CollectionName = 'Directions\3SE'
-        Disabled = False
         Name = '3SE'
       end
       item
         CollectionIndex = 3
         CollectionName = 'Directions\4S'
-        Disabled = False
         Name = '4S'
       end
       item
         CollectionIndex = 4
         CollectionName = 'Directions\5SO'
-        Disabled = False
         Name = '5SO'
       end
       item
         CollectionIndex = 5
         CollectionName = 'Directions\6NO'
-        Disabled = False
         Name = '6NO'
       end>
     ImageCollection = ImageCollection

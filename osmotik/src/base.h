@@ -13,7 +13,7 @@
 #define NBCONFIGSDEPART     3 // (2,3 ou 6 joueurs)
 #define NBLMINMOTDICO       2
 #define NBLMAXMOTDICO      15
-#define NBLDICO            4031818L // v1.3 (ODS8) // v.1.2 = ODS7: 3942512L // v1.1 = ODS6: 3867567L, v0.9.1 = ODS5 : 3791166L 
+#define NBLDICO            4080472L // v1.5 (ODS9) // v1.3 = ODS8: 4031818L // v.1.2 = ODS7: 3942512L // v1.1 = ODS6: 3867567L, v0.9.1 = ODS5 : 3791166L
 #define NBLALPHABET        26
 //---------------------------------------------------------------------------
 #define DRN_VERSION_SMT 0x0940 // Dernière version modifiée des fichiers .smt

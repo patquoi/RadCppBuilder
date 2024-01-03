@@ -671,21 +671,21 @@ dico::dico()
    }
 
   // Dico[NBLDICO]=0; // v1.4
-  // v1.3 : ODS8 (v1.2 : ODS8)
+  // v1.5 : ODS9 (v1.2 : ODS8)
   nbl[0]=162L;
-  nbl[1]=1899L;
-  nbl[2]=10492L;
-  nbl[3]=39900L;
-  nbl[4]=107946L;
-  nbl[5]=225610L;
-  nbl[6]=384312L;
-  nbl[7]=536256L;
-  nbl[8]=629540L;
-  nbl[9]=635624L;
-  nbl[10]=558012L;
-  nbl[11]=428506L;
-  nbl[12]=292404L;
-  nbl[13]=181155L;
+  nbl[1]=1917L;
+  nbl[2]=10628L;
+  nbl[3]=40295L;
+  nbl[4]=109068L;
+  nbl[5]=227885L;
+  nbl[6]=388696L;
+  nbl[7]=542871L;
+  nbl[8]=637360L;
+  nbl[9]=643764L;
+  nbl[10]=564948L;
+  nbl[11]=433498L;
+  nbl[12]=295960L;
+  nbl[13]=183420L;
   Indice[0]=0L;
   for(int i=1; i<NBLMAXMOTDICO; i++)
    Indice[i]=Indice[i-1]+nbl[i-1];

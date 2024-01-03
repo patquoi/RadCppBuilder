@@ -703,9 +703,9 @@ void __fastcall TFormMain::MenuItemAProposClick(TObject *Sender)
  // v1.4 : Facteur HDPI + alignement 32/64 bits
  String stFacteurHDPI = FormatFloat("0.0", Screen->PixelsPerInch / 96.0);
  const String stFrmAPropos = "\
-OSMOTIK 1.4.2 version %d bits\n\
+OSMOTIK 1.5 version %d bits\n\
 Facteur HDPI : x%s\n\
-Dictionnaire intégré : ODS8.\n\n\
+Dictionnaire intégré : ODS9.\n\n\
 GPL 2.0 - Fourni SANS AUCUNE GARANTIE que ce soit.\n\
 Créé & développé par Patrice FOUQUET\n\n\
 Pour toute information : patquoi.fr/#osmotik\n\

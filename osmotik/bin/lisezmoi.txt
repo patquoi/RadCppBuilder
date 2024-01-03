@@ -51,6 +51,9 @@ smtk-src-win64.zip. Il faut RAD Studio C++ 10.3.3, la version Community
 HISTORIQUE DES VERSIONS
 -----------------------
 
+[Version 1.5] - 3 janvier 2024
+ - Mise à niveau du dictionnaire : ODS9
+
 [Version 1.4.2] - 2 mai 2020
  - Icône en haute résolution.
 
@@ -134,4 +137,4 @@ HISTORIQUE DES VERSIONS
  - Première version mise en ligne.
 
 
-Dernière modification le 2 mai 2020.
+Dernière modification le 3 janvier 2024.
